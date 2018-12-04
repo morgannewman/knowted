@@ -20,7 +20,7 @@ Table of Contents
 
 2. All non-trivial functionality will corresponding tests using Jest / Enzyme
 
-3. All styles will be implemented in separate `.scss` files.
+3. All styles will be implemented using styled-components.
 
 ## Architecture Overview
 The goal of this architecture is to be extensible, modular, and consistent. In a codebase with 4 potential contributors, I believe the ease of maintenance over time is worth the added complexity.
