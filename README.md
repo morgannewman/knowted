@@ -1,1 +1,1 @@
-# This is created by The Best Team
+# This is created by The Best Team [![Build Status](https://travis-ci.com/morgannewman/learn-note.svg?branch=master)](https://travis-ci.com/morgannewman/learn-note)
