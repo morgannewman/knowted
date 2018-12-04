@@ -14,6 +14,14 @@ Table of Contents
 
 ---
 
+## Contributing Expectations
+
+1. All non-trivial changes will be implemented on a separate branch and submitted via a pull request to be reviewed by the QA lead.
+
+2. All non-trivial functionality will corresponding tests using Jest / Enzyme
+
+3. All styles will be implemented in separate `.scss` files.
+
 ## Architecture Overview
 The goal of this architecture is to be extensible, modular, and consistent. In a codebase with 4 potential contributors, I believe the ease of maintenance over time is worth the added complexity.
 
