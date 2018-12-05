@@ -1,0 +1,27 @@
+$grey: #c4c4c4;
+$outer-margin: 32px;
+
+.nav {
+	height: 80px;
+	width: 100%;
+	background-color: $grey;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.nav-logo {
+	margin-left: $outer-margin;
+	width: 120px;
+	height: 40px;
+	background: white;
+}
+
+.nav-link {
+	margin-right: $outer-margin;
+	text-decoration: none;
+
+	&:visited {
+		color: inherit;
+	}
+}
