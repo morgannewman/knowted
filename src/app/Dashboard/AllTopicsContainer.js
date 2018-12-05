@@ -2,7 +2,7 @@ import React from 'react';
 import Folder from './Folder';
 import Topic from './Topic';
 
-class TopicsContainer extends React.Component {
+class AllTopicsContainer extends React.Component {
   render() {
     //FIXME: hard coded for now
     let folders = ['folder one', 'folder two'];
@@ -22,4 +22,4 @@ class TopicsContainer extends React.Component {
   }
 }
 
-export default TopicsContainer;
+export default AllTopicsContainer;
