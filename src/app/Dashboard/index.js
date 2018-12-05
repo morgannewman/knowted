@@ -1,6 +1,9 @@
 import React from 'react';
 import AllTopicsContainer from './AllTopicsContainer';
+<<<<<<< HEAD
 import RecentlyViewedContainer from './RecentlyViewedContainer';
+=======
+>>>>>>> set up initial should render tests
 
 class Dashboard extends React.Component {
   render() {
