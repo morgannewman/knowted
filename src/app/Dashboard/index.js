@@ -1,5 +1,5 @@
 import React from 'react';
-import TopicsContainer from './TopicsContainer';
+import AllTopicsContainer from './AllTopicsContainer';
 
 class Dashboard extends React.Component {
   render() {
@@ -9,8 +9,8 @@ class Dashboard extends React.Component {
           <h2>Recently Viewed</h2>
         </div>
         <div>
-          <h2>All</h2>
-          <TopicsContainer />
+          <h2>All Topics</h2>
+          <AllTopicsContainer />
         </div>
       </main>
     );

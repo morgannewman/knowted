@@ -2,29 +2,21 @@ import React from 'react';
 import Folder from './Folder';
 import Topic from './Topic';
 
-//FIXME: remove hard coded references
-import TopicsData from '../../db/topicsData';
-import FoldersData from '../../db/foldersData';
-
-//Component Contract - expect:
-//To render
-//If I have any Folders for them to render
-//If I have any parentless Topics for them to render
-
 class AllTopicsContainer extends React.Component {
   render() {
+    //FIXME: hard coded for now
+    let folders = ['folder one', 'folder two'];
+    let topics = ['topic one', 'topic two', 'topic three'];
+
     return (
       <React.Fragment>
-        <button onClick={() => console.log('add a topic')}>add topic</button>
-        <br />
-        {FoldersData.map((folder, index) => {
-          return <Folder title={folder.title} key={index} id={folder.id} />;
+        <button>add topic</button>
+        {folders.map((folder, index) => {
+          return <Folder title={folder} key={index} />;
         })}
-        {TopicsData.map(topic =>
-          !topic.parent ? (
-            <Topic title={topic.title} key={topic.id} topicId={topic.id} />
-          ) : null
-        )}
+        {topics.map((topic, index) => {
+          return <Topic title={topic} key={index} />;
+        })}
       </React.Fragment>
     );
   }
