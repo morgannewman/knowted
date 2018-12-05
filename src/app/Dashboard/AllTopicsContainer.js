@@ -1,30 +1,23 @@
 import React from 'react';
-import './AllTopicsContainer.css';
-
-import AddTopic from './AddTopic';
 import Folder from './Folder';
 import Topic from './Topic';
 
-//FIXME: remove hard coded references
-import TopicsData from '../../db/topicsData';
-import FoldersData from '../../db/foldersData';
-
 class AllTopicsContainer extends React.Component {
   render() {
+    //FIXME: hard coded for now
+    let folders = ['folder one', 'folder two'];
+    let topics = ['topic one', 'topic two', 'topic three'];
+
     return (
-      <section className="all-topics-container">
-        <AddTopic />
-        {FoldersData.map(folder => {
-          return (
-            <Folder title={folder.title} folderId={folder.id} key={folder.id} />
-          );
+      <React.Fragment>
+        <button>add topic</button>
+        {folders.map((folder, index) => {
+          return <Folder title={folder} key={index} />;
         })}
-        {TopicsData.map(topic =>
-          !topic.parent ? (
-            <Topic title={topic.title} topicId={topic.id} key={topic.id} />
-          ) : null
-        )}
-      </section>
+        {topics.map((topic, index) => {
+          return <Topic title={topic} key={index} />;
+        })}
+      </React.Fragment>
     );
   }
 }
