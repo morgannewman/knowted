@@ -6,24 +6,30 @@ import RecentResourceItem from './RecentResourceItem';
 const resources = [
   {
     resource:{
-      name: 'needles',
       id: 12345,
-      topic: 'knitting'
+      parent: 54321,
+      title: 'needles',
+      uri: 'http://something',
+      last_opened: Date.now()
     }
   },
 
   {
     resource:{
-      name: 'high-kicks',
-      id: 12345,
-      topic: 'karate'
+      id: 123456,
+      parent:102030,
+      title: 'Karate',
+      uri: 'http://something',
+      last_opened: Date.now()
     }
   },
   {
     resource:{
-      name: 'Australia',
-      id: 12345,
-      topic: 'kangaroos'
+      id: 1234567,
+      parent: 10204,
+      title: 'Australia',
+      uri: 'http://something',
+      last_opened: Date.now()
     }
   }
   
@@ -37,7 +43,5 @@ export class RecentlyViewed extends Component {
     )
   }
 }
-
-
 
 export default RecentlyViewed;
