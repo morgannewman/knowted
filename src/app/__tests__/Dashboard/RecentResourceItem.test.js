@@ -10,7 +10,7 @@ const resources = [
       parent: 54321,
       title: 'needles',
       uri: 'http://something',
-      last_opened: Date.now()
+      last_opened: new Date().toLocaleString()
     }
   },
 

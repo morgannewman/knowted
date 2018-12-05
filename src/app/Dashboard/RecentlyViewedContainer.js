@@ -10,7 +10,7 @@ const resources = [
       parent: 54321,
       title: 'needles',
       uri: 'http://something',
-      last_opened: Date.now()
+      last_opened: new Date().toLocaleString()
     }
   },
 
@@ -20,7 +20,7 @@ const resources = [
       parent:102030,
       title: 'Karate',
       uri: 'http://something',
-      last_opened: Date.now()
+      last_opened: new Date().toLocaleString()
     }
   },
   {
@@ -29,7 +29,7 @@ const resources = [
       parent: 10204,
       title: 'Australia',
       uri: 'http://something',
-      last_opened: Date.now()
+      last_opened: new Date().toLocaleString()
     }
   }
   

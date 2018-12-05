@@ -13,7 +13,7 @@ export default function RecentResourceItem(props) {
 						<li  className="recent-resource-item">
                 {item.resource.parent} >
                 {item.resource.title}
-              <p>{item.resource.last_opened}</p>
+              <p>Last Opened: {item.resource.last_opened}</p>
 						</li>
             </a>
 					);
