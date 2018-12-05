@@ -5,20 +5,20 @@ import store from '../controller/store';
 import Landing from './Landing';
 import Nav from './common/Nav';
 
-class App extends Component {
+export class App extends Component {
 	render() {
 		return (
-			<Provider store={store}>
-				<Router>
+			<Router>
+				<Provider store={store}>
 					<div className="App">
 						<Nav />
 						<Switch>
-							<Route exact path="/" component={Landing} />
+							<Route exact path={['/', '/login', '/register']} component={Landing} />
 							<Redirect to="/" />
 						</Switch>
 					</div>
-				</Router>
-			</Provider>
+				</Provider>
+			</Router>
 		);
 	}
 }
