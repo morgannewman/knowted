@@ -1,19 +1,22 @@
 import './Nav.scss';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 export class Nav extends Component {
 	render() {
 		return (
 			<header className="nav">
-				<div className="nav-logo" />
+				<Link to="/" className="nav-logo">
+					Logo
+				</Link>
 				<nav>
-					<a className="nav-link" href="#">
+					<Link className="nav-link" to="/potato">
 						Sign up
-					</a>
-					<a className="nav-link" href="#">
-						Sign in
-					</a>
+					</Link>
+					<Link className="nav-link" to="/">
+						Login
+					</Link>
 				</nav>
 			</header>
 		);
