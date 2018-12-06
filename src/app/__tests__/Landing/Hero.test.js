@@ -5,7 +5,7 @@ import Hero from '../../Landing/Hero';
 describe('<Hero />', () => {
 	let wrapper;
 	beforeEach(() => {
-		wrapper = shallow(<Hero />);
+		wrapper = shallow(<Hero submitting={false} />);
 	});
 
 	it('renders without crashing', () => {});

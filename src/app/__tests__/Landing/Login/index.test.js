@@ -9,16 +9,16 @@ import { Login } from '../../../Landing/Login';
 */
 describe('<Login />', () => {
 	it('renders without crashing', () => {
-		shallow(<Login submitting={false} />);
+		shallow(<Login loggedIn={false} submitting={false} />);
 	});
 
 	it('disables submit button when auth is submitting', () => {
-		let wrapper = shallow(<Login submitting={true} />);
+		let wrapper = shallow(<Login loggedIn={false} submitting={true} />);
 		expect(wrapper.find('form > button').prop('disabled')).toEqual(true);
 	});
 
 	it('Has an enabled submit button when auth is not submitting', () => {
-		let wrapper = shallow(<Login submitting={false} />);
+		let wrapper = shallow(<Login loggedIn={false} submitting={false} />);
 		expect(
 			wrapper
 				.find('form > button')

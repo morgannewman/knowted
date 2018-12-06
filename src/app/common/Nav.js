@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { authLogout } from '../../controller/actions/auth';
 
 export class Nav extends Component {
 	static propTypes = {
@@ -10,6 +11,7 @@ export class Nav extends Component {
 	};
 
 	render() {
+		const { dispatch } = this.props;
 		return (
 			<header className="nav">
 				<Link to="/" className="nav-logo">
@@ -17,7 +19,7 @@ export class Nav extends Component {
 				</Link>
 				{this.props.loggedIn ? (
 					<nav className="nav-loggedIn">
-						<Link className="nav-link" to="#">
+						<Link className="nav-link" to="#" onClick={() => dispatch(authLogout())}>
 							Logout
 						</Link>
 					</nav>
