@@ -1,4 +1,4 @@
-import { AUTH_SUBMIT, AUTH_SUCCESS, AUTH_ERROR } from '../actions/auth';
+import { AUTH_SUBMIT, AUTH_SUCCESS, AUTH_ERROR, AUTH_LOGOUT } from '../actions/auth';
 import produce from 'immer';
 
 export const initialState = {
@@ -25,6 +25,9 @@ export default produce((state, action) => {
 
 		case AUTH_ERROR:
 			return { ...initialState, error: action.payload };
+
+		case AUTH_LOGOUT:
+			return { ...initialState };
 
 		default:
 			return;
