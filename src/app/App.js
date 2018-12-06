@@ -10,6 +10,7 @@ import store from '../controller/store';
 import Landing from './Landing';
 import Nav from './common/Nav';
 import Dashboard from './Dashboard';
+import TopicDashboard from './TopicDasboard';
 
 export class App extends Component {
   render() {
@@ -22,7 +23,7 @@ export class App extends Component {
               <Route
                 exact
                 path={['/', '/login', '/register']}
-                component={Landing}
+                component={TopicDashboard}
               />
               <Route exact path="/dashboard" component={Dashboard} />
               <Redirect to="/" />
