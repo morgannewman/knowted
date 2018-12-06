@@ -1,14 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Topic = props => {
+export default function Topic({ title, topicId }) {
   return (
     <button
       className="topic-btn"
-      onClick={() => console.log('click through to topic/:id', props.topicId)}
+      onClick={() => console.log('click through to topic/:id', topicId)}
     >
-      {props.title}
+      {title}
     </button>
   );
-};
+}
 
-export default Topic;
+Topic.propTypes = {
+  topicId: PropTypes.number,
+  title: PropTypes.string
+};
