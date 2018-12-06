@@ -24,7 +24,7 @@ export class App extends Component {
                 path={['/', '/login', '/register']}
                 component={Landing}
               />
-              <Route exact path="/" component={Dashboard} />
+              <Route exact path="/dashboard" component={Dashboard} />
               <Redirect to="/" />
             </Switch>
           </div>
