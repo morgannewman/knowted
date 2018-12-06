@@ -105,9 +105,4 @@ export class Register extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
-	submitting: state.auth.submitting,
-	loggedIn: state.auth.loggedIn
-});
-
-export default connect(mapStateToProps)(Register);
+export default connect()(Register);
