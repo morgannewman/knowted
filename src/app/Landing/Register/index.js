@@ -23,7 +23,8 @@ export class Register extends Component {
 	};
 
 	static propTypes = {
-		submitting: PropTypes.bool.isRequired
+		submitting: PropTypes.bool.isRequired,
+		loggedIn: PropTypes.bool.isRequired
 	};
 
 	handleRegisterSubmit = e => {
@@ -79,16 +80,16 @@ export class Register extends Component {
 			<main className="register-container">
 				<h1>Sign Up</h1>
 				<form onSubmit={this.handleRegisterSubmit} className="register">
-					<label forHtml="first-name">First Name</label>
+					<label htmlFor="first-name">First Name</label>
 					<input
 						value={this.state.firstName.input}
 						onChange={this.manageNameInput}
 						type="text"
 						name="first-name"
 					/>
-					<label forHtml="email">Email</label>
+					<label htmlFor="email">Email</label>
 					<input value={this.state.email.input} onChange={this.manageEmailInput} type="text" name="email" />
-					<label forHtml="password">Password</label>
+					<label htmlFor="password">Password</label>
 					<input
 						value={this.state.password.input}
 						onChange={this.managePasswordInput}
@@ -105,7 +106,8 @@ export class Register extends Component {
 }
 
 const mapStateToProps = state => ({
-	submitting: state.auth.submitting
+	submitting: state.auth.submitting,
+	loggedIn: state.auth.loggedIn
 });
 
 export default connect(mapStateToProps)(Register);
