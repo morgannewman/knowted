@@ -1,34 +1,41 @@
-
 const resourcesData = [
   {
-    resource:{
+    resource: {
       id: 12345,
-      parent: 54321,
-      title: 'needles',
+      parent: {
+        id: 54321,
+        title: 'Knitting'
+      },
+      title: 'Needles',
       uri: 'http://something',
       last_opened: new Date().toLocaleString()
     }
   },
 
   {
-    resource:{
+    resource: {
       id: 123456,
-      parent:102030,
+      parent: {
+        id: 102030,
+        title: 'Martial Arts'
+      },
       title: 'Karate',
       uri: 'http://something',
       last_opened: new Date().toLocaleString()
     }
   },
   {
-    resource:{
+    resource: {
       id: 1234567,
-      parent: 10204,
+      parent: {
+        id: 10204,
+        title: 'Australia'
+      },
       title: 'Kangaroos',
       uri: 'http://something',
       last_opened: new Date().toLocaleString()
     }
   }
-  
-  ];
+];
 
-  export default resourcesData;
+export default resourcesData;
