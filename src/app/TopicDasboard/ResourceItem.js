@@ -10,12 +10,26 @@ export class ResourceItem extends React.Component {
     resource: PropTypes.object.isRequired
   };
 
+  handleChecked = id => {};
+
+  handleDelete = id => {
+    console.log(`Deletes resource with id: ${id}`);
+  };
+
+  handleEdit = id => {
+    console.log(`Edits resource with id: ${id}`);
+  };
+
   render() {
     const { resource } = this.props;
     return (
-      <>
-        <form className="js-update-item hidden">
-          <input id="box1" type="checkbox" />
+      <div>
+        <form className="resource-item">
+          <input
+            id={resource.id}
+            type="checkbox"
+            onClick={e => console.log(e.target)}
+          />
           <label htmlFor="box1">{resource.name}</label>
           <label htmlFor={resource.title} />
           <input
@@ -28,19 +42,23 @@ export class ResourceItem extends React.Component {
 
         <div className="resource-item-controls">
           <button
-            onClick={() => console.log('edit works')}
+            resourceid={resource.id}
+            onClick={e => this.handleEdit(e.target.getAttribute('resourceid'))}
             className="resource-item-edit"
           >
-            <span className="button-label">edit</span>
+            edit
           </button>
           <button
-            onClick={() => console.log('delete works')}
+            resourceid={resource.id}
+            onClick={e =>
+              this.handleDelete(e.target.getAttribute('resourceid'))
+            }
             className="resource-item-delete"
           >
-            <span className="button-label">delete</span>
+            delete
           </button>
         </div>
-      </>
+      </div>
     );
   }
 }
