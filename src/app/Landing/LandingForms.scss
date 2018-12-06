@@ -34,7 +34,9 @@ $grey: #c4c4c4;
 }
 
 .register button,
-.login button {
+.login button,
+.hero a {
+	text-decoration: none;
 	border: none;
 	margin: 16px 0;
 	background: black;

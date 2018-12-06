@@ -1,5 +1,6 @@
 import './Hero.scss';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 export default class Hero extends Component {
@@ -14,6 +15,7 @@ export default class Hero extends Component {
 					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
 					culpa qui officia deserunt mollit anim id est laborum.
 				</p>
+				<Link to="/register">Sign Up</Link>
 			</main>
 		);
 	}

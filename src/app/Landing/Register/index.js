@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 // import { submitAuthRegistration } from '../../../controller/actions/auth';
 
-class Register extends Component {
+export class Register extends Component {
 	state = {
 		firstName: {
 			dirty: false,

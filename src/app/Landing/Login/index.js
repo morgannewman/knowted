@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 // import { submitAuthLogin } from '../../../controller/actions/auth';
 
-class Login extends Component {
+export class Login extends Component {
 	state = {
 		email: {
 			dirty: false,
@@ -15,10 +15,6 @@ class Login extends Component {
 			input: '',
 			valid: false
 		}
-	};
-
-	static propTypes = {
-		submitting: PropTypes.bool.isRequired
 	};
 
 	handleLoginSubmit = e => {
@@ -56,9 +52,11 @@ class Login extends Component {
 	};
 
 	render() {
+		const { submitting } = this.props;
+
 		return (
 			<main className="login-container">
-				<h1>Sign Up</h1>
+				<h1 className="login-title">Login</h1>
 				<form onSubmit={this.handleLoginSubmit} className="login">
 					<label forHtml="email">Email</label>
 					<input value={this.state.email.input} onChange={this.manageEmailInput} type="text" name="email" />
@@ -69,7 +67,7 @@ class Login extends Component {
 						type="password"
 						name="password"
 					/>
-					<button type="submit" disabled={this.props.submitting}>
+					<button type="submit" disabled={submitting}>
 						Submit
 					</button>
 				</form>
@@ -77,6 +75,10 @@ class Login extends Component {
 		);
 	}
 }
+
+Login.propTypes = {
+	submitting: PropTypes.bool.isRequired
+};
 
 const mapStateToProps = state => ({
 	submitting: state.auth.submitting
