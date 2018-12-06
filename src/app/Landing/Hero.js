@@ -9,7 +9,7 @@ export default class Hero extends Component {
 	};
 
 	render() {
-		const { submitting } = this.props;
+		// const { submitting } = this.props;
 
 		// if (submitting) return <div></div>;
 
