@@ -6,16 +6,26 @@ import Folder from '../../Dashboard/Folder';
 //To render
 //the jawbone to display on false
 
+const initialState = {
+  isHidden: false,
+  title: 'hello',
+  folderId: 101
+};
+
 describe('<Folder />', () => {
   let wrapper;
-  beforeEach(() => {
-    wrapper = shallow(<Folder />);
+
+  it('renders without crashing', () => {
+    shallow(<Folder {...initialState} />);
   });
 
-  it('renders without crashing', () => {});
+  it('the folder has a title', () => {
+    wrapper = shallow(<Folder {...initialState} />);
+    expect(wrapper.find('button').text()).toEqual('hello');
+  });
 
   it('to display JawBone on state isHidden false', () => {
-    wrapper = shallow(<Folder isHidden={false} />);
+    wrapper = shallow(<Folder {...initialState} />);
     expect(wrapper.find('.jaw-bone-container'));
   });
 });

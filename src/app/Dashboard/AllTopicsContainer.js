@@ -14,14 +14,14 @@ class AllTopicsContainer extends React.Component {
       <>
         <button onClick={() => console.log('add a topic')}>add topic</button>
         <br />
-        {FoldersData.map((folder, index) => {
+        {FoldersData.map(folder => {
           return (
-            <Folder title={folder.title} folderId={folder.id} key={index} />
+            <Folder title={folder.title} folderId={folder.id} key={folder.id} />
           );
         })}
-        {TopicsData.map((topic, index) =>
+        {TopicsData.map(topic =>
           !topic.parent ? (
-            <Topic title={topic.title} topicId={topic.id} key={index} />
+            <Topic title={topic.title} topicId={topic.id} key={topic.id} />
           ) : null
         )}
       </>

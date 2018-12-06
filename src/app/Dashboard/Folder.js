@@ -3,11 +3,13 @@ import JawBone from './JawBone';
 import PropTypes from 'prop-types';
 class Folder extends React.Component {
   static propTypes = {
-    folderId: PropTypes.number,
-    title: PropTypes.string
+    folderId: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired
   };
 
-  state = {};
+  state = {
+    isHidden: false
+  };
 
   toggleHidden() {
     this.setState({
