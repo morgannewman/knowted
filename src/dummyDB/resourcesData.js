@@ -8,6 +8,7 @@ const resourcesData = [
       },
       title: 'Needles',
       uri: 'http://something',
+      completed: false,
       last_opened: new Date().toLocaleString()
     }
   },
@@ -21,6 +22,7 @@ const resourcesData = [
       },
       title: 'Karate',
       uri: 'http://something',
+      completed: false,
       last_opened: new Date().toLocaleString()
     }
   },
@@ -33,6 +35,7 @@ const resourcesData = [
       },
       title: 'Kangaroos',
       uri: 'http://something',
+      completed: true,
       last_opened: new Date().toLocaleString()
     }
   }

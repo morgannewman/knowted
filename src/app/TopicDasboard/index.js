@@ -11,7 +11,6 @@ class TopicDashboard extends React.Component {
         </section>
         <section>
           <h2>Active Resource Container placeholder</h2>
-
           <ResourceItem resource={resourcesData[0].resource} />
         </section>
         <section>
