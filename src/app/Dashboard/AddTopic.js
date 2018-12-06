@@ -3,12 +3,7 @@ import React from 'react';
 import AddTopicForm from './AddTopicForm';
 
 class AddTopic extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isHidden: true
-    };
-  }
+  state = {};
 
   toggleHidden() {
     this.setState({
