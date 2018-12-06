@@ -5,10 +5,14 @@ import PropTypes from 'prop-types';
 
 export default class Hero extends Component {
 	static propTypes = {
-		placeholder: PropTypes.any
+		submitting: PropTypes.bool.isRequired
 	};
 
 	render() {
+		const { submitting } = this.props;
+
+		// if (submitting) return <div></div>;
+
 		return (
 			<main className="hero">
 				<h1 className="hero-title">Headline marketing copy</h1>
