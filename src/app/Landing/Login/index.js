@@ -17,6 +17,10 @@ export class Login extends Component {
 		}
 	};
 
+	static propTypes = {
+		submitting: PropTypes.bool.isRequired
+	};
+
 	handleLoginSubmit = e => {
 		e.preventDefault();
 		const { password, email } = this.state;
@@ -67,7 +71,7 @@ export class Login extends Component {
 						type="password"
 						name="password"
 					/>
-					<button type="submit" disabled={submitting}>
+					<button className="login-button" type="submit" disabled={submitting}>
 						Submit
 					</button>
 				</form>
@@ -75,10 +79,6 @@ export class Login extends Component {
 		);
 	}
 }
-
-Login.propTypes = {
-	submitting: PropTypes.bool.isRequired
-};
 
 const mapStateToProps = state => ({
 	submitting: state.auth.submitting

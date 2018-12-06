@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 export default class Hero extends Component {
+	static propTypes = {
+		placeholder: PropTypes.any
+	};
+
 	render() {
 		return (
 			<main className="hero">
@@ -20,7 +24,3 @@ export default class Hero extends Component {
 		);
 	}
 }
-
-Hero.propTypes = {
-	placeholder: PropTypes.any
-};
