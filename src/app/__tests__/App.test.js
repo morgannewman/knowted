@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import { App } from '../App';
+import TopicDashboard from '../TopicDasboard';
 
 it('renders without crashing', () => {
-	shallow(<App />);
+  shallow(<TopicDashboard />);
 });
