@@ -62,7 +62,7 @@ export const addTopicSuccess = topic => ({
 
 export const topicSuccess = topics => ({
   type: TOPIC_SUCCESS,
-  payload: value
+  payload: topics
 });
 
 export const topicError = err => ({
