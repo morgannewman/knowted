@@ -15,8 +15,8 @@ export const submitAuthLogin = credentials => dispatch => {
 	dispatch(authSubmit());
 	api.auth
 		.login(credentials)
-		.then(user => authSuccess(user))
-		.catch(err => authError(err));
+		.then(user => dispatch(authSuccess(user)))
+		.catch(err => dispatch(authError(err)));
 };
 
 /**
@@ -30,9 +30,9 @@ export const submitAuthRegistration = credentials => dispatch => {
 	dispatch(authSubmit());
 	api.auth
 		.register(credentials)
-		.then(api.auth.login(credentials))
-		.then(user => authSuccess(user))
-		.catch(err => authError(err));
+		.then(() => api.auth.login(credentials))
+		.then(user => dispatch(authSuccess(user)))
+		.catch(err => dispatch(authError(err)));
 };
 
 export const authSubmit = () => ({

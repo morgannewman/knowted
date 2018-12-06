@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { submitAuthRegistration } from '../../../controller/actions/auth';
+import { submitAuthRegistration } from '../../../controller/actions/auth';
 
 export class Register extends Component {
 	state = {
@@ -30,9 +30,9 @@ export class Register extends Component {
 		e.preventDefault();
 		const { password, email, firstName } = this.state;
 		if (password.valid && email.valid && firstName.valid) {
-			// this.props
-			// 	.dispatch(
-			// 	submitAuthRegistration({ name: firstName.input, email: email.input, password: password.input }));
+			this.props.dispatch(
+				submitAuthRegistration({ name: firstName.input, email: email.input, password: password.input })
+			);
 		}
 	};
 

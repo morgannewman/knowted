@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { submitAuthLogin } from '../../../controller/actions/auth';
+import { submitAuthLogin } from '../../../controller/actions/auth';
 
 export class Login extends Component {
 	state = {
@@ -25,9 +25,7 @@ export class Login extends Component {
 		e.preventDefault();
 		const { password, email } = this.state;
 		if (password.valid && email.valid) {
-			// this.props
-			// 	.dispatch(
-			// 	submitAuthLogin({ email: email.input, password: password.input }));
+			this.props.dispatch(submitAuthLogin({ email: email.input, password: password.input }));
 		}
 	};
 
