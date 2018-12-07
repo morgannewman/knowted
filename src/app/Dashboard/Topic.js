@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Topic.css';
 
-import EditDeleteTopic from './EditDeleteTopic';
-
 export default class Topic extends React.Component {
   static propTypes = {
     topicId: PropTypes.number.isRequired,
@@ -13,6 +11,14 @@ export default class Topic extends React.Component {
   state = {
     isHidden: true
   };
+
+  editTopic(topicId) {
+    console.log('edit:', topicId);
+  }
+
+  deleteTopic(topicId) {
+    console.log('delete:', topicId);
+  }
 
   toggleHidden() {
     this.setState({
@@ -35,7 +41,12 @@ export default class Topic extends React.Component {
         >
           {title}
         </button>
-        {this.state.isHidden ? null : <EditDeleteTopic topicId={topicId} />}
+        {this.state.isHidden ? null : (
+          <div className="edit-delete-topic-options">
+            <button onClick={() => this.editTopic(topicId)}>Edit</button>
+            <button onClick={() => this.deleteTopic(topicId)}>Delete</button>
+          </div>
+        )}
       </div>
     );
   }

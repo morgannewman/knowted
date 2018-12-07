@@ -5,7 +5,7 @@ import AddTopic from '../../Dashboard/AddTopic';
 //Component Contract - expect:
 //To render
 
-describe('<AllTopicsContainer />', () => {
+describe('<AddTopic />', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(<AddTopic />);
