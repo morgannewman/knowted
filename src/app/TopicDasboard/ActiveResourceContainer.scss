@@ -1,0 +1,25 @@
+$grey: #c4c4c4;
+$parchment: rgb(240, 238, 234);
+
+.active-resources-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.active-resources-list {
+  all: unset;
+  list-style: none;
+  width: 50%;
+  margin: 0 auto;
+}
+.resource-item-container {
+  background-color: $parchment;
+  border: 1px solid black;
+  margin: 10px;
+}
+.resource-item-container:first-child {
+  background-color: $grey;
+  font-size: 20px;
+}

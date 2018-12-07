@@ -82,17 +82,6 @@ export class ResourceItem extends React.Component {
     console.log(`Updates resource with id: ${id} and name ${newTitle.trim()}`);
     this.setState({ editing: !this.state.editing });
   };
-  /**
-   *Used by the ResourceEditForm component
-   *This function takes an event and extracts the id of the resource where 
-   the event occured(the resource that was clicked)
-   *The second argument is the newTitle string that the user is updating to
-   *It is responsible for communicating to state that the ResourceData component should
-   be rendered instead of the form
-   *The intention of this function is also responsible to make a PUT request to the resources endpoint
-   * @param {{e: object, newTitle:string}} credentials
-   */
-  //FIXME: connect function to dispatch async action to backend
 
   render() {
     const { resource } = this.props;
