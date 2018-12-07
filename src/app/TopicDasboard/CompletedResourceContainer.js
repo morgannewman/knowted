@@ -14,7 +14,9 @@ export class CompletedResourceContainer extends React.Component {
     console.log('component mounts and ready to dispatch actions');
   }
 
-  handletoggleCompleted = () => {};
+  handletoggle = () => {
+    this.setState({ showAll: !this.state.showAll });
+  };
 
   render() {
     const { resources } = this.props;
@@ -23,7 +25,7 @@ export class CompletedResourceContainer extends React.Component {
       <section className="completed-resources-container">
         <div>
           <h3>Completed</h3>
-          <button type="button">
+          <button type="button" onClick={this.handletoggle}>
             {this.state.showAll ? 'show all' : 'hide all'}
           </button>
         </div>
