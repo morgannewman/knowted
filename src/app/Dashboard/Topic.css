@@ -14,11 +14,7 @@
 }
 
 .topic-wrap {
-<<<<<<< HEAD
   display: inline-block;
-=======
-  display: inline;
->>>>>>> added in component logic for Add Topic form as well as some temporary styling:
 }
 
 .topic-btn {
@@ -29,7 +25,6 @@
   border: none;
   margin: 10px;
 }
-<<<<<<< HEAD
 
 .edit-delete-topic-options {
   display: inline-flex;
@@ -39,5 +34,3 @@
 .edit-delete-topic-options button {
   margin: 0 10px 5px 0;
 }
-=======
->>>>>>> added in component logic for Add Topic form as well as some temporary styling:
