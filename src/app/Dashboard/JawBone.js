@@ -4,7 +4,7 @@ import Topic from './Topic';
 //FIXME: remove hard coded references
 import TopicsData from '../../db/topicsData';
 
-class JawBone extends React.Component {
+export default class JawBone extends React.Component {
   findTopics() {
     return TopicsData.map(topic =>
       topic.parent === this.props.folderId ? (
@@ -17,5 +17,3 @@ class JawBone extends React.Component {
     return <div className="jaw-bone-container">{this.findTopics()}</div>;
   }
 }
-
-export default JawBone;
