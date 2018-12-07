@@ -1,11 +1,11 @@
-import cache from './cache';
-import { goFetch } from './config';
+import cache from '../cache';
+import { goFetch } from '../config';
 const BASE_URL = '/auth';
 
 /**
  * This object exposes auth endpoints from the backend.
  */
-const auth = {
+export default {
 	/**
 	 * Registers a user with the backend server.
 	 * @param {{name: string, email: string, password: string}} credentials
@@ -52,5 +52,3 @@ const auth = {
 		});
 	}
 };
-
-export default auth;
