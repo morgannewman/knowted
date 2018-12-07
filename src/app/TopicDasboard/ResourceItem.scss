@@ -1,0 +1,20 @@
+$grey: #c4c4c4;
+
+.resource-view {
+  border: solid 1px black;
+  background: $grey;
+}
+.resource-view a {
+  border: solid 1px black;
+}
+.resource-view:hover {
+  box-shadow: 20px 4px 21px rgba(6, 30, 30, 0.808);
+}
+
+.resource-view .resource-item-controls {
+  visibility: hidden;
+}
+
+.resource-view:hover .resource-item-controls {
+  visibility: visible;
+}
