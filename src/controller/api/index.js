@@ -1,10 +1,16 @@
-import auth from './auth.route';
+import auth from './routes/auth.route';
+import topics from './routes/topics.route';
+import folders from './routes/folders.route';
+// import resources from './routes/resources.route';
 
 /**
  * This is an interface that provides access to the backend endpoints.
  */
 const api = {
-	auth
+	auth,
+	topics,
+	// resources, COMING SOON! Not done on the backend
+	folders
 };
 
 export default api;
