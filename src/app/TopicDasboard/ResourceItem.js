@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ResourceEditForm from './ResourceEditForm';
 import ResourceData from './ResourceData';
+import './ResourceItem.scss';
 // import { Link } from 'react-router-dom';
 
 //TODO: use Link so so the resource title links to it's corresponding
