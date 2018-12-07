@@ -4,6 +4,12 @@ export default class JawBone extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     console.log('create new topic with name:', e.target.folderName.value);
+    this.closeForm();
+  }
+
+  //FIXME: get submission of form to trigger toggleHidden to close form
+  closeForm() {
+    console.log(this.props.toggleHidden);
   }
 
   render() {
