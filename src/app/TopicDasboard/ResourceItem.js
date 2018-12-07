@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import resourcesData from '../../dummyDB/resourcesData';
+import ResourceEditForm from './ResourceEditForm';
+import ResourceData from './ResourceData';
 // import { Link } from 'react-router-dom';
 
 //TODO: use Link so so the resource title links to it's corresponding
@@ -20,20 +22,27 @@ export class ResourceItem extends React.Component {
   };
 
   handleChecked = () => {
+    console.log('check works');
     this.setState({ checked: !this.state.checked });
   };
 
-  handleDelete = id => {
+  handleDelete = e => {
+    const id = e.target.getAttribute('resourceid');
     console.log(`Deletes resource with id: ${id}`);
   };
 
-  handleEdit = id => {
+  handleEdit = e => {
+    const id = e.target.getAttribute('resourceid');
     console.log(`Edits resource with id: ${id}`);
     this.setState({ editing: !this.state.editing });
   };
 
-  handleUpdate = id => {
-    console.log(`Edits resource with id: ${id}`);
+  handleUpdate = (e, newTitle) => {
+    const id = e.target.getAttribute('resourceid');
+    if (newTitle === undefined) {
+      return;
+    }
+    console.log(`Updates resource with id: ${id} and name ${newTitle}`);
     this.setState({ editing: !this.state.editing });
   };
 
@@ -42,64 +51,27 @@ export class ResourceItem extends React.Component {
 
     return (
       <div>
-        {!this.state.editing ? (
-          <div>
-            {' '}
-            <input
-              id={resource.id}
-              type="checkbox"
-              checked={this.state.checked}
-              onChange={e => this.handleChecked()}
-            />
-            <a href={resource.id}>{resource.title}</a>
-            <br />
-            <a href={resource.uri} target="_blank" rel="noopener">
-              {resource.uri}
-            </a>
-            <div className="resource-item-controls">
-              <button
-                resourceid={resource.id}
-                onClick={e =>
-                  this.handleEdit(e.target.getAttribute('resourceid'))
-                }
-                className="resource-item-edit"
-              >
-                edit
-              </button>
+        <ResourceEditForm
+          handleUpdate={this.handleUpdate}
+          resource={resource}
+        />
+        <br />
+        <ResourceData
+          handleEdit={this.handleEdit}
+          handleChecked={this.handleChecked}
+          handleDelete={this.handleDelete}
+          resource={resource}
+        />
 
-              <button
-                resourceid={resource.id}
-                onClick={e =>
-                  this.handleDelete(e.target.getAttribute('resourceid'))
-                }
-                className="resource-item-delete"
-              >
-                delete
-              </button>
-            </div>
-          </div>
+        {/* {!this.state.editing ? (
+          <ResourceData
+            handleChecked={this.handleChecked()}
+            handleEdit={this.handleEdit()}
+            resource={resource}
+          />
         ) : (
-          <div>
-            <form className="resource-item" onSubmit={e => e.preventDefault()}>
-              <input
-                type="text"
-                name={resource.title}
-                ref={input => (this.input = input)}
-                onChange={e => console.log(e.target.value)}
-              />
-              <button
-                resourceid={resource.id}
-                onClick={e =>
-                  this.handleUpdate(e.target.getAttribute('resourceid'))
-                }
-                className="resource-item-edit"
-              >
-                update
-              </button>
-            </form>
-            <a href={resource.uri}>{resource.uri}</a>
-          </div>
-        )}
+          <ResourceEditForm resource={resource} />
+        )} */}
       </div>
     );
   }
