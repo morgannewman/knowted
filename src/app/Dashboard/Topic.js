@@ -12,19 +12,19 @@ export default class Topic extends React.Component {
     isHidden: true
   };
 
-  editTopic(topicId) {
-    console.log('edit:', topicId);
-  }
+  editTopic = () => {
+    console.log('edit:', this.props.topicId);
+  };
 
-  deleteTopic(topicId) {
-    console.log('delete:', topicId);
-  }
+  deleteTopic = () => {
+    console.log('delete:', this.props.topicId);
+  };
 
-  toggleHidden() {
+  toggleHidden = () => {
     this.setState({
       isHidden: !this.state.isHidden
     });
-  }
+  };
 
   render() {
     const { title, topicId } = this.props;
@@ -32,8 +32,8 @@ export default class Topic extends React.Component {
     return (
       <div
         className="topic-wrap"
-        onMouseEnter={() => this.toggleHidden()}
-        onMouseLeave={() => this.toggleHidden()}
+        onMouseEnter={this.toggleHidden}
+        onMouseLeave={this.toggleHidden}
       >
         <button
           className="topic-btn"
@@ -41,10 +41,10 @@ export default class Topic extends React.Component {
         >
           {title}
         </button>
-        {this.state.isHidden ? null : (
+        {!this.state.isHidden && (
           <div className="edit-delete-topic-options">
-            <button onClick={() => this.editTopic(topicId)}>Edit</button>
-            <button onClick={() => this.deleteTopic(topicId)}>Delete</button>
+            <button onClick={this.editTopic}>Edit</button>
+            <button onClick={this.deleteTopic}>Delete</button>
           </div>
         )}
       </div>
