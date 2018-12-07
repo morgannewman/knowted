@@ -1,6 +1,7 @@
 import React from 'react';
 import ResourceItem from './ResourceItem';
 import resourcesData from '../../dummyDB/resourcesData';
+import ActiveResourceContainer from './ActiveResourceContainer';
 
 //FIXME: ResourceItem will be inside a container. This is here to make sure it renders
 class TopicDashboard extends React.Component {
@@ -12,7 +13,8 @@ class TopicDashboard extends React.Component {
         </section>
         <section>
           <h2>Active Resource Container placeholder</h2>
-          <ResourceItem resource={resourcesData[0].resource} />
+          <ActiveResourceContainer resources={resourcesData} />
+          {/* <ResourceItem resource={resourcesData[0].resource} /> */}
         </section>
         <section>
           <h2>Completed Resource Container placeholder</h2>
