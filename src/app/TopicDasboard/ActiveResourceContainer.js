@@ -9,12 +9,13 @@ export class ActiveResourceContainer extends React.Component {
         <ul>
           {resources.map(rescItem => {
             console.log(rescItem);
-
-            return (
-              <li>
-                <ResourceItem resource={rescItem.resource} />
-              </li>
-            );
+            if (!rescItem.resource.completed) {
+              return (
+                <li key={rescItem.resource.id}>
+                  <ResourceItem resource={rescItem.resource} />
+                </li>
+              );
+            }
           })}
         </ul>
       </section>
