@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import { submitAuthLogin } from '../../../controller/actions/auth';
+import { submitAuthLogin } from '../../../controller/actions/auth';
 
 export class Login extends Component {
 	state = {
@@ -18,16 +19,15 @@ export class Login extends Component {
 	};
 
 	static propTypes = {
-		submitting: PropTypes.bool.isRequired
+		submitting: PropTypes.bool.isRequired,
+		loggedIn: PropTypes.bool.isRequired
 	};
 
 	handleLoginSubmit = e => {
 		e.preventDefault();
 		const { password, email } = this.state;
 		if (password.valid && email.valid) {
-			// this.props
-			// 	.dispatch(
-			// 	submitAuthLogin({ email: email.input, password: password.input }));
+			this.props.dispatch(submitAuthLogin({ email: email.input, password: password.input }));
 		}
 	};
 
@@ -56,15 +56,17 @@ export class Login extends Component {
 	};
 
 	render() {
-		const { submitting } = this.props;
+		const { submitting, loggedIn } = this.props;
+
+		if (loggedIn) return <Redirect to="/dashboard" />;
 
 		return (
 			<main className="login-container">
 				<h1 className="login-title">Login</h1>
 				<form onSubmit={this.handleLoginSubmit} className="login">
-					<label forHtml="email">Email</label>
+					<label htmlFor="email">Email</label>
 					<input value={this.state.email.input} onChange={this.manageEmailInput} type="text" name="email" />
-					<label forHtml="password">Password</label>
+					<label htmlFor="password">Password</label>
 					<input
 						value={this.state.password.input}
 						onChange={this.managePasswordInput}
@@ -80,8 +82,4 @@ export class Login extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
-	submitting: state.auth.submitting
-});
-
-export default connect(mapStateToProps)(Login);
+export default connect()(Login);

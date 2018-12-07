@@ -1,8 +1,7 @@
-import { AUTH_SUBMIT, AUTH_SUCCESS, AUTH_ERROR } from '../actions/auth';
+import { AUTH_SUBMIT, AUTH_SUCCESS, AUTH_ERROR, AUTH_LOGOUT } from '../actions/auth';
 import produce from 'immer';
 
 export const initialState = {
-	authToken: null,
 	loggedIn: false,
 	user: null,
 	submitting: false,
@@ -17,17 +16,18 @@ export default produce((state, action) => {
 			return;
 
 		case AUTH_SUCCESS:
-			// const { authToken } = action.payload;
-			// delete action.payload.authToken;
+			delete action.payload.authToken;
 			state.submitting = false;
 			state.error = null;
 			state.user = action.payload;
 			state.loggedIn = true;
-			// authToken
 			return;
 
 		case AUTH_ERROR:
 			return { ...initialState, error: action.payload };
+
+		case AUTH_LOGOUT:
+			return { ...initialState };
 
 		default:
 			return;

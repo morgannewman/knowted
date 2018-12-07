@@ -1,13 +1,15 @@
 import React from 'react';
 import JawBone from './JawBone';
-
+import PropTypes from 'prop-types';
 class Folder extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isHidden: true
-    };
-  }
+  static propTypes = {
+    folderId: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired
+  };
+
+  state = {
+    isHidden: false
+  };
 
   toggleHidden() {
     this.setState({
@@ -16,13 +18,14 @@ class Folder extends React.Component {
   }
 
   render() {
+    const { title, folderId } = this.props;
     return (
-      <React.Fragment>
+      <>
         <button className="folder-btn" onClick={() => this.toggleHidden()}>
-          {this.props.title}
+          {title}
         </button>
-        {this.state.isHidden ? null : <JawBone folderId={this.props.id} />}
-      </React.Fragment>
+        {this.state.isHidden ? null : <JawBone folderId={folderId} />}
+      </>
     );
   }
 }
