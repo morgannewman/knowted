@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ResourceEditForm from './ResourceEditForm';
-import ResourceData from './ResourceView';
+import ResourceView from './ResourceView';
 import './ResourceItem.scss';
 // import { Link } from 'react-router-dom';
 
