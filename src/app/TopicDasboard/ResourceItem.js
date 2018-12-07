@@ -39,7 +39,7 @@ export class ResourceItem extends React.Component {
    occured(the resource that was clicked)
    *The intention of this function is to make a DELETE request to resources endpoint
    * This function is passed in through a prop and eventually called by a lower level component
-   * @param {{e: object}} credentials
+   * @param {{e: object}} eventobject
    */
   //FIXME: connect function to dispatch async action to backend
   handleDelete = e => {
@@ -54,7 +54,7 @@ export class ResourceItem extends React.Component {
    *This function might not need the event and can be deleted if unnecessary
    *It is responsible for communicating to state that the ResourceEditForm component should
    be rendered instead of the normal view mode
-   * @param {{e: object}} credentials
+   * @param {{e: object}} eventobject
    */
 
   //FIXME: Delete event argument if unnecessary
@@ -65,13 +65,21 @@ export class ResourceItem extends React.Component {
   };
 
   /**
-   * Used by the ResourceEditFomr component
+   * Used by the ResourceEditFrom component
    *Toggles between form and view mode
    * passed down through props
+   * Takes in the event object from child and handles form submission
+   *    * @param {{e: object}} eventobject
    */
 
-  handleUpdate = () => {
-    console.log('handle Update Runs');
+  handleUpdate = e => {
+    e.preventDefault();
+    const newTitle = e.currentTarget.getElementsByTagName('INPUT')[0].value;
+    const id = e.target.getAttribute('resourceid');
+    if (newTitle === undefined) {
+      return;
+    }
+    console.log(`Updates resource with id: ${id} and name ${newTitle.trim()}`);
     this.setState({ editing: !this.state.editing });
   };
   /**
