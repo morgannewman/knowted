@@ -1,6 +1,7 @@
 import React from 'react';
 import ResourceItem from './ResourceItem';
 import './ActiveResourceContainer.scss';
+
 export class ActiveResourceContainer extends React.Component {
   //TODO: Drag and drop functionality
   componentDidMount() {
@@ -13,7 +14,6 @@ export class ActiveResourceContainer extends React.Component {
       <section className="active-resources-container">
         <ul className="active-resources-list">
           {resources.map(rescItem => {
-            console.log(rescItem);
             if (!rescItem.resource.completed) {
               return (
                 <li
