@@ -2,19 +2,20 @@ import React from 'react';
 import './EditDeleteTopic.css';
 
 export default class EditDeleteTopic extends React.Component {
-  editTopic() {
-    console.log(this.props);
+  editTopic(topicId) {
+    console.log('edit:', topicId);
   }
 
-  deleteTopic() {
-    console.log('delete it');
+  deleteTopic(topicId) {
+    console.log('delete:', topicId);
   }
 
   render() {
+    const { topicId } = this.props;
     return (
       <div className="edit-delete-topic-options">
-        <button onClick={() => this.editTopic()}>Edit</button>
-        <button onClick={() => this.deleteTopic()}>Delete</button>
+        <button onClick={() => this.editTopic(topicId)}>Edit</button>
+        <button onClick={() => this.deleteTopic(topicId)}>Delete</button>
       </div>
     );
   }
