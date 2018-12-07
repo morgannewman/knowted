@@ -20,8 +20,8 @@ export default class AddTopic extends React.Component {
   render() {
     return (
       <>
-        <button onClick={() => this.toggleHidden()}>+ add topic</button>
-        {this.state.isHidden ? null : (
+        <button onClick={this.toggleHidden}>+ add topic</button>
+        {!this.state.isHidden && (
           <form className="add-topic-form" onSubmit={e => this.onSubmit(e)}>
             <label>Topic Name</label>
             <input type="text" name="folderName" />
