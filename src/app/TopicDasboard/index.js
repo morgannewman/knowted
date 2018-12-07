@@ -2,6 +2,7 @@ import React from 'react';
 import ResourceItem from './ResourceItem';
 import resourcesData from '../../dummyDB/resourcesData';
 
+//FIXME: ResourceItem will be inside a container. This is here to make sure it renders
 class TopicDashboard extends React.Component {
   render() {
     return (
