@@ -41,7 +41,6 @@ export default class Topic extends React.Component {
         >
           {title}
         </button>
-
         {!this.state.isHidden && (
           <div className="edit-delete-topic-options">
             <button onClick={this.editTopic}>Edit</button>
