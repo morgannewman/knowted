@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { submitAuthRegistration } from '../../../controller/actions/auth';
 
@@ -76,27 +77,22 @@ export class Register extends Component {
 	};
 
 	render() {
+		const { submitting, loggedIn } = this.props;
+		const { firstName, email, password } = this.state;
+
+		if (loggedIn) return <Redirect to="/dashboard" />;
+
 		return (
 			<main className="register-container">
 				<h1>Sign Up</h1>
 				<form onSubmit={this.handleRegisterSubmit} className="register">
 					<label htmlFor="first-name">First Name</label>
-					<input
-						value={this.state.firstName.input}
-						onChange={this.manageNameInput}
-						type="text"
-						name="first-name"
-					/>
+					<input value={firstName.input} onChange={this.manageNameInput} type="text" name="first-name" />
 					<label htmlFor="email">Email</label>
-					<input value={this.state.email.input} onChange={this.manageEmailInput} type="text" name="email" />
+					<input value={email.input} onChange={this.manageEmailInput} type="text" name="email" />
 					<label htmlFor="password">Password</label>
-					<input
-						value={this.state.password.input}
-						onChange={this.managePasswordInput}
-						type="password"
-						name="password"
-					/>
-					<button type="submit" disabled={this.props.submitting}>
+					<input value={password.input} onChange={this.managePasswordInput} type="password" name="password" />
+					<button type="submit" disabled={submitting}>
 						Register
 					</button>
 				</form>
