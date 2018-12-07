@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 import ResourceData from '../../TopicDasboard/ResourceData';
-import topicsData from '../../../dummyDB/topicsData';
 import resourcesData from '../../../dummyDB/resourcesData';
 
 const FirstResource = resourcesData[0];
