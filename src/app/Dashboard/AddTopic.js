@@ -33,5 +33,3 @@ class AddTopic extends React.Component {
     );
   }
 }
-
-export default AddTopic;
