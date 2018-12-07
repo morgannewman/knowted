@@ -1,14 +1,8 @@
 $grey: #c4c4c4;
+$parchment: rgb(240, 238, 234);
 
-.resource-view {
-  border: solid 1px black;
-  background: $grey;
-}
-.resource-view a {
-  border: solid 1px black;
-}
 .resource-view:hover {
-  box-shadow: 20px 4px 21px rgba(6, 30, 30, 0.808);
+  box-shadow: 5px 4px 22px rgba(3, 30, 30, 0.808);
 }
 
 .resource-view .resource-item-controls {
