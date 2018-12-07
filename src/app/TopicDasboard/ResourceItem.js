@@ -21,10 +21,11 @@ export class ResourceItem extends React.Component {
 
   /**
    * Used by the ResourceData component
-   *This function is passed in through a prop and eventually called by a lower level component
-   *It was working with state, however the intention of this function is to communicate 
-   to the back end whether a resource item is completed. Currently a resource is rendered with a checked or unchecked box
-   depending whether the completed property is true or false
+   *This function is passed in through a prop and eventually called 
+   by a lower level component
+   *It was working with state, however the intention of this function 
+   is to communicate to the back end whether a resource item is completed. Currently a resource 
+   is rendered with a checked or unchecked box depending whether the completed property is true or false
   *The intention of this function is to make a PUT request to resources endpoint
    */
   //FIXME: connect function to dispatch async action to backend
@@ -33,7 +34,8 @@ export class ResourceItem extends React.Component {
   };
   /**
    * Used by the ResourceData component
-   *This function takes an event and extracts the id of the resource where the event occured(the resource that was clicked)
+   *This function takes an event and extracts the id of the resource where the event 
+   occured(the resource that was clicked)
    *The intention of this function is to make a DELETE request to resources endpoint
    * This function is passed in through a prop and eventually called by a lower level component
    * @param {{e: object}} credentials
