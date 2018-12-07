@@ -1,14 +1,22 @@
 import './Hero.scss';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import Loading from '../common/Loading';
 import PropTypes from 'prop-types';
 
 export default class Hero extends Component {
 	static propTypes = {
-		placeholder: PropTypes.any
+		submitting: PropTypes.bool.isRequired,
+		loggedIn: PropTypes.bool.isRequired
 	};
 
 	render() {
+		const { submitting, loggedIn } = this.props;
+
+		if (submitting) return <Loading />;
+
+		if (loggedIn) return <Redirect to="/dashboard" />;
+
 		return (
 			<main className="hero">
 				<h1 className="hero-title">Headline marketing copy</h1>

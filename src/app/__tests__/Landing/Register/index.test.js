@@ -9,11 +9,11 @@ import { Register } from '../../../Landing/Register';
 */
 describe('<Register />', () => {
 	it('renders without crashing', () => {
-		shallow(<Register submitting={false} />);
+		shallow(<Register loggedIn={false} submitting={false} />);
 	});
 
 	it('disables submit button when auth is submitting', () => {
-		let wrapper = shallow(<Register submitting={true} />);
+		let wrapper = shallow(<Register loggedIn={false} submitting={true} />);
 		expect(
 			wrapper
 				.find('form > button')
@@ -23,7 +23,7 @@ describe('<Register />', () => {
 	});
 
 	it('Has an enabled submit button when auth is not submitting', () => {
-		let wrapper = shallow(<Register submitting={false} />);
+		let wrapper = shallow(<Register loggedIn={false} submitting={false} />);
 		expect(
 			wrapper
 				.find('form > button')
