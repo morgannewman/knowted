@@ -51,6 +51,29 @@ export class ResourceItem extends React.Component {
               }}
             />
             <a href={resource.id}>{resource.title}</a>
+            <br />
+            <a href={resource.uri}>{resource.uri}</a>
+            <div className="resource-item-controls">
+              <button
+                resourceid={resource.id}
+                onClick={e =>
+                  this.handleEdit(e.target.getAttribute('resourceid'))
+                }
+                className="resource-item-edit"
+              >
+                edit
+              </button>
+
+              <button
+                resourceid={resource.id}
+                onClick={e =>
+                  this.handleDelete(e.target.getAttribute('resourceid'))
+                }
+                className="resource-item-delete"
+              >
+                delete
+              </button>
+            </div>
           </div>
         ) : (
           <div>
@@ -58,46 +81,22 @@ export class ResourceItem extends React.Component {
               <input
                 type="text"
                 name={resource.title}
-                placeholder={resource.title}
+                ref={input => (this.input = input)}
                 onChange={e => console.log(e.target.value)}
               />
+              <button
+                resourceid={resource.id}
+                onClick={e =>
+                  this.handleUpdate(e.target.getAttribute('resourceid'))
+                }
+                className="resource-item-edit"
+              >
+                update
+              </button>
             </form>
+            <a href={resource.uri}>{resource.uri}</a>
           </div>
         )}
-        <a href={resource.uri}>{resource.uri}</a>
-        <div className="resource-item-controls">
-          {!this.state.editing ? (
-            <button
-              resourceid={resource.id}
-              onClick={e =>
-                this.handleEdit(e.target.getAttribute('resourceid'))
-              }
-              className="resource-item-edit"
-            >
-              edit
-            </button>
-          ) : (
-            <button
-              resourceid={resource.id}
-              onClick={e =>
-                this.handleUpdate(e.target.getAttribute('resourceid'))
-              }
-              className="resource-item-edit"
-            >
-              update
-            </button>
-          )}
-
-          <button
-            resourceid={resource.id}
-            onClick={e =>
-              this.handleDelete(e.target.getAttribute('resourceid'))
-            }
-            className="resource-item-delete"
-          >
-            delete
-          </button>
-        </div>
       </div>
     );
   }
