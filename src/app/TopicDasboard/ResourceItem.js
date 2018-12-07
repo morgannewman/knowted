@@ -10,7 +10,8 @@ export class ResourceItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      editing: false
+      editing: false,
+      checked: false
     };
   }
 
@@ -18,7 +19,9 @@ export class ResourceItem extends React.Component {
     resource: PropTypes.object.isRequired
   };
 
-  handleChecked = id => {};
+  handleChecked = () => {
+    this.setState({ checked: !this.state.checked });
+  };
 
   handleDelete = id => {
     console.log(`Deletes resource with id: ${id}`);
@@ -45,14 +48,14 @@ export class ResourceItem extends React.Component {
             <input
               id={resource.id}
               type="checkbox"
-              checked={resource.completed}
-              onChange={e => {
-                console.log(e.target);
-              }}
+              checked={this.state.checked}
+              onChange={e => this.handleChecked()}
             />
             <a href={resource.id}>{resource.title}</a>
             <br />
-            <a href={resource.uri}>{resource.uri}</a>
+            <a href={resource.uri} target="_blank" rel="noopener">
+              {resource.uri}
+            </a>
             <div className="resource-item-controls">
               <button
                 resourceid={resource.id}
