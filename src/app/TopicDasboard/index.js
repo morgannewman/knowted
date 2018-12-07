@@ -1,7 +1,7 @@
 import React from 'react';
 import resourcesData from '../../dummyDB/resourcesData';
 import ActiveResourceContainer from './ActiveResourceContainer';
-
+import CompletedResourceContainer from './CompletedResourceContainer';
 class TopicDashboard extends React.Component {
   render() {
     return (
@@ -11,9 +11,9 @@ class TopicDashboard extends React.Component {
         </section>
         <h2>Active Resources</h2>
         <ActiveResourceContainer resources={resourcesData} />
-        <section>
-          <h2>Completed Resource Container placeholder</h2>
-        </section>
+
+        <h2>Completed Resources </h2>
+        <CompletedResourceContainer resources={resourcesData} />
       </main>
     );
   }
