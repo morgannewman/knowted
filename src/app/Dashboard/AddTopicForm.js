@@ -1,19 +1,17 @@
 import React from 'react';
-
-class JawBone extends React.Component {
+import './AddTopicForm.css';
+export default class JawBone extends React.Component {
   onSubmit(e) {
     e.preventDefault();
-    console.log(e.target.folderName.value);
+    console.log('create new topic with name:', e.target.folderName.value);
   }
 
   render() {
     return (
-      <form onSubmit={e => this.onSubmit(e)}>
+      <form className="add-topic-form" onSubmit={e => this.onSubmit(e)}>
         <label>Topic Name</label>
         <input type="text" name="folderName" />
       </form>
     );
   }
 }
-
-export default JawBone;

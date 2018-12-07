@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import './AllTopicsContainer.css';
 
+import AddTopic from './AddTopic';
 import Folder from './Folder';
 import Topic from './Topic';
 
@@ -11,9 +12,8 @@ import FoldersData from '../../db/foldersData';
 class AllTopicsContainer extends React.Component {
   render() {
     return (
-      <>
-        <button onClick={() => console.log('add a topic')}>add topic</button>
-        <br />
+      <section className="all-topics-container">
+        <AddTopic />
         {FoldersData.map(folder => {
           return (
             <Folder title={folder.title} folderId={folder.id} key={folder.id} />
@@ -24,7 +24,7 @@ class AllTopicsContainer extends React.Component {
             <Topic title={topic.title} topicId={topic.id} key={topic.id} />
           ) : null
         )}
-      </>
+      </section>
     );
   }
 }

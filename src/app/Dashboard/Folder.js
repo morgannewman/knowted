@@ -1,14 +1,14 @@
 import React from 'react';
 import JawBone from './JawBone';
 import PropTypes from 'prop-types';
-class Folder extends React.Component {
+export default class Folder extends React.Component {
   static propTypes = {
     folderId: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired
   };
 
   state = {
-    isHidden: false
+    isHidden: true
   };
 
   toggleHidden() {
@@ -29,5 +29,3 @@ class Folder extends React.Component {
     );
   }
 }
-
-export default Folder;

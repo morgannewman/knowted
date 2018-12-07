@@ -2,11 +2,21 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Topic from '../../Dashboard/Topic';
 
+const initialState = {
+  isHidden: false,
+  title: 'hello',
+  topicId: 1
+};
+
 describe('<Topic />', () => {
   let wrapper;
-  beforeEach(() => {
-    wrapper = shallow(<Topic />);
+
+  it('renders without crashing', () => {
+    shallow(<Topic {...initialState} />);
   });
 
-  it('renders without crashing', () => {});
+  it('the Topic has a title', () => {
+    wrapper = shallow(<Topic {...initialState} />);
+    expect(wrapper.find('button').text()).toEqual('hello');
+  });
 });

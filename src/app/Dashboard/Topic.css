@@ -1,0 +1,27 @@
+.folder-btn {
+  height: 120px;
+  width: 120px;
+  border-radius: 6px;
+  background: #befbfb;
+  border: none;
+  margin: 20px;
+}
+
+.jaw-bone-container {
+  display: inline-block;
+  background: #befbfb;
+  border-radius: 6px;
+}
+
+.topic-wrap {
+  display: inline;
+}
+
+.topic-btn {
+  height: 120px;
+  width: 120px;
+  border-radius: 6px;
+  background: #f1f1f1;
+  border: none;
+  margin: 10px;
+}
