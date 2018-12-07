@@ -1,5 +1,6 @@
 import React from 'react';
 
+import AddTopic from './AddTopic';
 import Folder from './Folder';
 import Topic from './Topic';
 import AddTopic from './AddTopic';
@@ -11,17 +12,19 @@ import FoldersData from '../../db/foldersData';
 class AllTopicsContainer extends React.Component {
   render() {
     return (
-      <React.Fragment>
+      <section className="all-topics-container">
         <AddTopic />
-        {FoldersData.map((folder, index) => {
-          return <Folder title={folder.title} key={index} id={folder.id} />;
+        {FoldersData.map(folder => {
+          return (
+            <Folder title={folder.title} folderId={folder.id} key={folder.id} />
+          );
         })}
         {TopicsData.map(topic =>
           !topic.parent ? (
             <Topic title={topic.title} key={topic.id} topicId={topic.id} />
           ) : null
         )}
-      </React.Fragment>
+      </section>
     );
   }
 }
