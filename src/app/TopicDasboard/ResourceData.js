@@ -7,7 +7,7 @@ export function ResourceData({
   handleDelete
 }) {
   return (
-    <div>
+    <div className="resource-view">
       <input
         id={resource.id}
         type="checkbox"
