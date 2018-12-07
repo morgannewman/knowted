@@ -15,10 +15,12 @@ class AddTopic extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <button onClick={() => this.toggleHidden()}>+ add topic</button>
-        {this.state.isHidden ? null : <AddTopicForm />}
-      </React.Fragment>
+        {this.state.isHidden ? null : (
+          <AddTopicForm toggleHidden={this.toggleHidden} />
+        )}
+      </>
     );
   }
 }

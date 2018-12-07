@@ -14,7 +14,7 @@
 }
 
 .topic-wrap {
-  display: inline;
+  display: inline-block;
 }
 
 .topic-btn {

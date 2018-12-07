@@ -35,7 +35,7 @@ export default class Topic extends React.Component {
         >
           {title}
         </button>
-        {this.state.isHidden ? null : <EditDeleteTopic />}
+        {this.state.isHidden ? null : <EditDeleteTopic topicId={topicId} />}
       </div>
     );
   }
