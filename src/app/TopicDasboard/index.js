@@ -12,7 +12,7 @@ class TopicDashboard extends React.Component {
           <h2>Breadcrumb nav placeholder</h2>
         </section>
         <section>
-          <h2>Active Resource Container placeholder</h2>
+          <h2>Active Resourpmce Container placeholder</h2>
           <ActiveResourceContainer resources={resourcesData} />
           {/* <ResourceItem resource={resourcesData[0].resource} /> */}
         </section>
