@@ -22,7 +22,7 @@ export function ResourceData({
       <div className="resource-item-controls">
         <button
           resourceid={resource.id}
-          onClick={e => handleEdit}
+          onClick={handleEdit}
           className="resource-item-edit"
         >
           edit

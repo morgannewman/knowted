@@ -20,8 +20,6 @@ class TopicDashboard extends React.Component {
     };
   }
   render() {
-    console.log(this.state.resources);
-
     return (
       <main>
         <section>

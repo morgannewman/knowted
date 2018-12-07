@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import resourcesData from '../../dummyDB/resourcesData';
 import ResourceEditForm from './ResourceEditForm';
 import ResourceData from './ResourceData';
 // import { Link } from 'react-router-dom';
@@ -51,27 +50,19 @@ export class ResourceItem extends React.Component {
 
     return (
       <div>
-        <ResourceEditForm
-          handleUpdate={this.handleUpdate}
-          resource={resource}
-        />
-        <br />
-        <ResourceData
-          handleEdit={this.handleEdit}
-          handleChecked={this.handleChecked}
-          handleDelete={this.handleDelete}
-          resource={resource}
-        />
-
-        {/* {!this.state.editing ? (
+        {!this.state.editing ? (
           <ResourceData
-            handleChecked={this.handleChecked()}
-            handleEdit={this.handleEdit()}
+            handleEdit={this.handleEdit}
+            handleChecked={this.handleChecked}
+            handleDelete={this.handleDelete}
             resource={resource}
           />
         ) : (
-          <ResourceEditForm resource={resource} />
-        )} */}
+          <ResourceEditForm
+            handleUpdate={this.handleUpdate}
+            resource={resource}
+          />
+        )}
       </div>
     );
   }
