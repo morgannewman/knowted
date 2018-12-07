@@ -34,6 +34,12 @@ describe('<ResourceEditForm', () => {
       preventDefault: () => {
         console.log('preventDefault');
       },
+      target: {
+        getAttribute: () => {
+          console.log('I am a fake attribute');
+          return 'fake Attribute';
+        }
+      },
       currentTarget: {
         getElementsByTagName: () => {
           console.log('I am a fake element');

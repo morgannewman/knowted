@@ -65,6 +65,16 @@ export class ResourceItem extends React.Component {
   };
 
   /**
+   * Used by the ResourceEditFomr component
+   *Toggles between form and view mode
+   * passed down through props
+   */
+
+  handleUpdate = () => {
+    console.log('handle Update Runs');
+    this.setState({ editing: !this.state.editing });
+  };
+  /**
    *Used by the ResourceEditForm component
    *This function takes an event and extracts the id of the resource where 
    the event occured(the resource that was clicked)
@@ -75,14 +85,6 @@ export class ResourceItem extends React.Component {
    * @param {{e: object, newTitle:string}} credentials
    */
   //FIXME: connect function to dispatch async action to backend
-  handleUpdate = (e, newTitle) => {
-    const id = e.target.getAttribute('resourceid');
-    if (newTitle === undefined) {
-      return;
-    }
-    console.log(`Updates resource with id: ${id} and name ${newTitle.trim()}`);
-    this.setState({ editing: !this.state.editing });
-  };
 
   render() {
     const { resource } = this.props;
