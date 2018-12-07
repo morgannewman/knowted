@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function ResourceData({
+export function ResourceView({
   resource,
   handleChecked,
   handleEdit,
@@ -40,4 +40,4 @@ export function ResourceData({
   );
 }
 
-export default ResourceData;
+export default ResourceView;

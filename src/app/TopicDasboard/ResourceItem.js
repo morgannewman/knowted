@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ResourceEditForm from './ResourceEditForm';
-import ResourceData from './ResourceData';
+import ResourceData from './ResourceView';
 import './ResourceItem.scss';
 // import { Link } from 'react-router-dom';
 
@@ -90,7 +90,7 @@ export class ResourceItem extends React.Component {
     return (
       <div>
         {!this.state.editing ? (
-          <ResourceData
+          <ResourceView
             handleEdit={this.handleEdit}
             handleChecked={this.handleChecked}
             handleDelete={this.handleDelete}

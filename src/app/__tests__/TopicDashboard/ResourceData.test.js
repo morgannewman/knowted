@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
-import ResourceData from '../../TopicDasboard/ResourceData';
+import ResourceView from '../../TopicDasboard/ResourceView';
 import resourcesData from '../../../dummyDB/resourcesData';
 
 const FirstResource = resourcesData[0];
@@ -9,7 +9,7 @@ const FirstResource = resourcesData[0];
 describe('<ResourceData />', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<ResourceData resource={FirstResource.resource} />);
+    wrapper = shallow(<ResourceView resource={FirstResource.resource} />);
   });
 
   it('renders without crashing', () => {});
@@ -57,7 +57,7 @@ describe('<ResourceData />', () => {
     let wrapper;
     const mockFn = jest.fn();
     wrapper = shallow(
-      <ResourceData handleEdit={mockFn} resource={FirstResource.resource} />
+      <ResourceView handleEdit={mockFn} resource={FirstResource.resource} />
     );
     wrapper
       .find('button')
@@ -70,7 +70,7 @@ describe('<ResourceData />', () => {
     let wrapper;
     const mockFn = jest.fn();
     wrapper = shallow(
-      <ResourceData handleDelete={mockFn} resource={FirstResource.resource} />
+      <ResourceView handleDelete={mockFn} resource={FirstResource.resource} />
     );
     wrapper
       .find('button')

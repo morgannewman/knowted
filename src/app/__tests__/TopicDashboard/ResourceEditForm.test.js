@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import ResourceEditForm from '../../TopicDasboard/ResourceEditForm';
 import resourcesData from '../../../dummyDB/resourcesData';
 
