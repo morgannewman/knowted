@@ -3,22 +3,6 @@ import ResourceItem from './ResourceItem';
 import resourcesData from '../../dummyDB/resourcesData';
 
 class TopicDashboard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      resource: {
-        id: 123456,
-        parent: {
-          id: 102030,
-          title: 'Martial Arts'
-        },
-        title: 'Karate',
-        uri: 'http://something',
-        completed: false,
-        last_opened: new Date().toLocaleString()
-      }
-    };
-  }
   render() {
     return (
       <main>

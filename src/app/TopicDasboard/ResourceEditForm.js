@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+//TODO:remove console.logs
 export function ResourceEditForm({ resource, handleUpdate }) {
   return (
     <div>
@@ -24,3 +26,7 @@ export function ResourceEditForm({ resource, handleUpdate }) {
 }
 
 export default ResourceEditForm;
+
+ResourceEditForm.propTypes = {
+  resource: PropTypes.object.isRequired
+};

@@ -6,7 +6,7 @@ import ResourceData from './ResourceData';
 
 //TODO: use Link so so the resource title links to it's corresponding
 //resource page
-
+//TODO:remove console.logs
 export class ResourceItem extends React.Component {
   constructor(props) {
     super(props);
