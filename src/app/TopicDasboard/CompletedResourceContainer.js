@@ -1,5 +1,6 @@
 import React from 'react';
 import ResourceItem from './ResourceItem';
+import './CompletedResourceContainer.scss';
 
 export class CompletedResourceContainer extends React.Component {
   //TODO: Drag and drop functionality
@@ -23,7 +24,7 @@ export class CompletedResourceContainer extends React.Component {
 
     return (
       <section className="completed-resources-container">
-        <div>
+        <div className="completed-label">
           <h3>Completed</h3>
           <button type="button" onClick={this.handletoggle}>
             {this.state.showAll ? 'show all' : 'hide all'}
