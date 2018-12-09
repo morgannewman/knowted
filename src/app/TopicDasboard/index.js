@@ -13,6 +13,7 @@ class TopicDashboard extends React.Component {
         <h2>Active Resources</h2>
         <ActiveResourceContainer resources={resourcesData} />
         <AddResourceForm />
+
         <h2>Completed Resources </h2>
         <CompletedResourceContainer resources={resourcesData} />
       </main>
