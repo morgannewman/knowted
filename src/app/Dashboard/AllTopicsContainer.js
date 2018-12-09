@@ -18,6 +18,7 @@ class AllTopicsContainer extends React.Component {
 
   render() {
     const { topics } = this.props;
+    console.log(topics);
     return (
       <section className="all-topics-container">
         <AddTopic />
@@ -26,12 +27,13 @@ class AllTopicsContainer extends React.Component {
             <Folder title={folder.title} folderId={folder.id} key={folder.id} />
           );
         })}
-        {topics.map(
-          topic =>
-            !topic.parent && (
-              <Topic title={topic.title} topicId={topic.id} key={topic.id} />
-            )
-        )}
+        {topics &&
+          topics.map(
+            topic =>
+              !topic.parent && (
+                <Topic title={topic.title} topicId={topic.id} key={topic.id} />
+              )
+          )}
       </section>
     );
   }

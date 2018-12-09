@@ -28,6 +28,10 @@ export const getTopics = () => dispatch => {
  * On fail: state.topic.error === some error object
  * @param {{title: string}} object
  */
+//FIXME: Line 39 I am calling getTopics again in order to refresh topics on dashboard
+// tried calling this inside of a componentDidUpdate within the AllTopicsContainer and it triggered some
+// weird behavior (calling GET non-stop). Need to rethink how this is working - clearly something
+// wrong with how it's written
 export const addTopic = title => dispatch => {
   dispatch(topicSubmit());
   api.topics
@@ -43,6 +47,7 @@ export const addTopic = title => dispatch => {
  * On fail: state.topic.error === some error object
  * @param {{id: number}} object
  */
+//FIXME: same issue as above on line 56
 export const deleteTopic = id => dispatch => {
   dispatch(topicSubmit());
   api.topics
