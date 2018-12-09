@@ -1,5 +1,6 @@
 import React from 'react';
 import ResourceItem from './ResourceItem';
+import AddResourceForm from './AddResourceForm';
 import './ActiveResourceContainer.scss';
 
 export class ActiveResourceContainer extends React.Component {
@@ -25,6 +26,7 @@ export class ActiveResourceContainer extends React.Component {
               );
             }
           })}
+          <AddResourceForm />
         </ul>
       </section>
     );

@@ -10,20 +10,25 @@ export class AddResourceForm extends React.Component {
     return (
       <section className="add-resource-section">
         <form className="add-resource-form" onSubmit={this.handleSubmit}>
-          <label htmlFor="add-resource-link">Add New Reource</label>
-          <input
-            ref={input => (this.inputUri = input)}
-            type="text"
-            name="add-resource"
-            placeholder="http://"
-          />
-          <label htmlFor="add-resource-title">Add New Reource</label>
-          <input
-            ref={input => (this.inputTitle = input)}
-            type="text"
-            name="add-resource"
-            placeholder="title "
-          />
+          <div>
+            <input type="checkbox" checked={false} />
+            <label htmlFor="add-resource-link" />
+            <input
+              ref={input => (this.inputUri = input)}
+              type="text"
+              name="add-resource"
+              placeholder="http://"
+            />
+          </div>
+          <div>
+            <label htmlFor="add-resource-title" />
+            <input
+              ref={input => (this.inputTitle = input)}
+              type="text"
+              name="add-resource"
+              placeholder="title "
+            />
+          </div>
           <button>Add New Resource</button>
         </form>
       </section>
