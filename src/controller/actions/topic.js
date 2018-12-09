@@ -7,17 +7,46 @@ export const TOPIC_ERROR = 'TOPIC_ERROR';
 export const TOPIC_DELETE = 'TOPIC_DELETE';
 
 /**
+ * Components can consume this function to get all Topics
+ * On submit: state.topic.loading === true
+ * On success: state.topic.topics === [of topics]
+ * On fail: state.topic.error === some error object
+ */
+export const getTopics = () => dispatch => {
+  dispatch(topicSubmit());
+  api.topics
+    .get()
+    .then(topics => dispatch(topicSuccess(topics)))
+    .catch(err => dispatch(topicError(err)));
+};
+
+/**
  * Components can consume this function to add a new Topic
  * On submit: state.topic.loading === true
  * On success: state.topic.topics === [of topics]
  * On fail: state.topic.error === some error object
- * @param {{title: string}} credentials
+ * @param {{title: string}} object
  */
-export const submitTopic = credentials => dispatch => {
+export const addTopic = title => dispatch => {
   dispatch(topicSubmit());
-  api.auth
-    .login(credentials)
-    .then(title => dispatch(topicSuccess(title)))
+  api.topics
+    .post({ title })
+    .then(dispatch(topicSuccess()))
+    .catch(err => dispatch(topicError(err)));
+};
+
+/**
+ * Components can consume this function to delete a Topic
+ * On submit: state.topic.loading === true
+ * On delete:
+ * On fail: state.topic.error === some error object
+ * @param {{id: number}} object
+ */
+export const deleteTopic = id => dispatch => {
+  dispatch(topicSubmit());
+  api.topics
+    .post({ id })
+    .then(() => dispatch(topicDelete()))
     .catch(err => dispatch(topicError(err)));
 };
 
@@ -25,9 +54,9 @@ export const topicSubmit = () => ({
   type: TOPIC_SUBMIT
 });
 
-export const topicSuccess = topics => ({
+export const topicSuccess = value => ({
   type: TOPIC_SUCCESS,
-  payload: topics
+  payload: value
 });
 
 export const topicError = err => ({
