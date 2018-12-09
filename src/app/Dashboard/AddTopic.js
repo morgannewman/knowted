@@ -1,6 +1,10 @@
 import React from 'react';
 import './AddTopic.css';
 import { addTopic } from '../../controller/actions/topic';
+<<<<<<< HEAD
+=======
+import { connect } from 'react-redux';
+>>>>>>> connecting UI to get all topics and setting up folder actions
 class AddTopic extends React.Component {
   state = {
     isHidden: true
@@ -33,3 +37,9 @@ class AddTopic extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps)(AddTopic);
