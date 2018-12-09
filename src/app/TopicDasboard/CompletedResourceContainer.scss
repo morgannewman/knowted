@@ -1,0 +1,27 @@
+$grey: #c4c4c4;
+$parchment: rgb(240, 238, 234);
+
+.completed-label {
+  width: 50%;
+  text-align: center;
+  background: $grey;
+}
+
+.completed-label h3 {
+  display: inline-block;
+  padding-right: 50px;
+}
+
+.completed-resources-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.completed-resources-list {
+  all: unset;
+  list-style: none;
+  width: 50%;
+  background: $parchment;
+}
