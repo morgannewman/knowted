@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 //TODO:remove console.logs
-export function ResourceEditForm({ resource, handleUpdate }) {
+export function ResourceEditForm({ resource, handleUpdate, ref }) {
   return (
     <div>
       <form

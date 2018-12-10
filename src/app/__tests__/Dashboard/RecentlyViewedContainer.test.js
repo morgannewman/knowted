@@ -6,6 +6,9 @@ import topicsData from '../../../dummyDB/topicsData';
 import resourcesData from '../../../dummyDB/resourcesData';
 import RecentResourceItem from '../../Dashboard/RecentResourceItem';
 
+const [first, second, third] = resourcesData;
+const recentdata = [first, second, third];
+
 describe('<RecentResourceItem />', () => {
   let wrapper;
   beforeEach(() => {
@@ -17,7 +20,7 @@ describe('<RecentResourceItem />', () => {
   it('renders recently viewed list', () => {
     expect(wrapper.find('recently-viewed')).toBeTruthy();
     expect(
-      wrapper.contains(<RecentResourceItem resources={resourcesData} />)
+      wrapper.contains(<RecentResourceItem resources={recentdata} />)
     ).toEqual(true);
     expect(
       wrapper
