@@ -19,7 +19,7 @@ export class AddResourceForm extends React.Component {
             <label htmlFor="add-resource-link" />
             <input
               ref={input => (this.inputUri = input)}
-              type="text"
+              type="url"
               name="add-resource"
               placeholder="http://"
             />
