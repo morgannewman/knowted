@@ -11,4 +11,7 @@ export const resource_success = resources => ({
   payload: resources
 });
 
-export const get_resources = id => dispatch => {};
+export const get_resources = id => dispatch => {
+  dispatch(resource_Loading());
+  api.resources.get(id).then(data => dispatch(resource_success(data)));
+};

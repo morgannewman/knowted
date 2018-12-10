@@ -21,6 +21,8 @@ export class ActiveResourceContainer extends React.Component {
                   <ResourceItem resource={rescItem} />
                 </li>
               );
+            } else {
+              return null;
             }
           })}
           <AddResourceForm />

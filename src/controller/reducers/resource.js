@@ -1,4 +1,4 @@
-import { RESOURCE_LOADING } from '../actions/resource';
+import { RESOURCE_LOADING, RESOURCE_SUCCESS } from '../actions/resource';
 import produce from 'immer';
 
 export const initialState = {
@@ -8,17 +8,17 @@ export const initialState = {
   folderId: null
 };
 
-export default resource((state, action) => {
+export default produce((state, action) => {
   switch (action.type) {
     case RESOURCE_LOADING:
       state.loading = true;
       state.error = null;
       return;
-    // case RESOURCE_SUCCESS:
-    //   state.loading = false;
-    //   state.error = null;
-    //   state.resources = action.payload;
-    //   return;
+    case RESOURCE_SUCCESS:
+      state.loading = false;
+      state.error = null;
+      state.resources = action.payload;
+      return;
 
     default:
       return;

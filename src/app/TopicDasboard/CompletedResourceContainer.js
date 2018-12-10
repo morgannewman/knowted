@@ -38,6 +38,8 @@ export class CompletedResourceContainer extends React.Component {
                     <ResourceItem resource={rescItem} />
                   </li>
                 );
+              } else {
+                return null;
               }
             })}
           </ul>

@@ -1,8 +1,15 @@
 import React from 'react';
-import resourcesData from '../../dummyDB/resourcesData';
+import { connect } from 'react-redux';
 import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
+import { get_resources } from '../../controller/actions/resource';
+
 class TopicDashboard extends React.Component {
+  componentDidMount() {
+    //TODO: Will need to dispatch with this.props.params.id
+    //ID hardcoded for now
+    this.props.dispatch(get_resources(4000));
+  }
   render() {
     return (
       <main>
@@ -10,13 +17,17 @@ class TopicDashboard extends React.Component {
           <h2>Breadcrumb nav placeholder</h2>
         </section>
         <h2>Active Resources</h2>
-        <ActiveResourceContainer resources={resourcesData} />
+        <ActiveResourceContainer resources={this.props.resources} />
 
         <h2>Completed Resources </h2>
-        <CompletedResourceContainer resources={resourcesData} />
+        <CompletedResourceContainer resources={this.props.resources} />
       </main>
     );
   }
 }
-
-export default TopicDashboard;
+const mapStateToProps = state => {
+  return {
+    resources: state.resourceReducer.resources
+  };
+};
+export default connect(mapStateToProps)(TopicDashboard);
