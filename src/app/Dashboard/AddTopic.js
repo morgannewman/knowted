@@ -1,6 +1,7 @@
 import React from 'react';
 import './AddTopic.css';
-export default class AddTopic extends React.Component {
+import { addTopic } from '../../controller/actions/topic';
+class AddTopic extends React.Component {
   state = {
     isHidden: true
   };
@@ -13,7 +14,8 @@ export default class AddTopic extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log('create new topic with name:', e.target.folderName.value);
+    let title = e.target.folderName.value;
+    this.props.dispatch(addTopic(title));
     this.toggleHidden();
   }
 
@@ -31,3 +33,5 @@ export default class AddTopic extends React.Component {
     );
   }
 }
+
+export default AddTopic;

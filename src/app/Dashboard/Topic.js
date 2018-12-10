@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Topic.css';
+import { connect } from 'react-redux';
 
-export default class Topic extends React.Component {
+import { deleteTopic } from '../../controller/actions/topic';
+
+export class Topic extends React.Component {
   static propTypes = {
     topicId: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired
@@ -17,7 +20,7 @@ export default class Topic extends React.Component {
   };
 
   deleteTopic = () => {
-    console.log('delete:', this.props.topicId);
+    this.props.dispatch(deleteTopic(this.props.topicId));
   };
 
   toggleHidden = () => {
@@ -51,3 +54,9 @@ export default class Topic extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  topics: state.topicReducer
+});
+
+export default connect(mapStateToProps)(Topic);

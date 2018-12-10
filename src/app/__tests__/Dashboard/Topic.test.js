@@ -1,11 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Topic from '../../Dashboard/Topic';
+import { Topic } from '../../Dashboard/Topic';
 
 const initialState = {
   isHidden: false,
   title: 'hello',
-  topicId: 1
+  topicId: 1,
+  dispatch: jest.fn()
 };
 
 describe('<Topic />', () => {
