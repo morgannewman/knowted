@@ -10,7 +10,12 @@ export function ResourceEditForm({ resource, handleUpdate }) {
         className="resource-item"
         onSubmit={handleUpdate}
       >
-        <input type="text" name={resource.title} />
+        <input
+          type="text"
+          name={resource.title}
+          // value={resource.title}
+          // onChange={e => console.log(e.target.value)}
+        />
         <button type="submit" className="resource-item-edit">
           update
         </button>

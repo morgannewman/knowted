@@ -23,6 +23,17 @@ export const set_topicId = id => ({
   id
 });
 
+export const SET_FEEDBACK = 'SET_FEEDBACK';
+export const set_feedback = feedback => ({
+  type: SET_FEEDBACK,
+  feedback
+});
+
+export const RESET_FEEDBACK = 'RESET_FEEDBACK';
+export const reset_feedback = () => ({
+  type: RESET_FEEDBACK
+});
+
 /**
  * Components can consume this function to get resources belonging to a topic.
  * First dispatches a loading function to change state to loading
@@ -42,13 +53,8 @@ export const get_resources = id => dispatch => {
     });
 };
 
-// export const add_resources = body => dispatch => {
-//   dispatch(resource_loading());
-//   api.resources
-//     .get(id)
-//     .then(data => dispatch(resource_success(data)))
-//     .catch(err => {
-//       console.log(err);
-//       dispatch(resource_error(err));
-//     });
-// };
+export const add_resources = (parent, title, uri) => dispatch => {
+  dispatch(resource_loading());
+  const body = { parent, title, uri };
+  api.resources.post(body).then(data => console.log(data));
+};

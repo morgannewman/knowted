@@ -1,10 +1,20 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
+import {
+  add_resources,
+  set_feedback,
+  reset_feedback
+} from '../../controller/actions/resource';
 export class AddResourceForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
-    console.log('Title', this.inputTitle.value);
-    console.log('URI', this.inputUri.value);
+    const title = this.inputTitle.value;
+    const URI = this.inputUri.value;
+    const parent = this.props.parentId;
+    if (title === '' || !title) {
+      return this.props.dispatch(set_feedback('Title cannot be empty'));
+    }
+    this.props.dispatch(add_resources(parent, title, URI));
   };
   render() {
     return (
@@ -35,9 +45,16 @@ export class AddResourceForm extends React.Component {
           </div>
           <button>Add New Resource</button>
         </form>
+        {this.props.feedback ? <div>{this.props.feedback}</div> : null}
       </section>
     );
   }
 }
 
-export default AddResourceForm;
+const mapStateToProps = state => {
+  return {
+    parentId: state.resourceReducer.topicId,
+    feedback: state.resourceReducer.feedback
+  };
+};
+export default connect(mapStateToProps)(AddResourceForm);

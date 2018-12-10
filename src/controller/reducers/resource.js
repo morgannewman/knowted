@@ -1,7 +1,9 @@
 import {
   RESOURCE_LOADING,
   RESOURCE_SUCCESS,
-  SET_TOPICID
+  SET_TOPICID,
+  SET_FEEDBACK,
+  RESET_FEEDBACK
 } from '../actions/resource';
 import produce from 'immer';
 
@@ -9,7 +11,8 @@ export const initialState = {
   resources: [],
   loading: false,
   error: null,
-  topicId: null
+  topicId: null,
+  feedback: null
 };
 
 export default produce((state, action) => {
@@ -17,15 +20,25 @@ export default produce((state, action) => {
     case RESOURCE_LOADING:
       state.loading = true;
       state.error = null;
+      state.feedback = null;
       return;
     case RESOURCE_SUCCESS:
       state.loading = false;
       state.error = null;
       state.resources = action.payload;
+      state.feedback = null;
       return;
 
     case SET_TOPICID:
       state.topicId = action.id;
+      return;
+
+    case SET_FEEDBACK:
+      state.feedback = action.feedback;
+      return;
+
+    case RESET_FEEDBACK:
+      state.feedback = null;
       return;
 
     default:
