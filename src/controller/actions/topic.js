@@ -4,8 +4,11 @@ export const TOPIC_SUBMIT = 'TOPIC_SUBMIT';
 export const TOPIC_SUCCESS = 'TOPIC_SUCCESS';
 export const ADD_TOPIC_SUCCESS = 'ADD_TOPIC_SUCCESS';
 export const TOPIC_ERROR = 'TOPIC_ERROR';
-
 export const TOPIC_DELETE = 'TOPIC_DELETE';
+// Update notebook actions
+export const TOPIC_NOTEBOOK_UPDATE_SUBMIT = 'TOPIC_NOTEBOOK_UPDATE_SUBMIT';
+export const TOPIC_NOTEBOOK_UPDATE_SUCCESS = 'TOPIC_NOTEBOOK_UPDATE_SUCCESS';
+export const TOPIC_NOTEBOOK_UPDATE_ERROR = 'TOPIC_NOTEBOOK_UPDATE_ERROR';
 
 /**
  * Components can consume this function to get all Topics
@@ -14,11 +17,11 @@ export const TOPIC_DELETE = 'TOPIC_DELETE';
  * On fail: state.topic.error === some error object
  */
 export const getTopics = () => dispatch => {
-  dispatch(topicSubmit());
-  api.topics
-    .get()
-    .then(topics => dispatch(topicSuccess(topics)))
-    .catch(err => dispatch(topicError(err)));
+	dispatch(topicSubmit());
+	api.topics
+		.get()
+		.then(topics => dispatch(topicSuccess(topics)))
+		.catch(err => dispatch(topicError(err)));
 };
 
 /**
@@ -29,11 +32,11 @@ export const getTopics = () => dispatch => {
  * @param {{title: string}} object
  */
 export const addTopic = title => dispatch => {
-  dispatch(topicSubmit());
-  api.topics
-    .post({ title })
-    .then(topic => dispatch(addTopicSuccess(topic)))
-    .catch(err => dispatch(topicError(err)));
+	dispatch(topicSubmit());
+	api.topics
+		.post({ title })
+		.then(topic => dispatch(addTopicSuccess(topic)))
+		.catch(err => dispatch(topicError(err)));
 };
 
 /**
@@ -44,35 +47,57 @@ export const addTopic = title => dispatch => {
  * @param {{id: number}} object
  */
 export const deleteTopic = id => dispatch => {
-  dispatch(topicSubmit());
-  api.topics
-    .delete(id)
-    .then(() => dispatch(topicDelete(id)))
-    .catch(err => dispatch(topicError(err)));
+	dispatch(topicSubmit());
+	api.topics
+		.delete(id)
+		.then(() => dispatch(topicDelete(id)))
+		.catch(err => dispatch(topicError(err)));
+};
+
+export const submitTopicNotebookUpdate = (topicId, contents) => dispatch => {
+	dispatch(topicNotebookUpdateSubmit());
+	api.topics
+		.put({ id: topicId, notebook: contents })
+		.then(() => dispatch(topicNotebookUpdateSuccess(topicId, contents)))
+		.catch(err => dispatch(topicNotebookUpdateError(err)));
 };
 
 export const topicSubmit = () => ({
-  type: TOPIC_SUBMIT
+	type: TOPIC_SUBMIT
 });
 
 export const addTopicSuccess = topic => ({
-  type: ADD_TOPIC_SUCCESS,
-  payload: topic
+	type: ADD_TOPIC_SUCCESS,
+	payload: topic
 });
 
 export const topicSuccess = topics => ({
-  type: TOPIC_SUCCESS,
-  payload: topics
+	type: TOPIC_SUCCESS,
+	payload: topics
 });
 
 export const topicError = err => ({
-  type: TOPIC_ERROR,
-  payload: err
+	type: TOPIC_ERROR,
+	payload: err
 });
 
 export const topicDelete = topicId => {
-  return {
-    type: TOPIC_DELETE,
-    payload: topicId
-  };
+	return {
+		type: TOPIC_DELETE,
+		payload: topicId
+	};
 };
+
+const topicNotebookUpdateSubmit = () => ({
+	type: TOPIC_NOTEBOOK_UPDATE_SUBMIT
+});
+
+const topicNotebookUpdateSuccess = (topicId, content) => ({
+	type: TOPIC_NOTEBOOK_UPDATE_SUCCESS,
+	payload: { id: topicId, notebook: content }
+});
+
+const topicNotebookUpdateError = error => ({
+	type: TOPIC_NOTEBOOK_UPDATE_ERROR,
+	payload: error
+});
