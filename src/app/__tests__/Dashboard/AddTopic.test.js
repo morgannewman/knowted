@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import AddTopic from '../../Dashboard/AddTopic';
+import { AddTopic } from '../../Dashboard/AddTopic';
 
 //Component Contract - expect:
 //To render

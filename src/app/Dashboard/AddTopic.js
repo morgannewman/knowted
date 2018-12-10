@@ -1,7 +1,9 @@
 import React from 'react';
 import './AddTopic.css';
 import { addTopic } from '../../controller/actions/topic';
-class AddTopic extends React.Component {
+import { connect } from 'react-redux';
+
+export class AddTopic extends React.Component {
   state = {
     isHidden: true
   };
@@ -34,4 +36,8 @@ class AddTopic extends React.Component {
   }
 }
 
-export default AddTopic;
+const mapStateToProps = state => ({
+  topics: state.topicReducer.topics
+});
+
+export default connect(mapStateToProps)(AddTopic);
