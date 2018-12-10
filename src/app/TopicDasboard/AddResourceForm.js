@@ -6,6 +6,10 @@ import {
   reset_feedback
 } from '../../controller/actions/resource';
 export class AddResourceForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.Form = React.createRef();
+  }
   handleSubmit = e => {
     e.preventDefault();
     const title = this.inputTitle.value;
@@ -16,13 +20,26 @@ export class AddResourceForm extends React.Component {
     }
     this.props.dispatch(add_resources(parent, title, URI));
   };
+  handleScrollClick = () => {
+    console.log(this.Form);
+    const element = this.Form.current;
+    element.scrollIntoView();
+  };
   render() {
     return (
       <section className="add-resource-section">
+        <button
+          className="add-resource-button"
+          type="button"
+          onClick={this.handleScrollClick}
+        >
+          Add Resource
+        </button>
         <form
           id="add-resource"
           className="add-resource-form"
           onSubmit={this.handleSubmit}
+          ref={this.Form}
         >
           <div>
             <input type="checkbox" checked={false} readOnly={true} />
@@ -43,7 +60,7 @@ export class AddResourceForm extends React.Component {
               placeholder="title "
             />
           </div>
-          <button>Add New Resource</button>
+          <button>Submit</button>
         </form>
         {this.props.feedback ? <div>{this.props.feedback}</div> : null}
       </section>

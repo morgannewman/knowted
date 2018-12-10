@@ -5,11 +5,13 @@ import RecentResourceItem from '../../Dashboard/RecentResourceItem';
 import topicsData from '../../../dummyDB/topicsData';
 import resourcesData from '../../../dummyDB/resourcesData';
 
+const [first, second, third] = resourcesData;
+const data = [first, second, third];
 describe('<RecentResourceItem />', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(
-      <RecentResourceItem topics={topicsData} resources={resourcesData} />
+      <RecentResourceItem topics={topicsData} resources={data} />
     );
   });
 
@@ -18,8 +20,8 @@ describe('<RecentResourceItem />', () => {
   it('renders ul section', () => {
     let wrapper;
     wrapper = mount(
-      <RecentResourceItem topics={topicsData} resources={resourcesData} />
+      <RecentResourceItem topics={topicsData} resources={data} />
     );
-    expect(wrapper.find('ul').children()).toHaveLength(resourcesData.length);
+    expect(wrapper.find('ul').children()).toHaveLength(data.length);
   });
 });
