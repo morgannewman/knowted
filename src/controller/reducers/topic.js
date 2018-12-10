@@ -6,13 +6,14 @@ import {
 	TOPIC_DELETE,
 	TOPIC_NOTEBOOK_UPDATE_SUBMIT,
 	TOPIC_NOTEBOOK_UPDATE_SUCCESS,
-	TOPIC_NOTEBOOK_UPDATE_ERROR
+	TOPIC_NOTEBOOK_UPDATE_ERROR,
+	UPDATE_TOPIC_SUCCESS
 } from '../actions/topic';
 import produce from 'immer';
 
 export const initialState = {
 	topics: [],
-	loading: false,
+	loading: true,
 	error: null,
 	topicId: null
 };
@@ -24,16 +25,25 @@ export default produce((state, action) => {
 			state.error = null;
 			return;
 
+		case GET_TOPIC_SUCCESS:
+			state.loading = false;
+			state.error = null;
+			state.topics = action.payload;
+			return;
+
 		case ADD_TOPIC_SUCCESS:
 			state.loading = false;
 			state.error = null;
 			state.topics.push(action.payload);
 			return;
 
-		case GET_TOPIC_SUCCESS:
+		case UPDATE_TOPIC_SUCCESS:
 			state.loading = false;
 			state.error = null;
-			state.topics = action.payload;
+			const updatedIndex = state.topics.findIndex(item => item.id === action.payload.id);
+			if (updatedIndex > -1) {
+				state.topics[updatedIndex].title = action.payload.title;
+			}
 			return;
 
 		case TOPIC_ERROR:
@@ -61,6 +71,7 @@ export default produce((state, action) => {
 		case TOPIC_NOTEBOOK_UPDATE_ERROR:
 			state.loading = false;
 			state.error = action.payload;
+			state.loading = false;
 			return;
 
 		default:
