@@ -2,7 +2,6 @@ import React from 'react';
 import resourcesData from '../../dummyDB/resourcesData';
 import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
-import AddResourceButton from './AddResourceButton';
 class TopicDashboard extends React.Component {
   render() {
     return (
@@ -10,7 +9,6 @@ class TopicDashboard extends React.Component {
         <section>
           <h2>Breadcrumb nav placeholder</h2>
         </section>
-        <AddResourceButton />
         <h2>Active Resources</h2>
         <ActiveResourceContainer resources={resourcesData} />
 

@@ -21,6 +21,7 @@ export default {
 	 * @returns {[{}]} an array of topic objects
 	 */
 	post(body) {
+		if (!body.title) throw new Error('Missing `title` in topic request body.');
 		return goFetch(BASE_URL, { method: 'POST', body });
 	},
 
@@ -32,7 +33,7 @@ export default {
 	 * @returns {[{}]} an array of topic objects
 	 */
 	put(body) {
-		if (!body.id) throw new Error("Missing topic's `id` in request body.");
+		if (!body.id) throw new Error('Missing `id` in topic request body.');
 		return goFetch(`${BASE_URL}/${body.id}`, { method: 'PUT', body });
 	},
 
