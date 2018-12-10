@@ -21,25 +21,21 @@ export class CompletedResourceContainer extends React.Component {
 
   render() {
     const { resources } = this.props;
-
     return (
       <section className="completed-resources-container">
         <div className="completed-label">
           <h3>Completed</h3>
           <button type="button" onClick={this.handletoggle}>
-            {this.state.showAll ? 'show all' : 'hide all'}
+            {this.state.showAll ? 'hide all' : 'show all'}
           </button>
         </div>
         {this.state.showAll ? (
           <ul className="completed-resources-list">
             {resources.map(rescItem => {
-              if (rescItem.resource.completed) {
+              if (rescItem.completed) {
                 return (
-                  <li
-                    key={rescItem.resource.id}
-                    className="completed-item-container"
-                  >
-                    <ResourceItem resource={rescItem.resource} />
+                  <li key={rescItem.id} className="completed-item-container">
+                    <ResourceItem resource={rescItem} />
                   </li>
                 );
               }
