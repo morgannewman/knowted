@@ -10,7 +10,7 @@ export default {
 	 */
 	recent(num) {
 		// TODO: Confirm query params are correct once implemented on backend
-		return goFetch(BASE_URL, {}, { limit: num, orderby: 'lastOpened' });
+		return goFetch(BASE_URL, {}, { limit: num, orderBy: 'lastOpened' });
 	},
 
 	/**
@@ -27,12 +27,17 @@ export default {
 
 	/**
 	 * Exposes POST /api/resources
-	 * Creatable props: parent, title, uri.
+	 * Required props: parent, title, uri.
 	 * @param {{}} body
 	 * @returns {{}} the new resource object
 	 */
 	post(body) {
-		if (!body.parent) throw new Error("Missing resource's `parent` in request body.");
+		const required = ['parent', 'title', 'uri'];
+		for (const prop of required) {
+			if (!(prop in body)) {
+				throw new Error(`Missing \`${prop}\` in resource request body.`);
+			}
+		}
 		return goFetch(BASE_URL, { method: 'POST', body });
 	},
 
@@ -42,7 +47,7 @@ export default {
 	 * @param {{}} body
 	 */
 	put(body) {
-		if (!body.id) throw new Error("Missing resource's `id` in request body.");
+		if (!body.id) throw new Error('Missing `id` in resource request body.');
 		return goFetch(`${BASE_URL}/${body.id}`, { method: 'PUT', body });
 	},
 
