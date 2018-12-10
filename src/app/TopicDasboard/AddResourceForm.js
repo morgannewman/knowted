@@ -9,7 +9,11 @@ export class AddResourceForm extends React.Component {
   render() {
     return (
       <section className="add-resource-section">
-        <form className="add-resource-form" onSubmit={this.handleSubmit}>
+        <form
+          id="add-resource"
+          className="add-resource-form"
+          onSubmit={this.handleSubmit}
+        >
           <div>
             <input type="checkbox" checked={false} readOnly={true} />
             <label htmlFor="add-resource-link" />
