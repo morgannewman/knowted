@@ -9,7 +9,7 @@ const FirstResource = resourcesData[0];
 describe('<ResourceEditForm', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<ResourceEditForm resource={FirstResource.resource} />);
+    wrapper = shallow(<ResourceEditForm resource={FirstResource} />);
   });
   it('renders without crash', () => {});
 
@@ -48,10 +48,7 @@ describe('<ResourceEditForm', () => {
       }
     };
     wrapper = shallow(
-      <ResourceEditForm
-        handleUpdate={mockFn}
-        resource={FirstResource.resource}
-      />
+      <ResourceEditForm handleUpdate={mockFn} resource={FirstResource} />
     );
     wrapper.find('form').simulate('submit', fakeEvent);
     expect(mockFn).toBeCalled();

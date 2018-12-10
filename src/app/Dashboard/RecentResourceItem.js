@@ -13,12 +13,12 @@ export default function RecentResourceItem({ resources }) {
       >
         {resources.map((item, index) => {
           return (
-            <li key={item.resource.id} className="recent-resource-item">
-              <a href={`/${item.resource.id}`}>
-                <span>{item.resource.parent.title}</span>
+            <li key={item.id} className="recent-resource-item">
+              <a href={`/${item.id}`}>
+                <span>{item.parent.title}</span>
                 >>
-                <span>{item.resource.title}</span>
-                <p>Last Opened: {item.resource.last_opened}</p>
+                <span>{item.title}</span>
+                <p>Last Opened: {item.last_opened}</p>
               </a>
             </li>
           );
