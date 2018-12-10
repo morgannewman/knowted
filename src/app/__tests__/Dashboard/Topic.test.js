@@ -9,12 +9,6 @@ const initialState = {
   dispatch: jest.fn()
 };
 
-const initialState = {
-  isHidden: false,
-  title: 'hello',
-  topicId: 1
-};
-
 describe('<Topic />', () => {
   let wrapper;
 
