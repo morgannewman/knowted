@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { deleteTopic } from '../../controller/actions/topic';
 
-class Topic extends React.Component {
+export class Topic extends React.Component {
   static propTypes = {
     topicId: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired

@@ -11,7 +11,7 @@ import { getTopics } from '../../controller/actions/topic';
 //FIXME: remove hard coded references
 import FoldersData from '../../db/foldersData';
 
-class AllTopicsContainer extends React.Component {
+export class AllTopicsContainer extends React.Component {
   componentWillMount() {
     this.props.dispatch(getTopics());
   }

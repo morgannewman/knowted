@@ -1,6 +1,7 @@
 import {
   TOPIC_SUBMIT,
   TOPIC_SUCCESS,
+  ADD_TOPIC_SUCCESS,
   TOPIC_ERROR,
   TOPIC_DELETE
 } from '../actions/topic';
@@ -20,6 +21,12 @@ export default produce((state, action) => {
       state.error = null;
       return;
 
+    case ADD_TOPIC_SUCCESS:
+      state.loading = false;
+      state.error = null;
+      state.topics.push(action.payload);
+      return;
+
     case TOPIC_SUCCESS:
       state.loading = false;
       state.error = null;
@@ -30,7 +37,11 @@ export default produce((state, action) => {
       return { ...initialState, error: action.payload };
 
     case TOPIC_DELETE:
-      return { ...initialState };
+      const index = state.topics.findIndex(item => item.id === action.payload);
+      if (index > -1) {
+        state.topics.splice(index, 1);
+      }
+      return;
 
     default:
       return;
