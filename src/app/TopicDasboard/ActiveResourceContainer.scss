@@ -5,8 +5,10 @@ $parchment: rgb(240, 238, 234);
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 400px;
   align-items: center;
-  justify-content: center;
+  border: 1px solid black;
+  overflow: scroll;
 }
 .active-resources-list {
   all: unset;

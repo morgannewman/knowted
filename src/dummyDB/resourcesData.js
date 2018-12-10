@@ -32,6 +32,61 @@ const resourcesData = [
     uri: 'http://something',
     completed: true,
     last_opened: new Date().toLocaleString()
+  },
+  {
+    id: 1234569,
+    parent: {
+      id: 10204,
+      title: 'Australia'
+    },
+    title: 'Sydney',
+    uri: 'http://something',
+    completed: false,
+    last_opened: new Date().toLocaleString()
+  },
+  {
+    id: 1239569,
+    parent: {
+      id: 10204,
+      title: 'Australia'
+    },
+    title: 'Koalas',
+    uri: 'http://something',
+    completed: false,
+    last_opened: new Date().toLocaleString()
+  },
+  {
+    id: 1238569,
+    parent: {
+      id: 10204,
+      title: 'Australia'
+    },
+    title: 'Coral Reef',
+    uri: 'http://something',
+    completed: false,
+    last_opened: new Date().toLocaleString()
+  },
+  {
+    id: 1983456,
+    parent: {
+      id: 102030,
+      title: 'Martial Arts'
+    },
+    title: 'Kendo',
+    uri: 'http://something',
+    completed: false,
+    last_opened: new Date().toLocaleString()
+  },
+  {
+    id: 2333456,
+    parent: {
+      id: 102030,
+      title: 'Martial Arts'
+    },
+    title: 'Judo',
+    uri: 'http://something',
+    completed: false,
+    last_opened: new Date().toLocaleString()
   }
 ];
 
