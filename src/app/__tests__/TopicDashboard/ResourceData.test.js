@@ -9,7 +9,7 @@ const FirstResource = resourcesData[0];
 describe('<ResourceData />', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<ResourceView resource={FirstResource.resource} />);
+    wrapper = shallow(<ResourceView resource={FirstResource} />);
   });
 
   it('renders without crashing', () => {});
@@ -24,7 +24,7 @@ describe('<ResourceData />', () => {
         .find('a')
         .first()
         .text()
-    ).toEqual(FirstResource.resource.title);
+    ).toEqual(FirstResource.title);
   });
 
   it('renders last link as the resource uri', () => {
@@ -33,7 +33,7 @@ describe('<ResourceData />', () => {
         .find('a')
         .last()
         .text()
-    ).toEqual(FirstResource.resource.uri);
+    ).toEqual(FirstResource.uri);
   });
 
   it('contains an edit button', () => {
@@ -57,7 +57,7 @@ describe('<ResourceData />', () => {
     let wrapper;
     const mockFn = jest.fn();
     wrapper = shallow(
-      <ResourceView handleEdit={mockFn} resource={FirstResource.resource} />
+      <ResourceView handleEdit={mockFn} resource={FirstResource} />
     );
     wrapper
       .find('button')
@@ -70,7 +70,7 @@ describe('<ResourceData />', () => {
     let wrapper;
     const mockFn = jest.fn();
     wrapper = shallow(
-      <ResourceView handleDelete={mockFn} resource={FirstResource.resource} />
+      <ResourceView handleDelete={mockFn} resource={FirstResource} />
     );
     wrapper
       .find('button')

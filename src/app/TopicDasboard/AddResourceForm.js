@@ -11,7 +11,7 @@ export class AddResourceForm extends React.Component {
       <section className="add-resource-section">
         <form className="add-resource-form" onSubmit={this.handleSubmit}>
           <div>
-            <input type="checkbox" checked={false} />
+            <input type="checkbox" checked={false} readOnly={true} />
             <label htmlFor="add-resource-link" />
             <input
               ref={input => (this.inputUri = input)}

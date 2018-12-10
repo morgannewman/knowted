@@ -15,13 +15,10 @@ export class ActiveResourceContainer extends React.Component {
       <section className="active-resources-container">
         <ul className="active-resources-list">
           {resources.map(rescItem => {
-            if (!rescItem.resource.completed) {
+            if (!rescItem.completed) {
               return (
-                <li
-                  key={rescItem.resource.id}
-                  className="resource-item-container"
-                >
-                  <ResourceItem resource={rescItem.resource} />
+                <li key={rescItem.id} className="resource-item-container">
+                  <ResourceItem resource={rescItem} />
                 </li>
               );
             }

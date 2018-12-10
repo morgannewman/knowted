@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import ResourceItem from '../../TopicDasboard/ResourceItem';
 import resourcesData from '../../../dummyDB/resourcesData';
 
-const FirstResource = resourcesData[0].resource;
+const FirstResource = resourcesData[0];
 
 const initialState = {
   editing: false
