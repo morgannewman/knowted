@@ -1,7 +1,7 @@
 import auth from './routes/auth.route';
 import topics from './routes/topics.route';
 import folders from './routes/folders.route';
-// import resources from './routes/resources.route';
+import resources from './routes/resources.route';
 
 /**
  * This is an interface that provides access to the backend endpoints.
@@ -9,7 +9,7 @@ import folders from './routes/folders.route';
 const api = {
 	auth,
 	topics,
-	// resources, COMING SOON! Not done on the backend
+	resources,
 	folders
 };
 

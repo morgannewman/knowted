@@ -18,6 +18,7 @@ export default {
 	 * @returns {{}} the new folder object
 	 */
 	post(body) {
+		if (!body.title) throw new Error('Missing `title` in folder request body.');
 		return goFetch(BASE_URL, { method: 'POST', body });
 	},
 
@@ -29,7 +30,7 @@ export default {
 	 * @returns {{}} the updated folder object
 	 */
 	put(body) {
-		if (!body.id) throw new Error("Missing folder's `id` in request body.");
+		if (!body.id) throw new Error("Missing folder's `id` in folder request body.");
 		return goFetch(`${BASE_URL}/${body.id}`, { method: 'PUT', body });
 	},
 
@@ -38,7 +39,7 @@ export default {
 	 * @param {number | string} id
 	 */
 	delete(id) {
-		if (!id) throw new Error("Missing folder's `id` in request body.");
+		if (!id) throw new Error("Missing folder's `id` in folder request body.");
 		return goFetch(`${BASE_URL}/${id}`, { method: 'DELETE' });
 	}
 };
