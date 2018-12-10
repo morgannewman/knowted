@@ -2,7 +2,7 @@ import React from 'react';
 import resourcesData from '../../dummyDB/resourcesData';
 import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
-import AddResourceButton from './AddRescourceButton';
+import AddResourceButton from './AddResourceButton';
 class TopicDashboard extends React.Component {
   render() {
     return (
