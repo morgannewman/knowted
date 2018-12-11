@@ -46,7 +46,7 @@ export class ResourceItem extends React.Component {
         completed: !this.props.resource.completed
       })
     );
-    this.props.dispatch(get_resources(this.props.parentId));
+    // this.props.dispatch(get_resources(this.props.parentId));
   };
   /**
    * Used by the ResourceData component

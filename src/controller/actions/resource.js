@@ -1,8 +1,5 @@
 import api from '../../controller/api';
 
-const BASE_URL = '/api/metadata';
-const SERVER = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080';
-
 export const RESOURCE_LOADING = 'RESOURCE_LOADING';
 export const resource_loading = () => ({
   type: RESOURCE_LOADING
@@ -44,9 +41,10 @@ export const add_resource = resource => ({
 });
 
 export const UPDATE_RESOURCE = 'UPDATE_RESOURCE';
-export const update_rescource = (resource, id) => ({
+export const update_resource = (resource, id) => ({
   type: UPDATE_RESOURCE,
-  resource
+  resource,
+  id
 });
 
 export const DELETE_RESOURCE = 'DELETE_RESOURCES';
@@ -105,7 +103,7 @@ export const update_single_resource = (id, body) => dispatch => {
   api.resources
     .put(body)
     .then(data => {
-      dispatch(update_rescource(data, id));
+      dispatch(update_resource(data, id));
     })
     .catch(error => dispatch(resource_error(error)));
 };

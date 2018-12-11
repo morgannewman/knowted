@@ -17,7 +17,9 @@ export const initialState = {
   error: null,
   topicId: null,
   feedback: null,
-  newURI: null
+  newURI: null,
+  submitting: false,
+  titleInputHidden: true
 };
 
 export default produce((state, action) => {
@@ -52,13 +54,17 @@ export default produce((state, action) => {
       return;
 
     case UPDATE_RESOURCE:
+      console.log(action.id);
       const updateIndex = state.resources.findIndex(
         item => item.id === action.id
       );
+
+      console.log(action.resource);
+      console.log(updateIndex);
       if (updateIndex > -1) {
-        state.resources.splice(updateIndex, 1);
-        state.resources.push(action.resource);
+        state.resources[updateIndex] = action.resource;
       }
+      console.log(state.resources);
       return;
 
     case DELETE_RESOURCE:

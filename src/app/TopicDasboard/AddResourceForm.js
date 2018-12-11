@@ -62,13 +62,14 @@ export class AddResourceForm extends React.Component {
           <div>
             <label htmlFor="add-resource-title" />
             <input
+              hidden={this.props.titleInput}
               ref={input => (this.inputTitle = input)}
               type="text"
               name="add-resource"
               placeholder="title "
             />
           </div>
-          <button>Submit</button>
+          <button hidden={this.props.titleInput}>Submit</button>
         </form>
         {this.props.feedback ? <div>{this.props.feedback}</div> : null}
       </section>
@@ -79,7 +80,9 @@ export class AddResourceForm extends React.Component {
 const mapStateToProps = state => {
   return {
     parentId: state.resourceReducer.topicId,
-    feedback: state.resourceReducer.feedback
+    feedback: state.resourceReducer.feedback,
+    submitting: state.resourceReducer.submitting,
+    titleInput: state.resourceReducer.titleInputHidden
   };
 };
 export default connect(mapStateToProps)(AddResourceForm);
