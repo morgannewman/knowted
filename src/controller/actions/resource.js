@@ -46,14 +46,6 @@ export const update_rescources = resources => ({
   resources
 });
 
-/**
- * Gets resources belonging to a topic.
- * First dispatches a loading function to change state to loading
- * Second: Sends request to the server using api.resources
- * Third: Dispatches resource success that changes loading back to false
- * If there is an error, it dispatches an error obj to state
- * * @param {{id: integer}}
- */
 export const get_resources = id => dispatch => {
   dispatch(resource_loading());
   api.resources
@@ -87,6 +79,18 @@ export const add_resources = (parent, title, uri) => dispatch => {
     });
 };
 
+/**
+ * Updates a single resource
+ * First gets current resources from state
+ * Second: Sends PUT request to the server using api.resources
+ * Third: maps over the current resources to create a new resources array 
+ and replaces the old resource item with the new
+ *Fourth: disptaches action update_resources that saves updated resources array in state
+ * If there is an error, it dispatches an error obj to state and console.log error
+ *  This function does not make a request to the server for all of the resources again.
+ * * @param {{id: integer}, {body:object}}
+ */
+//TODO: remove console.logs
 export const update_single_resource = (id, body) => (dispatch, getState) => {
   let updated;
   console.log(body, 'body');
@@ -108,6 +112,17 @@ export const update_single_resource = (id, body) => (dispatch, getState) => {
     .then(() => dispatch(update_rescources(updated)))
     .catch(error => dispatch(resource_error(error)));
 };
+
+/**
+ * Deletes a single resource
+ * First gets current resources from state
+ * Second: Sends PUT request to the server using api.resources
+ * Third: maps over the current resources to create a new resources array 
+ and replaces the old resource item with the new
+ *Fourth: disptaches action update_resources that saves updated resources array in state
+ * If there is an error, it dispatches an error obj to state and console.log error
+ * * @param {{id: integer}}
+ */
 
 export const delete_resource = id => (dispatch, getState) => {
   const currentResources = getState().resourceReducer.resources;

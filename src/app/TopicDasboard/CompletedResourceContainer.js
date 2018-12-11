@@ -19,7 +19,7 @@ export class CompletedResourceContainer extends React.Component {
   }
 
   handletoggle = () => {
-    this.setState({ showAll: !this.state.showAll });
+    this.setState(prevState => ({ showAll: !prevState.showAll }));
   };
 
   render() {
