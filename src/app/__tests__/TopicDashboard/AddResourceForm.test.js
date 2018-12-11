@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import AddResourceForm from '../../TopicDasboard/AddResourceForm';
+import { AddResourceForm } from '../../TopicDasboard/AddResourceForm';
 
 describe('AddResourceForm', () => {
   let wrapper;

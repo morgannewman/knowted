@@ -12,10 +12,6 @@ export class ResourceEditForm extends React.Component {
     };
   }
 
-  componentDidMount() {
-    console.log(this.props.resource, 'kjelo');
-  }
-
   render() {
     const { resource, handleUpdate } = this.props;
 

@@ -4,7 +4,7 @@ import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
 import { get_resources, set_topicId } from '../../controller/actions/resource';
 
-class TopicDashboard extends React.Component {
+export class TopicDashboard extends React.Component {
   componentDidMount() {
     //TODO: Will need to dispatch with this.props.params.id
     //ID hardcoded for now

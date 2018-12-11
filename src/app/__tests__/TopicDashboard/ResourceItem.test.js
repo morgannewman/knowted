@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { shallow } from 'enzyme';
-import ResourceItem from '../../TopicDasboard/ResourceItem';
+import { ResourceItem } from '../../TopicDasboard/ResourceItem';
 import resourcesData from '../../../dummyDB/resourcesData';
 
 const FirstResource = resourcesData[0];
