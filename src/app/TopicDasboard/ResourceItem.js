@@ -71,10 +71,7 @@ export class ResourceItem extends React.Component {
    * @param {{e: object}} eventobject
    */
 
-  //FIXME: Delete event argument if unnecessary
-  handleEdit = e => {
-    const id = e.target.getAttribute('resourceid');
-    console.log(`Edits resource with id: ${id}`);
+  handleEdit = () => {
     this.setState(prevState => ({ editing: !prevState.editing }));
   };
 
@@ -94,9 +91,6 @@ export class ResourceItem extends React.Component {
     if (!newTitle || !newURI) {
       return;
     }
-    console.log(
-      `Updates resource with id: ${id}, name ${newTitle.trim()}, and URI ${newURI}`
-    );
     this.props.dispatch(
       update_single_resource(id, { id, title: newTitle, uri: newURI })
     );

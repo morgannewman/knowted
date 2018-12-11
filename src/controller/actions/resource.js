@@ -40,10 +40,11 @@ export const add_resource = resource => ({
   resource
 });
 
-export const UPDATE_RESOURCES = 'UPDATE_RESOURCES';
-export const update_rescources = resources => ({
-  type: UPDATE_RESOURCES,
-  resources
+export const UPDATE_RESOURCE = 'UPDATE_RESOURCE';
+export const update_rescource = (resource, id) => ({
+  type: UPDATE_RESOURCE,
+  resource,
+  id
 });
 
 export const DELETE_RESOURCE = 'DELETE_RESOURCES';
@@ -52,6 +53,10 @@ export const del_resource = id => ({
   id
 });
 
+/**
+ *
+ * @param {{id:integer}}} id
+ */
 export const get_resources = id => dispatch => {
   dispatch(resource_loading());
   api.resources
@@ -87,35 +92,20 @@ export const add_resources = (parent, title, uri) => dispatch => {
 
 /**
  * Updates a single resource
- * First gets current resources from state
- * Second: Sends PUT request to the server using api.resources
- * Third: maps over the current resources to create a new resources array 
- and replaces the old resource item with the new
- *Fourth: disptaches action update_resources that saves updated resources array in state
+ * First: Sends PUT request to the server using api.resources
+ *Second: disptaches action update_resources that saves updated resources array in state
  * If there is an error, it dispatches an error obj to state and console.log error
  *  This function does not make a request to the server for all of the resources again.
  * * @param {{id: integer}, {body:object}}
  */
 //TODO: remove console.logs
-export const update_single_resource = (id, body) => (dispatch, getState) => {
-  let updated;
-  // console.log(body, 'body');
-  const currentResources = getState().resourceReducer.resources;
-  // console.log(currentResources, 'current, beforeRequest');
+export const update_single_resource = (id, body) => dispatch => {
   api.resources
     .put(body)
     .then(data => {
       console.log(data, 'data');
-      updated = currentResources.map(item => {
-        if (item.id === id) {
-          return data;
-        } else {
-          return item;
-        }
-      });
-      console.log(updated, 'updated');
+      dispatch(update_rescource(data, id));
     })
-    .then(() => dispatch(update_rescources(updated)))
     .catch(error => dispatch(resource_error(error)));
 };
 
@@ -127,7 +117,7 @@ export const update_single_resource = (id, body) => (dispatch, getState) => {
  * * @param {{id: integer}}
  */
 
-export const delete_resource = id => (dispatch, getState) => {
+export const delete_resource = id => dispatch => {
   api.resources
     .delete(id)
     .then(() => dispatch(del_resource(Number(id))))

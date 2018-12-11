@@ -13,9 +13,6 @@ export class CompletedResourceContainer extends React.Component {
       showAll: false
     };
   }
-  componentDidMount() {
-    console.log('component mounts and ready to dispatch actions');
-  }
 
   handletoggle = () => {
     this.setState(prevState => ({ showAll: !prevState.showAll }));
@@ -34,7 +31,7 @@ export class CompletedResourceContainer extends React.Component {
         {this.state.showAll ? (
           <ul className="completed-resources-list">
             {resources.map(rescItem => {
-              if (rescItem.completed) {
+              if (rescItem !== undefined && rescItem.completed) {
                 return (
                   <li key={rescItem.id} className="completed-item-container">
                     <ResourceItem resource={rescItem} />

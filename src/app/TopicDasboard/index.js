@@ -13,9 +13,10 @@ export class TopicDashboard extends React.Component {
   }
 
   render() {
-    if (this.props.loading) {
-      return <Loading />;
-    }
+    console.log(this.props.resources);
+    // if (this.props.loading) {
+    //   return <Loading />;
+    // }
     return (
       <main>
         <section>
