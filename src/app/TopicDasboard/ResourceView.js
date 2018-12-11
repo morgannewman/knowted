@@ -12,9 +12,17 @@ export function ResourceView({
         id={resource.id}
         type="checkbox"
         onChange={handleChecked}
-        checked={resource.checked}
-        value="1"
+        checked={resource.completed}
       />
+      {resource.completed ? (
+        <button resource={resource} id={resource.id} onClick={handleChecked}>
+          Checked
+        </button>
+      ) : (
+        <button resource={resource} id={resource.id} onClick={handleChecked}>
+          NOT-Checked
+        </button>
+      )}
       <a href={resource.id}>{resource.title}</a>
       <br />
       <a href={resource.uri} target="_blank" rel="noopener">

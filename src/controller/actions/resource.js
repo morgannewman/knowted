@@ -87,11 +87,25 @@ export const add_resources = (parent, title, uri) => dispatch => {
     });
 };
 
-export const update_single_resource = (id, body) => dispatch => {
+export const update_single_resource = (id, body) => (dispatch, getState) => {
+  let updated;
   console.log(body, 'body');
+  const currentResources = getState().resourceReducer.resources;
+  console.log(currentResources, 'current');
   api.resources
     .put(body)
-    .then(data => console.log(data))
+    .then(data => {
+      console.log(data, 'data');
+      updated = currentResources.map(item => {
+        if (item.id === id) {
+          return data;
+        } else {
+          return item;
+        }
+      });
+      console.log(updated, 'updated');
+    })
+    .then(() => dispatch(update_rescources(updated)))
     .catch(error => dispatch(resource_error(error)));
 };
 

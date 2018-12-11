@@ -1,5 +1,7 @@
 import React from 'react';
 import ResourceItem from './ResourceItem';
+import { connect } from 'react-redux';
+import { get_resources, set_topicId } from '../../controller/actions/resource';
 import './CompletedResourceContainer.scss';
 
 export class CompletedResourceContainer extends React.Component {
@@ -13,6 +15,7 @@ export class CompletedResourceContainer extends React.Component {
   }
   componentDidMount() {
     console.log('component mounts and ready to dispatch actions');
+    this.props.dispatch(get_resources(4000));
   }
 
   handletoggle = () => {
@@ -35,7 +38,7 @@ export class CompletedResourceContainer extends React.Component {
               if (rescItem.completed) {
                 return (
                   <li key={rescItem.id} className="completed-item-container">
-                    <ResourceItem checked={'checked'} resource={rescItem} />
+                    <ResourceItem resource={rescItem} />
                   </li>
                 );
               } else {
@@ -49,4 +52,4 @@ export class CompletedResourceContainer extends React.Component {
   }
 }
 
-export default CompletedResourceContainer;
+export default connect()(CompletedResourceContainer);
