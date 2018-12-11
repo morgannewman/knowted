@@ -19,7 +19,6 @@ class TopicDashboard extends React.Component {
     this.props.dispatch(get_resources(4000));
   }
   render() {
-    console.log(this.props.resources);
     return (
       <main>
         <section>

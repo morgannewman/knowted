@@ -12,8 +12,13 @@ export class ResourceEditForm extends React.Component {
     };
   }
 
+  componentDidMount() {
+    console.log(this.props.resource, 'kjelo');
+  }
+
   render() {
     const { resource, handleUpdate } = this.props;
+
     return (
       <div>
         <form
@@ -38,8 +43,6 @@ export class ResourceEditForm extends React.Component {
             update
           </button>
         </form>
-
-        <a href={resource.uri}>{resource.uri}</a>
       </div>
     );
   }

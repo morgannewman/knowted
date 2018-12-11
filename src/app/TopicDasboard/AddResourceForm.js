@@ -19,6 +19,8 @@ export class AddResourceForm extends React.Component {
       return this.props.dispatch(set_feedback('Title cannot be empty'));
     }
     this.props.dispatch(add_resources(parent, title, URI));
+    this.inputUri.value = '';
+    this.inputTitle.value = '';
   };
   handleScrollClick = () => {
     console.log(this.Form);

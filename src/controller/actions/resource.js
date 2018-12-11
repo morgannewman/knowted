@@ -87,9 +87,12 @@ export const add_resources = (parent, title, uri) => dispatch => {
     });
 };
 
-export const update_single_resource = (id, obj) => dispatch => {
-  const body = obj;
-  api.resources.put(body).catch(error => dispatch(resource_error(error)));
+export const update_single_resource = (id, body) => dispatch => {
+  console.log(body, 'body');
+  api.resources
+    .put(body)
+    .then(data => console.log(data))
+    .catch(error => dispatch(resource_error(error)));
 };
 
 export const delete_resource = id => (dispatch, getState) => {
