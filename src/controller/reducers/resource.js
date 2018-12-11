@@ -54,17 +54,14 @@ export default produce((state, action) => {
       return;
 
     case UPDATE_RESOURCE:
-      console.log(action.id);
       const updateIndex = state.resources.findIndex(
         item => item.id === action.id
       );
 
-      console.log(action.resource);
-      console.log(updateIndex);
       if (updateIndex > -1) {
         state.resources[updateIndex] = action.resource;
       }
-      console.log(state.resources);
+
       return;
 
     case DELETE_RESOURCE:
