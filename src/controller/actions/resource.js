@@ -46,6 +46,12 @@ export const update_rescources = resources => ({
   resources
 });
 
+export const DELETE_RESOURCE = 'DELETE_RESOURCES';
+export const del_resource = id => ({
+  type: DELETE_RESOURCE,
+  id
+});
+
 export const get_resources = id => dispatch => {
   dispatch(resource_loading());
   api.resources
@@ -93,9 +99,9 @@ export const add_resources = (parent, title, uri) => dispatch => {
 //TODO: remove console.logs
 export const update_single_resource = (id, body) => (dispatch, getState) => {
   let updated;
-  console.log(body, 'body');
+  // console.log(body, 'body');
   const currentResources = getState().resourceReducer.resources;
-  console.log(currentResources, 'current, beforeRequest');
+  // console.log(currentResources, 'current, beforeRequest');
   api.resources
     .put(body)
     .then(data => {
@@ -115,20 +121,15 @@ export const update_single_resource = (id, body) => (dispatch, getState) => {
 
 /**
  * Deletes a single resource
- * First gets current resources from state
- * Second: Filters the currenrt resources to include everything except the resource to be deleted
- * Third: 
- and replaces the old resource item with the new
- *Fourth: disptaches action update_resources that saves updated resources array in state
+ * First sends DELETE request to server
+ * Second: On delete success dispatches action to remove item from state
  * If there is an error, it dispatches an error obj to state and console.log error
  * * @param {{id: integer}}
  */
 
 export const delete_resource = id => (dispatch, getState) => {
-  const currentResources = getState().resourceReducer.resources;
-  const newResources = currentResources.filter(item => item.id !== Number(id));
   api.resources
     .delete(id)
-    .then(() => dispatch(update_rescources(newResources)))
+    .then(() => dispatch(del_resource(Number(id))))
     .catch(error => dispatch(resource_error(error)));
 };
