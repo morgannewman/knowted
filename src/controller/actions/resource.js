@@ -91,7 +91,7 @@ export const update_single_resource = (id, body) => (dispatch, getState) => {
   let updated;
   console.log(body, 'body');
   const currentResources = getState().resourceReducer.resources;
-  console.log(currentResources, 'current');
+  console.log(currentResources, 'current, beforeRequest');
   api.resources
     .put(body)
     .then(data => {

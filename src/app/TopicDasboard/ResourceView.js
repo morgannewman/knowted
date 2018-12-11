@@ -15,11 +15,11 @@ export function ResourceView({
         checked={resource.completed}
       />
       {resource.completed ? (
-        <button resource={resource} id={resource.id} onClick={handleChecked}>
+        <button id={resource.id} onClick={handleChecked}>
           Checked
         </button>
       ) : (
-        <button resource={resource} id={resource.id} onClick={handleChecked}>
+        <button id={resource.id} onClick={handleChecked}>
           NOT-Checked
         </button>
       )}

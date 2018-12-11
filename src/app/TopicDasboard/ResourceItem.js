@@ -38,13 +38,14 @@ export class ResourceItem extends React.Component {
   //FIXME: connect function to dispatch async action to backend
   handleChecked = e => {
     const id = Number(e.target.id);
-    let newResource = this.props.resources.find(resc => (resc.id = id));
-    console.log(newResource, 'newresource');
-    const { completed } = newResource;
-    console.log(completed, 'completed');
-    const body = { id: id, completed: !completed };
-    console.log(body, 'body');
-    this.props.dispatch(update_single_resource(id, body));
+    // console.log(this.props.resource.completed);
+    // let newResource = this.props.resources.filter(resc => (resc.id = id)); <---Why didn't this work???
+    this.props.dispatch(
+      update_single_resource(id, {
+        id,
+        completed: !this.props.resource.completed
+      })
+    );
   };
   /**
    * Used by the ResourceData component
@@ -104,8 +105,7 @@ export class ResourceItem extends React.Component {
   };
 
   render() {
-    // const { resource } = this.props;
-    console.log(this.props.resources);
+    const { resource } = this.props;
     return (
       <div>
         {!this.state.editing ? (
@@ -113,12 +113,12 @@ export class ResourceItem extends React.Component {
             handleEdit={this.handleEdit}
             handleChecked={this.handleChecked}
             handleDelete={this.handleDelete}
-            resource={this.props.resource}
+            resource={resource}
           />
         ) : (
           <ResourceEditForm
             handleUpdate={this.handleUpdate}
-            resource={this.props.resource}
+            resource={resource}
           />
         )}
       </div>
