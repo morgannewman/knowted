@@ -15,7 +15,7 @@ export const initialState = {
   error: null,
   topicId: null,
   feedback: null,
-  testing: null
+  newURI: null
 };
 
 export default produce((state, action) => {

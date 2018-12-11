@@ -95,7 +95,6 @@ export const update_single_resource = (id, obj) => dispatch => {
 export const delete_resource = id => (dispatch, getState) => {
   const currentResources = getState().resourceReducer.resources;
   const newResources = currentResources.filter(item => item.id !== Number(id));
-
   api.resources
     .delete(id)
     .then(() => dispatch(update_rescources(newResources)))

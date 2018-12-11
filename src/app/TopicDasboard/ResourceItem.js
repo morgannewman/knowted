@@ -84,17 +84,6 @@ export class ResourceItem extends React.Component {
    *    * @param {{e: object}} eventobject
    */
 
-  handleUpdate = e => {
-    e.preventDefault();
-    const newTitle = e.currentTarget.getElementsByTagName('INPUT')[0].value;
-    const id = e.target.getAttribute('resourceid');
-    if (newTitle === undefined) {
-      return;
-    }
-    console.log(`Updates resource with id: ${id} and name ${newTitle.trim()}`);
-    this.setState({ editing: !this.state.editing });
-  };
-
   render() {
     const { resource } = this.props;
     return (
@@ -107,10 +96,7 @@ export class ResourceItem extends React.Component {
             resource={resource}
           />
         ) : (
-          <ResourceEditForm
-            handleUpdate={this.handleUpdate}
-            resource={resource}
-          />
+          <ResourceEditForm resource={resource} />
         )}
       </div>
     );

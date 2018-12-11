@@ -35,7 +35,7 @@ export class CompletedResourceContainer extends React.Component {
               if (rescItem.completed) {
                 return (
                   <li key={rescItem.id} className="completed-item-container">
-                    <ResourceItem resource={rescItem} />
+                    <ResourceItem checked={'checked'} resource={rescItem} />
                   </li>
                 );
               } else {
