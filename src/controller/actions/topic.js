@@ -54,11 +54,15 @@ export const deleteTopic = id => dispatch => {
 		.catch(err => dispatch(topicError(err)));
 };
 
-export const submitTopicNotebookUpdate = (topicId, contents) => dispatch => {
+/**
+ * Persist updates to a topic's notebook asynchronously.
+ * @param {{id: string, notebook: {}}} req
+ */
+export const submitTopicNotebookUpdate = req => dispatch => {
 	dispatch(topicNotebookUpdateSubmit());
 	api.topics
-		.put({ id: topicId, notebook: contents })
-		.then(() => dispatch(topicNotebookUpdateSuccess(topicId, contents)))
+		.put(req)
+		.then(() => dispatch(topicNotebookUpdateSuccess(req)))
 		.catch(err => dispatch(topicNotebookUpdateError(err)));
 };
 
@@ -92,9 +96,10 @@ const topicNotebookUpdateSubmit = () => ({
 	type: TOPIC_NOTEBOOK_UPDATE_SUBMIT
 });
 
-const topicNotebookUpdateSuccess = (topicId, content) => ({
+// req = { id, notebook }
+const topicNotebookUpdateSuccess = req => ({
 	type: TOPIC_NOTEBOOK_UPDATE_SUCCESS,
-	payload: { id: topicId, notebook: content }
+	payload: { req }
 });
 
 const topicNotebookUpdateError = error => ({

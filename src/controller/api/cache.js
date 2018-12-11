@@ -9,7 +9,7 @@ const authToken = {
 	 */
 	save(authToken) {
 		try {
-			localStorage.setItem("authToken", authToken);
+			localStorage.setItem('authToken', authToken);
 		} catch (e) {}
 	},
 	/**
@@ -17,7 +17,7 @@ const authToken = {
 	 */
 	clear() {
 		try {
-			localStorage.removeItem("authToken");
+			localStorage.removeItem('authToken');
 		} catch (e) {}
 	},
 	/**
@@ -25,12 +25,39 @@ const authToken = {
 	 * @returns A string or undefined depending on if a token exists in cache.
 	 */
 	load() {
-		return localStorage.getItem("authToken");
+		return localStorage.getItem('authToken');
+	}
+};
+
+const requests = {
+	_KEY: 'cachedRequests',
+
+	/**
+	 * Stores a request for later retrieval.
+	 * Required param props: userId, action (name), and payload.
+	 * See App.js for more configuration.
+	 * @param {{userId: string, action: string, payload: {}}} request
+	 */
+	push(request) {
+		const bufferExists = localStorage.getItem(this._KEY);
+		const buffer = bufferExists ? JSON.parse(bufferExists) : [];
+		buffer.push(request);
+		localStorage.setItem(this._KEY, JSON.stringify(buffer));
+	},
+
+	/**
+	 * Pops all cached requests from storage.
+	 */
+	pop() {
+		const result = JSON.parse(localStorage.getItem(this._KEY));
+		localStorage.removeItem(this._KEY);
+		return result || [];
 	}
 };
 
 const cache = {
-	authToken
+	authToken,
+	requests
 };
 
 export default cache;
