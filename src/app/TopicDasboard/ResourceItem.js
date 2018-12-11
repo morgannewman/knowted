@@ -87,8 +87,9 @@ export class ResourceItem extends React.Component {
   handleUpdate = e => {
     e.preventDefault();
     const newTitle = e.currentTarget.getElementsByTagName('INPUT')[0].value;
+    const newURI = e.currentTarget.getElementsByTagName('INPUT')[1].value;
     const id = e.target.getAttribute('resourceid');
-    if (newTitle === undefined) {
+    if (!newTitle || !newURI) {
       return;
     }
     console.log(`Updates resource with id: ${id} and name ${newTitle.trim()}`);

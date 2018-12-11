@@ -7,7 +7,7 @@ export class ResourceEditForm extends React.Component {
     super(props);
     this.value = React.createRef();
     this.state = {
-      titleValue: this.props.resource.title,
+      value: this.props.resource.title,
       uri: this.props.resource.uri
     };
   }
@@ -24,19 +24,22 @@ export class ResourceEditForm extends React.Component {
           <input
             type="text"
             name={resource.title}
-            value={this.state.titleValue}
+            // value='{resource.title}'
+            value={this.state.value}
             onChange={e => this.setState({ value: e.target.value })}
+          />
+          <input
+            type="url"
+            name={resource.uri}
+            value={this.state.uri}
+            onChange={e => this.setState({ uri: e.target.value })}
           />
           <button type="submit" className="resource-item-edit">
             update
           </button>
         </form>
-        <input
-          type="text"
-          name={resource.uri}
-          value={this.state.uri}
-          onChange={e => this.setState({ uri: e.target.value })}
-        />
+
+        <a href={resource.uri}>{resource.uri}</a>
       </div>
     );
   }
