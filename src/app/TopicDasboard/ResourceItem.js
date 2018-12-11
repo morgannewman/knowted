@@ -46,7 +46,6 @@ export class ResourceItem extends React.Component {
         completed: !this.props.resource.completed
       })
     );
-    // this.props.dispatch(get_resources(this.props.parentId));
   };
   /**
    * Used by the ResourceData component
@@ -88,14 +87,15 @@ export class ResourceItem extends React.Component {
     e.preventDefault();
     const newTitle = e.currentTarget.getElementsByTagName('INPUT')[0].value;
     const newURI = e.currentTarget.getElementsByTagName('INPUT')[1].value;
-    const id = e.target.getAttribute('resourceid');
+    const id = Number(e.target.getAttribute('resourceid'));
     if (!newTitle || !newURI) {
       return;
     }
+
     this.props.dispatch(
       update_single_resource(id, { id, title: newTitle, uri: newURI })
     );
-    this.props.dispatch(get_resources(this.props.parentId));
+
     this.setState({ editing: !this.state.editing });
   };
 
