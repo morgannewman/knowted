@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
   add_resources,
-  set_feedback,
-  reset_feedback
+  set_feedback
+  // reset_feedback
 } from '../../controller/actions/resource';
 export class AddResourceForm extends React.Component {
   constructor(props) {

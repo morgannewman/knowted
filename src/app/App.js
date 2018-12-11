@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import Landing from './Landing';
 import Nav from './common/Nav';
-import Dashboard from './Dashboard';
+// import Dashboard from './Dashboard';
 import TopicDashboard from './TopicDasboard';
 export class App extends Component {
   render() {

@@ -1,7 +1,6 @@
 import React from 'react';
 import ResourceItem from './ResourceItem';
 import { connect } from 'react-redux';
-import { get_resources, set_topicId } from '../../controller/actions/resource';
 import './CompletedResourceContainer.scss';
 
 export class CompletedResourceContainer extends React.Component {

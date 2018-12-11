@@ -17,7 +17,7 @@ export function ResourceView({
 
       <a href={resource.id}>{resource.title}</a>
       <br />
-      <a href={resource.uri} target="_blank" rel="noopener">
+      <a href={resource.uri} target="_blank" rel="noopener noreferrer">
         {resource.uri}
       </a>
       <div className="resource-item-controls">
