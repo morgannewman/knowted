@@ -34,6 +34,11 @@ export const reset_feedback = () => ({
   type: RESET_FEEDBACK
 });
 
+export const ADD_RESOURCE = 'ADD_RESOURCE';
+export const add_resource = resource => ({
+  type: ADD_RESOURCE,
+  resource
+});
 /**
  * Components can consume this function to get resources belonging to a topic.
  * First dispatches a loading function to change state to loading
@@ -56,5 +61,12 @@ export const get_resources = id => dispatch => {
 export const add_resources = (parent, title, uri) => dispatch => {
   dispatch(resource_loading());
   const body = { parent, title, uri };
-  api.resources.post(body).then(data => console.log(data));
+  api.resources.post(body).then(data => dispatch(add_resource(data)));
+};
+
+export const update_resource = (id, obj) => dispatch => {
+  dispatch(resource_loading());
+  const body = obj;
+  console.log(body);
+  // api.resources.put(body).then(() => dispatch(get_resources(id)));
 };

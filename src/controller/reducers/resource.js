@@ -3,7 +3,8 @@ import {
   RESOURCE_SUCCESS,
   SET_TOPICID,
   SET_FEEDBACK,
-  RESET_FEEDBACK
+  RESET_FEEDBACK,
+  ADD_RESOURCE
 } from '../actions/resource';
 import produce from 'immer';
 
@@ -27,6 +28,10 @@ export default produce((state, action) => {
       state.error = null;
       state.resources = action.payload;
       state.feedback = null;
+      return;
+
+    case ADD_RESOURCE:
+      state.resources.push(action.resource);
       return;
 
     case SET_TOPICID:

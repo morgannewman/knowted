@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ResourceEditForm from './ResourceEditForm';
 import ResourceView from './ResourceView';
+import { connect } from 'react-redux';
+import { update_resource } from '../../controller/actions/resource';
 import './ResourceItem.scss';
 // import { Link } from 'react-router-dom';
 
@@ -30,8 +32,13 @@ export class ResourceItem extends React.Component {
   *The intention of this function is to make a PUT request to resources endpoint
    */
   //FIXME: connect function to dispatch async action to backend
-  handleChecked = () => {
+  handleChecked = e => {
     console.log('check works');
+    const id = e.target.id;
+    const resource = this.props.resources.find(resc => (resc.id = id));
+    this.props.dispatch(
+      update_resource(id, { completed: !resource.completed, id })
+    );
   };
   /**
    * Used by the ResourceData component
@@ -106,4 +113,10 @@ export class ResourceItem extends React.Component {
   }
 }
 
-export default ResourceItem;
+const mapStateToProps = state => {
+  return {
+    parentId: state.resourceReducer.topicId,
+    resources: state.resourceReducer.resources
+  };
+};
+export default connect(mapStateToProps)(ResourceItem);
