@@ -2,6 +2,7 @@ import {
   TOPIC_SUBMIT,
   TOPIC_SUCCESS,
   ADD_TOPIC_SUCCESS,
+  UPDATE_TOPIC_SUCCESS,
   TOPIC_ERROR,
   TOPIC_DELETE
 } from '../actions/topic';
@@ -9,7 +10,7 @@ import produce from 'immer';
 
 export const initialState = {
   topics: [],
-  loading: false,
+  loading: true,
   error: null,
   topicId: null
 };
@@ -21,16 +22,27 @@ export default produce((state, action) => {
       state.error = null;
       return;
 
+    case TOPIC_SUCCESS:
+      state.loading = false;
+      state.error = null;
+      state.topics = action.payload;
+      return;
+
     case ADD_TOPIC_SUCCESS:
       state.loading = false;
       state.error = null;
       state.topics.push(action.payload);
       return;
 
-    case TOPIC_SUCCESS:
+    case UPDATE_TOPIC_SUCCESS:
       state.loading = false;
       state.error = null;
-      state.topics = action.payload;
+      const updatedIndex = state.topics.findIndex(
+        item => item.id === action.payload.id
+      );
+      if (updatedIndex > -1) {
+        state.topics.splice(updatedIndex, 1, action.payload);
+      }
       return;
 
     case TOPIC_ERROR:
@@ -41,6 +53,7 @@ export default produce((state, action) => {
       if (index > -1) {
         state.topics.splice(index, 1);
       }
+      state.loading = false;
       return;
 
     default:
