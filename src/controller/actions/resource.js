@@ -40,7 +40,7 @@ export const add_resource = resource => ({
   resource
 });
 /**
- * Components can consume this function to get resources belonging to a topic.
+ * Gets resources belonging to a topic.
  * First dispatches a loading function to change state to loading
  * Second: Sends request to the server using api.resources
  * Third: Dispatches resource success that changes loading back to false
@@ -58,15 +58,31 @@ export const get_resources = id => dispatch => {
     });
 };
 
+/**
+ * Adds resources belonging to a topic.
+ * First dispatches a loading function to change state to loading
+ * Second: Sends post request to the server using api.resources
+ * Third: Dispatches add_resource() action new data from server to current state
+ * If there is an error, it dispatches an error obj to state
+ * This function does not make a request to the server for all of the resources again.
+ * Only a single item is added to pre-existing state
+ * * @param {{parent: integer, title:string, url:string}}
+ */
 export const add_resources = (parent, title, uri) => dispatch => {
   dispatch(resource_loading());
   const body = { parent, title, uri };
-  api.resources.post(body).then(data => dispatch(add_resource(data)));
+  api.resources
+    .post(body)
+    .then(data => dispatch(add_resource(data)))
+    .catch(err => {
+      console.log(err);
+      dispatch(resource_error(err));
+    });
 };
 
 export const update_resource = (id, obj) => dispatch => {
   dispatch(resource_loading());
   const body = obj;
   console.log(body);
-  // api.resources.put(body).then(() => dispatch(get_resources(id)));
+  api.resources.put(body).then(data => console.log(data));
 };

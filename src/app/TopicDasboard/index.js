@@ -11,8 +11,14 @@ class TopicDashboard extends React.Component {
     this.props.dispatch(set_topicId(4000));
     this.props.dispatch(get_resources(4000));
   }
+
+  componentdidUpdate() {
+    //TODO: Will need to dispatch with this.props.params.id
+    // //ID hardcoded for now
+    this.props.dispatch(set_topicId(4000));
+    this.props.dispatch(get_resources(4000));
+  }
   render() {
-    console.log(this.props.resources);
     return (
       <main>
         <section>

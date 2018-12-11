@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import ResourceEditForm from './ResourceEditForm';
 import ResourceView from './ResourceView';
 import { connect } from 'react-redux';
-import { update_resource } from '../../controller/actions/resource';
+import {
+  update_resource,
+  get_resources
+} from '../../controller/actions/resource';
 import './ResourceItem.scss';
 // import { Link } from 'react-router-dom';
 
@@ -33,12 +36,13 @@ export class ResourceItem extends React.Component {
    */
   //FIXME: connect function to dispatch async action to backend
   handleChecked = e => {
-    console.log('check works');
     const id = e.target.id;
     const resource = this.props.resources.find(resc => (resc.id = id));
+    // console.log(resource.completed, 42);
     this.props.dispatch(
       update_resource(id, { completed: !resource.completed, id })
     );
+    this.props.dispatch(get_resources(resource.parent.id));
   };
   /**
    * Used by the ResourceData component
@@ -92,6 +96,7 @@ export class ResourceItem extends React.Component {
 
   render() {
     const { resource } = this.props;
+    console.log(this.props.resources, 'rescource item');
 
     return (
       <div>
