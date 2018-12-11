@@ -55,7 +55,6 @@ export default produce((state, action) => {
       const updateIndex = state.resources.findIndex(
         item => item.id === action.id
       );
-      console.log(action.resource);
       if (updateIndex > -1) {
         state.resources.splice(updateIndex, 1);
         state.resources.push(action.resource);

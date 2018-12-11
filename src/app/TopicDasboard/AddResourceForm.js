@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
   add_resources,
-  set_feedback
+  set_feedback,
+  get_title
   // reset_feedback
 } from '../../controller/actions/resource';
 export class AddResourceForm extends React.Component {
@@ -10,6 +11,11 @@ export class AddResourceForm extends React.Component {
     super(props);
     this.Form = React.createRef();
   }
+
+  getUri = (e, uri) => {
+    e.preventDefault();
+    this.props.dispatch(get_title('https://www.youtube.com/'));
+  };
   handleSubmit = e => {
     e.preventDefault();
     const title = this.inputTitle.value;
@@ -40,7 +46,7 @@ export class AddResourceForm extends React.Component {
         <form
           id="add-resource"
           className="add-resource-form"
-          onSubmit={this.handleSubmit}
+          onSubmit={this.getUri}
           ref={this.Form}
         >
           <div>
