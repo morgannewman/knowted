@@ -43,8 +43,7 @@ export const add_resource = resource => ({
 export const UPDATE_RESOURCE = 'UPDATE_RESOURCE';
 export const update_rescource = (resource, id) => ({
   type: UPDATE_RESOURCE,
-  resource,
-  id
+  resource
 });
 
 export const DELETE_RESOURCE = 'DELETE_RESOURCES';
