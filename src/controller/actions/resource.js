@@ -40,10 +40,10 @@ export const add_resource = resource => ({
   resource
 });
 
-export const DELETE_RESOURCE = 'DELETE_RESOURCE';
-export const del_single_resource = id => ({
-  type: DELETE_RESOURCE,
-  id
+export const UPDATE_RESOURCES = 'UPDATE_RESOURCES';
+export const update_rescources = resources => ({
+  type: UPDATE_RESOURCES,
+  resources
 });
 
 /**
@@ -87,11 +87,17 @@ export const add_resources = (parent, title, uri) => dispatch => {
     });
 };
 
-export const update_resource = (id, obj) => dispatch => {
+export const update_single_resource = (id, obj) => dispatch => {
   const body = obj;
   api.resources.put(body).catch(error => dispatch(resource_error(error)));
 };
 
-export const delete_resource = id => dispatch => {
-  api.resources.delete(id).catch(error => dispatch(resource_error(error)));
+export const delete_resource = id => (dispatch, getState) => {
+  const currentResources = getState().resourceReducer.resources;
+  const newResources = currentResources.filter(item => item.id !== Number(id));
+
+  api.resources
+    .delete(id)
+    .then(() => dispatch(update_rescources(newResources)))
+    .catch(error => dispatch(resource_error(error)));
 };

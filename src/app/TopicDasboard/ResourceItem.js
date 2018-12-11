@@ -4,10 +4,9 @@ import ResourceEditForm from './ResourceEditForm';
 import ResourceView from './ResourceView';
 import { connect } from 'react-redux';
 import {
-  update_resource,
+  update_single_resource,
   get_resources,
-  delete_resource,
-  del_single_resource
+  delete_resource
 } from '../../controller/actions/resource';
 import './ResourceItem.scss';
 // import { Link } from 'react-router-dom';
@@ -42,7 +41,7 @@ export class ResourceItem extends React.Component {
     const resource = this.props.resources.find(resc => (resc.id = id));
     // console.log(resource.completed, 42);
     this.props.dispatch(
-      update_resource(id, { completed: !resource.completed, id })
+      update_single_resource(id, { completed: !resource.completed, id })
     );
     this.props.dispatch(get_resources(resource.parent.id));
   };
@@ -58,8 +57,6 @@ export class ResourceItem extends React.Component {
   handleDelete = e => {
     const id = e.target.getAttribute('resourceid');
     this.props.dispatch(delete_resource(id));
-    console.log(`Deletes resource with id: ${id}`);
-    this.props.dispatch(get_resources(this.props.parentId));
   };
 
   /**

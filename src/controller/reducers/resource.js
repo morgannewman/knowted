@@ -5,7 +5,7 @@ import {
   SET_FEEDBACK,
   RESET_FEEDBACK,
   ADD_RESOURCE,
-  DELETE_RESOURCE
+  UPDATE_RESOURCES
 } from '../actions/resource';
 import produce from 'immer';
 
@@ -48,9 +48,9 @@ export default produce((state, action) => {
       state.feedback = null;
       return;
 
-    case DELETE_RESOURCE:
-      state.resources = state.resources.filter(item => item.id !== action.id);
-
+    case UPDATE_RESOURCES:
+      state.loading = false;
+      state.resources = action.resources;
       return;
 
     default:
