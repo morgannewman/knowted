@@ -15,7 +15,6 @@ export class CompletedResourceContainer extends React.Component {
   }
   componentDidMount() {
     console.log('component mounts and ready to dispatch actions');
-    this.props.dispatch(get_resources(4000));
   }
 
   handletoggle = () => {

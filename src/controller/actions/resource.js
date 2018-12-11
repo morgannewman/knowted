@@ -116,8 +116,8 @@ export const update_single_resource = (id, body) => (dispatch, getState) => {
 /**
  * Deletes a single resource
  * First gets current resources from state
- * Second: Sends PUT request to the server using api.resources
- * Third: maps over the current resources to create a new resources array 
+ * Second: Filters the currenrt resources to include everything except the resource to be deleted
+ * Third: 
  and replaces the old resource item with the new
  *Fourth: disptaches action update_resources that saves updated resources array in state
  * If there is an error, it dispatches an error obj to state and console.log error

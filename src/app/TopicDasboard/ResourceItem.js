@@ -75,7 +75,6 @@ export class ResourceItem extends React.Component {
   handleEdit = e => {
     const id = e.target.getAttribute('resourceid');
     console.log(`Edits resource with id: ${id}`);
-    // this.setState({ editing: !this.state.editing });
     this.setState(prevState => ({ editing: !prevState.editing }));
   };
 

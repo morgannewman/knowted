@@ -11,6 +11,7 @@ import produce from 'immer';
 
 export const initialState = {
   resources: [],
+  recentResources: [],
   loading: false,
   error: null,
   topicId: null,
@@ -34,6 +35,7 @@ export default produce((state, action) => {
 
     case ADD_RESOURCE:
       state.resources.push(action.resource);
+      state.loading = false;
       return;
 
     case SET_TOPICID:
@@ -49,8 +51,9 @@ export default produce((state, action) => {
       return;
 
     case UPDATE_RESOURCES:
-      state.loading = false;
+      state.resources.splice(action.id, 1);
       state.resources = action.resources;
+      state.loading = false;
       return;
 
     default:
