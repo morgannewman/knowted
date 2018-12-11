@@ -18,9 +18,10 @@ export class ResourceEditForm extends React.Component {
     return (
       <div>
         <form
-          resourceid={resource.id}
+          id={resource.id}
           className="resource-item"
-          onSubmit={handleUpdate}
+          // onSubmit={handleUpdate}
+          onSubmit={e => handleUpdate(e, this.state.value, this.state.uri)}
         >
           <input
             type="text"

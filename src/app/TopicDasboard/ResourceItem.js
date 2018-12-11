@@ -80,18 +80,18 @@ export class ResourceItem extends React.Component {
    *Toggles between form and view mode
    * passed down through props
    * Takes in the event object from child and handles form submission
-   *    * @param {{e: object}} eventobject
+   *    * @param {{e: object, title:string, uri:String}}
    */
-
-  handleUpdate = e => {
+  handleUpdate = (e, title, uri) => {
     e.preventDefault();
-    const newTitle = e.currentTarget.getElementsByTagName('INPUT')[0].value;
-    const newURI = e.currentTarget.getElementsByTagName('INPUT')[1].value;
-    const id = Number(e.target.getAttribute('resourceid'));
+    // console.log(title, uri);
+    // console.log(e.currentTarget);
+    const newTitle = title;
+    const newURI = uri;
+    const id = Number(e.target.id);
     if (!newTitle || !newURI) {
       return;
     }
-
     this.props.dispatch(
       update_single_resource(id, { id, title: newTitle, uri: newURI })
     );
