@@ -4,7 +4,8 @@ import {
   SET_TOPICID,
   SET_FEEDBACK,
   RESET_FEEDBACK,
-  ADD_RESOURCE
+  ADD_RESOURCE,
+  DELETE_RESOURCE
 } from '../actions/resource';
 import produce from 'immer';
 
@@ -13,7 +14,8 @@ export const initialState = {
   loading: false,
   error: null,
   topicId: null,
-  feedback: null
+  feedback: null,
+  testing: null
 };
 
 export default produce((state, action) => {
@@ -44,6 +46,11 @@ export default produce((state, action) => {
 
     case RESET_FEEDBACK:
       state.feedback = null;
+      return;
+
+    case DELETE_RESOURCE:
+      state.resources = state.resources.filter(item => item.id !== action.id);
+
       return;
 
     default:

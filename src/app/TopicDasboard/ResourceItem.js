@@ -5,7 +5,9 @@ import ResourceView from './ResourceView';
 import { connect } from 'react-redux';
 import {
   update_resource,
-  get_resources
+  get_resources,
+  delete_resource,
+  del_single_resource
 } from '../../controller/actions/resource';
 import './ResourceItem.scss';
 // import { Link } from 'react-router-dom';
@@ -55,7 +57,9 @@ export class ResourceItem extends React.Component {
   //FIXME: connect function to dispatch async action to backend
   handleDelete = e => {
     const id = e.target.getAttribute('resourceid');
+    this.props.dispatch(delete_resource(id));
     console.log(`Deletes resource with id: ${id}`);
+    this.props.dispatch(get_resources(this.props.parentId));
   };
 
   /**
@@ -96,8 +100,6 @@ export class ResourceItem extends React.Component {
 
   render() {
     const { resource } = this.props;
-    console.log(this.props.resources, 'rescource item');
-
     return (
       <div>
         {!this.state.editing ? (

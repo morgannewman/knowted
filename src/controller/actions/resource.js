@@ -39,6 +39,13 @@ export const add_resource = resource => ({
   type: ADD_RESOURCE,
   resource
 });
+
+export const DELETE_RESOURCE = 'DELETE_RESOURCE';
+export const del_single_resource = id => ({
+  type: DELETE_RESOURCE,
+  id
+});
+
 /**
  * Gets resources belonging to a topic.
  * First dispatches a loading function to change state to loading
@@ -81,8 +88,10 @@ export const add_resources = (parent, title, uri) => dispatch => {
 };
 
 export const update_resource = (id, obj) => dispatch => {
-  dispatch(resource_loading());
   const body = obj;
-  console.log(body);
-  api.resources.put(body).then(data => console.log(data));
+  api.resources.put(body).catch(error => dispatch(resource_error(error)));
+};
+
+export const delete_resource = id => dispatch => {
+  api.resources.delete(id).catch(error => dispatch(resource_error(error)));
 };
