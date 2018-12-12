@@ -1,43 +1,37 @@
 import api from '../../controller/api';
 
 export const RESOURCE_LOADING = 'RESOURCE_LOADING';
-export const resource_loading = () => ({
+export const resourceLoading = () => ({
   type: RESOURCE_LOADING
 });
 
 export const RESOURCE_SUCCESS = 'RESOURCE_SUCCESS';
-export const resource_success = resources => ({
+export const resourceSuccess = resources => ({
   type: RESOURCE_SUCCESS,
   payload: resources
 });
 
 export const RESOURCE_ERROR = 'RESOURCE_ERROR';
-export const resource_error = error => ({
+export const resourceError = error => ({
   type: RESOURCE_ERROR,
   payload: error
 });
 
-export const SET_PARENT = 'SET_PARENT';
-export const set_parent = parent => ({
-  type: SET_PARENT,
-  payload: parent
-});
-
 export const ADD_RESOURCE = 'ADD_RESOURCE';
-export const add_resource = resource => ({
+export const addResource = resource => ({
   type: ADD_RESOURCE,
   resource
 });
 
 export const UPDATE_RESOURCE = 'UPDATE_RESOURCE';
-export const update_resource = (resource, id) => ({
+export const updateResource = (resource, id) => ({
   type: UPDATE_RESOURCE,
   resource,
   id
 });
 
 export const DELETE_RESOURCE = 'DELETE_RESOURCES';
-export const del_resource = id => ({
+export const delResource = id => ({
   type: DELETE_RESOURCE,
   id
 });
@@ -51,16 +45,15 @@ export const del_resource = id => ({
  * *@param {{id:integer}}} id
  */
 export const get_resources = id => dispatch => {
-  dispatch(resource_loading());
+  dispatch(resourceLoading());
   api.resources
     .get(id)
     .then(data => {
-      dispatch(resource_success(data));
-      dispatch(set_parent(data[0].parent));
+      dispatch(resourceSuccess(data));
     })
     .catch(err => {
       console.log(err);
-      dispatch(resource_error(err));
+      dispatch(resourceError(err));
     });
 };
 
@@ -74,15 +67,15 @@ export const get_resources = id => dispatch => {
  * Only a single item is added to pre-existing state
  * * @param {{parent: integer, title:string, url:string}}
  */
-export const addResource = (parent, title, uri, type) => dispatch => {
-  dispatch(resource_loading());
+export const submitResource = (parent, title, uri, type) => dispatch => {
+  dispatch(resourceLoading());
   const body = { parent, title, uri, type };
   api.resources
     .post(body)
-    .then(data => dispatch(add_resource(data)))
+    .then(data => dispatch(addResource(data)))
     .catch(err => {
       console.log(err);
-      dispatch(resource_error(err));
+      dispatch(resourceError(err));
     });
 };
 
@@ -95,13 +88,13 @@ export const addResource = (parent, title, uri, type) => dispatch => {
  * * @param {{id: integer}, {body:object}}
  */
 //TODO: remove console.logs
-export const update_single_resource = (id, body) => dispatch => {
+export const updateSingleResource = (id, body) => dispatch => {
   api.resources
     .put(body)
     .then(data => {
-      dispatch(update_resource(data, id));
+      dispatch(updateResource(data, id));
     })
-    .catch(error => dispatch(resource_error(error)));
+    .catch(error => dispatch(resourceError(error)));
 };
 
 /**
@@ -112,9 +105,9 @@ export const update_single_resource = (id, body) => dispatch => {
  * * @param {{id: integer}}
  */
 
-export const delete_resource = id => dispatch => {
+export const deleteResource = id => dispatch => {
   api.resources
     .delete(id)
-    .then(() => dispatch(del_resource(Number(id))))
-    .catch(error => dispatch(resource_error(error)));
+    .then(() => dispatch(delResource(Number(id))))
+    .catch(error => dispatch(resourceError(error)));
 };

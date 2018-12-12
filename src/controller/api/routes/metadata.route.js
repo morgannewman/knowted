@@ -1,9 +1,11 @@
 import { goFetch } from '../config';
 const BASE_URL = '/api/metadata';
 
-// In metadata file (endpoint)
-// set BASE_URL at top of file to /api/metadata
-
+/**
+ * Exposes GET /api/metadata
+ * Required props: uri
+ * @returns {{}} object with title and uri
+ */
 export default {
   get(uri) {
     return goFetch(
