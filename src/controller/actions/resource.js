@@ -43,8 +43,12 @@ export const del_resource = id => ({
 });
 
 /**
- *
- * @param {{id:integer}}} id
+ *Gets all resources belonging to a parent
+ *First dispatches a loading function to change state to loading
+ *Second: Sends GET request to the server using api.resources
+ * Third: Dispatches resource_success action to add new data from server to current state
+ * If there is an error, it dispatches an error obj to state
+ * *@param {{id:integer}}} id
  */
 export const get_resources = id => dispatch => {
   dispatch(resource_loading());

@@ -20,20 +20,18 @@ export class ResourceEditForm extends React.Component {
         <form
           id={resource.id}
           className="resource-item"
-          // onSubmit={handleUpdate}
           onSubmit={e => handleUpdate(e, this.state.value, this.state.uri)}
         >
           <input
             type="text"
             name={resource.title}
-            // value='{resource.title}'
-            value={this.state.value}
+            defaultValue={this.state.value}
             onChange={e => this.setState({ value: e.target.value })}
           />
           <input
             type="url"
             name={resource.uri}
-            value={this.state.uri}
+            defaultValue={this.state.uri}
             onChange={e => this.setState({ uri: e.target.value })}
           />
           <button type="submit" className="resource-item-edit">

@@ -5,15 +5,14 @@ import ResourceView from './ResourceView';
 import { connect } from 'react-redux';
 import {
   update_single_resource,
-  get_resources,
   delete_resource
 } from '../../controller/actions/resource';
 import './ResourceItem.scss';
 // import { Link } from 'react-router-dom';
 
 //TODO: use Link so so the resource title links to it's corresponding
-//resource page
 //TODO:remove console.logs
+
 export class ResourceItem extends React.Component {
   constructor(props) {
     super(props);
@@ -34,12 +33,11 @@ export class ResourceItem extends React.Component {
    is to communicate to the back end whether a resource item is completed. Currently a resource 
    is rendered with a checked or unchecked box depending whether the completed property is true or false
   *The intention of this function is to make a PUT request to resources endpoint
+  *@param {{e: object}} eventobject
    */
-  //FIXME: connect function to dispatch async action to backend
+
   handleChecked = e => {
     const id = Number(e.target.id);
-    // console.log(this.props.resource.completed);
-    // let newResource = this.props.resources.filter(resc => (resc.id = id)); <---Why didn't this work???
     this.props.dispatch(
       update_single_resource(id, {
         id,
@@ -63,14 +61,11 @@ export class ResourceItem extends React.Component {
 
   /**
    * Used by the ResourceData component
-   *This function takes an event and extracts the id of the resource where 
-   the event occured(the resource that was clicked)
-   *This function might not need the event and can be deleted if unnecessary
-   *It is responsible for communicating to state that the ResourceEditForm component should
+   *This function is responsible for communicating to state that
+   *the ResourceEditForm component should
    be rendered instead of the normal view mode
    * @param {{e: object}} eventobject
    */
-
   handleEdit = () => {
     this.setState(prevState => ({ editing: !prevState.editing }));
   };
@@ -80,7 +75,7 @@ export class ResourceItem extends React.Component {
    *Toggles between form and view mode
    * passed down through props
    * Takes in the event object from child and handles form submission
-   *    * @param {{e: object, title:string, uri:String}}
+   * * @param {{e: object, title:string, uri:String}}
    */
   handleUpdate = (e, title, uri) => {
     e.preventDefault();

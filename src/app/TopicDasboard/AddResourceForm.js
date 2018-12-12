@@ -2,16 +2,11 @@ import api from '../../controller/api';
 
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  add_resources,
-  set_feedback,
-  get_title
-  // reset_feedback
-} from '../../controller/actions/resource';
+import { add_resources } from '../../controller/actions/resource';
 export class AddResourceForm extends React.Component {
   constructor(props) {
     super(props);
-    this.Form = React.createRef();
+
     this.state = {
       submitting: false,
       feedback: null,
@@ -20,7 +15,18 @@ export class AddResourceForm extends React.Component {
       inputHidden: true
     };
   }
-
+  /**
+   *This function takes in an event object and uri
+   *FIRST: prevent form from submitting and refreshing
+   *SECOND: Set state submitting to true to disable user for editing the input 
+   while it calls the server
+   * THIRD: Call the server to get title metadata from uri link provided
+   * FOURTH: on success save newTitle and URI to state. Change inputHidden
+   to true so user can edit title
+   * change submitting back to false so user can edit URI
+   * If there is an error, console.log error
+   *@param {{e: object, uri:string}}
+   */
   getUriTitle = (e, uri) => {
     e.preventDefault();
     console.log(uri);
@@ -39,18 +45,31 @@ export class AddResourceForm extends React.Component {
       .catch(err => console.log(err));
   };
 
+  /**
+   * This function takes in the eventObject
+   * FIRST:prevents form from default submit
+   * SECOND: Saves, title, URI, and parent as variables. If there is no title
+   save feedback to state to display
+   * THIRD: determine what type of resource this is
+   * 
+   * 
+   * 
+   * 
+   * @param {{e:object}} eventObject
+   */
   handleSubmit = e => {
     e.preventDefault();
     const title = this.inputTitle.value;
-    const URI = this.inputUri.value;
+    const uri = this.inputUri.value;
     const parent = this.props.parentId;
     if (title === '' || !title) {
       return this.setState({ feedback: 'Title cannot be empty' });
     }
-    const Type = this.state.newURI.toLowerCase().includes('youtube')
+    const type = this.state.newURI.toLowerCase().includes('youtube')
       ? 'youtube'
       : 'other';
-    this.props.dispatch(add_resources(parent, title, URI, Type));
+    this.props.dispatch(add_resources(parent, title, uri, type));
+    this.setState({ feedback: null });
     this.inputUri.value = '';
     this.inputTitle.value = '';
   };
@@ -73,7 +92,6 @@ export class AddResourceForm extends React.Component {
           id="add-resource"
           className="add-resource-form"
           onSubmit={this.handleSubmit}
-          ref={this.Form}
         >
           <div>
             <input type="checkbox" checked={false} readOnly={true} />
@@ -103,6 +121,7 @@ export class AddResourceForm extends React.Component {
           </div>
           <button hidden={this.state.inputHidden}>Submit</button>
         </form>
+        {this.state.feedback ? <div>{this.state.feedback}</div> : null}
       </section>
     );
   }
@@ -110,11 +129,7 @@ export class AddResourceForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    parentId: state.resourceReducer.topicId,
-    feedback: state.resourceReducer.feedback,
-    submitting: state.resourceReducer.submitting,
-    inputHidden: state.resourceReducer.titleInputHidden,
-    newTitle: state.resourceReducer.newTitle
+    parentId: state.resourceReducer.topicId
   };
 };
 export default connect(mapStateToProps)(AddResourceForm);
