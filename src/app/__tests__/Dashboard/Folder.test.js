@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Folder from '../../Dashboard/Folder';
+import { Folder } from '../../Dashboard/Folder';
 
 //Component Contract - expect:
 //To render
