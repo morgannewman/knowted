@@ -11,12 +11,13 @@ export function ResourceView({
       <input
         id={resource.id}
         type="checkbox"
-        checked={resource.completed}
         onChange={handleChecked}
+        checked={resource.completed}
       />
+
       <a href={resource.id}>{resource.title}</a>
       <br />
-      <a href={resource.uri} target="_blank" rel="noopener">
+      <a href={resource.uri} target="_blank" rel="noopener noreferrer">
         {resource.uri}
       </a>
       <div className="resource-item-controls">

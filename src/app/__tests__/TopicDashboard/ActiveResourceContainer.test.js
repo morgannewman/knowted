@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import ActiveResourceContainer from '../../TopicDasboard/ActiveResourceContainer';
+import { ActiveResourceContainer } from '../../TopicDasboard/ActiveResourceContainer';
 import resourcesData from '../../../dummyDB/resourcesData';
 
 describe('ActiveResouceContainer', () => {
