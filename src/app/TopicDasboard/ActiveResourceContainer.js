@@ -10,6 +10,7 @@ export class ActiveResourceContainer extends React.Component {
   //FIXME: ADD Zero Case
   render() {
     const { resources } = this.props;
+
     if (resources.length < 0) {
       return <Loading />;
     } else {

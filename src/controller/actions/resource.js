@@ -54,7 +54,10 @@ export const get_resources = id => dispatch => {
   dispatch(resource_loading());
   api.resources
     .get(id)
-    .then(data => dispatch(resource_success(data)))
+    .then(data => {
+      console.log(data);
+      dispatch(resource_success(data));
+    })
     .catch(err => {
       console.log(err);
       dispatch(resource_error(err));
