@@ -1,0 +1,12 @@
+.folder-wrap {
+  display: inline-block;
+}
+
+.folder-btn {
+  height: 120px;
+  width: 120px;
+  border-radius: 6px;
+  background: #f1f1f1;
+  border: none;
+  margin: 10px;
+}

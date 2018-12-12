@@ -41,7 +41,7 @@ export default produce((state, action) => {
         item => item.id === action.payload.id
       );
       if (updatedIndex > -1) {
-        state.topics.splice(updatedIndex, 1, action.payload);
+        state.topics[updatedIndex].title = action.payload.title;
       }
       return;
 

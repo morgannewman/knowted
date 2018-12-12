@@ -26,7 +26,6 @@ export class Topic extends React.Component {
     e.preventDefault();
     let title = this.titleInput.value;
     this.props.dispatch(updateTopic(title, this.props.topicId));
-    this.toggleHidden();
   };
 
   deleteTopic = () => {

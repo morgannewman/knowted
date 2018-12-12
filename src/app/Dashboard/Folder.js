@@ -8,24 +8,42 @@ export default class Folder extends React.Component {
   };
 
   state = {
-    isHidden: true
+    showJawBone: false,
+    showEdit: false
   };
 
-  toggleHidden() {
+  toggleJawBone = () => {
     this.setState({
-      isHidden: !this.state.isHidden
+      showJawBone: !this.state.showJawBone
     });
-  }
+  };
+
+  toggleEdit = () => {
+    this.setState({
+      showEdit: !this.state.showEdit
+    });
+  };
+
+  editFolder = () => {
+    console.log('edit');
+  };
 
   render() {
     const { title, folderId } = this.props;
+
     return (
-      <>
-        <button className="folder-btn" onClick={() => this.toggleHidden()}>
+      <div
+        className="folder-wrap"
+        onMouseEnter={this.toggleEdit}
+        onMouseLeave={this.toggleEdit}
+      >
+        {this.state.showEdit && <button onClick={this.editFolder}>Edit</button>}
+        <button className="folder-btn" onClick={this.toggleJawBone}>
           {title}
         </button>
-        {this.state.isHidden ? null : <JawBone folderId={folderId} />}
-      </>
+
+        {this.state.showJawBone && <JawBone folderId={folderId} />}
+      </div>
     );
   }
 }
