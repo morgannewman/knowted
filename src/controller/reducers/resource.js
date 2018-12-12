@@ -1,6 +1,7 @@
 import {
   RESOURCE_LOADING,
   RESOURCE_SUCCESS,
+  RECENT_RESOURCE_SUCCESS,
   SET_PARENT,
   ADD_RESOURCE,
   UPDATE_RESOURCE,
@@ -29,6 +30,12 @@ export default produce((state, action) => {
       state.error = null;
       state.resources = action.payload;
 
+      return;
+
+    case RECENT_RESOURCE_SUCCESS:
+      state.loading = false;
+      state.error = null;
+      state.recentResources = action.payload;
       return;
 
     case RESOURCE_ERROR:
