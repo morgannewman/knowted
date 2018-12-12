@@ -7,8 +7,8 @@ import {
 } from 'react-router-dom';
 import Landing from './Landing';
 import Nav from './common/Nav';
-// import Dashboard from './Dashboard';
-import TopicDashboard from './TopicDasboard';
+import Dashboard from './Dashboard';
+
 export class App extends Component {
   render() {
     return (
@@ -21,7 +21,7 @@ export class App extends Component {
               path={['/', '/login', '/register']}
               component={Landing}
             />
-            <Route exact path="/dashboard" component={TopicDashboard} />
+            <Route exact path="/dashboard" component={Dashboard} />
             <Redirect to="/" />
           </Switch>
         </div>
