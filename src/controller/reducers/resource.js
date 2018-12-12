@@ -2,11 +2,11 @@ import {
   RESOURCE_LOADING,
   RESOURCE_SUCCESS,
   SET_TOPICID,
-  SET_FEEDBACK,
-  RESET_FEEDBACK,
   ADD_RESOURCE,
   UPDATE_RESOURCE,
-  DELETE_RESOURCE
+  DELETE_RESOURCE,
+  LOADING_TITLE,
+  SET_TITLE
 } from '../actions/resource';
 import produce from 'immer';
 
@@ -17,7 +17,7 @@ export const initialState = {
   error: null,
   topicId: null,
   feedback: null,
-  newURI: null,
+  newTitle: '',
   submitting: false,
   titleInputHidden: true
 };
@@ -27,13 +27,13 @@ export default produce((state, action) => {
     case RESOURCE_LOADING:
       state.loading = true;
       state.error = null;
-      state.feedback = null;
+
       return;
     case RESOURCE_SUCCESS:
       state.loading = false;
       state.error = null;
       state.resources = action.payload;
-      state.feedback = null;
+
       return;
 
     case ADD_RESOURCE:
@@ -45,12 +45,14 @@ export default produce((state, action) => {
       state.topicId = action.id;
       return;
 
-    case SET_FEEDBACK:
-      state.feedback = action.feedback;
+    case LOADING_TITLE:
+      state.submitting = true;
       return;
 
-    case RESET_FEEDBACK:
-      state.feedback = null;
+    case SET_TITLE:
+      state.newTitle = action.title;
+      state.submitting = false;
+      state.titleInputHidden = false;
       return;
 
     case UPDATE_RESOURCE:

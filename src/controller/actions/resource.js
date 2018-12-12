@@ -123,7 +123,24 @@ export const delete_resource = id => dispatch => {
     .catch(error => dispatch(resource_error(error)));
 };
 
+export const LOADING_TITLE = 'LOADING_TITLE';
+export const loading_Title = () => ({
+  type: LOADING_TITLE
+});
+
+export const SET_TITLE = 'SET_TITLE';
+export const set_title = title => ({
+  type: SET_TITLE,
+  title
+});
 export const get_title = url => dispatch => {
   console.log(url);
-  api.metadata.get(url).then(data => console.log(data));
+  dispatch(loading_Title);
+  api.metadata
+    .get(url)
+    .then(data => {
+      console.log(data);
+      dispatch(set_title(data.title));
+    })
+    .catch(err => console.log(err));
 };

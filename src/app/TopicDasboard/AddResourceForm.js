@@ -14,7 +14,7 @@ export class AddResourceForm extends React.Component {
 
   getUri = (e, uri) => {
     e.preventDefault();
-    this.props.dispatch(get_title('https://www.youtube.com/'));
+    this.props.dispatch(get_title(uri));
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -46,7 +46,7 @@ export class AddResourceForm extends React.Component {
         <form
           id="add-resource"
           className="add-resource-form"
-          onSubmit={this.getUri}
+          onSubmit={this.handleSubmit}
           ref={this.Form}
         >
           <div>
@@ -56,22 +56,27 @@ export class AddResourceForm extends React.Component {
               ref={input => (this.inputUri = input)}
               type="url"
               name="add-resource"
+              disabled={this.props.submitting}
               placeholder="http://"
+              onKeyUp={e => {
+                if (e.keyCode === 13) {
+                  this.getUri(e, e.target.value);
+                }
+              }}
             />
           </div>
           <div>
             <label htmlFor="add-resource-title" />
             <input
-              hidden={this.props.titleInput}
+              hidden={this.props.inputHidden}
               ref={input => (this.inputTitle = input)}
               type="text"
               name="add-resource"
-              placeholder="title "
+              defaultValue={this.props.newTitle}
             />
           </div>
-          <button hidden={this.props.titleInput}>Submit</button>
+          <button hidden={this.props.inputHidden}>Submit</button>
         </form>
-        {this.props.feedback ? <div>{this.props.feedback}</div> : null}
       </section>
     );
   }
@@ -82,7 +87,8 @@ const mapStateToProps = state => {
     parentId: state.resourceReducer.topicId,
     feedback: state.resourceReducer.feedback,
     submitting: state.resourceReducer.submitting,
-    titleInput: state.resourceReducer.titleInputHidden
+    inputHidden: state.resourceReducer.titleInputHidden,
+    newTitle: state.resourceReducer.newTitle
   };
 };
 export default connect(mapStateToProps)(AddResourceForm);
