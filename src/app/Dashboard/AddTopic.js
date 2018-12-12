@@ -1,7 +1,9 @@
 import React from 'react';
 import './AddTopic.css';
 import { addTopic } from '../../controller/actions/topic';
-class AddTopic extends React.Component {
+import { connect } from 'react-redux';
+
+export class AddTopic extends React.Component {
   state = {
     isHidden: true
   };
@@ -14,7 +16,7 @@ class AddTopic extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    let title = e.target.folderName.value;
+    let title = this.titleInput.value;
     this.props.dispatch(addTopic(title));
     this.toggleHidden();
   }
@@ -26,7 +28,11 @@ class AddTopic extends React.Component {
         {!this.state.isHidden && (
           <form className="add-topic-form" onSubmit={e => this.onSubmit(e)}>
             <label>Topic Name</label>
-            <input type="text" name="folderName" />
+            <input
+              ref={input => (this.titleInput = input)}
+              type="text"
+              name="folderTitle"
+            />
           </form>
         )}
       </>
@@ -34,4 +40,8 @@ class AddTopic extends React.Component {
   }
 }
 
-export default AddTopic;
+const mapStateToProps = state => ({
+  topics: state.topicReducer.topics
+});
+
+export default connect(mapStateToProps)(AddTopic);

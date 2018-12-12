@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Topic.css';
 import { connect } from 'react-redux';
 
-import { deleteTopic } from '../../controller/actions/topic';
+import { deleteTopic, updateTopic } from '../../controller/actions/topic';
 
 export class Topic extends React.Component {
   static propTypes = {
@@ -12,11 +12,21 @@ export class Topic extends React.Component {
   };
 
   state = {
-    isHidden: true
+    showOptions: false,
+    editing: false
   };
 
   editTopic = () => {
-    console.log('edit:', this.props.topicId);
+    this.setState({
+      editing: !this.state.editing
+    });
+  };
+
+  submitEdit = e => {
+    e.preventDefault();
+    let title = this.titleInput.value;
+    this.props.dispatch(updateTopic(title, this.props.topicId));
+    this.toggleHidden();
   };
 
   deleteTopic = () => {
@@ -25,7 +35,7 @@ export class Topic extends React.Component {
 
   toggleHidden = () => {
     this.setState({
-      isHidden: !this.state.isHidden
+      showOptions: !this.state.showOptions
     });
   };
 
@@ -33,24 +43,50 @@ export class Topic extends React.Component {
     const { title, topicId } = this.props;
 
     return (
-      <div
-        className="topic-wrap"
-        onMouseEnter={this.toggleHidden}
-        onMouseLeave={this.toggleHidden}
-      >
-        <button
-          className="topic-btn"
-          onClick={() => console.log('click through to topic/:id', topicId)}
+      <>
+        <div
+          className="topic-wrap"
+          onMouseEnter={this.toggleHidden}
+          onMouseLeave={this.toggleHidden}
         >
-          {title}
-        </button>
-        {!this.state.isHidden && (
-          <div className="edit-delete-topic-options">
-            <button onClick={this.editTopic}>Edit</button>
-            <button onClick={this.deleteTopic}>Delete</button>
-          </div>
-        )}
-      </div>
+          {this.state.editing ? (
+            <>
+              <form className="edit-topic-form" onSubmit={this.submitEdit}>
+                <label>Topic Name</label>
+                <input
+                  ref={input => (this.titleInput = input)}
+                  type="text"
+                  name="topicTitle"
+                  defaultValue={this.props.title}
+                />
+              </form>
+              {this.state.showOptions && (
+                <div className="edit-delete-topic-options">
+                  <button onClick={this.editTopic}>Cancel</button>
+                  <button onClick={this.deleteTopic}>Delete</button>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              <button
+                className="topic-btn"
+                onClick={() =>
+                  console.log('click through to topic/:id', topicId)
+                }
+              >
+                {title}
+              </button>
+              {this.state.showOptions && (
+                <div className="edit-delete-topic-options">
+                  <button onClick={this.editTopic}>Edit</button>
+                  <button onClick={this.deleteTopic}>Delete</button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </>
     );
   }
 }
