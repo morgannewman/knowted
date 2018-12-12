@@ -5,8 +5,7 @@ import {
   ADD_RESOURCE,
   UPDATE_RESOURCE,
   DELETE_RESOURCE,
-  LOADING_TITLE,
-  SET_TITLE
+  RESOURCE_ERROR
 } from '../actions/resource';
 import produce from 'immer';
 
@@ -15,11 +14,7 @@ export const initialState = {
   recentResources: [],
   loading: false,
   error: null,
-  topicId: null,
-  feedback: null,
-  newTitle: '',
-  submitting: false,
-  titleInputHidden: true
+  topicId: null
 };
 
 export default produce((state, action) => {
@@ -36,6 +31,11 @@ export default produce((state, action) => {
 
       return;
 
+    case RESOURCE_ERROR:
+      state.loading = false;
+      state.error = action.payload;
+
+      return;
     case ADD_RESOURCE:
       state.resources.push(action.resource);
       state.loading = false;
@@ -43,16 +43,6 @@ export default produce((state, action) => {
 
     case SET_TOPICID:
       state.topicId = action.id;
-      return;
-
-    case LOADING_TITLE:
-      state.submitting = true;
-      return;
-
-    case SET_TITLE:
-      state.newTitle = action.title;
-      state.submitting = false;
-      state.titleInputHidden = false;
       return;
 
     case UPDATE_RESOURCE:

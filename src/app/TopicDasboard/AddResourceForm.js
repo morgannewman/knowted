@@ -1,3 +1,5 @@
+import api from '../../controller/api';
+
 import React from 'react';
 import { connect } from 'react-redux';
 import {
@@ -10,21 +12,45 @@ export class AddResourceForm extends React.Component {
   constructor(props) {
     super(props);
     this.Form = React.createRef();
+    this.state = {
+      submitting: false,
+      feedback: null,
+      newURI: '',
+      newTitle: '',
+      inputHidden: true
+    };
   }
 
-  getUri = (e, uri) => {
+  getUriTitle = (e, uri) => {
     e.preventDefault();
-    this.props.dispatch(get_title(uri));
+    console.log(uri);
+    this.setState({ submitting: true });
+    api.metadata
+      .get(uri)
+      .then(data => {
+        console.log(data);
+        this.setState({
+          newTitle: data.title,
+          newURI: data.uri,
+          inputHidden: false,
+          submitting: false
+        });
+      })
+      .catch(err => console.log(err));
   };
+
   handleSubmit = e => {
     e.preventDefault();
     const title = this.inputTitle.value;
     const URI = this.inputUri.value;
     const parent = this.props.parentId;
     if (title === '' || !title) {
-      return this.props.dispatch(set_feedback('Title cannot be empty'));
+      return this.setState({ feedback: 'Title cannot be empty' });
     }
-    this.props.dispatch(add_resources(parent, title, URI));
+    const Type = this.state.newURI.toLowerCase().includes('youtube')
+      ? 'youtube'
+      : 'other';
+    this.props.dispatch(add_resources(parent, title, URI, Type));
     this.inputUri.value = '';
     this.inputTitle.value = '';
   };
@@ -56,11 +82,11 @@ export class AddResourceForm extends React.Component {
               ref={input => (this.inputUri = input)}
               type="url"
               name="add-resource"
-              disabled={this.props.submitting}
+              disabled={this.state.submitting}
               placeholder="http://"
               onKeyUp={e => {
                 if (e.keyCode === 13) {
-                  this.getUri(e, e.target.value);
+                  this.getUriTitle(e, e.target.value);
                 }
               }}
             />
@@ -68,14 +94,14 @@ export class AddResourceForm extends React.Component {
           <div>
             <label htmlFor="add-resource-title" />
             <input
-              hidden={this.props.inputHidden}
+              hidden={this.state.inputHidden}
               ref={input => (this.inputTitle = input)}
               type="text"
               name="add-resource"
-              defaultValue={this.props.newTitle}
+              defaultValue={this.state.newTitle}
             />
           </div>
-          <button hidden={this.props.inputHidden}>Submit</button>
+          <button hidden={this.state.inputHidden}>Submit</button>
         </form>
       </section>
     );

@@ -23,17 +23,6 @@ export const set_topicId = id => ({
   id
 });
 
-export const SET_FEEDBACK = 'SET_FEEDBACK';
-export const set_feedback = feedback => ({
-  type: SET_FEEDBACK,
-  feedback
-});
-
-export const RESET_FEEDBACK = 'RESET_FEEDBACK';
-export const reset_feedback = () => ({
-  type: RESET_FEEDBACK
-});
-
 export const ADD_RESOURCE = 'ADD_RESOURCE';
 export const add_resource = resource => ({
   type: ADD_RESOURCE,
@@ -121,26 +110,4 @@ export const delete_resource = id => dispatch => {
     .delete(id)
     .then(() => dispatch(del_resource(Number(id))))
     .catch(error => dispatch(resource_error(error)));
-};
-
-export const LOADING_TITLE = 'LOADING_TITLE';
-export const loading_Title = () => ({
-  type: LOADING_TITLE
-});
-
-export const SET_TITLE = 'SET_TITLE';
-export const set_title = title => ({
-  type: SET_TITLE,
-  title
-});
-export const get_title = url => dispatch => {
-  console.log(url);
-  dispatch(loading_Title);
-  api.metadata
-    .get(url)
-    .then(data => {
-      console.log(data);
-      dispatch(set_title(data.title));
-    })
-    .catch(err => console.log(err));
 };
