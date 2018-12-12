@@ -14,7 +14,6 @@ export class ResourceEditForm extends React.Component {
 
   render() {
     const { resource, handleUpdate } = this.props;
-    console.log(resource, 'uri');
     return (
       <div>
         <form

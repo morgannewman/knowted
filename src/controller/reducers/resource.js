@@ -1,7 +1,7 @@
 import {
   RESOURCE_LOADING,
   RESOURCE_SUCCESS,
-  SET_TOPICID,
+  SET_PARENT,
   ADD_RESOURCE,
   UPDATE_RESOURCE,
   DELETE_RESOURCE,
@@ -14,7 +14,7 @@ export const initialState = {
   recentResources: [],
   loading: false,
   error: null,
-  topicId: null
+  parent: {}
 };
 
 export default produce((state, action) => {
@@ -41,8 +41,8 @@ export default produce((state, action) => {
       state.loading = false;
       return;
 
-    case SET_TOPICID:
-      state.topicId = action.id;
+    case SET_PARENT:
+      state.parent = action.payload;
       return;
 
     case UPDATE_RESOURCE:

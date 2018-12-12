@@ -17,10 +17,10 @@ export const resource_error = error => ({
   payload: error
 });
 
-export const SET_TOPICID = 'SET_TOPICID';
-export const set_topicId = id => ({
-  type: SET_TOPICID,
-  id
+export const SET_PARENT = 'SET_PARENT';
+export const set_parent = parent => ({
+  type: SET_PARENT,
+  payload: parent
 });
 
 export const ADD_RESOURCE = 'ADD_RESOURCE';
@@ -55,8 +55,8 @@ export const get_resources = id => dispatch => {
   api.resources
     .get(id)
     .then(data => {
-      console.log(data);
       dispatch(resource_success(data));
+      dispatch(set_parent(data[0].parent));
     })
     .catch(err => {
       console.log(err);
