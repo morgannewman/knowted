@@ -2,7 +2,7 @@ import api from '../../controller/api';
 
 export const TOPIC_SUBMIT = 'TOPIC_SUBMIT';
 
-export const TOPIC_SUCCESS = 'TOPIC_SUCCESS';
+export const GET_TOPIC_SUCCESS = 'TOPIC_SUCCESS';
 export const ADD_TOPIC_SUCCESS = 'ADD_TOPIC_SUCCESS';
 export const UPDATE_TOPIC_SUCCESS = 'UPDATE_TOPIC_SUCCESS';
 
@@ -19,7 +19,7 @@ export const getTopics = () => dispatch => {
   dispatch(topicSubmit());
   api.topics
     .get()
-    .then(topics => dispatch(topicSuccess(topics)))
+    .then(topics => dispatch(getTopicSuccess(topics)))
     .catch(err => dispatch(topicError(err)));
 };
 
@@ -82,8 +82,8 @@ export const updateTopicSuccess = topic => ({
   payload: topic
 });
 
-export const topicSuccess = topics => ({
-  type: TOPIC_SUCCESS,
+export const getTopicSuccess = topics => ({
+  type: GET_TOPIC_SUCCESS,
   payload: topics
 });
 

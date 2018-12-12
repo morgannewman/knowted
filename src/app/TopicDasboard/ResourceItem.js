@@ -2,12 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ResourceEditForm from './ResourceEditForm';
 import ResourceView from './ResourceView';
+import { connect } from 'react-redux';
+import {
+  update_single_resource,
+  delete_resource
+} from '../../controller/actions/resource';
 import './ResourceItem.scss';
 // import { Link } from 'react-router-dom';
 
 //TODO: use Link so so the resource title links to it's corresponding
-//resource page
 //TODO:remove console.logs
+
 export class ResourceItem extends React.Component {
   constructor(props) {
     super(props);
@@ -28,10 +33,17 @@ export class ResourceItem extends React.Component {
    is to communicate to the back end whether a resource item is completed. Currently a resource 
    is rendered with a checked or unchecked box depending whether the completed property is true or false
   *The intention of this function is to make a PUT request to resources endpoint
+  *@param {{e: object}} eventobject
    */
-  //FIXME: connect function to dispatch async action to backend
-  handleChecked = () => {
-    console.log('check works');
+
+  handleChecked = e => {
+    const id = Number(e.target.id);
+    this.props.dispatch(
+      update_single_resource(id, {
+        id,
+        completed: !this.props.resource.completed
+      })
+    );
   };
   /**
    * Used by the ResourceData component
@@ -44,24 +56,18 @@ export class ResourceItem extends React.Component {
   //FIXME: connect function to dispatch async action to backend
   handleDelete = e => {
     const id = e.target.getAttribute('resourceid');
-    console.log(`Deletes resource with id: ${id}`);
+    this.props.dispatch(delete_resource(id));
   };
 
   /**
    * Used by the ResourceData component
-   *This function takes an event and extracts the id of the resource where 
-   the event occured(the resource that was clicked)
-   *This function might not need the event and can be deleted if unnecessary
-   *It is responsible for communicating to state that the ResourceEditForm component should
+   *This function is responsible for communicating to state that
+   *the ResourceEditForm component should
    be rendered instead of the normal view mode
    * @param {{e: object}} eventobject
    */
-
-  //FIXME: Delete event argument if unnecessary
-  handleEdit = e => {
-    const id = e.target.getAttribute('resourceid');
-    console.log(`Edits resource with id: ${id}`);
-    this.setState({ editing: !this.state.editing });
+  handleEdit = () => {
+    this.setState(prevState => ({ editing: !prevState.editing }));
   };
 
   /**
@@ -69,23 +75,27 @@ export class ResourceItem extends React.Component {
    *Toggles between form and view mode
    * passed down through props
    * Takes in the event object from child and handles form submission
-   *    * @param {{e: object}} eventobject
+   * * @param {{e: object, title:string, uri:String}}
    */
-
-  handleUpdate = e => {
+  handleUpdate = (e, title, uri) => {
     e.preventDefault();
-    const newTitle = e.currentTarget.getElementsByTagName('INPUT')[0].value;
-    const id = e.target.getAttribute('resourceid');
-    if (newTitle === undefined) {
+    // console.log(title, uri);
+    // console.log(e.currentTarget);
+    const newTitle = title;
+    const newURI = uri;
+    const id = Number(e.target.id);
+    if (!newTitle || !newURI) {
       return;
     }
-    console.log(`Updates resource with id: ${id} and name ${newTitle.trim()}`);
+    this.props.dispatch(
+      update_single_resource(id, { id, title: newTitle, uri: newURI })
+    );
+
     this.setState({ editing: !this.state.editing });
   };
 
   render() {
     const { resource } = this.props;
-
     return (
       <div>
         {!this.state.editing ? (
@@ -106,4 +116,10 @@ export class ResourceItem extends React.Component {
   }
 }
 
-export default ResourceItem;
+const mapStateToProps = state => {
+  return {
+    parentId: state.resourceReducer.topicId,
+    resources: state.resourceReducer.resources
+  };
+};
+export default connect(mapStateToProps)(ResourceItem);
