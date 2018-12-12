@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import { Link } from 'react-router-dom';
-
 export default function RecentResourceItem({ resources }) {
   return (
     <>
@@ -15,8 +13,7 @@ export default function RecentResourceItem({ resources }) {
           return (
             <li key={item.id} className="recent-resource-item">
               <a href={`dashboard/${item.parent.id}/${item.id}`}>
-                <span>{item.parent.title}</span>><span>{item.title}</span>
-                {/* <p>Last Opened: {item.last_opened}</p> */}
+                <span>{item.parent.title}</span> > <span>{item.title}</span>
               </a>
             </li>
           );

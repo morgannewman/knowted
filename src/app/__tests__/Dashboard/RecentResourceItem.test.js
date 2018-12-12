@@ -1,27 +1,52 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 import RecentResourceItem from '../../Dashboard/RecentResourceItem';
-import topicsData from '../../../dummyDB/topicsData';
-import resourcesData from '../../../dummyDB/resourcesData';
 
-const [first, second, third] = resourcesData;
-const data = [first, second, third];
+const initialState = {
+  topics: [{ id: 1 }, { id: 2 }],
+  resources: [
+    {
+      completed: false,
+      id: 2,
+      lastOpened: '2018-12-11T16:02:09.784Z',
+      parent: { id: 1 },
+      title: 'Resource #2',
+      uri: 'uri #2'
+    },
+    {
+      completed: false,
+      id: 3,
+      lastOpened: '2018-12-11T16:02:09.784Z',
+      parent: { id: 2 },
+      title: 'Resource #3',
+      uri: 'uri #3'
+    }
+  ],
+  dispatch: jest.fn()
+};
+
 describe('<RecentResourceItem />', () => {
   let wrapper;
-  beforeEach(() => {
-    wrapper = shallow(
-      <RecentResourceItem topics={topicsData} resources={data} />
+
+  it('renders without crashing', () => {
+    shallow(
+      <RecentResourceItem
+        resources={initialState.resources}
+        topics={initialState.topics}
+      />
     );
   });
-
-  it('renders without crashing', () => {});
 
   it('renders ul section', () => {
     let wrapper;
     wrapper = mount(
-      <RecentResourceItem topics={topicsData} resources={data} />
+      <RecentResourceItem
+        resources={initialState.resources}
+        topics={initialState.topics}
+      />
     );
-    expect(wrapper.find('ul').children()).toHaveLength(data.length);
+    expect(wrapper.find('ul').children()).toHaveLength(
+      initialState.resources.length
+    );
   });
 });
