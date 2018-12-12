@@ -1,7 +1,6 @@
 import {
   RESOURCE_LOADING,
   RESOURCE_SUCCESS,
-  SET_PARENT,
   ADD_RESOURCE,
   UPDATE_RESOURCE,
   DELETE_RESOURCE,
@@ -13,8 +12,7 @@ export const initialState = {
   resources: [],
   recentResources: [],
   loading: false,
-  error: null,
-  parent: {}
+  error: null
 };
 
 export default produce((state, action) => {
@@ -39,10 +37,6 @@ export default produce((state, action) => {
     case ADD_RESOURCE:
       state.resources.push(action.resource);
       state.loading = false;
-      return;
-
-    case SET_PARENT:
-      state.parent = action.payload;
       return;
 
     case UPDATE_RESOURCE:

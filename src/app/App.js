@@ -8,7 +8,7 @@ import {
 import Landing from './Landing';
 import Nav from './common/Nav';
 import Dashboard from './Dashboard';
-
+import TopicDashboard from './TopicDasboard';
 export class App extends Component {
   render() {
     return (
@@ -21,7 +21,7 @@ export class App extends Component {
               path={['/', '/login', '/register']}
               component={Landing}
             />
-            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/dashboard" component={TopicDashboard} />
             <Redirect to="/" />
           </Switch>
         </div>

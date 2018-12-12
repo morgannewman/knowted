@@ -4,8 +4,8 @@ import ResourceEditForm from './ResourceEditForm';
 import ResourceView from './ResourceView';
 import { connect } from 'react-redux';
 import {
-  update_single_resource,
-  delete_resource
+  updateSingleResource,
+  deleteResource
 } from '../../controller/actions/resource';
 import './ResourceItem.scss';
 // import { Link } from 'react-router-dom';
@@ -39,7 +39,7 @@ export class ResourceItem extends React.Component {
   handleChecked = e => {
     const id = Number(e.target.id);
     this.props.dispatch(
-      update_single_resource(id, {
+      updateSingleResource(id, {
         id,
         completed: !this.props.resource.completed
       })
@@ -56,7 +56,7 @@ export class ResourceItem extends React.Component {
   //FIXME: connect function to dispatch async action to backend
   handleDelete = e => {
     const id = e.target.getAttribute('resourceid');
-    this.props.dispatch(delete_resource(id));
+    this.props.dispatch(deleteResource(id));
   };
 
   /**
@@ -88,7 +88,7 @@ export class ResourceItem extends React.Component {
       return;
     }
     this.props.dispatch(
-      update_single_resource(id, { id, title: newTitle, uri: newURI })
+      updateSingleResource(id, { id, title: newTitle, uri: newURI })
     );
 
     this.setState({ editing: !this.state.editing });
