@@ -2,7 +2,7 @@ import api from '../../controller/api';
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { add_resources } from '../../controller/actions/resource';
+import { addResource } from '../../controller/actions/resource';
 export class AddResourceForm extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +16,7 @@ export class AddResourceForm extends React.Component {
     };
   }
   /**
+   * Gets title metadata from server by submitting URI
    *This function takes in an event object and uri
    *FIRST: prevent form from submitting and refreshing
    *SECOND: Set state submitting to true to disable user for editing the input 
@@ -46,29 +47,31 @@ export class AddResourceForm extends React.Component {
   };
 
   /**
+   * Sends users new resource to be saved in DB
    * This function takes in the eventObject
    * FIRST:prevents form from default submit
    * SECOND: Saves, title, URI, and parent as variables. If there is no title
    save feedback to state to display
-   * THIRD: determine what type of resource this is
-   * 
-   * 
-   * 
-   * 
+   * THIRD: determine what type of resource this is?
+   * FOURTH: dispatches addResource to send new resource to DB
+   * FIFTH: reset state. reset form values to blank
    * @param {{e:object}} eventObject
    */
+
+  //FIXME: unable to submit because type is required???
   handleSubmit = e => {
+    console.log('hello');
     e.preventDefault();
     const title = this.inputTitle.value;
     const uri = this.inputUri.value;
     const parent = this.props.parentId;
-    if (title === '' || !title) {
-      return this.setState({ feedback: 'Title cannot be empty' });
+    if (!title) {
+      return;
     }
     const type = this.state.newURI.toLowerCase().includes('youtube')
       ? 'youtube'
       : 'other';
-    this.props.dispatch(add_resources(parent, title, uri, type));
+    this.props.dispatch(addResource(parent, title, uri, type));
     this.setState({ feedback: null });
     this.inputUri.value = '';
     this.inputTitle.value = '';
@@ -77,6 +80,15 @@ export class AddResourceForm extends React.Component {
     console.log(this.Form);
     const element = this.Form.current;
     element.scrollIntoView();
+  };
+
+  isURL = str => {
+    try {
+      new URL(str);
+      return true;
+    } catch (_) {
+      return false;
+    }
   };
   render() {
     return (
@@ -103,7 +115,7 @@ export class AddResourceForm extends React.Component {
               disabled={this.state.submitting}
               placeholder="http://"
               onKeyUp={e => {
-                if (e.keyCode === 13) {
+                if (e.keyCode === 13 && this.isURL(e.target.value)) {
                   this.getUriTitle(e, e.target.value);
                 }
               }}

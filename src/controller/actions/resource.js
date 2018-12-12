@@ -71,9 +71,9 @@ export const get_resources = id => dispatch => {
  * Only a single item is added to pre-existing state
  * * @param {{parent: integer, title:string, url:string}}
  */
-export const add_resources = (parent, title, uri) => dispatch => {
+export const addResource = (parent, title, uri, type) => dispatch => {
   dispatch(resource_loading());
-  const body = { parent, title, uri };
+  const body = { parent, title, uri, type };
   api.resources
     .post(body)
     .then(data => dispatch(add_resource(data)))
