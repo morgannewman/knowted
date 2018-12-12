@@ -17,8 +17,10 @@ export class Topic extends React.Component {
   };
 
   editTopic = () => {
-    this.setState({
-      editing: !this.state.editing
+    this.setState(state => {
+      return {
+        editing: !state.editing
+      };
     });
   };
 
@@ -34,8 +36,8 @@ export class Topic extends React.Component {
   };
 
   toggleHidden = () => {
-    this.setState({
-      showOptions: !this.state.showOptions
+    this.setState(state => {
+      return { showOptions: !state.showOptions };
     });
   };
 

@@ -2,7 +2,7 @@ import api from '../../controller/api';
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { addResource } from '../../controller/actions/resource';
+import { submitResource } from '../../controller/actions/resource';
 export class AddResourceForm extends React.Component {
   constructor(props) {
     super(props);
@@ -15,10 +15,23 @@ export class AddResourceForm extends React.Component {
       inputHidden: true
     };
   }
+
+  /**Checks string to make sure it is a URL
+   * Returns true if valid, false if not
+   **@param {{str: string}}
+   */
+  isURL = str => {
+    try {
+      new URL(str);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  };
   /**
    * Gets title metadata from server by submitting URI
    *This function takes in an event object and uri
-   *FIRST: prevent form from submitting and refreshing
+   *FIRST: prevent form from submitting and refreshing. Then Checks to see if input is a valid URL
    *SECOND: Set state submitting to true to disable user for editing the input 
    while it calls the server
    * THIRD: Call the server to get title metadata from uri link provided
@@ -30,6 +43,9 @@ export class AddResourceForm extends React.Component {
    */
   getUriTitle = (e, uri) => {
     e.preventDefault();
+    if (!this.isURL(e.target.value)) {
+      return;
+    }
     console.log(uri);
     this.setState({ submitting: true });
     api.metadata
@@ -70,7 +86,7 @@ export class AddResourceForm extends React.Component {
     const type = this.state.newURI.toLowerCase().includes('youtube')
       ? 'youtube'
       : 'other';
-    this.props.dispatch(addResource(parent, title, uri, type));
+    this.props.dispatch(submitResource(parent, title, uri, type));
     this.setState({ feedback: null });
     this.inputUri.value = '';
     this.inputTitle.value = '';
@@ -81,14 +97,19 @@ export class AddResourceForm extends React.Component {
     element.scrollIntoView();
   };
 
-  isURL = str => {
-    try {
-      new URL(str);
-      return true;
-    } catch (_) {
-      return false;
+  /**
+   * Handles input submission of new URL resources
+   * If a user hits enter, proceed to fetch the URI and call this.getUriTitle()
+   * * @param {{e:object}} eventObject
+   */
+  handleEnter = e => {
+    if (e.keyCode === 13) {
+      return this.getUriTitle(e, e.target.value);
+    } else {
+      return;
     }
   };
+
   render() {
     return (
       <section className="add-resource-section">
@@ -114,11 +135,7 @@ export class AddResourceForm extends React.Component {
               name="add-resource"
               disabled={this.state.submitting}
               placeholder="http://"
-              onKeyUp={e => {
-                if (e.keyCode === 13 && this.isURL(e.target.value)) {
-                  this.getUriTitle(e, e.target.value);
-                }
-              }}
+              onKeyUp={this.handleEnter}
             />
           </div>
           <div>

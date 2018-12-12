@@ -19,20 +19,20 @@ export class Folder extends React.Component {
   };
 
   toggleJawBone = () => {
-    this.setState({
-      showJawBone: !this.state.showJawBone
+    this.setState(state => {
+      return { showJawBone: !state.showJawBone };
     });
   };
 
   toggleEdit = () => {
-    this.setState({
-      showEdit: !this.state.showEdit
+    this.setState(state => {
+      return { showEdit: !state.showEdit };
     });
   };
 
   editFolder = () => {
-    this.setState({
-      editing: !this.state.editing
+    this.setState(state => {
+      return { editing: !state.editing };
     });
   };
 
