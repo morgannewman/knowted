@@ -6,7 +6,7 @@ import { addResource } from '../../controller/actions/resource';
 export class AddResourceForm extends React.Component {
   constructor(props) {
     super(props);
-
+    this.Form = React.createRef();
     this.state = {
       submitting: false,
       feedback: null,
@@ -60,7 +60,6 @@ export class AddResourceForm extends React.Component {
 
   //FIXME: unable to submit because type is required???
   handleSubmit = e => {
-    console.log('hello');
     e.preventDefault();
     const title = this.inputTitle.value;
     const uri = this.inputUri.value;
@@ -101,6 +100,7 @@ export class AddResourceForm extends React.Component {
           Add Resource
         </button>
         <form
+          ref={this.Form}
           id="add-resource"
           className="add-resource-form"
           onSubmit={this.handleSubmit}
