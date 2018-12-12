@@ -31,6 +31,7 @@ export class App extends Component {
 				<div className="App">
 					<Nav />
 					<Switch>
+						{/* <Route path="/learn" component={TopicDashboard} /> */}
 						<Route exact path={['/', '/login', '/register']} component={Landing} />
 						<Route exact path="/dashboard" component={requiresLogin(Dashboard)} />
 						<Route exact path="/dashboard/:topicId" component={requiresLogin(TopicDashboard)} />
