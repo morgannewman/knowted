@@ -1,7 +1,12 @@
 import React from 'react';
 import JawBone from './JawBone';
 import PropTypes from 'prop-types';
-export default class Folder extends React.Component {
+import './Folder.css';
+import { connect } from 'react-redux';
+
+import { updateFolder } from '../../controller/actions/folder';
+
+export class Folder extends React.Component {
   static propTypes = {
     folderId: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired
@@ -9,7 +14,8 @@ export default class Folder extends React.Component {
 
   state = {
     showJawBone: false,
-    showEdit: false
+    showEdit: false,
+    editing: false
   };
 
   toggleJawBone = () => {
@@ -25,7 +31,16 @@ export default class Folder extends React.Component {
   };
 
   editFolder = () => {
-    console.log('edit');
+    this.setState({
+      editing: !this.state.editing
+    });
+  };
+
+  submitEdit = e => {
+    e.preventDefault();
+    let title = e.target.folderTitle.value;
+    this.props.dispatch(updateFolder(title, this.props.folderId));
+    this.editFolder();
   };
 
   render() {
@@ -37,13 +52,36 @@ export default class Folder extends React.Component {
         onMouseEnter={this.toggleEdit}
         onMouseLeave={this.toggleEdit}
       >
-        {this.state.showEdit && <button onClick={this.editFolder}>Edit</button>}
-        <button className="folder-btn" onClick={this.toggleJawBone}>
-          {title}
-        </button>
-
-        {this.state.showJawBone && <JawBone folderId={folderId} />}
+        {!this.state.editing ? (
+          <>
+            {this.state.showEdit && (
+              <button onClick={this.editFolder}>Edit</button>
+            )}
+            <button className="folder-btn" onClick={this.toggleJawBone}>
+              {title}
+            </button>
+            {this.state.showJawBone && <JawBone folderId={folderId} />}
+          </>
+        ) : (
+          <>
+            <button onClick={this.editFolder}>Cancel</button>
+            <form className="edit-folder-form" onSubmit={this.submitEdit}>
+              <label>Folder Name</label>
+              <input
+                type="text"
+                name="folderTitle"
+                defaultValue={this.props.title}
+              />
+            </form>
+          </>
+        )}
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  folders: state.folderReducer
+});
+
+export default connect(mapStateToProps)(Folder);

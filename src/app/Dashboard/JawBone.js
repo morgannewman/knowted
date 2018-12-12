@@ -9,7 +9,6 @@ export class JawBone extends React.Component {
   render() {
     if (this.props.loading) return <Loading />;
     const { topics } = this.props;
-    console.log(topics);
     return (
       <div className="jaw-bone-container">
         {topics.map(topic =>
