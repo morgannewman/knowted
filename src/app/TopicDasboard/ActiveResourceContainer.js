@@ -7,6 +7,7 @@ import Loading from '../common/Loading';
 export class ActiveResourceContainer extends React.Component {
   //TODO: Drag and drop functionality
 
+  //FIXME: ADD Zero Case
   render() {
     const { resources } = this.props;
     if (resources.length < 0) {
@@ -34,7 +35,6 @@ export class ActiveResourceContainer extends React.Component {
   }
 }
 
-//FIXME: This component need not be connected
 // const mapStateToProps = state => {
 //   return {
 //     loading: state.resourceReducer.loading,
