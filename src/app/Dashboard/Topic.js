@@ -12,7 +12,7 @@ export class Topic extends React.Component {
   };
 
   state = {
-    isHidden: true,
+    showOptions: false,
     editing: false
   };
 
@@ -22,12 +22,12 @@ export class Topic extends React.Component {
     });
   };
 
-  submitEdit(e) {
+  submitEdit = e => {
     e.preventDefault();
-    let title = e.target.topicTitle.value;
+    let title = this.titleInput.value;
     this.props.dispatch(updateTopic(title, this.props.topicId));
     this.toggleHidden();
-  }
+  };
 
   deleteTopic = () => {
     this.props.dispatch(deleteTopic(this.props.topicId));
@@ -35,7 +35,7 @@ export class Topic extends React.Component {
 
   toggleHidden = () => {
     this.setState({
-      isHidden: !this.state.isHidden
+      showOptions: !this.state.showOptions
     });
   };
 
@@ -51,18 +51,16 @@ export class Topic extends React.Component {
         >
           {this.state.editing ? (
             <>
-              <form
-                className="edit-topic-form"
-                onSubmit={e => this.submitEdit(e)}
-              >
+              <form className="edit-topic-form" onSubmit={this.submitEdit}>
                 <label>Topic Name</label>
                 <input
+                  ref={input => (this.titleInput = input)}
                   type="text"
                   name="topicTitle"
                   defaultValue={this.props.title}
                 />
               </form>
-              {!this.state.isHidden && (
+              {this.state.showOptions && (
                 <div className="edit-delete-topic-options">
                   <button onClick={this.editTopic}>Cancel</button>
                   <button onClick={this.deleteTopic}>Delete</button>
@@ -79,7 +77,7 @@ export class Topic extends React.Component {
               >
                 {title}
               </button>
-              {!this.state.isHidden && (
+              {this.state.showOptions && (
                 <div className="edit-delete-topic-options">
                   <button onClick={this.editTopic}>Edit</button>
                   <button onClick={this.deleteTopic}>Delete</button>

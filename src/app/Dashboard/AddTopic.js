@@ -16,7 +16,7 @@ export class AddTopic extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    let title = e.target.folderTitle.value;
+    let title = this.titleInput.value;
     this.props.dispatch(addTopic(title));
     this.toggleHidden();
   }
@@ -28,7 +28,11 @@ export class AddTopic extends React.Component {
         {!this.state.isHidden && (
           <form className="add-topic-form" onSubmit={e => this.onSubmit(e)}>
             <label>Topic Name</label>
-            <input type="text" name="folderTitle" />
+            <input
+              ref={input => (this.titleInput = input)}
+              type="text"
+              name="folderTitle"
+            />
           </form>
         )}
       </>
