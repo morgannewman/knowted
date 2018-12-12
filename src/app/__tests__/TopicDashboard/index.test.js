@@ -8,12 +8,13 @@ const initialState = {
   error: null,
   topicId: null,
   feedback: null,
-  newURI: null
+  newURI: null,
+  dispatch: jest.fn()
 };
 
 describe('<TopicDashboard />', () => {
   const mockFn = jest.fn();
   it('renders without crashing', () => {
-    shallow(<TopicDashboard dispatch={mockFn} {...initialState} />);
+    shallow(<TopicDashboard {...initialState} />);
   });
 });
