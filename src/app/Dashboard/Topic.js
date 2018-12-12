@@ -17,8 +17,10 @@ export class Topic extends React.Component {
   };
 
   editTopic = () => {
-    this.setState({
-      editing: !this.state.editing
+    this.setState(state => {
+      return {
+        editing: !state.editing
+      };
     });
   };
 
@@ -26,7 +28,7 @@ export class Topic extends React.Component {
     e.preventDefault();
     let title = this.titleInput.value;
     this.props.dispatch(updateTopic(title, this.props.topicId));
-    this.toggleHidden();
+    this.editTopic();
   };
 
   deleteTopic = () => {
@@ -34,8 +36,8 @@ export class Topic extends React.Component {
   };
 
   toggleHidden = () => {
-    this.setState({
-      showOptions: !this.state.showOptions
+    this.setState(state => {
+      return { showOptions: !state.showOptions };
     });
   };
 

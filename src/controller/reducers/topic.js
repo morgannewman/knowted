@@ -1,6 +1,6 @@
 import {
 	TOPIC_SUBMIT,
-	TOPIC_SUCCESS,
+	GET_TOPIC_SUCCESS,
 	ADD_TOPIC_SUCCESS,
 	TOPIC_ERROR,
 	TOPIC_DELETE,
@@ -30,7 +30,7 @@ export default produce((state, action) => {
 			state.topics.push(action.payload);
 			return;
 
-		case TOPIC_SUCCESS:
+		case GET_TOPIC_SUCCESS:
 			state.loading = false;
 			state.error = null;
 			state.topics = action.payload;
