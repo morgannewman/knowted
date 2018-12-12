@@ -1,6 +1,6 @@
 import {
   TOPIC_SUBMIT,
-  TOPIC_SUCCESS,
+  GET_TOPIC_SUCCESS,
   ADD_TOPIC_SUCCESS,
   UPDATE_TOPIC_SUCCESS,
   TOPIC_ERROR,
@@ -22,7 +22,7 @@ export default produce((state, action) => {
       state.error = null;
       return;
 
-    case TOPIC_SUCCESS:
+    case GET_TOPIC_SUCCESS:
       state.loading = false;
       state.error = null;
       state.topics = action.payload;
@@ -41,7 +41,7 @@ export default produce((state, action) => {
         item => item.id === action.payload.id
       );
       if (updatedIndex > -1) {
-        state.topics.splice(updatedIndex, 1, action.payload);
+        state.topics[updatedIndex].title = action.payload.title;
       }
       return;
 

@@ -1,6 +1,7 @@
 import {
   FOLDER_SUBMIT,
   FOLDER_SUCCESS,
+  UPDATE_FOLDER_SUCCESS,
   FOLDER_ERROR,
   FOLDER_DELETE
 } from '../actions/folder';
@@ -24,6 +25,17 @@ export default produce((state, action) => {
       state.loading = false;
       state.error = null;
       state.folders = action.payload;
+      return;
+
+    case UPDATE_FOLDER_SUCCESS:
+      state.loading = false;
+      state.error = null;
+      const index = state.folders.findIndex(
+        item => item.id === action.payload.id
+      );
+      if (index > -1) {
+        state.folders[index].title = action.payload.title;
+      }
       return;
 
     case FOLDER_ERROR:

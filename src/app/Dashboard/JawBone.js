@@ -1,19 +1,29 @@
 import React from 'react';
 import Topic from './Topic';
 
-//FIXME: remove hard coded references
-import TopicsData from '../../db/topicsData';
+import Loading from '../common/Loading';
 
-export default class JawBone extends React.Component {
-  findTopics() {
-    return TopicsData.map(topic =>
-      topic.parent === this.props.folderId ? (
-        <Topic title={topic.title} key={topic.id} topicId={topic.id} />
-      ) : null
+import { connect } from 'react-redux';
+
+export class JawBone extends React.Component {
+  render() {
+    if (this.props.loading) return <Loading />;
+    const { topics } = this.props;
+    return (
+      <div className="jaw-bone-container">
+        {topics.map(topic =>
+          topic.parent.id === this.props.folderId ? (
+            <Topic title={topic.title} key={topic.id} topicId={topic.id} />
+          ) : null
+        )}
+      </div>
     );
   }
-
-  render() {
-    return <div className="jaw-bone-container">{this.findTopics()}</div>;
-  }
 }
+
+const mapStateToProps = state => ({
+  topics: state.topicReducer.topics,
+  loading: state.topicReducer.loading
+});
+
+export default connect(mapStateToProps)(JawBone);
