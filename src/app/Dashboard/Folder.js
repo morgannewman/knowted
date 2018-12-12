@@ -38,7 +38,7 @@ export class Folder extends React.Component {
 
   submitEdit = e => {
     e.preventDefault();
-    let title = e.target.folderTitle.value;
+    let title = this.titleInput.value;
     this.props.dispatch(updateFolder(title, this.props.folderId));
     this.editFolder();
   };
@@ -52,7 +52,20 @@ export class Folder extends React.Component {
         onMouseEnter={this.toggleEdit}
         onMouseLeave={this.toggleEdit}
       >
-        {!this.state.editing ? (
+        {this.state.editing ? (
+          <>
+            <button onClick={this.editFolder}>Cancel</button>
+            <form className="edit-folder-form" onSubmit={this.submitEdit}>
+              <label>Folder Name</label>
+              <input
+                ref={input => (this.titleInput = input)}
+                type="text"
+                name="folderTitle"
+                defaultValue={this.props.title}
+              />
+            </form>
+          </>
+        ) : (
           <>
             {this.state.showEdit && (
               <button onClick={this.editFolder}>Edit</button>
@@ -61,18 +74,6 @@ export class Folder extends React.Component {
               {title}
             </button>
             {this.state.showJawBone && <JawBone folderId={folderId} />}
-          </>
-        ) : (
-          <>
-            <button onClick={this.editFolder}>Cancel</button>
-            <form className="edit-folder-form" onSubmit={this.submitEdit}>
-              <label>Folder Name</label>
-              <input
-                type="text"
-                name="folderTitle"
-                defaultValue={this.props.title}
-              />
-            </form>
           </>
         )}
       </div>
