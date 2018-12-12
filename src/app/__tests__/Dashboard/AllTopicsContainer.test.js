@@ -8,7 +8,8 @@ import { AllTopicsContainer } from '../../Dashboard/AllTopicsContainer';
 //If I have any parentless Topics for them to render
 
 const initialState = {
-  dispatch: jest.fn()
+  dispatch: jest.fn(),
+  loading: false
 };
 
 describe('<AllTopicsContainer />', () => {

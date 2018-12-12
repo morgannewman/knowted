@@ -1,10 +1,12 @@
 import api from '../../controller/api';
 
 export const TOPIC_SUBMIT = 'TOPIC_SUBMIT';
-export const TOPIC_SUCCESS = 'TOPIC_SUCCESS';
-export const ADD_TOPIC_SUCCESS = 'ADD_TOPIC_SUCCESS';
-export const TOPIC_ERROR = 'TOPIC_ERROR';
 
+export const GET_TOPIC_SUCCESS = 'TOPIC_SUCCESS';
+export const ADD_TOPIC_SUCCESS = 'ADD_TOPIC_SUCCESS';
+export const UPDATE_TOPIC_SUCCESS = 'UPDATE_TOPIC_SUCCESS';
+
+export const TOPIC_ERROR = 'TOPIC_ERROR';
 export const TOPIC_DELETE = 'TOPIC_DELETE';
 
 /**
@@ -17,7 +19,7 @@ export const getTopics = () => dispatch => {
   dispatch(topicSubmit());
   api.topics
     .get()
-    .then(topics => dispatch(topicSuccess(topics)))
+    .then(topics => dispatch(getTopicSuccess(topics)))
     .catch(err => dispatch(topicError(err)));
 };
 
@@ -33,6 +35,21 @@ export const addTopic = title => dispatch => {
   api.topics
     .post({ title })
     .then(topic => dispatch(addTopicSuccess(topic)))
+    .catch(err => dispatch(topicError(err)));
+};
+
+/**
+ * Components can consume this function to update a Topic
+ * On submit: state.topic.loading === true
+ * On success: state.topic.topics === [of topics]
+ * On fail: state.topic.error === some error object
+ * @param {{title: string, id: number}} object
+ */
+export const updateTopic = (title, id) => dispatch => {
+  dispatch(topicSubmit());
+  api.topics
+    .put({ title, id })
+    .then(topic => dispatch(updateTopicSuccess(topic)))
     .catch(err => dispatch(topicError(err)));
 };
 
@@ -60,8 +77,13 @@ export const addTopicSuccess = topic => ({
   payload: topic
 });
 
-export const topicSuccess = topics => ({
-  type: TOPIC_SUCCESS,
+export const updateTopicSuccess = topic => ({
+  type: UPDATE_TOPIC_SUCCESS,
+  payload: topic
+});
+
+export const getTopicSuccess = topics => ({
+  type: GET_TOPIC_SUCCESS,
   payload: topics
 });
 

@@ -13,6 +13,7 @@ const initialState = {
 };
 
 describe('<TopicDashboard />', () => {
+  const mockFn = jest.fn();
   it('renders without crashing', () => {
     shallow(<TopicDashboard {...initialState} />);
   });

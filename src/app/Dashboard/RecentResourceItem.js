@@ -15,10 +15,8 @@ export default function RecentResourceItem({ resources }) {
           return (
             <li key={item.id} className="recent-resource-item">
               <a href={`/${item.id}`}>
-                <span>{item.parent.title}</span>
-                >>
-                <span>{item.title}</span>
-                <p>Last Opened: {item.last_opened}</p>
+                <span>{item.parent.title}</span> > <span>{item.title}</span>
+                {/* <p>Last Opened: {item.last_opened}</p> */}
               </a>
             </li>
           );
