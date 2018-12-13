@@ -6,8 +6,6 @@ import { getResources } from '../../controller/actions/topicDashboard';
 import Loading from '../common/Loading';
 export class TopicDashboard extends React.Component {
   componentDidMount() {
-    //TODO: Will need to dispatch with this.props.params.id
-    //ID hardcoded for now
     const id = this.props.match.params.topicId;
     this.props.dispatch(getResources(id));
   }
