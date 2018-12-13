@@ -3,12 +3,12 @@ import auth from './auth';
 
 import folderReducer from './folder';
 import topicReducer from './topic';
-import resourceReducer from './resource';
+import topicDashReducer from './topicDashboard';
 const rootReducer = combineReducers({
   auth,
   folderReducer,
   topicReducer,
-  resourceReducer
+  topicDashReducer
 });
 
 export default rootReducer;

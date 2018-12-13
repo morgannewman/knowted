@@ -31,9 +31,9 @@ export class TopicDashboard extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    loading: state.resourceReducer.loading,
-    parentId: state.resourceReducer.topicId,
-    resources: state.resourceReducer.resources
+    loading: state.topicDashReducer.loading,
+    parentId: state.topicDashReducer.topicId,
+    resources: state.topicDashReducer.resources
   };
 };
 export default connect(mapStateToProps)(TopicDashboard);

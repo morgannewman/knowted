@@ -6,9 +6,9 @@ export const resourceLoading = () => ({
 });
 
 export const RESOURCE_SUCCESS = 'RESOURCE_SUCCESS';
-export const resourceSuccess = resources => ({
+export const resourceSuccess = data => ({
   type: RESOURCE_SUCCESS,
-  payload: resources
+  payload: data
 });
 
 export const RESOURCE_ERROR = 'RESOURCE_ERROR';
@@ -46,11 +46,9 @@ export const delResource = id => ({
  */
 export const getResources = id => dispatch => {
   dispatch(resourceLoading());
-  console.log(id);
   api.topics
-    .get(id)
+    .getOne(id)
     .then(data => {
-      console.log(data);
       dispatch(resourceSuccess(data));
     })
     .catch(err => {
