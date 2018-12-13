@@ -9,7 +9,8 @@ const initialState = {
   topicId: null,
   feedback: null,
   newURI: null,
-  dispatch: jest.fn()
+  dispatch: jest.fn(),
+  match: { params: { topicId: 1235 } }
 };
 
 describe('<TopicDashboard />', () => {
