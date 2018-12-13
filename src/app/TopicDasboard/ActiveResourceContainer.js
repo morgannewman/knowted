@@ -45,6 +45,7 @@ export class ActiveResourceContainer extends React.Component {
                     return null;
                   }
                 })}
+                {provided.placeholder}
               </ul>
             )}
           </Droppable>
