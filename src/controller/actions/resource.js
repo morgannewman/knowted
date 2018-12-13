@@ -11,10 +11,22 @@ export const resourceSuccess = resources => ({
   payload: resources
 });
 
+export const RECENT_RESOURCE_SUCCESS = 'RECENT_RESOURCE_SUCCESS';
+export const recentResourceSuccess = recentResources => ({
+  type: RECENT_RESOURCE_SUCCESS,
+  payload: recentResources
+});
+
 export const RESOURCE_ERROR = 'RESOURCE_ERROR';
 export const resourceError = error => ({
   type: RESOURCE_ERROR,
   payload: error
+});
+
+export const SET_PARENT = 'SET_PARENT';
+export const setParent = parent => ({
+  type: SET_PARENT,
+  payload: parent
 });
 
 export const ADD_RESOURCE = 'ADD_RESOURCE';
@@ -50,6 +62,28 @@ export const get_resources = id => dispatch => {
     .get(id)
     .then(data => {
       dispatch(resourceSuccess(data));
+      dispatch(setParent(data[0].parent));
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch(resourceError(err));
+    });
+};
+
+/**
+ * Gets 3 most recently viewed resources
+ * First dispatches a loading function to change state to loading
+ * Second: Sends GET request to the server using api.resources
+ * Third: Dispatches resource_success action to add new data from server to current state
+ * If there is an error, it dispatches an error obj to state
+ * *@param {{}}
+ */
+export const getMostRecentResources = num => dispatch => {
+  dispatch(resourceLoading());
+  api.resources
+    .recent(num)
+    .then(data => {
+      dispatch(recentResourceSuccess(data));
     })
     .catch(err => {
       console.log(err);
