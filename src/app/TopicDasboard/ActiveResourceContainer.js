@@ -8,20 +8,52 @@ import './ActiveResourceContainer.scss';
 
 export class ActiveResourceContainer extends React.Component {
   //TODO: Drag and drop functionality
+  state = {
+    resources: this.props.resources
+  };
   onDragEnd = result => {
-    // TODO: reorder our column
+    const { destination, source, draggableId } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    // const column = source.droppableId;
+    const newResources = Array.from(this.state.resources);
+    console.log(newResources);
+
+    const index = newResources.findIndex(item => item.id === draggableId);
+    const movedItem = newResources[index];
+    console.log(movedItem, 'movedItem');
+    console.log(draggableId, 'draggableId');
+    console.log(index, 'index');
+    console.log(source.index, 'source index');
+    console.log(destination.index, 'destination index');
+    newResources.splice(source.index, 1);
+
+    newResources[destination.index] = movedItem;
+    console.log(newResources, 'newresources');
+
+    // this.setState({ resources: newResources });
   };
 
   render() {
     const { resources } = this.props;
-
+    console.log(this.state.resources);
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <section className="active-resources-container">
-          <Droppable className="hello" droppableId="droppable">
+          <Droppable className="hello" droppableId="droppable-1">
             {provided => (
               <ul ref={provided.innerRef} className="active-resources-list">
-                {resources.map((rescItem, index) => {
+                {this.state.resources.map((rescItem, index) => {
                   if (rescItem && !rescItem.completed) {
                     return (
                       <Draggable
@@ -56,7 +88,6 @@ export class ActiveResourceContainer extends React.Component {
   }
 }
 
-//FIXME: This component might not need to be connected?
 // const mapStateToProps = state => {
 //   return {
 //     loading: state.resourceReducer.loading,
