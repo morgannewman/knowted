@@ -9,11 +9,12 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080'
  * @returns the decoded JSON response.
  * @throws if response is not a 200-level response (i.e. fetch's res.ok is false).
  */
-export function goFetch(relativePath, config = { method: 'get' }, params = null) {
+export function goFetch(relativePath, config = null, params = null) {
 	const url = new URL(BACKEND_URL + relativePath);
 	if (params !== null) Object.entries(params).forEach(([k, v]) => url.searchParams.append(k, v));
 	// set sensible default options
 	const options = {
+		method: 'get',
 		headers: {
 			'Content-Type': 'application/json; charset=utf-8'
 		},
