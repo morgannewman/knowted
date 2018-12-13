@@ -4,13 +4,29 @@ const BASE_URL = '/api/topics';
 export default {
 	/**
 	 * Exposes GET /api/topics.
+	 * Optional params: notebooks. Defaults to false.
 	 * Topics have these props:
 	 * id, title, parent, lastOpened, notebook,
 	 * resourceOrder, created_at, updated_at.
+	 * @param {{notebooks: boolean}} params
 	 * @returns {[{}]} an array of topic objects
 	 */
-	get() {
-		return goFetch(BASE_URL);
+	get(params = null) {
+		return goFetch(BASE_URL, null, params);
+	},
+
+	/**
+	 * Exposes GET /api/topics/:id.
+	 * OPTIONAL PARAMS: resources (default true), notebook (default false)
+	 * Topics have these props:
+	 * id, title, parent, lastOpened, notebook,
+	 * resourceOrder, created_at, updated_at.
+	 * @param {number | string} topicId
+	 * @param {{ resources: boolean, notebook: boolean }} params - optional query params
+	 * @returns {{}} a topic object
+	 */
+	getOne(topicId, params = null) {
+		return goFetch(`${BASE_URL}/${topicId}`, null, params);
 	},
 
 	/**
