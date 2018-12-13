@@ -2,6 +2,7 @@ import './Learn.scss';
 import React from 'react';
 import { connect } from 'react-redux';
 import Editor from './Editor';
+// import Editor from './EditorPM';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { initializeLearn, resetLearn } from '../../controller/actions/learn';
