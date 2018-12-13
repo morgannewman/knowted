@@ -23,10 +23,11 @@ export default produce((state, action) => {
       state.error = null;
 
       return;
+
     case RESOURCE_SUCCESS:
       state.loading = false;
       state.error = null;
-      state.resources = action.payload;
+      state.resources = action.payload.resources;
 
       return;
 
