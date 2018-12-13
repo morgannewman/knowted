@@ -58,21 +58,6 @@ export const updateTopic = (title, id) => dispatch => {
 };
 
 /**
- * Components can consume this function to update a Topic
- * On submit: state.topic.loading === true
- * On success: state.topic.topics === [of topics]
- * On fail: state.topic.error === some error object
- * @param {{title: string, id: number}} object
- */
-export const updateTopic = (title, id) => dispatch => {
-  dispatch(topicSubmit());
-  api.topics
-    .put({ title, id })
-    .then(topic => dispatch(updateTopicSuccess(topic)))
-    .catch(err => dispatch(topicError(err)));
-};
-
-/**
  * Components can consume this function to delete a Topic
  * On submit: state.topic.loading === true
  * On delete:
@@ -109,13 +94,13 @@ export const addTopicSuccess = topic => ({
 });
 
 export const updateTopicSuccess = topic => ({
-  type: UPDATE_TOPIC_SUCCESS,
-  payload: topic
+	type: UPDATE_TOPIC_SUCCESS,
+	payload: topic
 });
 
 export const getTopicSuccess = topics => ({
-  type: GET_TOPIC_SUCCESS,
-  payload: topics
+	type: GET_TOPIC_SUCCESS,
+	payload: topics
 });
 
 export const topicError = err => ({
