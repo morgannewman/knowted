@@ -27,26 +27,28 @@ export class ActiveResourceContainer extends React.Component {
 
     // const column = source.droppableId;
     const newResources = Array.from(this.state.resources);
-    console.log(newResources);
-
+    console.log(this.state.resources);
     const index = newResources.findIndex(item => item.id === draggableId);
     const movedItem = newResources[index];
-    console.log(movedItem, 'movedItem');
-    console.log(draggableId, 'draggableId');
-    console.log(index, 'index');
-    console.log(source.index, 'source index');
-    console.log(destination.index, 'destination index');
+    // console.log(movedItem, 'movedItem');
+    // console.log(draggableId, 'draggableId');
+    // console.log(index, 'index');
+    // console.log(source.index, 'source index');
+    // console.log(destination.index, 'destination index');
+
     newResources.splice(source.index, 1);
-
-    newResources[destination.index] = movedItem;
-    console.log(newResources, 'newresources');
-
-    // this.setState({ resources: newResources });
+    newResources.splice(destination.index, 0, movedItem);
+    // console.log(destination.index);
+    // console.log(movedItem, 44);
+    // newResources[destination.index] = movedItem;
+    // console.log(newResources, 'newresources inseter');
+    console.log(newResources, 'after splice');
+    this.setState({ resources: newResources });
   };
 
   render() {
     const { resources } = this.props;
-    console.log(this.state.resources);
+    // console.log(this.state.resources);
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <section className="active-resources-container">
