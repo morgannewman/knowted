@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './Folder.css';
 import { connect } from 'react-redux';
 
-import { updateFolder } from '../../controller/actions/folder';
+import { updateFolder } from '../../controller/actions/dashboard';
 
 export class Folder extends React.Component {
   static propTypes = {
@@ -45,7 +45,7 @@ export class Folder extends React.Component {
 
   render() {
     const { title, folderId } = this.props;
-
+    console.log(this.props);
     return (
       <div
         className="folder-wrap"
@@ -82,7 +82,7 @@ export class Folder extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  folders: state.folderReducer
+  folders: state.dashboardReducer
 });
 
 export default connect(mapStateToProps)(Folder);

@@ -1,9 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import Loading from '../common/Loading';
 import AllTopicsContainer from './AllTopicsContainer';
 import RecentlyViewedContainer from './RecentlyViewedContainer';
 
+//TODO: change out
+import { initializeDashboard } from '../../controller/actions/dashboard';
 class Dashboard extends React.Component {
+  static propTypes = {
+    loading: PropTypes.bool.isRequired,
+    topics: PropTypes.array,
+    folders: PropTypes.array
+  };
+
+  componentDidMount() {
+    this.props.dispatch(initializeDashboard(3));
+  }
+
   render() {
+    if (this.props.loading) return <Loading />;
+
     return (
       <main>
         <div>
@@ -19,4 +37,11 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = state => ({
+  topics: state.dashboardReducer.topics,
+  folders: state.dashboardReducer.folders,
+  recentResources: state.dashboardReducer.recentResources,
+  loading: state.dashboardReducer.loading
+});
+
+export default connect(mapStateToProps)(Dashboard);
