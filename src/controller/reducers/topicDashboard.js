@@ -1,7 +1,6 @@
 import {
   RESOURCE_LOADING,
   RESOURCE_SUCCESS,
-  SET_TOPIC,
   ADD_RESOURCE,
   UPDATE_RESOURCE,
   DELETE_RESOURCE,
@@ -39,10 +38,6 @@ export default produce((state, action) => {
     case ADD_RESOURCE:
       state.resources.push(action.resource);
       state.loading = false;
-      return;
-
-    case SET_TOPIC:
-      state.topic = action.payload;
       return;
 
     case UPDATE_RESOURCE:
