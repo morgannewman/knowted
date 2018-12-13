@@ -9,7 +9,6 @@ export class ActiveResourceContainer extends React.Component {
 
   render() {
     const { resources } = this.props;
-
     return (
       <section className="active-resources-container">
         <ul className="active-resources-list">

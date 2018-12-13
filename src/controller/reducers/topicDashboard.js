@@ -13,7 +13,8 @@ export const initialState = {
   resources: [],
   loading: false,
   error: null,
-  topic: {}
+  topicID: null,
+  topicTitle: ''
 };
 
 export default produce((state, action) => {
@@ -28,6 +29,8 @@ export default produce((state, action) => {
       state.loading = false;
       state.error = null;
       state.resources = action.payload.resources;
+      state.topicID = action.payload.id;
+      state.topicTitle = action.payload.title;
 
       return;
 
