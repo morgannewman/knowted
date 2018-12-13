@@ -2,7 +2,7 @@ import api from '../../controller/api';
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { submitResource } from '../../controller/actions/resource';
+import { submitResource } from '../../controller/actions/topicDashboard';
 export class AddResourceForm extends React.Component {
   constructor(props) {
     super(props);
