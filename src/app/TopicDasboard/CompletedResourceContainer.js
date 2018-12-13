@@ -1,6 +1,5 @@
 import React from 'react';
 import ResourceItem from './ResourceItem';
-import { connect } from 'react-redux';
 import './CompletedResourceContainer.scss';
 
 export class CompletedResourceContainer extends React.Component {
@@ -47,4 +46,4 @@ export class CompletedResourceContainer extends React.Component {
   }
 }
 
-export default connect()(CompletedResourceContainer);
+export default CompletedResourceContainer;

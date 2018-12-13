@@ -1,7 +1,6 @@
 import React from 'react';
 import ResourceItem from './ResourceItem';
 import AddResourceForm from './AddResourceForm';
-import { connect } from 'react-redux';
 import './ActiveResourceContainer.scss';
 import Loading from '../common/Loading';
 export class ActiveResourceContainer extends React.Component {
@@ -30,13 +29,4 @@ export class ActiveResourceContainer extends React.Component {
   }
 }
 
-//FIXME: This component might not need to be connected?
-// const mapStateToProps = state => {
-//   return {
-//     loading: state.resourceReducer.loading,
-//     parentId: state.resourceReducer.topicId,
-//     resources: state.resourceReducer.resources
-//   };
-// };
-
-export default connect()(ActiveResourceContainer);
+export default ActiveResourceContainer;

@@ -4,6 +4,7 @@ import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
 import { getResources } from '../../controller/actions/topicDashboard';
 import Loading from '../common/Loading';
+import './index.scss';
 export class TopicDashboard extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.topicId;
@@ -15,7 +16,7 @@ export class TopicDashboard extends React.Component {
       return <Loading />;
     }
     return (
-      <main>
+      <main className="topic-dashboard">
         <section>
           <h2>Breadcrumb nav placeholder</h2>
         </section>
