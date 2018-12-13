@@ -8,9 +8,9 @@ import RecentlyViewedContainer from './RecentlyViewedContainer';
 
 //TODO: change out
 import { initializeDashboard } from '../../controller/actions/dashboard';
-class Dashboard extends React.Component {
+export class Dashboard extends React.Component {
   static propTypes = {
-    loading: PropTypes.bool.isRequired,
+    loading: PropTypes.bool,
     topics: PropTypes.array,
     folders: PropTypes.array
   };
