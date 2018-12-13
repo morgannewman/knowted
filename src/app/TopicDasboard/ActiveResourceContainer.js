@@ -24,10 +24,10 @@ export class ActiveResourceContainer extends React.Component {
     ) {
       return;
     }
-
+    //FIXME: take out console logs once I'm sure this works.
     // const column = source.droppableId;
     const newResources = Array.from(this.state.resources);
-    console.log(this.state.resources);
+    // console.log(this.state.resources);
     const index = newResources.findIndex(item => item.id === draggableId);
     const movedItem = newResources[index];
     // console.log(movedItem, 'movedItem');
