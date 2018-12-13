@@ -1,14 +1,16 @@
 import React from 'react';
 import './AllTopicsContainer.css';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import AddTopic from './AddTopic';
 import Folder from './Folder';
 import Topic from './Topic';
 import Loading from '../common/Loading';
+
 import { getTopics } from '../../controller/actions/topic';
 import { getFolders } from '../../controller/actions/folder';
-import PropTypes from 'prop-types';
 
 export class AllTopicsContainer extends React.Component {
   static propTypes = {
@@ -22,30 +24,53 @@ export class AllTopicsContainer extends React.Component {
     this.props.dispatch(getFolders());
   }
 
+  onDragEnd = result => {
+    //TODO: reorder - update state
+  };
+
   render() {
     const { topics, folders } = this.props;
     if (this.props.loading) return <Loading />;
     return (
-      <section className="all-topics-container">
-        <AddTopic />
-        {folders &&
-          folders.map(folder => {
-            return (
-              <Folder
-                title={folder.title}
-                folderId={folder.id}
-                key={folder.id}
-              />
-            );
-          })}
-        {topics &&
-          topics.map(
-            topic =>
-              (!topic.parent || !topic.parent.id) && (
-                <Topic title={topic.title} topicId={topic.id} key={topic.id} />
-              )
-          )}
-      </section>
+      <DragDropContext
+        onDragEnd={this.onDragEnd}
+        className="all-topics-container"
+      >
+        <section className="all-topics-container">
+          <AddTopic />
+          <Droppable droppableId="droppable" direction="horizontal">
+            {provided => (
+              <div ref={provided.innerRef} {...provided.droppableProps}>
+                {folders &&
+                  folders.map((folder, index) => {
+                    return (
+                      <Folder
+                        title={folder.title}
+                        folderId={folder.id}
+                        key={folder.id}
+                        index={index}
+                      />
+                    );
+                  })}
+                {topics &&
+                  topics.map(
+                    (topic, index) =>
+                      (!topic.parent || !topic.parent.id) && (
+                        <Topic
+                          title={topic.title}
+                          topicId={topic.id}
+                          key={topic.id}
+                          index={index}
+                        />
+                      )
+                  )}
+
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </section>
+      </DragDropContext>
     );
   }
 }

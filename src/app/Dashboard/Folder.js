@@ -3,6 +3,7 @@ import JawBone from './JawBone';
 import PropTypes from 'prop-types';
 import './Folder.css';
 import { connect } from 'react-redux';
+import { Draggable } from 'react-beautiful-dnd';
 
 import { updateFolder } from '../../controller/actions/folder';
 
@@ -44,39 +45,46 @@ export class Folder extends React.Component {
   };
 
   render() {
-    const { title, folderId } = this.props;
+    const { title, folderId, index } = this.props;
 
     return (
-      <div
-        className="folder-wrap"
-        onMouseEnter={this.toggleEdit}
-        onMouseLeave={this.toggleEdit}
-      >
-        {this.state.editing ? (
-          <>
-            <button onClick={this.editFolder}>Cancel</button>
-            <form className="edit-folder-form" onSubmit={this.submitEdit}>
-              <label>Folder Name</label>
-              <input
-                ref={input => (this.titleInput = input)}
-                type="text"
-                name="folderTitle"
-                defaultValue={this.props.title}
-              />
-            </form>
-          </>
-        ) : (
-          <>
-            {this.state.showEdit && (
-              <button onClick={this.editFolder}>Edit</button>
+      <Draggable key={folderId} draggableId={folderId} index={index}>
+        {provided => (
+          <div
+            className="folder-wrap"
+            onMouseEnter={this.toggleEdit}
+            onMouseLeave={this.toggleEdit}
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+          >
+            {this.state.editing ? (
+              <>
+                <button onClick={this.editFolder}>Cancel</button>
+                <form className="edit-folder-form" onSubmit={this.submitEdit}>
+                  <label>Folder Name</label>
+                  <input
+                    ref={input => (this.titleInput = input)}
+                    type="text"
+                    name="folderTitle"
+                    defaultValue={this.props.title}
+                  />
+                </form>
+              </>
+            ) : (
+              <>
+                {this.state.showEdit && (
+                  <button onClick={this.editFolder}>Edit</button>
+                )}
+                <button className="folder-btn" onClick={this.toggleJawBone}>
+                  {title}
+                </button>
+                {this.state.showJawBone && <JawBone folderId={folderId} />}
+              </>
             )}
-            <button className="folder-btn" onClick={this.toggleJawBone}>
-              {title}
-            </button>
-            {this.state.showJawBone && <JawBone folderId={folderId} />}
-          </>
+          </div>
         )}
-      </div>
+      </Draggable>
     );
   }
 }
