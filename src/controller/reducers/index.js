@@ -5,12 +5,15 @@ import folderReducer from './folder';
 import topicReducer from './topic';
 import resourceReducer from './resource';
 import dashboardReducer from './dashboard';
+import learn from './learn';
+
 const rootReducer = combineReducers({
-  auth,
-  dashboardReducer,
-  folderReducer,
-  topicReducer,
-  resourceReducer
+	auth,
+	learn,
+	dashboardReducer,
+	folderReducer,
+	topicReducer,
+	resourceReducer
 });
 
 export default rootReducer;
