@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
-import { get_resources } from '../../controller/actions/topicDashboard';
+import { getResources } from '../../controller/actions/topicDashboard';
 import Loading from '../common/Loading';
 export class TopicDashboard extends React.Component {
   componentDidMount() {
     //TODO: Will need to dispatch with this.props.params.id
     //ID hardcoded for now
-    this.props.dispatch(get_resources(4000));
+    this.props.dispatch(getResources(4001));
   }
 
   render() {
