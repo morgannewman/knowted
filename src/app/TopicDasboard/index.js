@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
-import { get_resources } from '../../controller/actions/resource';
+import { get_resources } from '../../controller/actions/topicDashboard';
 import Loading from '../common/Loading';
 export class TopicDashboard extends React.Component {
   componentDidMount() {

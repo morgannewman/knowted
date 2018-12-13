@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import {
   updateSingleResource,
   deleteResource
-} from '../../controller/actions/resource';
+} from '../../controller/actions/topicDashboard';
 import './ResourceItem.scss';
 // import { Link } from 'react-router-dom';
 
