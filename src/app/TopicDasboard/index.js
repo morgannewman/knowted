@@ -8,7 +8,8 @@ export class TopicDashboard extends React.Component {
   componentDidMount() {
     //TODO: Will need to dispatch with this.props.params.id
     //ID hardcoded for now
-    this.props.dispatch(getResources(4001));
+    const id = this.props.match.params.topicId;
+    this.props.dispatch(getResources(id));
   }
 
   render() {
