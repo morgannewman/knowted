@@ -9,6 +9,8 @@ import { Redirect } from 'react-router-dom';
 import { initializeLearn, resetLearn } from '../../controller/actions/learn';
 import Loading from '../common/Loading';
 
+import BreadCrumb from '../common/Breadcrumb';
+
 export class Learn extends React.Component {
 	static propTypes = {
 		match: PropTypes.object
@@ -20,7 +22,7 @@ export class Learn extends React.Component {
 	}
 
 	render() {
-		const { stateIsStale, loading, resourceNotFound, notebook } = this.props;
+		const { stateIsStale, loading, resourceNotFound, notebook, topicTitle, topicId, resourceId, resourceTitle } = this.props;
 
 		if (resourceNotFound) {
 			this.props.dispatch(resetLearn());
@@ -31,6 +33,7 @@ export class Learn extends React.Component {
 
 		return (
 			<>
+				<BreadCrumb topicTitle={topicTitle} topicId={topicId} resourceId={resourceId} resourceTitle={resourceTitle}/>
 				<div className="learn">
 					{/* TODO: Conditional logic to render a different card/layout for state.learn.resource.type === other resources */}
 					{/* TODO: Change this to be dynamic for state.learn.resource.type === youtube*/}
@@ -62,7 +65,11 @@ const mapStateToProps = (state, props) => {
 		stateIsStale: topicIsStale || resourceIsStale,
 		loading: state.learn.loading,
 		resourceNotFound: state.learn.error && state.learn.error.status === 404,
-		notebook: state.learn.topic && (state.learn.topic.notebook || '')
+		notebook: state.learn.topic && (state.learn.topic.notebook || ''),
+		resourceId: currentResource && currentResource.id,
+		resourceTitle: currentResource && currentResource.title,
+		topicTitle: currentTopic&& currentTopic.title,
+		topicId: currentTopic && currentTopic.id
 	};
 };
 

@@ -5,6 +5,8 @@ import CompletedResourceContainer from './CompletedResourceContainer';
 import { getResources } from '../../controller/actions/topicDashboard';
 import Loading from '../common/Loading';
 import './index.scss';
+import Breadcrumb from '../common/Breadcrumb';
+
 export class TopicDashboard extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.topicId;
@@ -18,7 +20,7 @@ export class TopicDashboard extends React.Component {
     return (
       <main className="topic-dashboard">
         <section>
-          <h2>Breadcrumb nav placeholder</h2>
+          <h2><Breadcrumb topicId={this.props.parentId} topicTitle={this.props.topicTitle} /></h2>
         </section>
         <h2>Active Resources</h2>
         <ActiveResourceContainer resources={this.props.resources} />
@@ -32,8 +34,9 @@ export class TopicDashboard extends React.Component {
 const mapStateToProps = state => {
   return {
     loading: state.topicDashReducer.loading,
-    parentId: state.topicDashReducer.topicId,
-    resources: state.topicDashReducer.resources
+    parentId: state.topicDashReducer.topicID,
+    resources: state.topicDashReducer.resources,
+    topicTitle: state.topicDashReducer.topicTitle
   };
 };
 export default connect(mapStateToProps)(TopicDashboard);
