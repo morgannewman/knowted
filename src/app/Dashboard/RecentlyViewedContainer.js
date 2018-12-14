@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RecentResourceItem from './RecentResourceItem';
-import { getMostRecentResources } from '../../controller/actions/resource';
 
 export class RecentlyViewed extends Component {
-  componentDidMount() {
-    this.props.dispatch(getMostRecentResources(3));
-  }
-
   render() {
-    const { recentResources } = this.props.resources;
+    const { recentResources } = this.props;
     return (
       <section className="recently-viewed">
-        <RecentResourceItem resources={recentResources} />
+        <ul className="recent-resources">
+          {recentResources.map(item => {
+            return (
+              <li key={item.id} className="recent-resource-item">
+                <a href={`dashboard/${item.parent.id}/${item.id}`}>
+                  <span>{item.parent.title}</span> > <span>{item.title}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       </section>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  resources: state.resourceReducer
+  recentResources: state.dashboardReducer.recentResources
 });
 
 export default connect(mapStateToProps)(RecentlyViewed);

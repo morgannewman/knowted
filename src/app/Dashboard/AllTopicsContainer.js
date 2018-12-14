@@ -5,26 +5,17 @@ import { connect } from 'react-redux';
 import AddTopic from './AddTopic';
 import Folder from './Folder';
 import Topic from './Topic';
-import Loading from '../common/Loading';
-import { getTopics } from '../../controller/actions/topic';
-import { getFolders } from '../../controller/actions/folder';
 import PropTypes from 'prop-types';
 
 export class AllTopicsContainer extends React.Component {
   static propTypes = {
-    loading: PropTypes.bool.isRequired,
     topics: PropTypes.array,
     folders: PropTypes.array
   };
 
-  componentDidMount() {
-    this.props.dispatch(getTopics());
-    this.props.dispatch(getFolders());
-  }
-
   render() {
     const { topics, folders } = this.props;
-    if (this.props.loading) return <Loading />;
+
     return (
       <section className="all-topics-container">
         <AddTopic />
@@ -51,9 +42,8 @@ export class AllTopicsContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  topics: state.topicReducer.topics,
-  folders: state.folderReducer.folders,
-  loading: state.topicReducer.loading
+  topics: state.dashboardReducer.topics,
+  folders: state.dashboardReducer.folders
 });
 
 export default connect(mapStateToProps)(AllTopicsContainer);

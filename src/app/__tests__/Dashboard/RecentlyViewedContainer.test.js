@@ -1,10 +1,9 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import RecentResourceItem from '../../Dashboard/RecentResourceItem';
+import { RecentlyViewed } from '../../Dashboard/RecentlyViewedContainer';
 
 const initialState = {
-  topics: [{ id: 1 }, { id: 2 }],
-  resources: [
+  recentResources: [
     {
       completed: false,
       id: 2,
@@ -25,28 +24,18 @@ const initialState = {
   dispatch: jest.fn()
 };
 
-describe('<RecentResourceItem />', () => {
+describe('<RecentlyViewed />', () => {
   let wrapper;
 
   it('renders without crashing', () => {
-    shallow(
-      <RecentResourceItem
-        resources={initialState.resources}
-        topics={initialState.topics}
-      />
-    );
+    shallow(<RecentlyViewed {...initialState} />);
   });
 
   it('renders ul section', () => {
     let wrapper;
-    wrapper = mount(
-      <RecentResourceItem
-        resources={initialState.resources}
-        topics={initialState.topics}
-      />
-    );
+    wrapper = mount(<RecentlyViewed {...initialState} />);
     expect(wrapper.find('ul').children()).toHaveLength(
-      initialState.resources.length
+      initialState.recentResources.length
     );
   });
 });
