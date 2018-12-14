@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { getMostRecentResources } from '../../controller/actions/dashboard';
 export class RecentlyViewed extends Component {
   componentDidMount() {
     this.props.dispatch(getMostRecentResources(3));
