@@ -8,7 +8,8 @@ export default {
 	 * Topics have these props:
 	 * id, title, parent, lastOpened, notebook,
 	 * resourceOrder, created_at, updated_at.
-	 * @param {{notebooks: boolean}} params
+	 * Params (default false): resourceOrder, notebooks.
+	 * @param {{param: boolean}} params to toggle receiving data types
 	 * @returns {[{}]} an array of topic objects
 	 */
 	get(params = null) {
@@ -17,12 +18,12 @@ export default {
 
 	/**
 	 * Exposes GET /api/topics/:id.
-	 * OPTIONAL PARAMS: resources (default true), notebook (default false)
+	 * Params (default true): notebook, resources, resourceOrder
 	 * Topics have these props:
 	 * id, title, parent, lastOpened, notebook,
 	 * resourceOrder, created_at, updated_at.
 	 * @param {number | string} topicId
-	 * @param {{ resources: boolean, notebook: boolean }} params - optional query params
+	 * @param {{ param: boolean }} params - optional query params
 	 * @returns {{}} a topic object
 	 */
 	getOne(topicId, params = null) {
