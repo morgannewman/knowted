@@ -24,8 +24,34 @@ export class AllTopicsContainer extends React.Component {
     this.props.dispatch(getFolders());
   }
 
+  reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+
   onDragEnd = result => {
-    //TODO: reorder - update state
+    const { destination, source, draggableId } = result;
+
+    if (!destination) {
+      return;
+    }
+    //check if destination has changed
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    //reorder
+    const folders = this.reorder(
+      this.state.folders,
+      source.index,
+      destination.index
+    );
   };
 
   render() {
@@ -38,7 +64,7 @@ export class AllTopicsContainer extends React.Component {
       >
         <section className="all-topics-container">
           <AddTopic />
-          <Droppable droppableId="droppable" direction="horizontal">
+          <Droppable droppableId="dashboardDroppable" direction="horizontal">
             {provided => (
               <div ref={provided.innerRef} {...provided.droppableProps}>
                 {folders &&
