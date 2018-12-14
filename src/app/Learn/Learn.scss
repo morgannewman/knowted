@@ -1,0 +1,16 @@
+.learn {
+  display: flex;
+  height: 90%;
+}
+
+.editor {
+  height: 100%;
+  width: 50vw;
+  overflow-y: scroll;
+}
+
+#ytplayer {
+  height: 100%;
+  width: 50%;
+  flex-grow: 0;
+}

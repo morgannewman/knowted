@@ -5,7 +5,7 @@ import './Folder.css';
 import { connect } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 
-import { updateFolder } from '../../controller/actions/folder';
+import { updateFolder } from '../../controller/actions/dashboard';
 
 export class Folder extends React.Component {
   static propTypes = {
@@ -90,7 +90,7 @@ export class Folder extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  folders: state.folderReducer
+  folders: state.dashboardReducer
 });
 
 export default connect(mapStateToProps)(Folder);
