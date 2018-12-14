@@ -32,11 +32,12 @@ export class Learn extends React.Component {
 		return (
 			<>
 				<div className="learn">
-					{/* TODO: Conditional logic to render cards for non-YT resources */}
+					{/* TODO: Conditional logic to render a different card/layout for state.learn.resource.type === other resources */}
+					{/* TODO: Change this to be dynamic for state.learn.resource.type === youtube*/}
 					<iframe
 						id="ytplayer"
 						type="text/html"
-						src="https://www.google.com/"
+						src="https://www.youtube.com/embed/JeT2tXqp4m0"
 						frameBorder="0"
 						disablekb="1"
 						title="YouTube"
