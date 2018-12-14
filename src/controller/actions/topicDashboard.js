@@ -68,7 +68,6 @@ export const getResources = id => dispatch => {
  * * @param {{parent: integer, title:string, url:string}}
  */
 export const submitResource = (parent, title, uri, type) => dispatch => {
-  dispatch(resourceLoading());
   const body = { parent, title, uri, type };
   api.resources
     .post(body)
