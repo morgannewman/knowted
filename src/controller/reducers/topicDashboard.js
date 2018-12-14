@@ -41,15 +41,14 @@ export default produce((state, action) => {
         }, {});
       }
 
+      state.resourceOrder = action.payload.resourceOrder;
+      // remove redundant resourceOrder from payload
+      // delete action.payload.resourceOrder;
+
       //This makes resources an object with id:data as key value pairs based on the function avove
       state.resources = mapResourcesToObject(action.payload.resources);
       // since we don't
       delete action.payload.resources;
-
-      state.resourceOrder = action.payload.resourceOrder;
-      // remove redundant resourceOrder from payload
-      delete action.payload.resourceOrder;
-
       //add all information relating to that topic, minus the resources which were deleted above
       state.topic = action.payload;
       return;
