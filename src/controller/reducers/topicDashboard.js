@@ -28,10 +28,26 @@ export default produce((state, action) => {
     case RESOURCE_SUCCESS:
       state.loading = false;
       state.error = null;
-      state.resources = action.payload.resources;
-      state.topicID = action.payload.id;
-      state.topicTitle = action.payload.title;
+      // state.resources = action.payload.resources;
+      // state.topicID = action.payload.id;
+      // state.topicTitle = action.payload.title;
 
+      function mapResourcesToObject(resources) {
+        return resources.reduce((obj, resource) => {
+          obj[resource.id] = resource;
+          return obj;
+        }, {});
+      }
+
+      state.resources = mapResourcesToObject(action.payload.resources);
+      // remove redundant resources from payload
+      delete action.payload.resources;
+
+      state.resourceOrder = action.payload.resourceOrder;
+      // remove redundant resourceOrder from payload
+      delete action.payload.resourceOrder;
+
+      state.topic = action.payload;
       return;
 
     case RESOURCE_ERROR:

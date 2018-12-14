@@ -44,11 +44,12 @@ export const delResource = id => ({
  * If there is an error, it dispatches an error obj to state
  * *@param {{id:integer}}} id
  */
-export const getResources = id => dispatch => {
+export const initializeTopicDasbhoard = id => dispatch => {
   dispatch(resourceLoading());
   api.topics
     .getOne(id)
     .then(data => {
+      console.log(data);
       dispatch(resourceSuccess(data));
     })
     .catch(err => {
@@ -81,7 +82,7 @@ export const submitResource = (parent, title, uri, type) => dispatch => {
 /**
  * Updates a single resource
  * First: Sends PUT request to the server using api.resources
- *Second: disptaches action update_resources that saves updated resources array in state
+ *  Second: disptaches action update_resources that saves updated resources array in state
  * If there is an error, it dispatches an error obj to state and console.log error
  *  This function does not make a request to the server for all of the resources again.
  * * @param {{id: integer}, {body:object}}
