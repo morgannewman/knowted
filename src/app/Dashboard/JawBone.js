@@ -1,5 +1,6 @@
 import React from 'react';
 import Topic from './Topic';
+import './JawBone.css';
 
 import Loading from '../common/Loading';
 

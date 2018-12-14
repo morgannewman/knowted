@@ -30,7 +30,7 @@ export default produce((state, action) => {
     case ADD_TOPIC_SUCCESS:
       state.loading = false;
       state.error = null;
-      state.topics.push(action.payload);
+      state.topics.unshift(action.payload);
       return;
 
     case UPDATE_TOPIC_SUCCESS:
