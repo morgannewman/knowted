@@ -1,9 +1,11 @@
-import React from 'react';
 import 'react-quill/dist/quill.snow.css';
-import Quill from 'react-quill';
+
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Quill from 'react-quill';
 import debounce from 'lodash.debounce';
+
 import { submitNotebookUpdate } from '../../controller/actions/learn';
 import cache from '../../controller/api/cache';
 
@@ -15,7 +17,6 @@ export class Editor extends React.Component {
 
 	state = {
 		text: '', // set when component mounts
-		__placeholderId__: 2,
 		isDisabled: true,
 		hasPendingUpdate: false
 	};
@@ -28,7 +29,7 @@ export class Editor extends React.Component {
 		this.save = debounce(
 			notebook =>
 				this.setState({ hasPendingUpdate: false }, () =>
-					this.props.dispatch(submitNotebookUpdate({ notebook, id: this.state.__placeholderId__ }))
+					this.props.dispatch(submitNotebookUpdate({ notebook, id: this.props.topicId }))
 				),
 			2000,
 			{ maxWait: 10000 }
@@ -40,7 +41,7 @@ export class Editor extends React.Component {
 			cache.requests.push({
 				userId: this.props.userId,
 				action: submitNotebookUpdate.name,
-				payload: { id: this.state.__placeholderId__, notebook: this.state.lastUpdate }
+				payload: { id: this.props.topicId, notebook: this.state.lastUpdate }
 			});
 		}
 	};
@@ -65,7 +66,8 @@ export class Editor extends React.Component {
 }
 
 const mapStateToProps = state => ({
-	userId: state.auth.user && state.auth.user.id
+	userId: state.auth.user && state.auth.user.id,
+	topicId: state.learn.topic && state.learn.topic.id
 });
 
 export default connect(mapStateToProps)(Editor);
