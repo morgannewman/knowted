@@ -18,7 +18,6 @@ export class AllTopicsContainer extends React.Component {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
-
     return result;
   };
 
@@ -48,26 +47,26 @@ export class AllTopicsContainer extends React.Component {
     const { topics, folders } = this.props;
 
     return (
-      <DragDropContext
-        onDragEnd={this.onDragEnd}
-        className="all-topics-container"
-      >
-        <section className="all-topics-container">
-          <AddTopic />
+      <section className="all-topics-container">
+        <AddTopic />
+        {folders &&
+          folders.map((folder, index) => {
+            return (
+              <Folder
+                title={folder.title}
+                folderId={folder.id}
+                key={folder.id}
+                index={index}
+              />
+            );
+          })}
+        <DragDropContext
+          onDragEnd={this.onDragEnd}
+          className="all-topics-container"
+        >
           <Droppable droppableId="dashboardDroppable" direction="horizontal">
             {provided => (
               <div ref={provided.innerRef} {...provided.droppableProps}>
-                {folders &&
-                  folders.map((folder, index) => {
-                    return (
-                      <Folder
-                        title={folder.title}
-                        folderId={folder.id}
-                        key={folder.id}
-                        index={index}
-                      />
-                    );
-                  })}
                 {topics &&
                   topics.map(
                     (topic, index) =>
@@ -85,8 +84,8 @@ export class AllTopicsContainer extends React.Component {
               </div>
             )}
           </Droppable>
-        </section>
-      </DragDropContext>
+        </DragDropContext>
+      </section>
     );
   }
 }
