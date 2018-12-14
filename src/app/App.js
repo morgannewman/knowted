@@ -6,12 +6,12 @@ import Dashboard from './Dashboard';
 import Learn from './Learn';
 import { connect } from 'react-redux';
 import cache from '../controller/api/cache';
-import { submitTopicNotebookUpdate } from '../controller/actions/topic';
+import { submitNotebookUpdate } from '../controller/actions/learn';
 import TopicDashboard from './TopicDasboard';
 import requiresLogin from './common/requiresLogin';
 
 const cacheableActions = {
-	submitTopicNotebookUpdate
+	submitNotebookUpdate
 };
 
 export class App extends Component {

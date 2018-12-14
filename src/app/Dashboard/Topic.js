@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Topic.css';
 import { connect } from 'react-redux';
 
-import { deleteTopic, updateTopic } from '../../controller/actions/topic';
+import { deleteTopic, updateTopic } from '../../controller/actions/dashboard';
 
 export class Topic extends React.Component {
   static propTypes = {
@@ -94,7 +94,7 @@ export class Topic extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  topics: state.topicReducer
+  topics: state.dashboardReducer
 });
 
 export default connect(mapStateToProps)(Topic);

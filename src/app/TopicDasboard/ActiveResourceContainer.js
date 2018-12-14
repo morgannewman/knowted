@@ -2,7 +2,7 @@ import React from 'react';
 import ResourceItem from './ResourceItem';
 import AddResourceForm from './AddResourceForm';
 import './ActiveResourceContainer.scss';
-import Loading from '../common/Loading';
+
 export class ActiveResourceContainer extends React.Component {
   //TODO: Drag and drop functionality
 

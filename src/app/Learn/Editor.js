@@ -4,7 +4,7 @@ import Quill from 'react-quill';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
-import { submitTopicNotebookUpdate } from '../../controller/actions/topic';
+import { submitNotebookUpdate } from '../../controller/actions/learn';
 import cache from '../../controller/api/cache';
 
 export class Editor extends React.Component {
@@ -28,7 +28,7 @@ export class Editor extends React.Component {
 		this.save = debounce(
 			notebook =>
 				this.setState({ hasPendingUpdate: false }, () =>
-					this.props.dispatch(submitTopicNotebookUpdate({ notebook, id: this.state.__placeholderId__ }))
+					this.props.dispatch(submitNotebookUpdate({ notebook, id: this.state.__placeholderId__ }))
 				),
 			2000,
 			{ maxWait: 10000 }
@@ -39,7 +39,7 @@ export class Editor extends React.Component {
 		if (this.state.hasPendingUpdate) {
 			cache.requests.push({
 				userId: this.props.userId,
-				action: submitTopicNotebookUpdate.name,
+				action: submitNotebookUpdate.name,
 				payload: { id: this.state.__placeholderId__, notebook: this.state.lastUpdate }
 			});
 		}
