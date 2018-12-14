@@ -7,7 +7,6 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import AddTopic from './AddTopic';
 import Folder from './Folder';
 import Topic from './Topic';
-import PropTypes from 'prop-types';
 
 export class AllTopicsContainer extends React.Component {
   static propTypes = {
