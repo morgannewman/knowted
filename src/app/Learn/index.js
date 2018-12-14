@@ -58,8 +58,8 @@ const mapStateToProps = (state, props) => {
 	const currentTopic = state.learn.topic;
 	const currentResource = state.learn.resource;
 
-	const topicIsStale = currentTopic && currentTopic.id !== topicId;
-	const resourceIsStale = currentResource && currentResource.id !== resourceId;
+	const topicIsStale = currentTopic && currentTopic.id !== Number(topicId);
+	const resourceIsStale = currentResource && currentResource.id !== Number(resourceId);
 
 	return {
 		stateIsStale: topicIsStale || resourceIsStale,
