@@ -25,10 +25,7 @@ export const initializeLearn = (topicId, resourceId) => (dispatch, getState) => 
 		dispatch(resetLearn());
 	}
 
-	return Promise.all([
-		api.topics.getOne(topicId, { resources: false, resourceOrder: false }),
-		api.resources.getOne(resourceId)
-	])
+	return Promise.all([api.topics.getOne(topicId, { resources: false }), api.resources.getOne(resourceId)])
 		.then(([topic, resource]) => {
 			dispatch(initializeSuccess({ topic, resource }));
 		})
