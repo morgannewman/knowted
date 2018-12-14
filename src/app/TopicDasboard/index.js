@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
-import { get_resources } from '../../controller/actions/resource';
+import { getResources } from '../../controller/actions/topicDashboard';
 import Loading from '../common/Loading';
+import './index.scss';
 export class TopicDashboard extends React.Component {
   componentDidMount() {
-    //TODO: Will need to dispatch with this.props.params.id
-    //ID hardcoded for now
-    this.props.dispatch(get_resources(4000));
+    const id = this.props.match.params.topicId;
+    this.props.dispatch(getResources(id));
   }
 
   render() {
@@ -16,7 +16,7 @@ export class TopicDashboard extends React.Component {
       return <Loading />;
     }
     return (
-      <main>
+      <main className="topic-dashboard">
         <section>
           <h2>Breadcrumb nav placeholder</h2>
         </section>
@@ -31,9 +31,9 @@ export class TopicDashboard extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    loading: state.resourceReducer.loading,
-    parentId: state.resourceReducer.topicId,
-    resources: state.resourceReducer.resources
+    loading: state.topicDashReducer.loading,
+    parentId: state.topicDashReducer.topicId,
+    resources: state.topicDashReducer.resources
   };
 };
 export default connect(mapStateToProps)(TopicDashboard);

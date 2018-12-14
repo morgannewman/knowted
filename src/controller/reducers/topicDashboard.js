@@ -1,21 +1,20 @@
 import {
   RESOURCE_LOADING,
   RESOURCE_SUCCESS,
-  RECENT_RESOURCE_SUCCESS,
-  SET_PARENT,
   ADD_RESOURCE,
   UPDATE_RESOURCE,
   DELETE_RESOURCE,
   RESOURCE_ERROR
-} from '../actions/resource';
+} from '../actions/topicDashboard';
+
 import produce from 'immer';
 
 export const initialState = {
   resources: [],
-  recentResources: [],
   loading: false,
   error: null,
-  parent: {}
+  topicID: null,
+  topicTitle: ''
 };
 
 export default produce((state, action) => {
@@ -25,17 +24,14 @@ export default produce((state, action) => {
       state.error = null;
 
       return;
+
     case RESOURCE_SUCCESS:
       state.loading = false;
       state.error = null;
-      state.resources = action.payload;
+      state.resources = action.payload.resources;
+      state.topicID = action.payload.id;
+      state.topicTitle = action.payload.title;
 
-      return;
-
-    case RECENT_RESOURCE_SUCCESS:
-      state.loading = false;
-      state.error = null;
-      state.recentResources = action.payload;
       return;
 
     case RESOURCE_ERROR:
@@ -46,10 +42,6 @@ export default produce((state, action) => {
     case ADD_RESOURCE:
       state.resources.push(action.resource);
       state.loading = false;
-      return;
-
-    case SET_PARENT:
-      state.parent = action.payload;
       return;
 
     case UPDATE_RESOURCE:
