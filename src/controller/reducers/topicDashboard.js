@@ -10,11 +10,11 @@ import {
 import produce from 'immer';
 
 export const initialState = {
-  resources: [],
+  resources: {},
   loading: false,
   error: null,
-  topicID: null,
-  topicTitle: ''
+  topic: {},
+  resourceOrder: []
 };
 
 export default produce((state, action) => {
@@ -28,10 +28,12 @@ export default produce((state, action) => {
     case RESOURCE_SUCCESS:
       state.loading = false;
       state.error = null;
-      // state.resources = action.payload.resources;
-      // state.topicID = action.payload.id;
-      // state.topicTitle = action.payload.title;
 
+      /**This function takes in an array
+       * The accumulator for the reduce function starts as an empty object
+       * For every iteration, the object is "built up" with the resource's id as the key
+       * and the resource data(an object) as the value
+       */
       function mapResourcesToObject(resources) {
         return resources.reduce((obj, resource) => {
           obj[resource.id] = resource;
@@ -39,14 +41,16 @@ export default produce((state, action) => {
         }, {});
       }
 
+      //This makes resources an object with id:data as key value pairs based on the function avove
       state.resources = mapResourcesToObject(action.payload.resources);
-      // remove redundant resources from payload
+      // since we don't
       delete action.payload.resources;
 
       state.resourceOrder = action.payload.resourceOrder;
       // remove redundant resourceOrder from payload
       delete action.payload.resourceOrder;
 
+      //add all information relating to that topic, minus the resources which were deleted above
       state.topic = action.payload;
       return;
 

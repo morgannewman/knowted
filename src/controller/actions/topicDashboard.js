@@ -49,7 +49,9 @@ export const initializeTopicDasbhoard = id => dispatch => {
   api.topics
     .getOne(id)
     .then(data => {
+      console.log('======================');
       console.log(data);
+      console.log('======================');
       dispatch(resourceSuccess(data));
     })
     .catch(err => {
