@@ -118,7 +118,7 @@ export class ResourceItem extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    parentId: state.topicDashReducer.id
+    parentId: state.topicDashReducer.topic.id
   };
 };
 export default connect(mapStateToProps)(ResourceItem);

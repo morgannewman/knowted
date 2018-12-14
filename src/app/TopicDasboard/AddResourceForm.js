@@ -159,7 +159,7 @@ export class AddResourceForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    parentId: state.topicDashReducer.topicID
+    parentId: state.topicDashReducer.topic.id
   };
 };
 export default connect(mapStateToProps)(AddResourceForm);

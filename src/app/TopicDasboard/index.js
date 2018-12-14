@@ -21,10 +21,10 @@ export class TopicDashboard extends React.Component {
           <h2>Breadcrumb nav placeholder</h2>
         </section>
         <h2>Active Resources</h2>
-        {/* <ActiveResourceContainer resources={this.props.resources} />
+        <ActiveResourceContainer resources={this.props.resources} />
 
         <h2>Completed Resources </h2>
-        <CompletedResourceContainer resources={this.props.resources} /> */}
+        <CompletedResourceContainer resources={this.props.resources} />
       </main>
     );
   }
@@ -32,7 +32,7 @@ export class TopicDashboard extends React.Component {
 const mapStateToProps = state => {
   return {
     loading: state.topicDashReducer.loading,
-    parentId: state.topicDashReducer.topicId,
+    parentId: state.topicDashReducer.topic.id,
     resources: state.topicDashReducer.resources
   };
 };
