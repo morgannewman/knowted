@@ -5,17 +5,21 @@ import './ActiveResourceContainer.scss';
 
 export class ActiveResourceContainer extends React.Component {
   //TODO: Drag and drop functionality
+  state = {
+    resourceOrder: this.props.resourceOrder
+  };
 
   render() {
-    const { resources } = this.props;
+    const { resources, resourceOrder } = this.props;
+    console.log(resources);
     return (
       <section className="active-resources-container">
         <ul className="active-resources-list">
-          {resources.map(rescItem => {
-            if (rescItem && !rescItem.completed) {
+          {resourceOrder.map(rescID => {
+            if (resourceOrder && resources && resourceOrder.length > 0) {
               return (
-                <li key={rescItem.id} className="resource-item-container">
-                  <ResourceItem resource={rescItem} />
+                <li key={rescID} className="resource-item-container">
+                  <ResourceItem resource={resources[rescID]} />
                 </li>
               );
             } else {

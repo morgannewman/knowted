@@ -30,12 +30,6 @@ export const updateResource = (resource, id) => ({
   id
 });
 
-export const DELETE_RESOURCE = 'DELETE_RESOURCES';
-export const delResource = id => ({
-  type: DELETE_RESOURCE,
-  id
-});
-
 /**
  *Gets all resources belonging to a parent
  *First dispatches a loading function to change state to loading
@@ -99,6 +93,12 @@ export const updateSingleResource = (id, body) => dispatch => {
     .catch(error => dispatch(resourceError(error)));
 };
 
+export const DELETE_RESOURCE = 'DELETE_RESOURCE';
+export const delResource = (resources, resourceOrder) => ({
+  type: DELETE_RESOURCE,
+  payload: resources,
+  resourceOrder
+});
 /**
  * Deletes a single resource
  * First sends DELETE request to server
@@ -107,9 +107,27 @@ export const updateSingleResource = (id, body) => dispatch => {
  * * @param {{id: integer}}
  */
 
-export const deleteResource = id => dispatch => {
+export const deleteResource = id => (dispatch, getState) => {
+  console.log(id);
   api.resources
     .delete(id)
-    .then(() => dispatch(delResource(Number(id))))
+    .then(() => {
+      const resources = getState().topicDashReducer.resources;
+      const resourceOrder = getState().topicDashReducer.resourceOrder;
+      const index = resourceOrder.findIndex(num => num === id);
+      resourceOrder.splice(index, 1);
+      delete resources[id];
+      dispatch(delResource(resources, resourceOrder));
+    })
+    .then(() => {})
+
     .catch(error => dispatch(resourceError(error)));
 };
+
+// export const UPDATE_RESC = 'UPDATE_RESC';
+// export const updateResc = resources => {
+//   return {
+//     type: UPDATE_RESC,
+//     payload: resources
+//   };
+// };
