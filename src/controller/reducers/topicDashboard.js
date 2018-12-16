@@ -5,7 +5,8 @@ import {
   UPDATE_RESOURCE,
   DELETE_RESOURCE,
   RESOURCE_ERROR,
-  UPDATE_RESC
+  UPDATE_RESC,
+  UPDATE_RESC_ORDER
 } from '../actions/topicDashboard';
 
 import produce from 'immer';
@@ -72,10 +73,12 @@ export default produce((state, action) => {
       }
 
       return;
+
+    case UPDATE_RESC_ORDER:
+      state.resourceOrder = action.payload;
+      return;
     case DELETE_RESOURCE:
       state.resources = action.payload;
-      state.resourceOrder = action.resourceOrder;
-
       return;
 
     // case UPDATE_RESC:

@@ -6,6 +6,7 @@ export function ResourceView({
   handleEdit,
   handleDelete
 }) {
+  console.log(resource);
   return (
     <div className="resource-view">
       <input

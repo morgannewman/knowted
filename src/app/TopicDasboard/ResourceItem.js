@@ -56,7 +56,8 @@ export class ResourceItem extends React.Component {
   //FIXME: connect function to dispatch async action to backend
   handleDelete = e => {
     const id = e.target.getAttribute('resourceid');
-    this.props.dispatch(deleteResource(id));
+    console.log(id, this.props.parentId);
+    this.props.dispatch(deleteResource(id, this.props.parentId));
   };
 
   /**

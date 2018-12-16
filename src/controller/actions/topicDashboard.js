@@ -93,11 +93,15 @@ export const updateSingleResource = (id, body) => dispatch => {
     .catch(error => dispatch(resourceError(error)));
 };
 
+export const UPDATE_RESC_ORDER = 'UPDATE_RESC_ORDER';
+export const updateRescourceOrder = rescOrder => ({
+  type: UPDATE_RESC_ORDER,
+  payload: rescOrder
+});
 export const DELETE_RESOURCE = 'DELETE_RESOURCE';
 export const delResource = (resources, resourceOrder) => ({
   type: DELETE_RESOURCE,
-  payload: resources,
-  resourceOrder
+  payload: resources
 });
 /**
  * Deletes a single resource
@@ -107,27 +111,34 @@ export const delResource = (resources, resourceOrder) => ({
  * * @param {{id: integer}}
  */
 
-export const deleteResource = id => (dispatch, getState) => {
-  console.log(id);
+//FIXME: MAKE PUT REQUEST TO TOPICS TO UPDATE REOSOURCE ORDER
+//FIXME DELETE NOT WORKING. RESOURCE ORDER NOT BEING SENT IN PROPERLY? IS BACK END RETURNING ARRAY?
+export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
+  console.log(resourceId);
+
+  const resources = getState().topicDashReducer.resources;
+  const resourceOrder = getState().topicDashReducer.resourceOrder;
+  const index = resourceOrder.findIndex(num => num === resourceId);
+  resourceOrder.splice(index, 1);
+  delete resources[resourceId];
+  console.log(resources, typeof resources);
+  console.log(resourceOrder, typeof resourceOrder);
+  const body = {
+    id: topicId,
+    resourceOrder
+  };
+
   api.resources
-    .delete(id)
-    .then(() => {
-      const resources = getState().topicDashReducer.resources;
-      const resourceOrder = getState().topicDashReducer.resourceOrder;
-      const index = resourceOrder.findIndex(num => num === id);
-      resourceOrder.splice(index, 1);
-      delete resources[id];
-      dispatch(delResource(resources, resourceOrder));
-    })
-    .then(() => {})
-
+    .delete(resourceId)
+    // .then(console.log('hello'))
+    // .then(() => api.topics.put(JSON.stringify(body)))
+    .then(res => console.log(res))
+    // .then(res => dispatch(updateRescourceOrder(res)))
+    // .then(() => dispatch(delResource(resources, resourceOrder)))
     .catch(error => dispatch(resourceError(error)));
-};
 
-// export const UPDATE_RESC = 'UPDATE_RESC';
-// export const updateResc = resources => {
-//   return {
-//     type: UPDATE_RESC,
-//     payload: resources
-//   };
-// };
+  api.topics
+    .put({ id: topicId, resourceOrder: JSON.stringify(resourceOrder) })
+    .then(res => dispatch(updateRescourceOrder(res.resourceOrder)))
+    .catch(err => console.log(err));
+};

@@ -17,11 +17,11 @@ export class ActiveResourceContainer extends React.Component {
         <ul className="active-resources-list">
           {resourceOrder.map(rescID => {
             if (resourceOrder && resources && resourceOrder.length > 0) {
-              return (
+              return resources[rescID] ? (
                 <li key={rescID} className="resource-item-container">
                   <ResourceItem resource={resources[rescID]} />
                 </li>
-              );
+              ) : null;
             } else {
               return null;
             }
