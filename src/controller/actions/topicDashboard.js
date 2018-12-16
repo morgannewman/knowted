@@ -111,8 +111,6 @@ export const delResource = (resources, resourceOrder) => ({
  * * @param {{id: integer}}
  */
 
-//FIXME: MAKE PUT REQUEST TO TOPICS TO UPDATE REOSOURCE ORDER
-//FIXME DELETE NOT WORKING. RESOURCE ORDER NOT BEING SENT IN PROPERLY? IS BACK END RETURNING ARRAY?
 export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
   console.log(resourceId);
 
@@ -123,18 +121,14 @@ export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
   delete resources[resourceId];
   console.log(resources, typeof resources);
   console.log(resourceOrder, typeof resourceOrder);
-  const body = {
-    id: topicId,
-    resourceOrder
-  };
+  // const body = {
+  //   id: topicId,
+  //   resourceOrder
+  // };
 
   api.resources
     .delete(resourceId)
-    // .then(console.log('hello'))
-    // .then(() => api.topics.put(JSON.stringify(body)))
     .then(res => console.log(res))
-    // .then(res => dispatch(updateRescourceOrder(res)))
-    // .then(() => dispatch(delResource(resources, resourceOrder)))
     .catch(error => dispatch(resourceError(error)));
 
   api.topics
