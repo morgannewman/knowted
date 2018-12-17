@@ -20,7 +20,7 @@ export const resourceError = error => ({
 export const ADD_RESOURCE = 'ADD_RESOURCE';
 export const addResource = resource => ({
   type: ADD_RESOURCE,
-  resource
+  payload: resource
 });
 
 export const UPDATE_RESOURCE = 'UPDATE_RESOURCE';
@@ -42,9 +42,6 @@ export const initializeTopicDasbhoard = id => dispatch => {
   api.topics
     .getOne(id)
     .then(data => {
-      console.log('======================');
-      console.log(data);
-      console.log('======================');
       dispatch(resourceSuccess(data));
     })
     .catch(err => {

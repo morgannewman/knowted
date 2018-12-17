@@ -59,20 +59,13 @@ export default produce((state, action) => {
 
       return;
     case ADD_RESOURCE:
-      state.resources.push(action.resource);
+      console.log(action);
+      state.resources[action.payload.id] = action.payload;
+      state.resourceOrder.push(action.payload.id);
       state.loading = false;
       return;
 
     case UPDATE_RESOURCE:
-      // const updateIndex = state.resources.findIndex(
-      //   item => item.id === action.id
-      // );
-
-      // if (updateIndex > -1) {
-      //   state.resources[updateIndex] = action.resource;
-
-      // }
-      console.log(action);
       state.resources[action.payload.id] = action.payload;
       return;
 
@@ -82,11 +75,6 @@ export default produce((state, action) => {
     case DELETE_RESOURCE:
       state.resources = action.payload;
       return;
-
-    // case UPDATE_RESC:
-    // state.resources = action.payload;
-
-    // return;
 
     default:
       return;
