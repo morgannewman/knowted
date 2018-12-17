@@ -34,21 +34,16 @@ export class ActiveResourceContainer extends React.Component {
     }
     //FIXME: take out console logs once I'm sure this works.
     // const column = source.droppableId;
-    // const newOrder = Array.from(this.state.resources);
-    console.log(this.state.resources);
-    console.log(this.state.resourceOrder);
-    console.log(draggableId, 'draggableId');
-    console.log(source.index, 'source index');
-    console.log(destination.index, 'destination index');
-
-    // newResources.splice(source.index, 1);
-    // newResources.splice(destination.index, 0, movedItem);
-    // console.log(destination.index);
-    // console.log(movedItem, 44);
-    // newResources[destination.index] = movedItem;
-    // console.log(newResources, 'newresources inseter');
-    // console.log(newResources, 'after splice');
-    // this.setState({ resources: newResources });
+    const newOrder = Array.from(this.state.resourceOrder);
+    // console.log(this.state.resources);
+    // console.log(this.state.resourceOrder, 'ORDER');
+    // console.log(draggableId, 'draggableId');
+    // console.log(source.index, 'source index');
+    // console.log(destination.index, 'destination index');
+    newOrder.splice(source.index, 1);
+    newOrder.splice(destination.index, 0, draggableId);
+    // console.log(newOrder);
+    this.setState({ resourceOrder: newOrder });
   };
 
   render() {
