@@ -64,14 +64,16 @@ export default produce((state, action) => {
       return;
 
     case UPDATE_RESOURCE:
-      const updateIndex = state.resources.findIndex(
-        item => item.id === action.id
-      );
+      // const updateIndex = state.resources.findIndex(
+      //   item => item.id === action.id
+      // );
 
-      if (updateIndex > -1) {
-        state.resources[updateIndex] = action.resource;
-      }
+      // if (updateIndex > -1) {
+      //   state.resources[updateIndex] = action.resource;
 
+      // }
+      console.log(action);
+      state.resources[action.payload.id] = action.payload;
       return;
 
     case UPDATE_RESC_ORDER:

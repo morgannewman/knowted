@@ -24,10 +24,9 @@ export const addResource = resource => ({
 });
 
 export const UPDATE_RESOURCE = 'UPDATE_RESOURCE';
-export const updateResource = (resource, id) => ({
+export const updateResource = resource => ({
   type: UPDATE_RESOURCE,
-  resource,
-  id
+  payload: resource
 });
 
 /**
@@ -88,7 +87,7 @@ export const updateSingleResource = (id, body) => dispatch => {
   api.resources
     .put(body)
     .then(data => {
-      dispatch(updateResource(data, id));
+      dispatch(updateResource(data));
     })
     .catch(error => dispatch(resourceError(error)));
 };
