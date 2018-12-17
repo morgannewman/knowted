@@ -5,6 +5,8 @@ import {
   UPDATE_TOPIC_PARENT_SUCCESS,
   DELETE_TOPIC_SUCCESS,
   UPDATE_TOPIC_ORDER_SUCCESS,
+  DISPLAY_EDIT_FOLDER_FORM,
+  HIDE_EDIT_FOLDER_FORM,
   ADD_FOLDER_SUCCESS,
   UPDATE_FOLDER_SUCCESS,
   API_ERROR
@@ -16,6 +18,8 @@ const initialState = {
   folders: null,
   recentResources: null,
   topicOrder: [],
+  editingFolder: false,
+  currentFolderId: null,
   loading: true,
   error: null
 };
@@ -91,6 +95,18 @@ export default produce((state, action) => {
       if (folderIndex > -1) {
         state.folders[folderIndex].title = action.payload.title;
       }
+      return;
+
+    case DISPLAY_EDIT_FOLDER_FORM:
+      state.error = null;
+      state.currentFolderId = action.payload;
+      state.editingFolder = true;
+      return;
+
+    case HIDE_EDIT_FOLDER_FORM:
+      state.error = null;
+      state.currentFolderId = null;
+      state.editingFolder = false;
       return;
 
     case API_ERROR:

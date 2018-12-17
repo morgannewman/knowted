@@ -19,10 +19,6 @@ export class AllTopicsContainer extends React.Component {
     folders: PropTypes.array
   };
 
-  componentDidMount() {
-    console.log(this.props.topicOrder);
-  }
-
   combine = (topicId1, topicId2) => {
     this.props.dispatch(
       mergeTopicsNewFolder(`Untitled Folder ${Date.now()}`, topicId1, topicId2)
@@ -69,7 +65,6 @@ export class AllTopicsContainer extends React.Component {
 
   render() {
     const { topics, folders } = this.props;
-
     return (
       <section className="all-topics-container">
         <div className="folders-container">
@@ -82,6 +77,11 @@ export class AllTopicsContainer extends React.Component {
                     folderId={folder.id}
                     key={folder.id}
                     index={index}
+                    editing={
+                      folder.id === this.props.currentFolderId
+                        ? this.props.currentFolderId
+                        : null
+                    }
                   />
                 );
               })
@@ -144,6 +144,7 @@ const mapStateToProps = state => {
     topics: state.dashboardReducer.topics,
     // topicOrder: state.dashboardReducer.topicOrder,
     folders: state.dashboardReducer.folders,
+    currentFolderId: state.dashboardReducer.currentFolderId,
     userId: state.auth.user.id
   };
 };

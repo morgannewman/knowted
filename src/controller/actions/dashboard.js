@@ -174,6 +174,18 @@ export const updateTopicOrderSuccess = topics => ({
 
 //-- FOLDER ACTIONS --
 
+export const DISPLAY_EDIT_FOLDER_FORM = 'DISPLAY_EDIT_FOLDER_FORM';
+export const displayEditFolderForm = currentFolderId => ({
+  type: DISPLAY_EDIT_FOLDER_FORM,
+  payload: currentFolderId
+});
+
+export const HIDE_EDIT_FOLDER_FORM = 'HIDE_EDIT_FOLDER_FORM';
+export const hideEditFolderForm = currentFolderId => ({
+  type: HIDE_EDIT_FOLDER_FORM,
+  payload: currentFolderId
+});
+
 export const ADD_FOLDER_SUCCESS = 'ADD_FOLDER_SUCCESS';
 export const addFolderSuccess = folder => ({
   type: ADD_FOLDER_SUCCESS,

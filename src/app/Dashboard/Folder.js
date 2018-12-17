@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import './Folder.css';
 import { connect } from 'react-redux';
 
-import { updateFolder } from '../../controller/actions/dashboard';
+import {
+  updateFolder,
+  displayEditFolderForm,
+  hideEditFolderForm
+} from '../../controller/actions/dashboard';
 
 export class Folder extends React.Component {
   static propTypes = {
@@ -14,8 +18,7 @@ export class Folder extends React.Component {
 
   state = {
     showJawBone: false,
-    showEdit: false,
-    editing: false
+    showEdit: false
   };
 
   toggleJawBone = () => {
@@ -24,23 +27,31 @@ export class Folder extends React.Component {
     });
   };
 
-  toggleEdit = () => {
-    this.setState(state => {
-      return { showEdit: !state.showEdit };
+  displayEdit = () => {
+    this.setState(() => {
+      return { showEdit: true };
     });
   };
 
-  editFolder = () => {
-    this.setState(state => {
-      return { editing: !state.editing };
+  hideEdit = () => {
+    this.setState(() => {
+      return { showEdit: false };
     });
+  };
+
+  displayEditFolderForm = () => {
+    this.props.dispatch(displayEditFolderForm(this.props.folderId));
+  };
+
+  hideEditFolderForm = () => {
+    this.props.dispatch(hideEditFolderForm(this.props.folderId));
   };
 
   submitEdit = e => {
     e.preventDefault();
     let title = this.titleInput.value;
     this.props.dispatch(updateFolder(title, this.props.folderId));
-    this.editFolder();
+    this.hideEditFolderForm();
   };
 
   render() {
@@ -48,12 +59,12 @@ export class Folder extends React.Component {
     return (
       <div
         className="folder-wrap"
-        onMouseEnter={this.toggleEdit}
-        onMouseLeave={this.toggleEdit}
+        onMouseEnter={this.displayEdit}
+        onMouseLeave={this.hideEdit}
       >
-        {this.state.editing ? (
+        {this.props.editing ? (
           <>
-            <button onClick={this.editFolder}>Cancel</button>
+            <button onClick={this.hideEditFolderForm}>Cancel</button>
             <form className="edit-folder-form" onSubmit={this.submitEdit}>
               <label>Folder Name</label>
               <input
@@ -67,7 +78,7 @@ export class Folder extends React.Component {
         ) : (
           <>
             {this.state.showEdit && (
-              <button onClick={this.editFolder}>Edit</button>
+              <button onClick={this.displayEditFolderForm}>Edit</button>
             )}
             <button className="folder-btn" onClick={this.toggleJawBone}>
               {title}
