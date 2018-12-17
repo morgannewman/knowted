@@ -18,8 +18,18 @@ export function ResourceView({
 
       <a href={resource.id}>{resource.title}</a>
       <br />
-      <a href={resource.uri} target="_blank" rel="noopener noreferrer">
-        {resource.uri}
+      <a
+        href={
+          resource.type === 'youtube'
+            ? `https://www.youtube.com/watch?v=${resource.uri}`
+            : resource.uri
+        }
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {resource.type === 'youtube'
+          ? `https://www.youtube.com/watch?v=${resource.uri}`
+          : resource.uri}
       </a>
       <div className="resource-item-controls">
         <button

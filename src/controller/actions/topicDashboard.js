@@ -30,7 +30,7 @@ export const updateResource = resource => ({
 });
 
 export const UPDATE_RESC_ORDER = 'UPDATE_RESC_ORDER';
-export const updateRescourceOrder = rescOrder => ({
+export const updateResourceOrder = rescOrder => ({
   type: UPDATE_RESC_ORDER,
   payload: rescOrder
 });
@@ -48,7 +48,7 @@ export const delResource = id => ({
  * If there is an error, it dispatches an error obj to state
  * *@param {{id:integer}}} id
  */
-export const initializeTopicDasbhoard = id => dispatch => {
+export const initializeTopicDashboard = id => dispatch => {
   dispatch(resourceLoading());
   api.topics
     .getOne(id)
@@ -147,7 +147,7 @@ export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
     .then(res => {
       console.log(res);
       dispatch(delResource(Number(resourceId)));
-      dispatch(updateRescourceOrder(res.resourceOrder));
+      dispatch(updateResourceOrder(res.resourceOrder));
     })
     .catch(error => dispatch(resourceError(error)));
 };

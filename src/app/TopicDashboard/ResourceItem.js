@@ -83,14 +83,12 @@ export class ResourceItem extends React.Component {
     // console.log(title, uri);
     // console.log(e.currentTarget);
     const newTitle = title;
-    const newURI = uri;
+    // const newURI = uri;
     const id = Number(e.target.id);
-    if (!newTitle || !newURI) {
+    if (!newTitle) {
       return;
     }
-    this.props.dispatch(
-      updateSingleResource(id, { id, title: newTitle, uri: newURI })
-    );
+    this.props.dispatch(updateSingleResource(id, { id, title: newTitle }));
 
     this.setState({ editing: !this.state.editing });
   };
