@@ -8,7 +8,7 @@ export class ActiveResourceContainer extends React.Component {
   state = {
     resourceOrder: this.props.resourceOrder
   };
-  //FIXME: resources[rescID] doesn't always sync up on delete
+
   render() {
     const { resources, resourceOrder } = this.props;
 

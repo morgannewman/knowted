@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
-import { initializeTopicDasbhoard } from '../../controller/actions/topicDashboard';
+import { initializeTopicDashboard } from '../../controller/actions/topicDashboard';
 import Loading from '../common/Loading';
 import './index.scss';
 export class TopicDashboard extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.topicId;
-    this.props.dispatch(initializeTopicDasbhoard(id));
+    this.props.dispatch(initializeTopicDashboard(id));
   }
 
   render() {
