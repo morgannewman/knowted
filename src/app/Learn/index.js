@@ -20,11 +20,11 @@ export class Learn extends React.Component {
 		this.props.dispatch(initializeLearn(topicId, resourceId));
 	}
 
-	componentDidUpdate(prevProps){
+	componentDidUpdate(prevProps) {
 		const { topicId, resourceId } = this.props.match.params;
 		const { resourceId: prevResourceId } = prevProps.match.params;
 
-		if(prevResourceId !== resourceId) {
+		if (prevResourceId !== resourceId) {
 			this.props.dispatch(initializeLearn(topicId, resourceId));
 		}
 	}
@@ -35,24 +35,23 @@ export class Learn extends React.Component {
 
 		const positionOfCompletedResource = resourceOrder.findIndex(id => Number(resourceId) === id);
 		let idOfNextResource;
-		
-		for(let i = 1; i < resourceOrder.length; i++){
+
+		for (let i = 1; i < resourceOrder.length; i++) {
 			const tempResourceId = resourceOrder[(positionOfCompletedResource + i) % resourceOrder.length];
 			const indexinResourcesArray = resources.findIndex(resource => resource.id === tempResourceId);
-			if(!resources[indexinResourcesArray].completed){
+			if (!resources[indexinResourcesArray].completed) {
 				idOfNextResource = resources[indexinResourcesArray].id;
 				break;
 			}
 		}
 
-		this.props.dispatch(submitCompleteResource(resourceId))
-			.then(() => {
-				if(idOfNextResource === undefined) {
-					this.props.history.push(`/dashboard/${topicId}`);
-				} else {
-					this.props.history.push(`/dashboard/${topicId}/${idOfNextResource}`);
-				}
-			});
+		this.props.dispatch(submitCompleteResource(resourceId)).then(() => {
+			if (idOfNextResource === undefined) {
+				this.props.history.push(`/dashboard/${topicId}`);
+			} else {
+				this.props.history.push(`/dashboard/${topicId}/${idOfNextResource}`);
+			}
+		});
 	};
 
 	render() {

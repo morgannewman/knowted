@@ -50,12 +50,11 @@ export const submitNotebookUpdate = req => dispatch => {
 
 export const submitCompleteResource = req => dispatch => {
 	dispatch(completeResourceSubmit());
-	return api.resources.put({ id: req, completed: true })
-		.then((res) => dispatch(completeResourceSuccess(res)))
+	return api.resources
+		.put({ id: req, completed: true })
+		.then(res => dispatch(completeResourceSuccess(res)))
 		.catch(err => dispatch(completeResourceError(err)));
-}
-
-
+};
 
 export const resetLearn = () => ({
 	type: LEARN_RESET
