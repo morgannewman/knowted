@@ -128,11 +128,12 @@ export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
   api.resources
     .delete(resourceId)
     .then(res => {
-      const resourceOrder = getState().topicDashReducer.resourceOrder;
-      const newOrder = resourceOrder.filter(item => {
-        console.log(item, resourceId);
-        return item !== Number(resourceId);
-      });
+      const newOrder = getState().topicDashReducer.resourceOrder.filter(
+        item => {
+          console.log(item, resourceId);
+          return item !== Number(resourceId);
+        }
+      );
       console.log(newOrder);
       return api.topics.put({
         id: topicId,
