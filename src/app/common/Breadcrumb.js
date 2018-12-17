@@ -17,7 +17,7 @@ export default class BreadCrumb extends Component {
       <nav>
         <Link to='/dashboard'>Dashboard</Link>
         <span> > <Link to={`/dashboard/${topicId}`}>{topicTitle}</Link></span>
-        {resourceId ? <span> > <Link to={`/dashboard/${topicId}/${resourceId}`}>{resourceTitle}</Link></span> : null}
+        {resourceId && <span> > <Link to={`/dashboard/${topicId}/${resourceId}`}>{resourceTitle}</Link></span>}
       </nav>    
       );
   }

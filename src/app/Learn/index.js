@@ -6,7 +6,7 @@ import Editor from './Editor';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
-import { initializeLearn, resetLearn } from '../../controller/actions/learn';
+import { initializeLearn, resetLearn, submitCompleteResource } from '../../controller/actions/learn';
 import Loading from '../common/Loading';
 import Breadcrumbs from '../common/Breadcrumbs';
 
@@ -19,6 +19,41 @@ export class Learn extends React.Component {
 		const { topicId, resourceId } = this.props.match.params; // from router
 		this.props.dispatch(initializeLearn(topicId, resourceId));
 	}
+
+	componentDidUpdate(prevProps){
+		const { topicId, resourceId } = this.props.match.params;
+		const { resourceId: prevResourceId } = prevProps.match.params;
+
+		if(prevResourceId !== resourceId) {
+			this.props.dispatch(initializeLearn(topicId, resourceId));
+		}
+	}
+
+	completeAndContinue = () => {
+		const { resourceOrder, resources } = this.props.topic;
+		const { resourceId, topicId } = this.props.match.params;
+
+		const positionOfCompletedResource = resourceOrder.findIndex(id => Number(resourceId) === id);
+		let idOfNextResource;
+		
+		for(let i = 1; i < resourceOrder.length; i++){
+			const tempResourceId = resourceOrder[(positionOfCompletedResource + i) % resourceOrder.length];
+			const indexinResourcesArray = resources.findIndex(resource => resource.id === tempResourceId);
+			if(!resources[indexinResourcesArray].completed){
+				idOfNextResource = resources[indexinResourcesArray].id;
+				break;
+			}
+		}
+
+		this.props.dispatch(submitCompleteResource(resourceId))
+			.then(() => {
+				if(idOfNextResource === undefined) {
+					this.props.history.push(`/dashboard/${topicId}`);
+				} else {
+					this.props.history.push(`/dashboard/${topicId}/${idOfNextResource}`);
+				}
+			});
+	};
 
 	render() {
 		const { stateIsStale, loading, resourceNotFound, notebook, topic, resource } = this.props;
@@ -38,13 +73,14 @@ export class Learn extends React.Component {
 					resourceId={resource.id}
 					resourceTitle={resource.title}
 				/>
+				{!resource.completed && <button onClick={this.completeAndContinue}>Complete & Continue</button>}
 				<div className="learn">
 					{/* TODO: Conditional logic to render a different card/layout for state.learn.resource.type === other resources */}
 					{/* TODO: Change this to be dynamic for state.learn.resource.type === youtube*/}
 					<iframe
 						id="ytplayer"
 						type="text/html"
-						src="https://www.youtube.com/embed/JeT2tXqp4m0"
+						src={`https://www.youtube.com/embed/${resource.uri}`}
 						frameBorder="0"
 						disablekb="1"
 						title="YouTube"
@@ -71,7 +107,8 @@ const mapStateToProps = (state, props) => {
 		resourceNotFound: state.learn.error && state.learn.error.status === 404,
 		notebook: state.learn.topic && (state.learn.topic.notebook || ''),
 		resource: currentResource,
-		topic: currentTopic
+		topic: currentTopic,
+		resources: state.learn.resources
 	};
 };
 
