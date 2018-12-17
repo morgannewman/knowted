@@ -87,7 +87,7 @@ export class AddResourceForm extends React.Component {
       ? 'youtube'
       : 'other';
     this.props.dispatch(submitResource(parent, title, uri, type));
-    this.setState({ feedback: null });
+    this.setState({ feedback: null, inputHidden: true, submitting: false });
     this.inputUri.value = '';
     this.inputTitle.value = '';
   };
