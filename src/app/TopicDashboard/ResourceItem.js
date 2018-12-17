@@ -93,7 +93,7 @@ export class ResourceItem extends React.Component {
   };
 
   render() {
-    const { resource } = this.props;
+    const { resource, parentId } = this.props;
     return (
       <div>
         {!this.state.editing ? (
@@ -102,6 +102,7 @@ export class ResourceItem extends React.Component {
             handleChecked={this.handleChecked}
             handleDelete={this.handleDelete}
             resource={resource}
+            topicID={parentId}
           />
         ) : (
           <ResourceEditForm

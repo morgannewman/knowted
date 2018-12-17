@@ -1,12 +1,12 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 export function ResourceView({
   resource,
   handleChecked,
   handleEdit,
-  handleDelete
+  handleDelete,
+  topicID
 }) {
-  //FIXME: need to add fomatting to YOUTUBE URLs. Currently they are just a code
   return (
     <div className="resource-view">
       <input
@@ -15,8 +15,7 @@ export function ResourceView({
         onChange={handleChecked}
         checked={resource.completed}
       />
-
-      <a href={resource.id}>{resource.title}</a>
+      <Link to={`/dashboard/${topicID}/${resource.id}`}>{resource.title}</Link>
       <br />
       <a
         href={
