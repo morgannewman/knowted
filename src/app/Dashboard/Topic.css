@@ -7,14 +7,8 @@
   margin: 20px;
 }
 
-.jaw-bone-container {
-  display: inline-block;
-  background: #befbfb;
-  border-radius: 6px;
-}
-
 .topic-wrap {
-  display: inline-block;
+  display: inline-flex;
 }
 
 .topic-btn {
@@ -31,7 +25,7 @@
   flex-direction: column;
 }
 
-.edit-delete-topic-options button {
+.edit-delete-topic-options div {
   margin: 0 10px 5px 0;
 }
 

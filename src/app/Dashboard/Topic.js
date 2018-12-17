@@ -45,50 +45,43 @@ export class Topic extends React.Component {
     const { title, topicId } = this.props;
 
     return (
-      <>
-        <div
-          className="topic-wrap"
-          onMouseEnter={this.toggleHidden}
-          onMouseLeave={this.toggleHidden}
-        >
-          {this.state.editing ? (
-            <>
-              <form className="edit-topic-form" onSubmit={this.submitEdit}>
-                <label>Topic Name</label>
-                <input
-                  ref={input => (this.titleInput = input)}
-                  type="text"
-                  name="topicTitle"
-                  defaultValue={this.props.title}
-                />
-              </form>
-              {this.state.showOptions && (
-                <div className="edit-delete-topic-options">
-                  <button onClick={this.editTopic}>Cancel</button>
-                  <button onClick={this.deleteTopic}>Delete</button>
-                </div>
-              )}
-            </>
-          ) : (
-            <>
-              <button
-                className="topic-btn"
-                onClick={() =>
-                  console.log('click through to topic/:id', topicId)
-                }
-              >
-                {title}
-              </button>
-              {this.state.showOptions && (
-                <div className="edit-delete-topic-options">
-                  <button onClick={this.editTopic}>Edit</button>
-                  <button onClick={this.deleteTopic}>Delete</button>
-                </div>
-              )}
-            </>
-          )}
-        </div>
-      </>
+      <div
+        className="topic-wrap"
+        onMouseEnter={this.toggleHidden}
+        onMouseLeave={this.toggleHidden}
+      >
+        {this.state.editing ? (
+          <>
+            <form className="edit-topic-form" onSubmit={this.submitEdit}>
+              <label>Topic Name</label>
+              <input
+                ref={input => (this.titleInput = input)}
+                type="text"
+                name="topicTitle"
+                defaultValue={this.props.title}
+              />
+            </form>
+            {this.state.showOptions && (
+              <div className="edit-delete-topic-options">
+                <button onClick={this.editTopic}>Cancel</button>
+                <button onClick={this.deleteTopic}>Delete</button>
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            <a className="topic-btn" href={`/dashboard/${topicId}`}>
+              {title}
+            </a>
+            {this.state.showOptions && (
+              <div className="edit-delete-topic-options">
+                <button onClick={this.editTopic}>Edit</button>
+                <button onClick={this.deleteTopic}>Delete</button>
+              </div>
+            )}
+          </>
+        )}
+      </div>
     );
   }
 }

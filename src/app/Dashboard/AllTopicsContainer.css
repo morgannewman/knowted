@@ -1,3 +1,4 @@
-.all-topics-container {
-  display: flex;
+.lonely-topics-container,
+.lonely-topics-container div {
+  display: inline-flex;
 }

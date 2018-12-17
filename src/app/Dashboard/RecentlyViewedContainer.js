@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 export class RecentlyViewed extends Component {
   render() {
     const { recentResources } = this.props;
