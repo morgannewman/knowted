@@ -8,6 +8,8 @@ import AddTopic from './AddTopic';
 import Folder from './Folder';
 import Topic from './Topic';
 
+import { updateTopicsOrder } from '../../controller/actions/dashboard';
+
 export class AllTopicsContainer extends React.Component {
   static propTypes = {
     topics: PropTypes.array,
@@ -19,7 +21,7 @@ export class AllTopicsContainer extends React.Component {
   };
 
   componentDidMount() {
-    console.log(this.state.topicsOrder);
+    console.log(this.props.topicsOrder);
   }
 
   reorder = (list, startIndex, endIndex) => {
@@ -31,6 +33,7 @@ export class AllTopicsContainer extends React.Component {
 
   onDragEnd = result => {
     const { destination, source, draggableId, combine } = result;
+    console.log(result);
 
     if (!destination) {
       return;
@@ -47,17 +50,18 @@ export class AllTopicsContainer extends React.Component {
       console.log(combine.draggableId, draggableId);
     }
 
-    console.log(result);
     //reorder
     const topics = this.reorder(
-      this.state.topicsOrder,
+      this.props.topicsOrder,
       source.index,
       destination.index
     );
 
-    this.setState({
-      topicsOrder: topics
-    });
+    // this.setState({
+    //   topicsOrder: topics
+    // });
+
+    this.props.dispatch(updateTopicsOrder(topics));
   };
 
   render() {
@@ -91,7 +95,8 @@ export class AllTopicsContainer extends React.Component {
               {(provided, snapshot) => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   {topics &&
-                    this.state.topicsOrder
+                    this.props.topics
+                      // this.state.topicsOrder
                       .map(
                         (topic, index) =>
                           (!topic.parent || !topic.parent.id) && (
@@ -132,6 +137,7 @@ export class AllTopicsContainer extends React.Component {
 
 const mapStateToProps = state => ({
   topics: state.dashboardReducer.topics,
+  topicsOrder: state.dashboardReducer.topicsOrder,
   folders: state.dashboardReducer.folders
 });
 
