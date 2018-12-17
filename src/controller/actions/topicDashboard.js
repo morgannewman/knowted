@@ -60,11 +60,26 @@ export const initializeTopicDasbhoard = id => dispatch => {
  * Only a single item is added to pre-existing state
  * * @param {{parent: integer, title:string, url:string}}
  */
-export const submitResource = (parent, title, uri, type) => dispatch => {
+export const submitResource = (parent, title, uri, type) => (
+  dispatch,
+  getState
+) => {
   const body = { parent, title, uri, type };
+
+  console.log(body);
   api.resources
     .post(body)
-    .then(data => dispatch(addResource(data)))
+    .then(data => {
+      dispatch(addResource(data));
+    })
+    .then(() => {
+      const resourceOrder = getState().topicDashReducer.resourceOrder;
+      console.log(resourceOrder);
+      api.topics.put({
+        id: body.parent,
+        resourceOrder: JSON.stringify(resourceOrder)
+      });
+    })
     .catch(err => {
       console.log(err);
       dispatch(resourceError(err));
