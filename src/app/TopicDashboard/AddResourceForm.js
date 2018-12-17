@@ -6,7 +6,7 @@ import { submitResource } from '../../controller/actions/topicDashboard';
 export class AddResourceForm extends React.Component {
   constructor(props) {
     super(props);
-    this.Form = React.createRef();
+
     this.state = {
       submitting: false,
       feedback: null,
@@ -91,11 +91,6 @@ export class AddResourceForm extends React.Component {
     this.inputUri.value = '';
     this.inputTitle.value = '';
   };
-  handleScrollClick = () => {
-    console.log(this.Form);
-    const element = this.Form.current;
-    element.scrollIntoView();
-  };
 
   /**
    * Handles input submission of new URL resources
@@ -112,16 +107,8 @@ export class AddResourceForm extends React.Component {
 
   render() {
     return (
-      <section className="add-resource-section">
-        <button
-          className="add-resource-button"
-          type="button"
-          onClick={this.handleScrollClick}
-        >
-          Add Resource
-        </button>
+      <section ref={this.props.ref1} className="add-resource-section">
         <form
-          ref={this.Form}
           id="add-resource"
           className="add-resource-form"
           onSubmit={this.handleSubmit}

@@ -20,6 +20,7 @@ export class TopicDashboard extends React.Component {
         <section>
           <h2>Breadcrumb nav placeholder</h2>
         </section>
+
         <h2>Active Resources</h2>
         <ActiveResourceContainer
           resources={this.props.resources}
