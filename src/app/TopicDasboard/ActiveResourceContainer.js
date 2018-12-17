@@ -16,7 +16,12 @@ export class ActiveResourceContainer extends React.Component {
       <section className="active-resources-container">
         <ul className="active-resources-list">
           {resourceOrder.map(rescID => {
-            if (resourceOrder && resources && resourceOrder.length > 0) {
+            if (
+              resourceOrder &&
+              resources &&
+              resourceOrder.length > 0 &&
+              resources[rescID].completed === false
+            ) {
               return resources[rescID] ? (
                 <li key={rescID} className="resource-item-container">
                   <ResourceItem resource={resources[rescID]} />
