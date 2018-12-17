@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { Link } from 'react-router-dom';
-import RecentResourceItem from './RecentResourceItem';
-
-//TODO: delete these two imports once we're connected and can pass through state
-import resourcesData from '../../dummyDB/resourcesData';
-const [first, second, third] = resourcesData;
-const data = [first, second, third];
+import { connect } from 'react-redux';
 
 export class RecentlyViewed extends Component {
   render() {
+    const { recentResources } = this.props;
     return (
       <section className="recently-viewed">
-        <RecentResourceItem resources={data} />
+        <ul className="recent-resources">
+          {recentResources.map(item => {
+            return (
+              <li key={item.id} className="recent-resource-item">
+                <a href={`dashboard/${item.parent.id}/${item.id}`}>
+                  <span>{item.parent.title}</span> > <span>{item.title}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       </section>
     );
   }
 }
 
-export default RecentlyViewed;
+const mapStateToProps = state => ({
+  recentResources: state.dashboardReducer.recentResources
+});
+
+export default connect(mapStateToProps)(RecentlyViewed);

@@ -1,6 +1,5 @@
 import React from 'react';
 import ResourceItem from './ResourceItem';
-import { connect } from 'react-redux';
 import './CompletedResourceContainer.scss';
 
 export class CompletedResourceContainer extends React.Component {
@@ -18,7 +17,7 @@ export class CompletedResourceContainer extends React.Component {
   };
 
   render() {
-    const { resources } = this.props;
+    const { resources, resourceOrder } = this.props;
     return (
       <section className="completed-resources-container">
         <div className="completed-label">
@@ -29,13 +28,18 @@ export class CompletedResourceContainer extends React.Component {
         </div>
         {this.state.showAll ? (
           <ul className="completed-resources-list">
-            {resources.map(rescItem => {
-              if (rescItem !== undefined && rescItem.completed) {
-                return (
-                  <li key={rescItem.id} className="completed-item-container">
-                    <ResourceItem resource={rescItem} />
+            {resourceOrder.map(rescID => {
+              if (
+                resourceOrder &&
+                resources &&
+                resourceOrder.length > 0 &&
+                resources[rescID].completed === true
+              ) {
+                return resources[rescID] ? (
+                  <li key={rescID} className="resource-item-container">
+                    <ResourceItem resource={resources[rescID]} />
                   </li>
-                );
+                ) : null;
               } else {
                 return null;
               }
@@ -47,4 +51,4 @@ export class CompletedResourceContainer extends React.Component {
   }
 }
 
-export default connect()(CompletedResourceContainer);
+export default CompletedResourceContainer;

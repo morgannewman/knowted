@@ -9,20 +9,17 @@ export default {
 	 * @returns {[{}]} an array of resource objects
 	 */
 	recent(num) {
-		// TODO: Confirm query params are correct once implemented on backend
 		return goFetch(BASE_URL, {}, { limit: num, orderBy: 'lastOpened' });
 	},
 
 	/**
-	 * Exposes GET /api/resources/:topicId. In other words, given a topicId, this
-	 * endpoint returns all its resources.
-	 * NOTE: The ID specified is the topicId, since topics own resources.
+	 * Exposes GET /api/resources/:id.
 	 * Resource props: id, parent, title, uri, completed, last_opened.
-	 * @param {number | string} topicId which is the `id` prop of a topic object
-	 * @returns {[{}]} an array of resouce objects
+	 * @param {number | string} resourceId which is the `id` prop of a topic object
+	 * @returns {{}} a resouce object
 	 */
-	get(topicId) {
-		return goFetch(`${BASE_URL}/${topicId}`);
+	getOne(resourceId) {
+		return goFetch(`${BASE_URL}/${resourceId}`);
 	},
 
 	/**

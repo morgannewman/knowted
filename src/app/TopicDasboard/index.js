@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
-import { get_resources } from '../../controller/actions/resource';
+import { initializeTopicDasbhoard } from '../../controller/actions/topicDashboard';
 import Loading from '../common/Loading';
+import './index.scss';
 export class TopicDashboard extends React.Component {
   componentDidMount() {
-    //TODO: Will need to dispatch with this.props.params.id
-    //ID hardcoded for now
-    this.props.dispatch(get_resources(4000));
+    const id = this.props.match.params.topicId;
+    this.props.dispatch(initializeTopicDasbhoard(id));
   }
 
   render() {
@@ -16,24 +16,28 @@ export class TopicDashboard extends React.Component {
       return <Loading />;
     }
     return (
-      <main>
+      <main className="topic-dashboard">
         <section>
           <h2>Breadcrumb nav placeholder</h2>
         </section>
         <h2>Active Resources</h2>
-        <ActiveResourceContainer resources={this.props.resources} />
+        <ActiveResourceContainer
+          resources={this.props.resources}
+          resourceOrder={this.props.resourceOrder}
+        />
 
         <h2>Completed Resources </h2>
-        <CompletedResourceContainer resources={this.props.resources} />
+        <CompletedResourceContainer {...this.props} />
       </main>
     );
   }
 }
 const mapStateToProps = state => {
   return {
-    loading: state.resourceReducer.loading,
-    parentId: state.resourceReducer.topicId,
-    resources: state.resourceReducer.resources
+    loading: state.topicDashReducer.loading,
+    parentId: state.topicDashReducer.topic.id,
+    resources: state.topicDashReducer.resources,
+    resourceOrder: state.topicDashReducer.resourceOrder
   };
 };
 export default connect(mapStateToProps)(TopicDashboard);

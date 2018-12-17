@@ -22,8 +22,8 @@ export class JawBone extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  topics: state.topicReducer.topics,
-  loading: state.topicReducer.loading
+  topics: state.dashboardReducer.topics,
+  loading: state.dashboardReducer.loading
 });
 
 export default connect(mapStateToProps)(JawBone);

@@ -1,32 +1,41 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow } from 'enzyme';
-import RecentlyViewedContainer from '../../Dashboard/RecentlyViewedContainer';
-import topicsData from '../../../dummyDB/topicsData';
-import resourcesData from '../../../dummyDB/resourcesData';
-import RecentResourceItem from '../../Dashboard/RecentResourceItem';
+import { shallow, mount } from 'enzyme';
+import { RecentlyViewed } from '../../Dashboard/RecentlyViewedContainer';
 
-const [first, second, third] = resourcesData;
-const recentdata = [first, second, third];
+const initialState = {
+  recentResources: [
+    {
+      completed: false,
+      id: 2,
+      lastOpened: '2018-12-11T16:02:09.784Z',
+      parent: { id: 1 },
+      title: 'Resource #2',
+      uri: 'uri #2'
+    },
+    {
+      completed: false,
+      id: 3,
+      lastOpened: '2018-12-11T16:02:09.784Z',
+      parent: { id: 2 },
+      title: 'Resource #3',
+      uri: 'uri #3'
+    }
+  ],
+  dispatch: jest.fn()
+};
 
-describe('<RecentResourceItem />', () => {
+describe('<RecentlyViewed />', () => {
   let wrapper;
-  beforeEach(() => {
-    wrapper = shallow(<RecentlyViewedContainer />);
+
+  it('renders without crashing', () => {
+    shallow(<RecentlyViewed {...initialState} />);
   });
 
-  it('renders without crashing', () => {});
-
-  it('renders recently viewed list', () => {
-    expect(wrapper.find('recently-viewed')).toBeTruthy();
-    expect(
-      wrapper.contains(<RecentResourceItem resources={recentdata} />)
-    ).toEqual(true);
-    expect(
-      wrapper
-        .find(RecentResourceItem)
-        .dive()
-        .find('recent-resources')
-    ).toBeTruthy();
+  it('renders ul section', () => {
+    let wrapper;
+    wrapper = mount(<RecentlyViewed {...initialState} />);
+    expect(wrapper.find('ul').children()).toHaveLength(
+      initialState.recentResources.length
+    );
   });
 });

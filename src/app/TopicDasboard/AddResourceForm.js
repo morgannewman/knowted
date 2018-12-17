@@ -2,7 +2,7 @@ import api from '../../controller/api';
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { submitResource } from '../../controller/actions/resource';
+import { submitResource } from '../../controller/actions/topicDashboard';
 export class AddResourceForm extends React.Component {
   constructor(props) {
     super(props);
@@ -79,7 +79,7 @@ export class AddResourceForm extends React.Component {
     e.preventDefault();
     const title = this.inputTitle.value;
     const uri = this.inputUri.value;
-    const parent = this.props.parentId;
+    const parent = Number(this.props.parentId);
     if (!title) {
       return;
     }
@@ -87,7 +87,7 @@ export class AddResourceForm extends React.Component {
       ? 'youtube'
       : 'other';
     this.props.dispatch(submitResource(parent, title, uri, type));
-    this.setState({ feedback: null });
+    this.setState({ feedback: null, inputHidden: true, submitting: false });
     this.inputUri.value = '';
     this.inputTitle.value = '';
   };
@@ -111,6 +111,7 @@ export class AddResourceForm extends React.Component {
   };
 
   render() {
+    console.log(this.props.parentId);
     return (
       <section className="add-resource-section">
         <button
@@ -158,7 +159,7 @@ export class AddResourceForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    parentId: state.resourceReducer.topicId
+    parentId: state.topicDashReducer.topic.id
   };
 };
 export default connect(mapStateToProps)(AddResourceForm);

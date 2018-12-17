@@ -47,20 +47,25 @@ export class ActiveResourceContainer extends React.Component {
   };
 
   render() {
-    const { resources } = this.props;
+    const { resources, resourceOrder } = this.props;
     // console.log(this.state.resources);
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <section className="active-resources-container">
-          <Droppable className="hello" droppableId="droppable-1">
+          <Droppable droppableId="droppable">
             {provided => (
               <ul ref={provided.innerRef} className="active-resources-list">
-                {this.state.resources.map((rescItem, index) => {
-                  if (rescItem && !rescItem.completed) {
-                    return (
+                {resourceOrder.map((rescID, index) => {
+                  if (
+                    resourceOrder &&
+                    resources &&
+                    resourceOrder.length > 0 &&
+                    resources[rescID]
+                  ) {
+                    return resources[rescID].completed === false ? (
                       <Draggable
-                        key={rescItem.id}
-                        draggableId={rescItem.id}
+                        key={rescID}
+                        draggableId={rescID}
                         index={index}
                       >
                         {provided => (
@@ -70,19 +75,19 @@ export class ActiveResourceContainer extends React.Component {
                             {...provided.dragHandleProps}
                             className="resource-item-container"
                           >
-                            <ResourceItem resource={rescItem} />
+                            <ResourceItem resource={resources[rescID]} />
                           </li>
                         )}
                       </Draggable>
-                    );
+                    ) : null;
                   } else {
                     return null;
                   }
                 })}
-                {provided.placeholder}
               </ul>
             )}
           </Droppable>
+
           <AddResourceForm />
         </section>
       </DragDropContext>
@@ -100,8 +105,36 @@ export class ActiveResourceContainer extends React.Component {
 
 export default connect()(ActiveResourceContainer);
 
-/*
-<li key={rescItem.id} className="resource-item-container">
-<ResourceItem resource={rescItem} />
-</li>
-*/
+{
+  /* <ul className="active-resources-list">
+{resourceOrder.map((rescID, index) => {
+  if (
+    resourceOrder &&
+    resources &&
+    resourceOrder.length > 0 &&
+    resources[rescID]
+  ) {
+    return resources[rescID].completed === false ? (
+      <Draggable
+        key={rescID}
+        draggableId={rescID}
+        index={index}
+      >
+        {provided => (
+          <li
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            className="resource-item-container"
+          >
+            <ResourceItem resource={resources[rescID]} />
+          </li>
+        )}
+      </Draggable>
+    ) : null;
+  } else {
+    return null;
+  }
+})}
+</ul> */
+}

@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 import auth from './auth';
+import learn from './learn';
+import dashboardReducer from './dashboard';
+import topicDashReducer from './topicDashboard';
 
-import folderReducer from './folder';
-import topicReducer from './topic';
-import resourceReducer from './resource';
 const rootReducer = combineReducers({
   auth,
-  folderReducer,
-  topicReducer,
-  resourceReducer
+  learn,
+  dashboardReducer,
+  topicDashReducer
 });
 
 export default rootReducer;

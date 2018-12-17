@@ -1,6 +1,6 @@
 import React from 'react';
 import './AddTopic.css';
-import { addTopic } from '../../controller/actions/topic';
+import { addTopic } from '../../controller/actions/dashboard';
 import { connect } from 'react-redux';
 
 export class AddTopic extends React.Component {
@@ -41,7 +41,7 @@ export class AddTopic extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  topics: state.topicReducer.topics
+  topics: state.dashboardReducer.topics
 });
 
 export default connect(mapStateToProps)(AddTopic);
