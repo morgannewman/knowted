@@ -1,9 +1,11 @@
 import './Learn.scss';
+
 import React from 'react';
 import { connect } from 'react-redux';
 import Editor from './Editor';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+
 import { initializeLearn, resetLearn } from '../../controller/actions/learn';
 import Loading from '../common/Loading';
 
@@ -12,18 +14,13 @@ export class Learn extends React.Component {
 		match: PropTypes.object
 	};
 
-	state = {
-		loading: true,
-		__placeholderNotebook__: ''
-	};
-
 	componentDidMount() {
 		const { topicId, resourceId } = this.props.match.params; // from router
 		this.props.dispatch(initializeLearn(topicId, resourceId));
 	}
 
 	render() {
-		const { stateIsStale, loading, resourceNotFound } = this.props;
+		const { stateIsStale, loading, resourceNotFound, notebook } = this.props;
 
 		if (resourceNotFound) {
 			this.props.dispatch(resetLearn());
@@ -32,21 +29,21 @@ export class Learn extends React.Component {
 
 		if (stateIsStale || loading) return <Loading />;
 
-		const { __placeholderNotebook__ } = this.state;
 		return (
 			<>
 				<div className="learn">
-					{/* TODO: Conditional logic to render cards for non-YT resources */}
+					{/* TODO: Conditional logic to render a different card/layout for state.learn.resource.type === other resources */}
+					{/* TODO: Change this to be dynamic for state.learn.resource.type === youtube*/}
 					<iframe
 						id="ytplayer"
 						type="text/html"
-						src="https://www.google.com/"
+						src="https://www.youtube.com/embed/JeT2tXqp4m0"
 						frameBorder="0"
 						disablekb="1"
 						title="YouTube"
 						sandbox="allow-scripts allow-popups allow-forms allow-same-origin"
 					/>
-					<Editor initialText={__placeholderNotebook__} />
+					<Editor initialText={notebook} />
 				</div>
 			</>
 		);
@@ -58,13 +55,14 @@ const mapStateToProps = (state, props) => {
 	const currentTopic = state.learn.topic;
 	const currentResource = state.learn.resource;
 
-	const topicIsStale = currentTopic && currentTopic.id !== topicId;
-	const resourceIsStale = currentResource && currentResource.id !== resourceId;
+	const topicIsStale = currentTopic && currentTopic.id !== Number(topicId);
+	const resourceIsStale = currentResource && currentResource.id !== Number(resourceId);
 
 	return {
 		stateIsStale: topicIsStale || resourceIsStale,
 		loading: state.learn.loading,
-		resourceNotFound: state.learn.error && state.learn.error.status === 404
+		resourceNotFound: state.learn.error && state.learn.error.status === 404,
+		notebook: state.learn.topic && (state.learn.topic.notebook || '')
 	};
 };
 

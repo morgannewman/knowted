@@ -1,8 +1,7 @@
 import api from '../api';
 
 export const LEARN_RESET = 'LEARN_RESET';
-export const LEARN_SET_TOPIC = 'LEARN_SET_TOPIC';
-export const LEARN_SET_RESOURCE = 'LEARN_SET_RESOURCE';
+export const LEARN_INITIALIZE_SUCCESS = 'LEARN_INITIALIZE_SUCCESS';
 export const LEARN_API_ERROR = 'LEARN_API_ERROR';
 // Update notebook actions
 export const LEARN_NOTEBOOK_UPDATE_SUBMIT = 'LEARN_NOTEBOOK_UPDATE_SUBMIT';
@@ -26,10 +25,9 @@ export const initializeLearn = (topicId, resourceId) => (dispatch, getState) => 
 		dispatch(resetLearn());
 	}
 
-	return Promise.all([api.topics.get(topicId), api.resources.get(resourceId)])
+	return Promise.all([api.topics.getOne(topicId, { resources: false }), api.resources.getOne(resourceId)])
 		.then(([topic, resource]) => {
-			dispatch(setCurrentTopic(topic));
-			dispatch(setCurrentResource(resource));
+			dispatch(initializeSuccess({ topic, resource }));
 		})
 		.catch(err => dispatch(apiError(err)));
 };
@@ -50,14 +48,9 @@ export const resetLearn = () => ({
 	type: LEARN_RESET
 });
 
-export const setCurrentTopic = topic => ({
-	type: LEARN_SET_TOPIC,
-	payload: topic
-});
-
-export const setCurrentResource = resource => ({
-	type: LEARN_SET_RESOURCE,
-	payload: resource
+export const initializeSuccess = res => ({
+	type: LEARN_INITIALIZE_SUCCESS,
+	payload: res
 });
 
 export const apiError = err => ({
