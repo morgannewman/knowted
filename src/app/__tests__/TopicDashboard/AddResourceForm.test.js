@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import { AddResourceForm } from '../../TopicDasboard/AddResourceForm';
+import { AddResourceForm } from '../../TopicDashboard/AddResourceForm';
 
 describe('AddResourceForm', () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = shallow(<AddResourceForm />);
-  });
+	let wrapper;
+	beforeEach(() => {
+		wrapper = shallow(<AddResourceForm />);
+	});
 
-  it('renders without crashing', () => {});
+	it('renders without crashing', () => {});
 });

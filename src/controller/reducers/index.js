@@ -5,10 +5,10 @@ import dashboardReducer from './dashboard';
 import topicDashReducer from './topicDashboard';
 
 const rootReducer = combineReducers({
-	auth,
-	learn,
-	dashboardReducer,
-	topicDashReducer
+  auth,
+  learn,
+  dashboardReducer,
+  topicDashReducer
 });
 
 export default rootReducer;
