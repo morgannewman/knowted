@@ -105,6 +105,7 @@ export class AddResourceForm extends React.Component {
     }
   };
 
+  //FIXME: metadata only populates for first item added within a lifecycle, not for additionals
   render() {
     return (
       <section ref={this.props.ref1} className="add-resource-section">
