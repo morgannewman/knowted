@@ -35,21 +35,21 @@ export class AllTopicsContainer extends React.Component {
     const { destination, source, draggableId, combine } = result;
     console.log(result);
 
-    if (!destination) {
-      return;
-    }
-    //check if destination has changed if not just return
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return;
-    }
-    console.log(combine);
-
+    // TODO: CASE: combining lone topics => creates a new folder and places items within that folder
     if (combine) {
+      console.log('hello!');
       console.log(combine.draggableId, draggableId);
+      return;
+    }      
+
+    // CASE: not reordered
+    if (!destination || (destination.droppableId === source.droppableId &&
+      destination.index === source.index)) {
+      return;
     }
+
+    // TODO: CASE: Move to other list (different droppable id)
+      // removing last item from folder => deletes folder    
 
     //reorder
     const topics = this.reorder(
@@ -57,10 +57,6 @@ export class AllTopicsContainer extends React.Component {
       source.index,
       destination.index
     );
-
-    // this.setState({
-    //   topicOrder: topics
-    // });
 
     this.props.dispatch(updateTopicOrder(topics, this.props.userId));
   };
