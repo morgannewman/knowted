@@ -127,7 +127,7 @@ export const updateSingleResource = (id, body) => dispatch => {
  */
 
 export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
-  // console.log(resourceId);
+  console.log(typeof resourceId, typeof topicId);
 
   api.resources
     .delete(resourceId)
@@ -147,6 +147,20 @@ export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
     .then(res => {
       console.log(res);
       dispatch(delResource(Number(resourceId)));
+      dispatch(updateResourceOrder(res.resourceOrder));
+    })
+    .catch(error => dispatch(resourceError(error)));
+};
+
+export const updateRescOrder = (rescOrder, topicId) => (dispatch, getState) => {
+  console.log(rescOrder, topicId);
+  api.topics
+    .put({
+      id: topicId,
+      resourceOrder: JSON.stringify(rescOrder)
+    })
+    .then(res => {
+      // console.log(res);
       dispatch(updateResourceOrder(res.resourceOrder));
     })
     .catch(error => dispatch(resourceError(error)));

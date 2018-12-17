@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { updateRescOrder } from '../../controller/actions/topicDashboard';
 import ResourceItem from './ResourceItem';
 import AddResourceForm from './AddResourceForm';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -9,10 +11,6 @@ export class ActiveResourceContainer extends React.Component {
   constructor(props) {
     super(props);
     this.Form1 = React.createRef();
-    this.state = {
-      resources: this.props.resources,
-      resourceOrder: this.props.resourceOrder
-    };
   }
 
   handleScrollClick = () => {
@@ -32,23 +30,16 @@ export class ActiveResourceContainer extends React.Component {
     ) {
       return;
     }
-    //FIXME: take out console logs once I'm sure this works.
-    // const column = source.droppableId;
-    const newOrder = Array.from(this.state.resourceOrder);
-    // console.log(this.state.resources);
-    // console.log(this.state.resourceOrder, 'ORDER');
-    // console.log(draggableId, 'draggableId');
-    // console.log(source.index, 'source index');
-    // console.log(destination.index, 'destination index');
+
+    const newOrder = Array.from(this.props.rescOrder);
     newOrder.splice(source.index, 1);
     newOrder.splice(destination.index, 0, draggableId);
-    // console.log(newOrder);
-    this.setState({ resourceOrder: newOrder });
+    this.props.dispatch(updateRescOrder(newOrder, this.props.parentId));
   };
 
   render() {
-    const { resources, resourceOrder } = this.props;
-
+    const { resources, rescOrder } = this.props;
+    console.log(this.props);
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <section className="active-resources-container">
@@ -62,11 +53,11 @@ export class ActiveResourceContainer extends React.Component {
           <Droppable droppableId="droppable-1">
             {provided => (
               <ul ref={provided.innerRef} className="active-resources-list">
-                {this.state.resourceOrder.map((rescID, index) => {
+                {rescOrder.map((rescID, index) => {
                   if (
-                    resourceOrder &&
+                    rescOrder &&
                     resources &&
-                    resourceOrder.length > 0 &&
+                    rescOrder.length > 0 &&
                     resources[rescID]
                   ) {
                     return resources[rescID].completed === false ? (
@@ -102,35 +93,11 @@ export class ActiveResourceContainer extends React.Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     loading: state.resourceReducer.loading,
-//     parentId: state.resourceReducer.topicId,
-//     resources: state.resourceReducer.resources
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    parentId: state.topicDashReducer.topic.id,
+    rescOrder: state.topicDashReducer.resourceOrder
+  };
+};
 
-// export default connect()(ActiveResourceContainer);
-export default ActiveResourceContainer;
-
-// <section className="active-resources-container">
-// <ul className="active-resources-list">
-//   {resourceOrder.map(rescID => {
-//     if (
-//       resourceOrder &&
-//       resources &&
-//       resourceOrder.length > 0 &&
-//       resources[rescID]
-//     ) {
-//       return resources[rescID].completed === false ? (
-//         <li key={rescID} className="resource-item-container">
-//           <ResourceItem resource={resources[rescID]} />
-//         </li>
-//       ) : null;
-//     } else {
-//       return null;
-//     }
-//   })}
-//   <AddResourceForm />
-// </ul>
-// </section>
+export default connect(mapStateToProps)(ActiveResourceContainer);
