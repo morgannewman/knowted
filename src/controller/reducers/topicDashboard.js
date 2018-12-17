@@ -58,14 +58,12 @@ export default produce((state, action) => {
 
       return;
     case ADD_RESOURCE:
-      console.log(action);
       state.resources[action.payload.id] = action.payload;
       state.resourceOrder.push(action.payload.id);
       state.loading = false;
       return;
 
     case UPDATE_RESOURCE:
-      console.log('ahhhhhhhh', 68);
       state.resources[action.payload.id] = action.payload;
       return;
 

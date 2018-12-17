@@ -111,7 +111,6 @@ export class AddResourceForm extends React.Component {
   };
 
   render() {
-    console.log(this.props.parentId);
     return (
       <section className="add-resource-section">
         <button
