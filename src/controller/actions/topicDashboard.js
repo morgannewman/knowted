@@ -148,6 +148,15 @@ export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
     .catch(error => dispatch(resourceError(error)));
 };
 
+/**
+ *Sends a request to server to update the 
+ resource order array and updates array in state
+ *FIRST: sends a PUT request to api.Topics with new Resource Order in the body
+ *SECOND: On success, this takes the server response and updates the resourceOrder array in state
+ *If there is an error, an error object gets dispatched to state
+ * @param {{rescOrder: array}} rescOrder
+ * @param {{topicId: integer}} topicId
+ */
 export const updateRescOrder = (rescOrder, topicId) => (dispatch, getState) => {
   // console.log(rescOrder, topicId);
   api.topics

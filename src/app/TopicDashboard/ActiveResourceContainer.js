@@ -61,22 +61,28 @@ export class ActiveResourceContainer extends React.Component {
                         draggableId={rescID}
                         index={index}
                       >
-                        {provided => (
-                          <li
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            className="resource-item-container"
-                          >
-                            <ResourceItem resource={resources[rescID]} />
-                          </li>
-                        )}
+                        {provided => {
+                          return (
+                            <>
+                              <li
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                className="resource-item-container"
+                              >
+                                <ResourceItem resource={resources[rescID]} />
+                              </li>
+                              {provided.placeholder}
+                            </>
+                          );
+                        }}
                       </Draggable>
                     ) : null;
                   } else {
                     return null;
                   }
                 })}
+                {provided.placeholder}
               </ul>
             )}
           </Droppable>
