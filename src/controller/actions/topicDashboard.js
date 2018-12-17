@@ -89,7 +89,7 @@ export const submitResource = (parent, title, uri, type) => (
 /**
  * Updates a single resource
  * First: Sends PUT request to the server using api.resources
- *  Second: disptaches action update_resources that saves updated resources array in state
+ *  Second: disptaches action update_resources that saves updated resources object in state
  * If there is an error, it dispatches an error obj to state and console.log error
  *  This function does not make a request to the server for all of the resources again.
  * * @param {{id: integer}, {body:object}}
@@ -110,9 +110,9 @@ export const updateRescourceOrder = rescOrder => ({
   payload: rescOrder
 });
 export const DELETE_RESOURCE = 'DELETE_RESOURCE';
-export const delResource = (resources, resourceOrder) => ({
+export const delResource = id => ({
   type: DELETE_RESOURCE,
-  payload: resources
+  id
 });
 /**
  * Deletes a single resource
@@ -125,27 +125,24 @@ export const delResource = (resources, resourceOrder) => ({
 export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
   console.log(resourceId);
 
-  const resources = getState().topicDashReducer.resources;
-  const resourceOrder = getState().topicDashReducer.resourceOrder;
-  const index = resourceOrder.findIndex(num => num === Number(resourceId));
-  resourceOrder.splice(index, 1);
-  delete resources[resourceId];
-  console.log(resources, typeof resources);
-  console.log(resourceOrder, typeof resourceOrder);
-  console.log(index);
-  // const body = {
-  //   id: topicId,
-  //   resourceOrder
-  // };
-
   api.resources
     .delete(resourceId)
-    .then(res => console.log(res))
+    .then(res => {
+      const resourceOrder = getState().topicDashReducer.resourceOrder;
+      const newOrder = resourceOrder.filter(item => {
+        console.log(item, resourceId);
+        return item !== Number(resourceId);
+      });
+      console.log(newOrder);
+      return api.topics.put({
+        id: topicId,
+        resourceOrder: JSON.stringify(newOrder)
+      });
+    })
+    .then(res => {
+      console.log(res);
+      dispatch(delResource(Number(resourceId)));
+      dispatch(updateRescourceOrder(res.resourceOrder));
+    })
     .catch(error => dispatch(resourceError(error)));
-
-  api.topics
-    .put({ id: topicId, resourceOrder: JSON.stringify(resourceOrder) })
-    .then(res => dispatch(updateRescourceOrder(res.resourceOrder)))
-    .then(res => console.log(res, 137))
-    .catch(err => console.log(err));
 };

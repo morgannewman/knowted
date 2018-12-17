@@ -5,7 +5,6 @@ import {
   UPDATE_RESOURCE,
   DELETE_RESOURCE,
   RESOURCE_ERROR,
-  UPDATE_RESC,
   UPDATE_RESC_ORDER
 } from '../actions/topicDashboard';
 
@@ -66,6 +65,7 @@ export default produce((state, action) => {
       return;
 
     case UPDATE_RESOURCE:
+      console.log('ahhhhhhhh', 68);
       state.resources[action.payload.id] = action.payload;
       return;
 
@@ -73,7 +73,7 @@ export default produce((state, action) => {
       state.resourceOrder = action.payload;
       return;
     case DELETE_RESOURCE:
-      state.resources = action.payload;
+      delete state.resources[action.id];
       return;
 
     default:

@@ -8,7 +8,7 @@ export class ActiveResourceContainer extends React.Component {
   state = {
     resourceOrder: this.props.resourceOrder
   };
-
+  //FIXME: resources[rescID] doesn't always sync up on delete
   render() {
     const { resources, resourceOrder } = this.props;
 
@@ -20,9 +20,9 @@ export class ActiveResourceContainer extends React.Component {
               resourceOrder &&
               resources &&
               resourceOrder.length > 0 &&
-              resources[rescID].completed === false
+              resources[rescID]
             ) {
-              return resources[rescID] ? (
+              return resources[rescID].completed === false ? (
                 <li key={rescID} className="resource-item-container">
                   <ResourceItem resource={resources[rescID]} />
                 </li>
