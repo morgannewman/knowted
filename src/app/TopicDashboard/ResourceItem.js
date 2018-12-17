@@ -56,7 +56,8 @@ export class ResourceItem extends React.Component {
   //FIXME: connect function to dispatch async action to backend
   handleDelete = e => {
     const id = e.target.getAttribute('resourceid');
-    this.props.dispatch(deleteResource(id));
+    console.log(id, this.props.parentId);
+    this.props.dispatch(deleteResource(id, this.props.parentId));
   };
 
   /**
@@ -118,7 +119,7 @@ export class ResourceItem extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    parentId: state.topicDashReducer.id
+    parentId: state.topicDashReducer.topic.id
   };
 };
 export default connect(mapStateToProps)(ResourceItem);

@@ -87,7 +87,7 @@ export class AddResourceForm extends React.Component {
       ? 'youtube'
       : 'other';
     this.props.dispatch(submitResource(parent, title, uri, type));
-    this.setState({ feedback: null });
+    this.setState({ feedback: null, inputHidden: true, submitting: false });
     this.inputUri.value = '';
     this.inputTitle.value = '';
   };
@@ -111,7 +111,6 @@ export class AddResourceForm extends React.Component {
   };
 
   render() {
-    console.log(this.props.parentId);
     return (
       <section className="add-resource-section">
         <button
@@ -159,7 +158,7 @@ export class AddResourceForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    parentId: state.topicDashReducer.topicID
+    parentId: state.topicDashReducer.topic.id
   };
 };
 export default connect(mapStateToProps)(AddResourceForm);

@@ -3,25 +3,27 @@ const BASE_URL = '/api/users';
 
 export default {
   /**
-   * Exposes GET /api/users/:id.
-   * Users have these props:
-   * id, email, name, password: hashed, topicOrder
-   * @param {number | string} id
-   * @returns {{}} a user object
+   * Convenience method to update the topicOrder for a given user.
+   * userId is available at state.auth.user.id.
+   * @param {number | string} userId
+   * @param {[]} topicOrder - the array to be updated
    */
-  getOne(id) {
-    return goFetch(`${BASE_URL}/${id}`);
+  updateTopicOrder(userId, topicOrder) {
+    return goFetch(`${BASE_URL}/${userId}`, {
+      method: 'PUT',
+      body: { topicOrder }
+    });
   },
 
   /**
-   * Exposes PUT /api/users.
-   * Users can be updated with these props:
-   * topicOrder
-   * @param {{id, topicOrder}} body
-   * @returns {{}} a user object
+   * Exposes PUT user/:id endpoint.
+   * Updatable fields: topicOrder.
+   * userId is available at state.auth.user.id.
+   * @param {number | string} userId
+   * @param {*} body
    */
-  put(topicOrder, id) {
-    if (!id) throw new Error('Missing `id` in topic request body.');
-    return goFetch(`${BASE_URL}/${id}`, { method: 'PUT', topicOrder });
+  put(body) {
+    if (!body.id) throw new Error('missing `id` in request body');
+    return goFetch(`${BASE_URL}/${body.id}`, { method: 'PUT', body });
   }
 };

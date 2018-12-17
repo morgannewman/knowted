@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom';
 
 import { initializeLearn, resetLearn } from '../../controller/actions/learn';
 import Loading from '../common/Loading';
+import Breadcrumbs from '../common/Breadcrumbs';
 
 export class Learn extends React.Component {
 	static propTypes = {
@@ -20,7 +21,7 @@ export class Learn extends React.Component {
 	}
 
 	render() {
-		const { stateIsStale, loading, resourceNotFound, notebook } = this.props;
+		const { stateIsStale, loading, resourceNotFound, notebook, topic, resource } = this.props;
 
 		if (resourceNotFound) {
 			this.props.dispatch(resetLearn());
@@ -31,6 +32,12 @@ export class Learn extends React.Component {
 
 		return (
 			<>
+				<Breadcrumbs
+					topicTitle={topic.title}
+					topicId={topic.id}
+					resourceId={resource.id}
+					resourceTitle={resource.title}
+				/>
 				<div className="learn">
 					{/* TODO: Conditional logic to render a different card/layout for state.learn.resource.type === other resources */}
 					{/* TODO: Change this to be dynamic for state.learn.resource.type === youtube*/}
@@ -62,7 +69,9 @@ const mapStateToProps = (state, props) => {
 		stateIsStale: topicIsStale || resourceIsStale,
 		loading: state.learn.loading,
 		resourceNotFound: state.learn.error && state.learn.error.status === 404,
-		notebook: state.learn.topic && (state.learn.topic.notebook || '')
+		notebook: state.learn.topic && (state.learn.topic.notebook || ''),
+		resource: currentResource,
+		topic: currentTopic
 	};
 };
 

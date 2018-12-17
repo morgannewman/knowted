@@ -6,6 +6,7 @@ export function ResourceView({
   handleEdit,
   handleDelete
 }) {
+  //FIXME: need to add fomatting to YOUTUBE URLs. Currently they are just a code
   return (
     <div className="resource-view">
       <input
