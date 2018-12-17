@@ -3,7 +3,7 @@ import {
   ADD_TOPIC_SUCCESS,
   UPDATE_TOPIC_SUCCESS,
   DELETE_TOPIC_SUCCESS,
-  UPDATE_TOPICS_ORDER_SUCCESS,
+  UPDATE_TOPIC_ORDER_SUCCESS,
   UPDATE_FOLDER_SUCCESS,
   API_ERROR
 } from '../actions/dashboard';
@@ -13,7 +13,7 @@ const initialState = {
   topics: [],
   folders: null,
   recentResources: null,
-  topicsOrder: [],
+  topicOrder: [],
   loading: true,
   error: null
 };
@@ -22,11 +22,11 @@ export default produce((state, action) => {
   switch (action.type) {
     case DASHBOARD_POPULATE_SUCCESS:
       state.error = null;
-      const { folders, topics, recentResources, topicsOrder } = action.payload;
+      const { folders, topics, recentResources, topicOrder } = action.payload;
       state.folders = folders;
       state.topics = topics;
       state.recentResources = recentResources;
-      state.topicsOrder = topicsOrder;
+      state.topicOrder = topicOrder;
       state.loading = false;
       return;
 
@@ -57,10 +57,10 @@ export default produce((state, action) => {
       state.loading = false;
       return;
 
-    case UPDATE_TOPICS_ORDER_SUCCESS:
+    case UPDATE_TOPIC_ORDER_SUCCESS:
       state.loading = false;
       state.error = null;
-      state.topicsOrder = action.payload;
+      state.topicOrder = action.payload;
       return;
 
     case UPDATE_FOLDER_SUCCESS:

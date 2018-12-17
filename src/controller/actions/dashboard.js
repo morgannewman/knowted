@@ -7,13 +7,13 @@ export const initializeDashboard = num => dispatch => {
     api.resources.recent(num)
     // api.users.get()
   ])
-    .then(([folders, topics, recentResources, topicsOrder]) => {
+    .then(([folders, topics, recentResources, topicOrder]) => {
       dispatch(
         dashboardPopulateSuccess({
           folders,
           topics,
           recentResources,
-          topicsOrder
+          topicOrder
         })
       );
     })
@@ -71,10 +71,10 @@ export const deleteTopic = id => dispatch => {
  * On fail: state.topic.error === some error object
  * @param {{id: number}} object
  */
-export const updateTopicsOrder = (topicsOrder, userId) => dispatch => {
+export const updateTopicOrder = (topicOrder, userId) => dispatch => {
   api.users
-    .put({ topicsOrder, userId })
-    .then(topics => dispatch(updateTopicsOrderSuccess(topics)))
+    .put({ topicOrder, userId })
+    .then(topics => dispatch(updateTopicOrderSuccess(topics)))
     .catch(err => dispatch(apiError(err)));
 };
 
@@ -129,9 +129,9 @@ export const deleteTopicSuccess = topicId => {
   };
 };
 
-export const UPDATE_TOPICS_ORDER_SUCCESS = 'UPDATE_TOPICS_ORDER_SUCCESS';
-export const updateTopicsOrderSuccess = topics => ({
-  type: UPDATE_TOPICS_ORDER_SUCCESS,
+export const UPDATE_TOPIC_ORDER_SUCCESS = 'UPDATE_TOPIC_ORDER_SUCCESS';
+export const updateTopicOrderSuccess = topics => ({
+  type: UPDATE_TOPIC_ORDER_SUCCESS,
   payload: topics
 });
 

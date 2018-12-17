@@ -8,7 +8,7 @@ import AddTopic from './AddTopic';
 import Folder from './Folder';
 import Topic from './Topic';
 
-import { updateTopicsOrder } from '../../controller/actions/dashboard';
+import { updateTopicOrder } from '../../controller/actions/dashboard';
 
 export class AllTopicsContainer extends React.Component {
   static propTypes = {
@@ -16,12 +16,12 @@ export class AllTopicsContainer extends React.Component {
     folders: PropTypes.array
   };
 
-  state = {
-    topicsOrder: this.props.topics
-  };
+  // state = {
+  //   topicOrder: this.props.topics
+  // };
 
   componentDidMount() {
-    console.log(this.props.topicsOrder);
+    console.log(this.props.topicOrder);
   }
 
   reorder = (list, startIndex, endIndex) => {
@@ -45,6 +45,7 @@ export class AllTopicsContainer extends React.Component {
     ) {
       return;
     }
+    console.log(combine);
 
     if (combine) {
       console.log(combine.draggableId, draggableId);
@@ -52,16 +53,16 @@ export class AllTopicsContainer extends React.Component {
 
     //reorder
     const topics = this.reorder(
-      this.props.topicsOrder,
+      this.props.topicOrder,
       source.index,
       destination.index
     );
 
     // this.setState({
-    //   topicsOrder: topics
+    //   topicOrder: topics
     // });
 
-    this.props.dispatch(updateTopicsOrder(topics));
+    this.props.dispatch(updateTopicOrder(topics, this.props.userId));
   };
 
   render() {
@@ -96,7 +97,7 @@ export class AllTopicsContainer extends React.Component {
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   {topics &&
                     this.props.topics
-                      // this.state.topicsOrder
+                      // this.state.topicOrder
                       .map(
                         (topic, index) =>
                           (!topic.parent || !topic.parent.id) && (
@@ -137,8 +138,9 @@ export class AllTopicsContainer extends React.Component {
 
 const mapStateToProps = state => ({
   topics: state.dashboardReducer.topics,
-  topicsOrder: state.dashboardReducer.topicsOrder,
-  folders: state.dashboardReducer.folders
+  topicOrder: state.dashboardReducer.topicOrder,
+  folders: state.dashboardReducer.folders,
+  userId: state.auth.user.id
 });
 
 export default connect(mapStateToProps)(AllTopicsContainer);
