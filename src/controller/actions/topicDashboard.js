@@ -79,8 +79,6 @@ export const submitResource = (parent, title, uri) => (dispatch, getState) => {
     .post(body)
     .then(data => {
       dispatch(addResource(data));
-    })
-    .then(() => {
       const resourceOrder = getState().topicDashReducer.resourceOrder;
       api.topics.put({
         id: body.parent,
