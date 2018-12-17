@@ -73,11 +73,8 @@ export const initializeTopicDashboard = id => dispatch => {
  * If there is an error, the error object gets added to state
  * * @param {{parent: integer, title:string, uri:string, type:string}}
  */
-export const submitResource = (parent, title, uri, type) => (
-  dispatch,
-  getState
-) => {
-  const body = { parent, title, uri, type };
+export const submitResource = (parent, title, uri) => (dispatch, getState) => {
+  const body = { parent, title, uri };
   api.resources
     .post(body)
     .then(data => {
