@@ -7,7 +7,6 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import './ActiveResourceContainer.scss';
 
 export class ActiveResourceContainer extends React.Component {
-  //TODO: Drag and drop functionality
   constructor(props) {
     super(props);
     this.Form1 = React.createRef();
@@ -19,18 +18,15 @@ export class ActiveResourceContainer extends React.Component {
   };
   onDragEnd = result => {
     const { destination, source, draggableId } = result;
-
     if (!destination) {
       return;
     }
-
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) {
       return;
     }
-
     const newOrder = Array.from(this.props.rescOrder);
     newOrder.splice(source.index, 1);
     newOrder.splice(destination.index, 0, draggableId);
@@ -39,7 +35,6 @@ export class ActiveResourceContainer extends React.Component {
 
   render() {
     const { resources, rescOrder } = this.props;
-    console.log(this.props);
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <section className="active-resources-container">

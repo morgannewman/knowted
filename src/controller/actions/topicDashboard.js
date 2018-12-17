@@ -153,7 +153,7 @@ export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
 };
 
 export const updateRescOrder = (rescOrder, topicId) => (dispatch, getState) => {
-  console.log(rescOrder, topicId);
+  // console.log(rescOrder, topicId);
   api.topics
     .put({
       id: topicId,
