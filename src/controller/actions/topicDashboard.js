@@ -116,11 +116,12 @@ export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
 
   const resources = getState().topicDashReducer.resources;
   const resourceOrder = getState().topicDashReducer.resourceOrder;
-  const index = resourceOrder.findIndex(num => num === resourceId);
+  const index = resourceOrder.findIndex(num => num === Number(resourceId));
   resourceOrder.splice(index, 1);
   delete resources[resourceId];
   console.log(resources, typeof resources);
   console.log(resourceOrder, typeof resourceOrder);
+  console.log(index);
   // const body = {
   //   id: topicId,
   //   resourceOrder
@@ -134,5 +135,6 @@ export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
   api.topics
     .put({ id: topicId, resourceOrder: JSON.stringify(resourceOrder) })
     .then(res => dispatch(updateRescourceOrder(res.resourceOrder)))
+    .then(res => console.log(res, 137))
     .catch(err => console.log(err));
 };
