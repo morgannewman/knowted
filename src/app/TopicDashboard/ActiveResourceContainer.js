@@ -9,11 +9,11 @@ import './ActiveResourceContainer.scss';
 export class ActiveResourceContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.Form1 = React.createRef();
+    this.Form = React.createRef();
   }
 
   handleScrollClick = () => {
-    const element = this.Form1.current;
+    const element = this.Form.current;
     element.scrollIntoView();
   };
   onDragEnd = result => {
@@ -87,7 +87,7 @@ export class ActiveResourceContainer extends React.Component {
             )}
           </Droppable>
 
-          <AddResourceForm id="123" ref1={this.Form1} />
+          <AddResourceForm resourceFormRef={this.Form} />
         </section>
       </DragDropContext>
     );
