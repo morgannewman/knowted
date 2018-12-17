@@ -125,7 +125,6 @@ export const updateSingleResource = (id, body) => dispatch => {
 
 export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
   console.log(typeof resourceId, typeof topicId);
-
   api.resources
     .delete(resourceId)
     .then(res => {
