@@ -5,6 +5,8 @@ import CompletedResourceContainer from './CompletedResourceContainer';
 import { initializeTopicDasbhoard } from '../../controller/actions/topicDashboard';
 import Loading from '../common/Loading';
 import './index.scss';
+import Breadcrumbs from '../common/Breadcrumbs';
+
 export class TopicDashboard extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.topicId;
