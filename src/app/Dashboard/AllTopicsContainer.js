@@ -24,7 +24,7 @@ export class AllTopicsContainer extends React.Component {
 		const { destination, draggableId } = result;
 		// update folder
 		const parent = destination.droppableId === 'lonelyTopics' ? null : Number(destination.droppableId);
-		this.props.dispatch(updateTopic({ id: draggableId, parent }));
+		this.props.dispatch(updateTopic({ id: Number(draggableId), parent }));
 	};
 
 	onDragEnd = result => {

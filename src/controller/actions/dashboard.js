@@ -43,6 +43,7 @@ export const addTopic = title => dispatch => {
  * @param {{title: string, id: number}} object
  */
 export const updateTopic = body => (dispatch, getState) => {
+	console.log(body);
 	// TODO: Figure out a better way of normalizing parent for optimistic update
 	if (body.parent) {
 		const folder = getState().dashboardReducer.folders.find(folder => folder.id === body.parent);
@@ -95,7 +96,6 @@ export const updateTopicsParents = (topicId1, topicId2, folderId) => dispatch =>
 		api.topics.put({ id: topicId2, parent: folderId })
 	])
 		.then(([topic1, topic2]) => {
-			console.log(topic1, topic2);
 			dispatch(updateTopicParentSuccess(topic1));
 			dispatch(updateTopicParentSuccess(topic2));
 			dispatch(displayEditFolderForm(folderId));
