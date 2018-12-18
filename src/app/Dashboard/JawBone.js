@@ -2,7 +2,7 @@ import './JawBone.css';
 import React from 'react';
 import Topic from './Topic';
 
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 import Loading from '../common/Loading';
 
@@ -14,12 +14,12 @@ export class JawBone extends React.Component {
 		const { topics } = this.props;
 		return (
 			<div className="jaw-bone-container">
-				<Droppable droppableId={this.props.folderId} direction="row" isCombineEnabled={false}>
+				<Droppable droppableId={String(this.props.folderId)} direction="row" isCombineEnabled={false}>
 					{provided => (
 						<div className="jawbone-folder-items" ref={provided.innerRef} {...provided.droppableProps}>
 							{topics.map((topic, index) =>
 								topic.parent && topic.parent.id === this.props.folderId ? (
-									<Draggable draggableId={topic.id} index={index} key={topic.id}>
+									<Draggable draggableId={String(topic.id)} index={index} key={topic.id}>
 										{provided => (
 											<div
 												ref={provided.innerRef}
