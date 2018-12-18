@@ -73,18 +73,14 @@ export const initializeTopicDashboard = id => dispatch => {
  * If there is an error, the error object gets added to state
  * * @param {{parent: integer, title:string, uri:string, type:string}}
  */
-export const submitResource = (parent, title, uri, type) => (
-  dispatch,
-  getState
-) => {
-  const body = { parent, title, uri, type };
+export const submitResource = (parent, title, uri) => (dispatch, getState) => {
+  const body = { parent, title, uri };
   api.resources
     .post(body)
     .then(data => {
       dispatch(addResource(data));
-    })
-    .then(() => {
       const resourceOrder = getState().topicDashReducer.resourceOrder;
+      console.log(resourceOrder);
       api.topics.put({
         id: body.parent,
         resourceOrder: JSON.stringify(resourceOrder)
@@ -127,8 +123,7 @@ export const updateSingleResource = (id, body) => dispatch => {
  */
 
 export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
-  // console.log(resourceId);
-
+  console.log(typeof resourceId, typeof topicId);
   api.resources
     .delete(resourceId)
     .then(res => {
@@ -147,6 +142,29 @@ export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
     .then(res => {
       console.log(res);
       dispatch(delResource(Number(resourceId)));
+      dispatch(updateResourceOrder(res.resourceOrder));
+    })
+    .catch(error => dispatch(resourceError(error)));
+};
+
+/**
+ *Sends a request to server to update the 
+ resource order array and updates array in state
+ *FIRST: sends a PUT request to api.Topics with new Resource Order in the body
+ *SECOND: On success, this takes the server response and updates the resourceOrder array in state
+ *If there is an error, an error object gets dispatched to state
+ * @param {{rescOrder: array}} rescOrder
+ * @param {{topicId: integer}} topicId
+ */
+export const updateRescOrder = (rescOrder, topicId) => (dispatch, getState) => {
+  // console.log(rescOrder, topicId);
+  api.topics
+    .put({
+      id: topicId,
+      resourceOrder: JSON.stringify(rescOrder)
+    })
+    .then(res => {
+      // console.log(res);
       dispatch(updateResourceOrder(res.resourceOrder));
     })
     .catch(error => dispatch(resourceError(error)));

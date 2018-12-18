@@ -10,10 +10,11 @@ export class JawBone extends React.Component {
   render() {
     if (this.props.loading) return <Loading />;
     const { topics } = this.props;
+
     return (
       <div className="jaw-bone-container">
         {topics.map(topic =>
-          topic.parent.id === this.props.folderId ? (
+          topic.parent && topic.parent.id === this.props.folderId ? (
             <Topic title={topic.title} key={topic.id} topicId={topic.id} />
           ) : null
         )}
