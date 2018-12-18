@@ -59,7 +59,10 @@ export class Folder extends React.Component {
 
   render() {
     const { title, folderId } = this.props;
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
     return (
       <div
         className="folder-wrap"

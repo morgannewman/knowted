@@ -5,7 +5,10 @@ import {
 	LEARN_API_ERROR,
 	LEARN_NOTEBOOK_UPDATE_SUBMIT,
 	LEARN_NOTEBOOK_UPDATE_SUCCESS,
-	LEARN_NOTEBOOK_UPDATE_ERROR
+	LEARN_NOTEBOOK_UPDATE_ERROR,
+	LEARN_COMPLETE_RESOURCE_SUBMIT,
+	LEARN_COMPLETE_RESOURCE_SUCCESS,
+	LEARN_COMPLETE_RESOURCE_ERROR
 } from '../actions/learn';
 
 const initialState = {
@@ -41,6 +44,18 @@ export default produce((state, action) => {
 			return;
 
 		case LEARN_NOTEBOOK_UPDATE_ERROR:
+			state.error = action.payload;
+			return;
+
+		case LEARN_COMPLETE_RESOURCE_SUBMIT:
+			state.error = null;
+			return;
+
+		case LEARN_COMPLETE_RESOURCE_SUCCESS:
+			state.resource.completed = action.payload.completed;
+			return;
+
+		case LEARN_COMPLETE_RESOURCE_ERROR:
 			state.error = action.payload;
 			return;
 

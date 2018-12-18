@@ -8,6 +8,10 @@ export const LEARN_NOTEBOOK_UPDATE_SUBMIT = 'LEARN_NOTEBOOK_UPDATE_SUBMIT';
 export const LEARN_NOTEBOOK_UPDATE_SUCCESS = 'LEARN_NOTEBOOK_UPDATE_SUCCESS';
 export const LEARN_NOTEBOOK_UPDATE_ERROR = 'LEARN_NOTEBOOK_UPDATE_ERROR';
 
+export const LEARN_COMPLETE_RESOURCE_SUBMIT = 'LEARN_COMPLETE_RESOURCE_SUBMIT';
+export const LEARN_COMPLETE_RESOURCE_SUCCESS = 'LEARN_COMPLETE_RESOURCE_SUCCESS';
+export const LEARN_COMPLETE_RESOURCE_ERROR = 'LEARN_COMPLETE_RESOURCE_ERROR';
+
 /**
  * Ensures state is not stale and populates the learn region with data.
  * If state is stale, it resets the state to the initial state.
@@ -25,7 +29,7 @@ export const initializeLearn = (topicId, resourceId) => (dispatch, getState) => 
 		dispatch(resetLearn());
 	}
 
-	return Promise.all([api.topics.getOne(topicId, { resources: false }), api.resources.getOne(resourceId)])
+	return Promise.all([api.topics.getOne(topicId, { resources: true }), api.resources.getOne(resourceId)])
 		.then(([topic, resource]) => {
 			dispatch(initializeSuccess({ topic, resource }));
 		})
@@ -38,10 +42,18 @@ export const initializeLearn = (topicId, resourceId) => (dispatch, getState) => 
  */
 export const submitNotebookUpdate = req => dispatch => {
 	dispatch(notebookUpdateSubmit());
-	api.topics
+	api.resources
 		.put(req)
 		.then(() => dispatch(notebookUpdateSuccess(req)))
 		.catch(err => dispatch(notebookUpdateError(err)));
+};
+
+export const submitCompleteResource = req => dispatch => {
+	dispatch(completeResourceSubmit());
+	return api.resources
+		.put({ id: req, completed: true })
+		.then(res => dispatch(completeResourceSuccess(res)))
+		.catch(err => dispatch(completeResourceError(err)));
 };
 
 export const resetLearn = () => ({
@@ -56,6 +68,21 @@ export const initializeSuccess = res => ({
 export const apiError = err => ({
 	type: LEARN_API_ERROR,
 	payload: err
+});
+
+const completeResourceSubmit = id => ({
+	type: LEARN_COMPLETE_RESOURCE_SUBMIT,
+	payload: id
+});
+
+const completeResourceSuccess = res => ({
+	type: LEARN_COMPLETE_RESOURCE_SUCCESS,
+	payload: res
+});
+
+const completeResourceError = error => ({
+	type: LEARN_COMPLETE_RESOURCE_ERROR,
+	payload: error
 });
 
 const notebookUpdateSubmit = () => ({
