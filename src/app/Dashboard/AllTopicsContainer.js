@@ -34,9 +34,8 @@ export class AllTopicsContainer extends React.Component {
 
   onDragEnd = result => {
     const { destination, source, draggableId, combine } = result;
-    console.log(result);
 
-    // TODO: CASE: combining lone topics => creates a new folder and places items within that folder
+    //CASE: combining lone topics => creates a new folder and places items within that folder
     if (combine) {
       this.combine(combine.draggableId, draggableId);
     }
@@ -69,23 +68,21 @@ export class AllTopicsContainer extends React.Component {
       <section className="all-topics-container">
         <div className="folders-container">
           {folders &&
-            folders
-              .map((folder, index) => {
-                return (
-                  <Folder
-                    title={folder.title}
-                    folderId={folder.id}
-                    key={folder.id}
-                    index={index}
-                    editing={
-                      folder.id === this.props.currentFolderId
-                        ? this.props.currentFolderId
-                        : null
-                    }
-                  />
-                );
-              })
-              .sort()}
+            folders.map((folder, index) => {
+              return (
+                <Folder
+                  title={folder.title}
+                  folderId={folder.id}
+                  key={folder.id}
+                  index={index}
+                  editing={
+                    folder.id === this.props.currentFolderId
+                      ? this.props.currentFolderId
+                      : null
+                  }
+                />
+              );
+            })}
         </div>
         <div className="lonely-topics-container">
           <AddTopic />
@@ -124,8 +121,7 @@ export class AllTopicsContainer extends React.Component {
                               )}
                             </Draggable>
                           )
-                      )
-                      .sort()}
+                      )}
 
                   {provided.placeholder}
                 </div>
@@ -139,7 +135,7 @@ export class AllTopicsContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.dashboardReducer);
+  // console.log(state.dashboardReducer);
   return {
     topics: state.dashboardReducer.topics,
     // topicOrder: state.dashboardReducer.topicOrder,

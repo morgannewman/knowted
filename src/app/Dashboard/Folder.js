@@ -21,12 +21,14 @@ export class Folder extends React.Component {
     showEdit: false
   };
 
+  //CASE: toggle jawbone based on clicking on folder
   toggleJawBone = () => {
     this.setState(state => {
       return { showJawBone: !state.showJawBone };
     });
   };
 
+  //CASE: display and hide edit option for folders on mouse ender and leave
   displayEdit = () => {
     this.setState(() => {
       return { showEdit: true };
@@ -39,6 +41,7 @@ export class Folder extends React.Component {
     });
   };
 
+  //CASE: display and hide folder form based on clicking edit or cancel btn
   displayEditFolderForm = () => {
     this.props.dispatch(displayEditFolderForm(this.props.folderId));
   };
@@ -56,6 +59,7 @@ export class Folder extends React.Component {
 
   render() {
     const { title, folderId } = this.props;
+
     return (
       <div
         className="folder-wrap"
@@ -92,7 +96,7 @@ export class Folder extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  folders: state.dashboardReducer
+  folders: state.dashboardReducer.folders
 });
 
 export default connect(mapStateToProps)(Folder);
