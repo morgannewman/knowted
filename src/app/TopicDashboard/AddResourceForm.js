@@ -50,7 +50,7 @@ export class AddResourceForm extends React.Component {
     api.metadata
       .get(uri)
       .then(data => {
-        console.log(data);
+        // console.log(data);
         this.inputUri.value = data.uri;
         this.inputTitle.value = data.title;
         this.setState({
@@ -101,7 +101,6 @@ export class AddResourceForm extends React.Component {
    */
   handleEnter = e => {
     e.preventDefault();
-    console.log('hello000');
     if (e.keyCode === 13) {
       return this.getUriTitle(e, e.target.value);
     } else {
