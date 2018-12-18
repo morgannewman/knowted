@@ -12,6 +12,15 @@ export class ActiveResourceContainer extends React.Component {
     this.Form = React.createRef();
   }
 
+  //Temporary Copy to make sure it's working
+  displayZeroCase = () => {
+    return (
+      <section className="topicDash-zero">
+        <p>You have no resources. Add resources below</p>
+        <AddResourceForm resourceFormRef={this.Form} />
+      </section>
+    );
+  };
   handleScrollClick = () => {
     const element = this.Form.current;
     element.scrollIntoView();
@@ -35,62 +44,66 @@ export class ActiveResourceContainer extends React.Component {
 
   render() {
     const { resources, rescOrder } = this.props;
-    return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <section className="active-resources-container">
-          <button
-            // className="add-resource-button"
-            type="button"
-            onClick={this.handleScrollClick}
-          >
-            Add Resource
-          </button>
-          <Droppable droppableId="droppable-1">
-            {provided => (
-              <ul ref={provided.innerRef} className="active-resources-list">
-                {rescOrder.map((rescID, index) => {
-                  if (
-                    rescOrder &&
-                    resources &&
-                    rescOrder.length > 0 &&
-                    resources[rescID]
-                  ) {
-                    return resources[rescID].completed === false ? (
-                      <Draggable
-                        key={rescID}
-                        draggableId={rescID}
-                        index={index}
-                      >
-                        {provided => {
-                          return (
-                            <>
-                              <li
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                                className="resource-item-container"
-                              >
-                                <ResourceItem resource={resources[rescID]} />
-                              </li>
-                              {provided.placeholder}
-                            </>
-                          );
-                        }}
-                      </Draggable>
-                    ) : null;
-                  } else {
-                    return null;
-                  }
-                })}
-                {provided.placeholder}
-              </ul>
-            )}
-          </Droppable>
+    if (rescOrder.length <= 0 || !resources) {
+      return this.displayZeroCase();
+    } else {
+      return (
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <section className="active-resources-container">
+            <button
+              // className="add-resource-button"
+              type="button"
+              onClick={this.handleScrollClick}
+            >
+              Add Resource
+            </button>
+            <Droppable droppableId="droppable-1">
+              {provided => (
+                <ul ref={provided.innerRef} className="active-resources-list">
+                  {rescOrder.map((rescID, index) => {
+                    if (
+                      rescOrder &&
+                      resources &&
+                      rescOrder.length > 0 &&
+                      resources[rescID]
+                    ) {
+                      return resources[rescID].completed === false ? (
+                        <Draggable
+                          key={rescID}
+                          draggableId={rescID}
+                          index={index}
+                        >
+                          {provided => {
+                            return (
+                              <>
+                                <li
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                  className="resource-item-container"
+                                >
+                                  <ResourceItem resource={resources[rescID]} />
+                                </li>
+                                {provided.placeholder}
+                              </>
+                            );
+                          }}
+                        </Draggable>
+                      ) : null;
+                    } else {
+                      return null;
+                    }
+                  })}
+                  {provided.placeholder}
+                </ul>
+              )}
+            </Droppable>
 
-          <AddResourceForm resourceFormRef={this.Form} />
-        </section>
-      </DragDropContext>
-    );
+            <AddResourceForm resourceFormRef={this.Form} />
+          </section>
+        </DragDropContext>
+      );
+    }
   }
 }
 

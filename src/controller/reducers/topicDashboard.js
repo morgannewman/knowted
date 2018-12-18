@@ -42,13 +42,16 @@ export default produce((state, action) => {
           return obj;
         }, {});
       }
-
-      state.resourceOrder = action.payload.resourceOrder;
+      console.log(action.payload);
+      state.resourceOrder =
+        action.payload.resourceOrder !== null
+          ? action.payload.resourceOrder
+          : [];
 
       state.resources = mapResourcesToObject(action.payload.resources);
       // state.resources = action.payload.resources;
       // since we don't need the resources from the payload anymore, we delete them
-      delete action.payload.resources;
+      // delete action.payload.resources;
       //add all information relating to that topic, minus the resources which were deleted above
       state.topic = action.payload;
       return;
