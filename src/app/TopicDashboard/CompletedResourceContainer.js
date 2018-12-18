@@ -33,9 +33,9 @@ export class CompletedResourceContainer extends React.Component {
                 resourceOrder &&
                 resources &&
                 resourceOrder.length > 0 &&
-                resources[rescID].completed === true
+                resources[rescID]
               ) {
-                return resources[rescID] ? (
+                return resources[rescID].completed === true ? (
                   <li key={rescID} className="resource-item-container">
                     <ResourceItem resource={resources[rescID]} />
                   </li>

@@ -26,12 +26,12 @@ export class ResourceEditForm extends React.Component {
             defaultValue={this.state.value}
             onChange={e => this.setState({ value: e.target.value })}
           />
-          <input
+          {/* <input
             type="url"
             name={resource.uri}
             defaultValue={this.state.uri}
             onChange={e => this.setState({ uri: e.target.value })}
-          />
+          /> */}
           <button type="submit" className="resource-item-edit">
             update
           </button>

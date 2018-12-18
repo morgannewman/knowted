@@ -84,10 +84,21 @@ export const deleteTopic = id => dispatch => {
  * On fail: state.topic.error === some error object
  * @param {{id: number}} object
  */
-export const updateTopicParent = (topicId, folderId) => dispatch => {
-  api.topics
-    .put({ id: topicId, parent: folderId })
-    .then(topic => dispatch(updateTopicParentSuccess(topic)))
+export const updateTopicsParents = (
+  topicId1,
+  topicId2,
+  folderId
+) => dispatch => {
+  Promise.all([
+    api.topics.put({ id: topicId1, parent: folderId }),
+    api.topics.put({ id: topicId2, parent: folderId })
+  ])
+    .then(([topic1, topic2]) => {
+      console.log(topic1, topic2);
+      dispatch(updateTopicParentSuccess(topic1));
+      dispatch(updateTopicParentSuccess(topic2));
+      dispatch(displayEditFolderForm(folderId));
+    })
     .catch(err => dispatch(apiError(err)));
 };
 
@@ -105,8 +116,7 @@ export const mergeTopicsNewFolder = (title, topicId1, topicId2) => dispatch => {
     .post({ title })
     .then(folder => dispatch(addFolderSuccess(folder)))
     .then(folder => {
-      dispatch(updateTopicParent(topicId1, folder.payload.id));
-      dispatch(updateTopicParent(topicId2, folder.payload.id));
+      dispatch(updateTopicsParents(topicId1, topicId2, folder.payload.id));
     })
     .catch(err => dispatch(apiError(err)));
 };
@@ -173,6 +183,18 @@ export const updateTopicOrderSuccess = topics => ({
 });
 
 //-- FOLDER ACTIONS --
+
+export const DISPLAY_EDIT_FOLDER_FORM = 'DISPLAY_EDIT_FOLDER_FORM';
+export const displayEditFolderForm = currentFolderId => ({
+  type: DISPLAY_EDIT_FOLDER_FORM,
+  payload: currentFolderId
+});
+
+export const HIDE_EDIT_FOLDER_FORM = 'HIDE_EDIT_FOLDER_FORM';
+export const hideEditFolderForm = currentFolderId => ({
+  type: HIDE_EDIT_FOLDER_FORM,
+  payload: currentFolderId
+});
 
 export const ADD_FOLDER_SUCCESS = 'ADD_FOLDER_SUCCESS';
 export const addFolderSuccess = folder => ({

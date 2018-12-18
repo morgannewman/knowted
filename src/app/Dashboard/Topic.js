@@ -35,9 +35,15 @@ export class Topic extends React.Component {
     this.props.dispatch(deleteTopic(this.props.topicId));
   };
 
-  toggleHidden = () => {
+  displayOptions = () => {
     this.setState(state => {
-      return { showOptions: !state.showOptions };
+      return { showOptions: true };
+    });
+  };
+
+  hideOptions = () => {
+    this.setState(state => {
+      return { showOptions: false };
     });
   };
 
@@ -47,8 +53,8 @@ export class Topic extends React.Component {
     return (
       <div
         className="topic-wrap"
-        onMouseEnter={this.toggleHidden}
-        onMouseLeave={this.toggleHidden}
+        onMouseEnter={this.displayOptions}
+        onMouseLeave={this.hideOptions}
       >
         {this.state.editing ? (
           <>

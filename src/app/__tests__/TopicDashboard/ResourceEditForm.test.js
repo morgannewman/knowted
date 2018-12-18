@@ -1,10 +1,18 @@
 import React from 'react';
-import ReactDom from 'react-dom';
 import { shallow } from 'enzyme';
 import { ResourceEditForm } from '../../TopicDashboard/ResourceEditForm';
-import resourcesData from '../../../dummyDB/resourcesData';
 
-const FirstResource = resourcesData[0];
+const FirstResource = {
+	id: 12345,
+	parent: {
+		id: 54321,
+		title: 'Knitting'
+	},
+	title: 'Needles',
+	uri: 'http://something',
+	completed: false,
+	last_opened: new Date().toLocaleString()
+};
 
 describe('<ResourceEditForm', () => {
 	let wrapper;

@@ -8,20 +8,13 @@ import AddTopic from './AddTopic';
 import Folder from './Folder';
 import Topic from './Topic';
 
-import {
-  updateTopicOrder,
-  mergeTopicsNewFolder
-} from '../../controller/actions/dashboard';
+import { mergeTopicsNewFolder } from '../../controller/actions/dashboard';
 
 export class AllTopicsContainer extends React.Component {
   static propTypes = {
     topics: PropTypes.array,
     folders: PropTypes.array
   };
-
-  componentDidMount() {
-    console.log(this.props.topicOrder);
-  }
 
   combine = (topicId1, topicId2) => {
     this.props.dispatch(
@@ -38,9 +31,8 @@ export class AllTopicsContainer extends React.Component {
 
   onDragEnd = result => {
     const { destination, source, draggableId, combine } = result;
-    console.log(result);
 
-    // TODO: CASE: combining lone topics => creates a new folder and places items within that folder
+    //CASE: combining lone topics => creates a new folder and places items within that folder
     if (combine) {
       this.combine(combine.draggableId, draggableId);
     }
@@ -69,23 +61,25 @@ export class AllTopicsContainer extends React.Component {
 
   render() {
     const { topics, folders } = this.props;
-
     return (
       <section className="all-topics-container">
         <div className="folders-container">
           {folders &&
-            folders
-              .map((folder, index) => {
-                return (
-                  <Folder
-                    title={folder.title}
-                    folderId={folder.id}
-                    key={folder.id}
-                    index={index}
-                  />
-                );
-              })
-              .sort()}
+            folders.map((folder, index) => {
+              return (
+                <Folder
+                  title={folder.title}
+                  folderId={folder.id}
+                  key={folder.id}
+                  index={index}
+                  editing={
+                    folder.id === this.props.currentFolderId
+                      ? this.props.currentFolderId
+                      : null
+                  }
+                />
+              );
+            })}
         </div>
         <div className="lonely-topics-container">
           <AddTopic />
@@ -98,34 +92,31 @@ export class AllTopicsContainer extends React.Component {
               {provided => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   {topics &&
-                    this.props.topics
-                      // this.state.topicOrder
-                      .map(
-                        (topic, index) =>
-                          (!topic.parent || !topic.parent.id) && (
-                            <Draggable
-                              key={topic.id}
-                              draggableId={topic.id}
-                              index={index}
-                            >
-                              {provided => (
-                                <div
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                >
-                                  <Topic
-                                    title={topic.title}
-                                    topicId={topic.id}
-                                    key={topic.id}
-                                    index={index}
-                                  />
-                                </div>
-                              )}
-                            </Draggable>
-                          )
-                      )
-                      .sort()}
+                    this.props.topics.map(
+                      (topic, index) =>
+                        (!topic.parent || !topic.parent.id) && (
+                          <Draggable
+                            key={topic.id}
+                            draggableId={topic.id}
+                            index={index}
+                          >
+                            {provided => (
+                              <div
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                              >
+                                <Topic
+                                  title={topic.title}
+                                  topicId={topic.id}
+                                  key={topic.id}
+                                  index={index}
+                                />
+                              </div>
+                            )}
+                          </Draggable>
+                        )
+                    )}
 
                   {provided.placeholder}
                 </div>
@@ -139,11 +130,12 @@ export class AllTopicsContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.dashboardReducer);
+  // console.log(state.dashboardReducer);
   return {
     topics: state.dashboardReducer.topics,
     // topicOrder: state.dashboardReducer.topicOrder,
     folders: state.dashboardReducer.folders,
+    currentFolderId: state.dashboardReducer.currentFolderId,
     userId: state.auth.user.id
   };
 };

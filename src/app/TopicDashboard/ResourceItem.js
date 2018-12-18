@@ -56,8 +56,7 @@ export class ResourceItem extends React.Component {
   //FIXME: connect function to dispatch async action to backend
   handleDelete = e => {
     const id = e.target.getAttribute('resourceid');
-    console.log(id, this.props.parentId);
-    this.props.dispatch(deleteResource(id, this.props.parentId));
+    this.props.dispatch(deleteResource(Number(id), this.props.parentId));
   };
 
   /**
@@ -83,20 +82,18 @@ export class ResourceItem extends React.Component {
     // console.log(title, uri);
     // console.log(e.currentTarget);
     const newTitle = title;
-    const newURI = uri;
+    // const newURI = uri;
     const id = Number(e.target.id);
-    if (!newTitle || !newURI) {
+    if (!newTitle) {
       return;
     }
-    this.props.dispatch(
-      updateSingleResource(id, { id, title: newTitle, uri: newURI })
-    );
+    this.props.dispatch(updateSingleResource(id, { id, title: newTitle }));
 
     this.setState({ editing: !this.state.editing });
   };
 
   render() {
-    const { resource } = this.props;
+    const { resource, parentId } = this.props;
     return (
       <div>
         {!this.state.editing ? (
@@ -105,6 +102,7 @@ export class ResourceItem extends React.Component {
             handleChecked={this.handleChecked}
             handleDelete={this.handleDelete}
             resource={resource}
+            topicID={parentId}
           />
         ) : (
           <ResourceEditForm
