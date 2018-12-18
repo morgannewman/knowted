@@ -95,7 +95,7 @@ export class AddResourceForm extends React.Component {
     this.inputTitle.value = '';
     this.setState({
       feedback: null,
-      inputHidden: false,
+      inputHidden: true,
       submitting: false
     });
   };
