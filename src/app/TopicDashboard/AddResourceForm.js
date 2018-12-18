@@ -6,12 +6,12 @@ import { submitResource } from '../../controller/actions/topicDashboard';
 export class AddResourceForm extends React.Component {
   constructor(props) {
     super(props);
-    this.Form = React.createRef();
+
     this.state = {
       submitting: false,
       feedback: null,
-      newURI: '',
-      newTitle: '',
+      newURI: null,
+      newTitle: null,
       inputHidden: true
     };
   }
@@ -46,15 +46,14 @@ export class AddResourceForm extends React.Component {
     if (!this.isURL(e.target.value)) {
       return;
     }
-    console.log(uri);
     this.setState({ submitting: true });
     api.metadata
       .get(uri)
       .then(data => {
         console.log(data);
+        this.inputUri.value = data.uri;
+        this.inputTitle.value = data.title;
         this.setState({
-          newTitle: data.title,
-          newURI: data.uri,
           inputHidden: false,
           submitting: false
         });
@@ -83,18 +82,16 @@ export class AddResourceForm extends React.Component {
     if (!title) {
       return;
     }
-    const type = this.state.newURI.toLowerCase().includes('youtube')
-      ? 'youtube'
-      : 'other';
-    this.props.dispatch(submitResource(parent, title, uri, type));
-    this.setState({ feedback: null, inputHidden: true, submitting: false });
+
+    this.props.dispatch(submitResource(parent, title, uri));
+
     this.inputUri.value = '';
     this.inputTitle.value = '';
-  };
-  handleScrollClick = () => {
-    console.log(this.Form);
-    const element = this.Form.current;
-    element.scrollIntoView();
+    this.setState({
+      feedback: null,
+      inputHidden: false,
+      submitting: false
+    });
   };
 
   /**
@@ -103,6 +100,8 @@ export class AddResourceForm extends React.Component {
    * * @param {{e:object}} eventObject
    */
   handleEnter = e => {
+    e.preventDefault();
+    console.log('hello000');
     if (e.keyCode === 13) {
       return this.getUriTitle(e, e.target.value);
     } else {
@@ -110,18 +109,14 @@ export class AddResourceForm extends React.Component {
     }
   };
 
+  //FIXME: metadata only populates for first item added within a lifecycle, not for additionals
   render() {
     return (
-      <section className="add-resource-section">
-        <button
-          className="add-resource-button"
-          type="button"
-          onClick={this.handleScrollClick}
-        >
-          Add Resource
-        </button>
+      <section
+        ref={this.props.resourceFormRef}
+        className="add-resource-section"
+      >
         <form
-          ref={this.Form}
           id="add-resource"
           className="add-resource-form"
           onSubmit={this.handleSubmit}
@@ -136,6 +131,7 @@ export class AddResourceForm extends React.Component {
               disabled={this.state.submitting}
               placeholder="http://"
               onKeyUp={this.handleEnter}
+              defaultValue={this.state.newURI}
             />
           </div>
           <div>
@@ -158,7 +154,8 @@ export class AddResourceForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    parentId: state.topicDashReducer.topic.id
+    parentId: state.topicDashReducer.topic.id,
+    submitting: state.topicDashReducer.submitting
   };
 };
 export default connect(mapStateToProps)(AddResourceForm);

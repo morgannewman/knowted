@@ -15,7 +15,8 @@ export const initialState = {
   loading: false,
   error: null,
   topic: {},
-  resourceOrder: []
+  resourceOrder: [],
+  submitting: false
 };
 
 export default produce((state, action) => {
