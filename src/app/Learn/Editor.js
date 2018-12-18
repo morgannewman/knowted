@@ -58,16 +58,18 @@ export class Editor extends React.Component {
 
 	render() {
 		const { isDisabled, text } = this.state;
+		const { type } = this.props;
 
 		return (
-			<Quill value={text} readOnly={isDisabled} onChange={this.handleChange} className="editor" theme="snow" />
+			<Quill value={text} readOnly={isDisabled} onChange={this.handleChange} className={ type ==='youtube' ? "editor" : 'other-editor editor'} theme="snow" />
 		);
 	}
 }
 
 const mapStateToProps = state => ({
 	userId: state.auth.user && state.auth.user.id,
-	topicId: state.learn.topic && state.learn.topic.id
+	topicId: state.learn.topic && state.learn.topic.id,
+	type: state.learn.resource && state.learn.resource.type
 });
 
 export default connect(mapStateToProps)(Editor);
