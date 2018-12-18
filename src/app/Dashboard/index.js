@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+//STYLESHEET
+import { Main } from '../styles/commonTheme';
+
 import Loading from '../common/Loading';
 import AllTopicsContainer from './AllTopicsContainer';
 import RecentlyViewedContainer from './RecentlyViewedContainer';
 
-//TODO: change out
 import { initializeDashboard } from '../../controller/actions/dashboard';
 export class Dashboard extends React.Component {
   static propTypes = {
@@ -23,7 +25,7 @@ export class Dashboard extends React.Component {
     if (this.props.loading) return <Loading />;
 
     return (
-      <main>
+      <Main>
         <div>
           <h2>Recently Viewed</h2>
           <RecentlyViewedContainer />
@@ -32,7 +34,7 @@ export class Dashboard extends React.Component {
           <h2>All Topics</h2>
           <AllTopicsContainer />
         </div>
-      </main>
+      </Main>
     );
   }
 }

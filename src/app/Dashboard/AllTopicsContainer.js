@@ -63,6 +63,7 @@ export class AllTopicsContainer extends React.Component {
     const { topics, folders } = this.props;
     return (
       <section className="all-topics-container">
+        <h3>Folders</h3>
         <div className="folders-container">
           {folders &&
             folders.map((folder, index) => {
@@ -81,6 +82,7 @@ export class AllTopicsContainer extends React.Component {
               );
             })}
         </div>
+        <h3>Topics</h3>
         <div className="lonely-topics-container">
           <AddTopic />
           <DragDropContext onDragEnd={this.onDragEnd}>
