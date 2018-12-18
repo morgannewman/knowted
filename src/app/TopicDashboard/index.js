@@ -17,11 +17,11 @@ export class TopicDashboard extends React.Component {
 
   componentDidUpdate() {
     if (this.props.error) {
-      return this.send();
+      return this.sendError();
     }
   }
 
-  send = () => {
+  sendError = () => {
     this.props.dispatch(
       notifSend({
         message: this.props.error.message,
