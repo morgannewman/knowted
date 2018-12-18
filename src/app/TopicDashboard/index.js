@@ -1,5 +1,6 @@
 import React from 'react';
 import { actions as notifActions } from 'redux-notifications';
+import 'redux-notifications/lib/styles.css';
 import { connect } from 'react-redux';
 import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
@@ -14,12 +15,18 @@ export class TopicDashboard extends React.Component {
     this.props.dispatch(initializeTopicDashboard(id));
   }
 
+  componentDidUpdate() {
+    if (this.props.error) {
+      return this.send();
+    }
+  }
+
   send = () => {
     this.props.dispatch(
       notifSend({
-        message: 'hello world',
-        kind: 'info',
-        dismissAfter: 2000
+        message: this.props.error.message,
+        kind: 'danger',
+        dismissAfter: 4000
       })
     );
   };
@@ -58,7 +65,8 @@ const mapStateToProps = state => {
     loading: state.topicDashReducer.loading,
     resources: state.topicDashReducer.resources,
     resourceOrder: state.topicDashReducer.resourceOrder,
-    topic: state.topicDashReducer.topic
+    topic: state.topicDashReducer.topic,
+    error: state.topicDashReducer.error
   };
 };
 export default connect(mapStateToProps)(TopicDashboard);

@@ -65,17 +65,21 @@ export default produce((state, action) => {
       state.resources[action.payload.id] = action.payload;
       state.resourceOrder.push(action.payload.id);
       state.loading = false;
+      state.error = null;
       return;
 
     case UPDATE_RESOURCE:
       state.resources[action.payload.id] = action.payload;
+      state.error = null;
       return;
 
     case UPDATE_RESC_ORDER:
       state.resourceOrder = action.payload;
+      state.error = null;
       return;
     case DELETE_RESOURCE:
       delete state.resources[action.id];
+      state.error = null;
       return;
 
     default:
