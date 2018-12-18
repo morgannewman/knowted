@@ -58,7 +58,13 @@ export class AddResourceForm extends React.Component {
           submitting: false
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          inputHidden: false,
+          submitting: false
+        });
+      });
   };
 
   /**
