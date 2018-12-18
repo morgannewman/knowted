@@ -4,84 +4,88 @@ import PropTypes from 'prop-types';
 import './Folder.css';
 import { connect } from 'react-redux';
 
-import { updateFolder } from '../../controller/actions/dashboard';
+import { updateFolder, displayEditFolderForm, hideEditFolderForm } from '../../controller/actions/dashboard';
 
 export class Folder extends React.Component {
-  static propTypes = {
-    folderId: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired
-  };
+	static propTypes = {
+		folderId: PropTypes.number.isRequired,
+		title: PropTypes.string.isRequired
+	};
 
-  state = {
-    showJawBone: false,
-    showEdit: false,
-    editing: false
-  };
+	state = {
+		showJawBone: false,
+		showEdit: false
+	};
 
-  toggleJawBone = () => {
-    this.setState(state => {
-      return { showJawBone: !state.showJawBone };
-    });
-  };
+	//CASE: toggle jawbone based on clicking on folder
+	toggleJawBone = () => {
+		this.setState(state => {
+			return { showJawBone: !state.showJawBone };
+		});
+	};
 
-  toggleEdit = () => {
-    this.setState(state => {
-      return { showEdit: !state.showEdit };
-    });
-  };
+	//CASE: display and hide edit option for folders on mouse ender and leave
+	displayEdit = () => {
+		this.setState(() => {
+			return { showEdit: true };
+		});
+	};
 
-  editFolder = () => {
-    this.setState(state => {
-      return { editing: !state.editing };
-    });
-  };
+	hideEdit = () => {
+		this.setState(() => {
+			return { showEdit: false };
+		});
+	};
 
-  submitEdit = e => {
-    e.preventDefault();
-    let title = this.titleInput.value;
-    this.props.dispatch(updateFolder(title, this.props.folderId));
-    this.editFolder();
-  };
+	//CASE: display and hide folder form based on clicking edit or cancel btn
+	displayEditFolderForm = () => {
+		this.props.dispatch(displayEditFolderForm(this.props.folderId));
+	};
 
-  render() {
-    const { title, folderId } = this.props;
-    return (
-      <div
-        className="folder-wrap"
-        onMouseEnter={this.toggleEdit}
-        onMouseLeave={this.toggleEdit}
-      >
-        {this.state.editing ? (
-          <>
-            <button onClick={this.editFolder}>Cancel</button>
-            <form className="edit-folder-form" onSubmit={this.submitEdit}>
-              <label>Folder Name</label>
-              <input
-                ref={input => (this.titleInput = input)}
-                type="text"
-                name="folderTitle"
-                defaultValue={this.props.title}
-              />
-            </form>
-          </>
-        ) : (
-          <>
-            {this.state.showEdit && (
-              <button onClick={this.editFolder}>Edit</button>
-            )}
-            <button className="folder-btn" onClick={this.toggleJawBone}>
-              {title}
-            </button>
-            {this.state.showJawBone && <JawBone folderId={folderId} />}
-          </>
-        )}
-      </div>
-    );
-  }
+	hideEditFolderForm = () => {
+		this.props.dispatch(hideEditFolderForm(this.props.folderId));
+	};
+
+	submitEdit = e => {
+		e.preventDefault();
+		let title = this.titleInput.value;
+		this.props.dispatch(updateFolder(title, this.props.folderId));
+		this.hideEditFolderForm();
+	};
+
+	render() {
+		const { title, folderId } = this.props;
+		return (
+			<div className="folder-wrap" onMouseEnter={this.displayEdit} onMouseLeave={this.hideEdit}>
+				{this.props.editing ? (
+					<>
+						<button onClick={this.hideEditFolderForm}>Cancel</button>
+						<form className="edit-folder-form" onSubmit={this.submitEdit}>
+							<label>Folder Name</label>
+							<input
+								ref={input => (this.titleInput = input)}
+								type="text"
+								name="folderTitle"
+								defaultValue={this.props.title}
+							/>
+						</form>
+					</>
+				) : (
+					<>
+						{this.state.showEdit && <button onClick={this.displayEditFolderForm}>Edit</button>}
+						<button className="folder-btn" onClick={this.toggleJawBone}>
+							{title}
+						</button>
+						{this.state.showJawBone && <JawBone folderId={folderId} />}
+					</>
+				)}
+			</div>
+		);
+	}
 }
 
 const mapStateToProps = state => ({
-  folders: state.dashboardReducer
+	folders: state.dashboardReducer.folders
 });
 
 export default connect(mapStateToProps)(Folder);
