@@ -36,24 +36,14 @@ export class TopicDashboard extends React.Component {
     }
 
     const { topic } = this.props;
-
     return (
       <main className="topic-dashboard">
-        <section>
-          <h2>
-            <Breadcrumbs
-              topicId={topic && topic.id}
-              topicTitle={topic && topic.title}
-            />
-          </h2>
-          <button onClick={this.send}>Send Notification</button>
-        </section>
-        <h2>Active Resources</h2>
-        <ActiveResourceContainer
-          resources={this.props.resources}
-          resourceOrder={this.props.resourceOrder}
+        <Breadcrumbs
+          topicId={topic && topic.id}
+          topicTitle={topic && topic.title}
         />
-
+        <h2>{topic.title}</h2>
+        <ActiveResourceContainer {...this.props} />
         <h2>Completed Resources </h2>
         <CompletedResourceContainer {...this.props} />
       </main>

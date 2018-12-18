@@ -82,11 +82,11 @@ export class ResourceItem extends React.Component {
     if (oldTitle === newTitle) {
       this.setState({ editing: !this.state.editing });
     }
-    const id = Number(e.target.id);
     if (!newTitle || newTitle.trim() === '') {
       this.setState({ editing: !this.state.editing });
       return;
     }
+    const id = Number(e.target.id);
     this.props.dispatch(updateSingleResource(id, { id, title: newTitle }));
     this.setState({ editing: !this.state.editing });
   };
