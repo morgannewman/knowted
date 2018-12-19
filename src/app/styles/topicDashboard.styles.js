@@ -55,6 +55,16 @@ export const TopicDashContainer = styled.section`
   .resource-view:hover .resource-item-controls {
     visibility: visible;
   }
+
+  .resource-item-controls {
+    .resource-item-edit {
+      background-color: red;
+      position: relative;
+      bottom: 70px;
+      right: 50px;
+      margin: 10px;
+    }
+  }
 `;
 
 export const ActiveResources = styled.section`
@@ -63,13 +73,14 @@ export const ActiveResources = styled.section`
     flex-direction: column;
     width: 100%;
     align-items: center;
-    max-width: 1213px;
+    border: 1px solid red;
   }
 
   .active-resources-list {
     list-style: none;
     width: 100%;
-    padding: 50px;
+    padding: 10px 90px;
+    border: 1px solid blue;
   }
 
   .resource-item:first-child {
@@ -77,12 +88,14 @@ export const ActiveResources = styled.section`
   }
 
   .add-resource-section {
-    max-width: 990px;
-    margin: 15px 0px 0px 30px;
+    max-width: 1200px;
+    // margin: 15px 0px 0px 30px;
     width: 100%;
+    display: block;
     border: 1.5px solid #aeaeae;
     border-radius: 8px;
     padding: 10px 20px 15px 20px;
+    margin-left: 10px;
 
     label {
       display: block;
@@ -108,7 +121,6 @@ export const ActiveResources = styled.section`
      {
       color: #e3e3e3;
       font-size: 2.1875rem;
-      position: absolute;
       left: 30px;
     }
   }

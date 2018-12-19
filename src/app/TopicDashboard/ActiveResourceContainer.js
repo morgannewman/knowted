@@ -46,65 +46,68 @@ export class ActiveResourceContainer extends React.Component {
     if (!rescOrder || !resources) return this.displayZeroCase();
 
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <section className="active-resources-container">
-          <button type="button" onClick={this.handleScrollClick}>
-            Add Resource
-          </button>
-          <Droppable droppableId="droppable-1">
-            {provided => (
-              <ul ref={provided.innerRef} className="active-resources-list">
-                {rescOrder.map((rescID, index) => {
-                  if (
-                    rescOrder &&
-                    resources &&
-                    rescOrder.length > 0 &&
-                    resources[rescID]
-                  ) {
-                    return resources[rescID].completed === false ? (
-                      <Draggable
-                        key={rescID}
-                        draggableId={rescID}
-                        index={index}
-                      >
-                        {provided => {
-                          return (
-                            <>
-                              <li
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                                className="resource-item active-resource-item"
-                              >
-                                {/* <i className="fas fa-ellipsis-v" /> */}
-                                <div className="elipsis">
-                                  {' '}
-                                  <span className="elipsis-dot" />
-                                  <span className="elipsis-dot" />
-                                  <span className="elipsis-dot" />
-                                </div>
+      <>
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <section className="active-resources-container">
+            <button type="button" onClick={this.handleScrollClick}>
+              Add Resource
+            </button>
+            <Droppable droppableId="droppable-1">
+              {provided => (
+                <ul ref={provided.innerRef} className="active-resources-list">
+                  {rescOrder.map((rescID, index) => {
+                    if (
+                      rescOrder &&
+                      resources &&
+                      rescOrder.length > 0 &&
+                      resources[rescID]
+                    ) {
+                      return resources[rescID].completed === false ? (
+                        <Draggable
+                          key={rescID}
+                          draggableId={rescID}
+                          index={index}
+                        >
+                          {provided => {
+                            return (
+                              <>
+                                <li
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                  className="resource-item active-resource-item"
+                                >
+                                  {/* <i className="fas fa-ellipsis-v" /> */}
+                                  <div className="elipsis">
+                                    {' '}
+                                    <span className="elipsis-dot" />
+                                    <span className="elipsis-dot" />
+                                    <span className="elipsis-dot" />
+                                  </div>
 
-                                <ResourceItem resource={resources[rescID]} />
-                              </li>
-                              {provided.placeholder}
-                            </>
-                          );
-                        }}
-                      </Draggable>
-                    ) : null;
-                  } else {
-                    return null;
-                  }
-                })}
-                <li>
-                  <AddResourceForm resourceFormRef={this.Form} />
-                </li>
-                {provided.placeholder}
-              </ul>
-            )}
-          </Droppable>
-        </section>
-      </DragDropContext>
+                                  <ResourceItem resource={resources[rescID]} />
+                                </li>
+                                {provided.placeholder}
+                              </>
+                            );
+                          }}
+                        </Draggable>
+                      ) : null;
+                    } else {
+                      return null;
+                    }
+                  })}
+
+                  {provided.placeholder}
+                  <li>
+                    <AddResourceForm resourceFormRef={this.Form} />
+                  </li>
+                </ul>
+              )}
+            </Droppable>
+          </section>
+        </DragDropContext>
+      </>
     );
   }
 }

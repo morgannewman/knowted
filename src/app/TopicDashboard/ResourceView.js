@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { EditButton, DeleteButton } from '../styles/common.styles';
 export function ResourceView({
   resource,
   handleChecked,
@@ -36,21 +37,21 @@ export function ResourceView({
           : resource.uri}
       </a>
       <div className="resource-item-controls">
-        <button
+        <EditButton
           resourceid={resource.id}
           onClick={handleEdit}
           className="resource-item-edit"
         >
           edit
-        </button>
+        </EditButton>
 
-        <button
+        <DeleteButton
           resourceid={resource.id}
           onClick={handleDelete}
           className="resource-item-delete"
         >
           delete
-        </button>
+        </DeleteButton>
       </div>
     </div>
   );
