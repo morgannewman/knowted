@@ -13,7 +13,9 @@ import { mergeTopicsNewFolder, updateTopic } from '../../controller/actions/dash
 export class AllTopicsContainer extends React.Component {
 	static propTypes = {
 		topics: PropTypes.array,
-		folders: PropTypes.object
+		folders: PropTypes.object,
+		folderOrder: PropTypes.array,
+		currentFolderId: PropTypes.string
 	};
 
 	handleTopicCombine = (topicId1, topicId2) => {
@@ -69,7 +71,7 @@ export class AllTopicsContainer extends React.Component {
 	};
 
 	render() {
-		const { topics, folders } = this.props;
+		const { topics } = this.props;
 		return (
 			<DragDropContext onDragEnd={this.onDragEnd}>
 				<section className="all-topics-container">
@@ -113,16 +115,11 @@ export class AllTopicsContainer extends React.Component {
 	}
 }
 
-const mapStateToProps = state => {
-	// console.log(state.dashboardReducer);
-	return {
-		topics: state.dashboardReducer.topics,
-		// topicOrder: state.dashboardReducer.topicOrder,
-		folders: state.dashboardReducer.folders,
-		folderOrder: state.dashboardReducer.folderOrder,
-		currentFolderId: state.dashboardReducer.currentFolderId,
-		userId: state.auth.user.id
-	};
-};
+const mapStateToProps = state => ({
+	topics: state.dashboardReducer.topics,
+	folders: state.dashboardReducer.folders,
+	folderOrder: state.dashboardReducer.folderOrder,
+	currentFolderId: state.dashboardReducer.currentFolderId
+});
 
 export default connect(mapStateToProps)(AllTopicsContainer);
