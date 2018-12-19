@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom';
 import { Notifs } from 'redux-notifications';
 import Landing from './Landing';
-import Nav from './common/Nav';
 import Dashboard from './Dashboard';
 import Learn from './Learn';
 import { connect } from 'react-redux';
@@ -15,6 +14,7 @@ import cache from '../controller/api/cache';
 import { submitNotebookUpdate } from '../controller/actions/learn';
 import TopicDashboard from './TopicDashboard';
 import requiresLogin from './common/requiresLogin';
+import withNav from './common/withNav';
 
 const cacheableActions = {
   submitNotebookUpdate
@@ -40,22 +40,21 @@ export class App extends Component {
         <Notifs />
         <Router>
           <div className="App">
-            <Nav />
             <Switch>
               <Route
                 exact
                 path={['/', '/login', '/register']}
-                component={Landing}
+                component={withNav(Landing)}
               />
               <Route
                 exact
                 path="/dashboard"
-                component={requiresLogin(Dashboard)}
+                component={withNav(requiresLogin(Dashboard))}
               />
               <Route
                 exact
                 path="/dashboard/:topicId"
-                component={requiresLogin(TopicDashboard)}
+                component={withNav(requiresLogin(TopicDashboard))}
               />
               <Route
                 exact
