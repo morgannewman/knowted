@@ -9,34 +9,34 @@ import RecentlyViewedContainer from './RecentlyViewedContainer';
 //TODO: change out
 import { initializeDashboard } from '../../controller/actions/dashboard';
 export class Dashboard extends React.Component {
-	static propTypes = {
-		loading: PropTypes.bool.isRequired
-	};
+  static propTypes = {
+    loading: PropTypes.bool.isRequired
+  };
 
-	componentDidMount() {
-		this.props.dispatch(initializeDashboard(3));
-	}
+  componentDidMount() {
+    this.props.dispatch(initializeDashboard(3));
+  }
 
-	render() {
-		if (this.props.loading) return <Loading />;
+  render() {
+    if (this.props.loading) return <Loading />;
 
-		return (
-			<main>
-				<div>
-					<h2>Recently Viewed</h2>
-					<RecentlyViewedContainer />
-				</div>
-				<div>
-					<h2>All Topics</h2>
-					<AllTopicsContainer />
-				</div>
-			</main>
-		);
-	}
+    return (
+      <main>
+        <div>
+          <h2>Recently Viewed</h2>
+          <RecentlyViewedContainer />
+        </div>
+        <div>
+          <h2>All Topics</h2>
+          <AllTopicsContainer />
+        </div>
+      </main>
+    );
+  }
 }
 
 const mapStateToProps = state => ({
-	loading: state.dashboardReducer.loading
+  loading: state.dashboardReducer.loading
 });
 
 export default connect(mapStateToProps)(Dashboard);

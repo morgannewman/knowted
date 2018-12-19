@@ -7,21 +7,21 @@ import { JawBone } from '../../Dashboard/JawBone';
 //To render topics
 
 const initialState = {
-	topics: [],
-	dispatch: jest.fn(),
-	folderId: 1
+  topics: [],
+  dispatch: jest.fn(),
+  folderId: 1
 };
 
 describe('<JawBone />', () => {
-	let wrapper;
-	beforeEach(() => {
-		wrapper = shallow(<JawBone {...initialState} />);
-	});
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<JawBone {...initialState} />);
+  });
 
-	it('renders without crashing', () => {});
+  it('renders without crashing', () => {});
 
-	it('to render topics', () => {
-		wrapper = shallow(<JawBone {...initialState} />);
-		expect(wrapper.find('.topic-btn'));
-	});
+  it('to render topics', () => {
+    wrapper = shallow(<JawBone {...initialState} />);
+    expect(wrapper.find('.topic-btn'));
+  });
 });
