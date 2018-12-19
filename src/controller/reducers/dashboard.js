@@ -28,7 +28,7 @@ const initialState = {
 
 export default produce((state, action) => {
 	switch (action.type) {
-		case DASHBOARD_POPULATE_SUCCESS:
+		case DASHBOARD_POPULATE_SUCCESS: {
 			const { folders, topics, recentResources } = action.payload;
 
 			state.error = null;
@@ -66,14 +66,18 @@ export default produce((state, action) => {
 			state.lonelyTopics = lonelyTopics;
 			state.topics = topicObject;
 			return;
+		}
 
-		case ADD_TOPIC_SUCCESS:
+		case ADD_TOPIC_SUCCESS: {
 			state.loading = false;
 			state.error = null;
-			state.topics.unshift(action.payload);
+			const topic = action.payload;
+			state.lonelyTopics.unshift(topic.id);
+			state.topics[topic.id] = topic;
 			return;
+		}
 
-		case UPDATE_TOPIC_SUCCESS:
+		case UPDATE_TOPIC_SUCCESS: {
 			state.loading = false;
 			state.error = null;
 			// const topicIndex = state.topics.findIndex(item => item.id === action.payload.id);
@@ -81,8 +85,9 @@ export default produce((state, action) => {
 			// 	state.topics[topicIndex].title = action.payload.title;
 			// }
 			return;
+		}
 
-		case UPDATE_TOPIC_PARENT_SUCCESS:
+		case UPDATE_TOPIC_PARENT_SUCCESS: {
 			state.loading = false;
 			state.error = null;
 			const topicParentIndex = state.topics.findIndex(item => item.id === action.payload.id);
@@ -90,28 +95,32 @@ export default produce((state, action) => {
 				state.topics[topicParentIndex].parent = action.payload.parent;
 			}
 			return;
+		}
 
-		case DELETE_TOPIC_SUCCESS:
+		case DELETE_TOPIC_SUCCESS: {
 			const deleteTopicIndex = state.topics.findIndex(item => item.id === action.payload);
 			if (deleteTopicIndex > -1) {
 				state.topics.splice(deleteTopicIndex, 1);
 			}
 			state.loading = false;
 			return;
+		}
 
-		case UPDATE_TOPIC_ORDER_SUCCESS:
+		case UPDATE_TOPIC_ORDER_SUCCESS: {
 			state.loading = false;
 			state.error = null;
 			state.topicOrder = action.payload;
 			return;
+		}
 
-		case ADD_FOLDER_SUCCESS:
+		case ADD_FOLDER_SUCCESS: {
 			state.loading = false;
 			state.error = null;
 			state.folders.unshift(action.payload);
 			return;
+		}
 
-		case UPDATE_FOLDER_SUCCESS:
+		case UPDATE_FOLDER_SUCCESS: {
 			state.loading = false;
 			state.error = null;
 			const folderIndex = state.folders.findIndex(item => item.id === action.payload.id);
@@ -119,29 +128,34 @@ export default produce((state, action) => {
 				state.folders[folderIndex].title = action.payload.title;
 			}
 			return;
+		}
 
-		case DISPLAY_EDIT_FOLDER_FORM:
+		case DISPLAY_EDIT_FOLDER_FORM: {
 			state.error = null;
 			state.currentFolderId = action.payload;
 			state.editingFolder = true;
 			return;
+		}
 
-		case HIDE_EDIT_FOLDER_FORM:
+		case HIDE_EDIT_FOLDER_FORM: {
 			state.error = null;
 			state.currentFolderId = null;
 			state.editingFolder = false;
 			return;
+		}
 
-		case UPDATE_TOPIC_SUBMIT:
+		case UPDATE_TOPIC_SUBMIT: {
 			const topic = state.topics.findIndex(topic => topic.id === action.payload.id);
 			if (topic > -1) {
 				// replace existing contents with new body optimistically
 				state.topics[topic] = { ...state.topics[topic], ...action.payload };
 			}
 			return;
+		}
 
-		case API_ERROR:
+		case API_ERROR: {
 			return { ...initialState, error: action.payload };
+		}
 
 		default:
 			return;
