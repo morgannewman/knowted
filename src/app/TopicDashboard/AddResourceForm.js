@@ -50,7 +50,7 @@ export class AddResourceForm extends React.Component {
     api.metadata
       .get(uri)
       .then(data => {
-        console.log(data);
+        // console.log(data);
         this.inputUri.value = data.uri;
         this.inputTitle.value = data.title;
         this.setState({
@@ -58,7 +58,13 @@ export class AddResourceForm extends React.Component {
           submitting: false
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          inputHidden: false,
+          submitting: false
+        });
+      });
   };
 
   /**
@@ -89,7 +95,7 @@ export class AddResourceForm extends React.Component {
     this.inputTitle.value = '';
     this.setState({
       feedback: null,
-      inputHidden: false,
+      inputHidden: true,
       submitting: false
     });
   };
@@ -101,7 +107,6 @@ export class AddResourceForm extends React.Component {
    */
   handleEnter = e => {
     e.preventDefault();
-    console.log('hello000');
     if (e.keyCode === 13) {
       return this.getUriTitle(e, e.target.value);
     } else {

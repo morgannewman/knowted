@@ -18,8 +18,11 @@ export class ResourceEditForm extends React.Component {
         <form
           id={resource.id}
           className="resource-item"
-          onSubmit={e => handleUpdate(e, this.state.value, this.state.uri)}
+          onSubmit={e =>
+            handleUpdate(e, this.state.value, this.state.uri, resource.title)
+          }
         >
+          <label htmlFor="title update" />
           <input
             type="text"
             name={resource.title}
