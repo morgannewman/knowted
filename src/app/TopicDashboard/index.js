@@ -6,9 +6,12 @@ import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
 import { initializeTopicDashboard } from '../../controller/actions/topicDashboard';
 import Loading from '../common/Loading';
-import './index.scss';
+// import './index.scss';
 import Breadcrumbs from '../common/Breadcrumbs';
 const { notifSend } = notifActions;
+// import * '../styles/topicDashboard.styles';
+// import * from '../styles/topicDashboard.styles';
+
 export class TopicDashboard extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.topicId;
@@ -38,6 +41,7 @@ export class TopicDashboard extends React.Component {
     const { topic } = this.props;
     return (
       <main className="topic-dashboard">
+        <button>Hello</button>
         <Breadcrumbs
           topicId={topic && topic.id}
           topicTitle={topic && topic.title}
