@@ -16,23 +16,14 @@ import produce from 'immer';
 
 const initialState = {
 	topics: [],
+	lonelyTopics: null,
 	folders: null,
+	folderOrder: null,
 	recentResources: null,
-	topicOrder: [],
 	editingFolder: false,
 	currentFolderId: null,
 	loading: true,
 	error: null
-};
-
-const generateObjectAndOrderArray = a => {
-	const order = [];
-	const object = a.reduce((obj, item) => {
-		order.push(item.id);
-		obj[item.id] = item;
-		return obj;
-	}, {});
-	return { order, object };
 };
 
 export default produce((state, action) => {
@@ -45,12 +36,35 @@ export default produce((state, action) => {
 			state.loading = false;
 
 			// Hydrate folders
-			const hydratedFolders = generateObjectAndOrderArray(folders);
-			state.folders = hydratedFolders.object;
-			state.folderOrder = hydratedFolders.order;
+			let folderObject = {};
+			let folderOrder = [];
+			for (const folder of folders) {
+				const id = folder.id;
+				// Add each folder ID to folderOrder
+				folderOrder.push(id);
+				// Add each folder to folder object
+				folderObject[id] = folder;
+				// Add a topics array for the topic IDs each folder owns
+				folderObject[id].topics = [];
+			}
+			state.folders = folderObject;
+			state.folderOrder = folderOrder;
 
-			// TODO: Hydrate topics
-			state.topics = topics;
+			// Hydrate topics
+			let topicObject = {};
+			let lonelyTopics = [];
+			for (const topic of topics) {
+				const id = topic.id;
+				topicObject[id] = topic;
+				if (topic.parent === null) {
+					lonelyTopics.push(id);
+				} else {
+					const parent = topic.parent.id;
+					state.folders[parent].topics.push(id);
+				}
+			}
+			state.lonelyTopics = lonelyTopics;
+			state.topics = topicObject;
 			return;
 
 		case ADD_TOPIC_SUCCESS:

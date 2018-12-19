@@ -70,6 +70,19 @@ export class AllTopicsContainer extends React.Component {
 		return result;
 	};
 
+	renderLonelyTopics = () => {
+		const { lonelyTopics, topics } = this.props;
+		return lonelyTopics.map((id, index) => (
+			<Draggable key={id} draggableId={id} index={index}>
+				{provided => (
+					<div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+						<Topic title={topics[id].title} topicId={id} key={id} index={index} />
+					</div>
+				)}
+			</Draggable>
+		));
+	};
+
 	render() {
 		const { topics } = this.props;
 		return (
@@ -81,29 +94,7 @@ export class AllTopicsContainer extends React.Component {
 						<Droppable droppableId="lonelyTopics" direction="horizontal" isCombineEnabled>
 							{provided => (
 								<div ref={provided.innerRef} {...provided.droppableProps}>
-									{topics &&
-										this.props.topics.map(
-											(topic, index) =>
-												(!topic.parent || !topic.parent.id) && (
-													<Draggable key={topic.id} draggableId={topic.id} index={index}>
-														{provided => (
-															<div
-																ref={provided.innerRef}
-																{...provided.draggableProps}
-																{...provided.dragHandleProps}
-															>
-																<Topic
-																	title={topic.title}
-																	topicId={topic.id}
-																	key={topic.id}
-																	index={index}
-																/>
-															</div>
-														)}
-													</Draggable>
-												)
-										)}
-
+									{this.renderLonelyTopics()}
 									{provided.placeholder}
 								</div>
 							)}
@@ -117,6 +108,7 @@ export class AllTopicsContainer extends React.Component {
 
 const mapStateToProps = state => ({
 	topics: state.dashboardReducer.topics,
+	lonelyTopics: state.dashboardReducer.lonelyTopics,
 	folders: state.dashboardReducer.folders,
 	folderOrder: state.dashboardReducer.folderOrder,
 	currentFolderId: state.dashboardReducer.currentFolderId
