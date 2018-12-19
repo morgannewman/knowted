@@ -77,8 +77,8 @@ export const ActiveResources = styled.section`
   }
 
   .add-resource-section {
-    max-width: 1090px;
-    margin: 10px;
+    max-width: 990px;
+    margin: 15px 0px 0px 30px;
     width: 100%;
     border: 1.5px solid #aeaeae;
     border-radius: 8px;

@@ -96,8 +96,10 @@ export class ActiveResourceContainer extends React.Component {
                     return null;
                   }
                 })}
+                <li>
+                  <AddResourceForm resourceFormRef={this.Form} />
+                </li>
                 {provided.placeholder}
-                <AddResourceForm resourceFormRef={this.Form} />
               </ul>
             )}
           </Droppable>
