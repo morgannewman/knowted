@@ -5,6 +5,7 @@ import {
   Redirect,
   BrowserRouter as Router
 } from 'react-router-dom';
+import { Notifs } from 'redux-notifications';
 import Landing from './Landing';
 import Nav from './common/Nav';
 import Dashboard from './Dashboard';
@@ -35,34 +36,37 @@ export class App extends Component {
   }
   render() {
     return (
-      <Router>
-        <div className="App">
-          <Nav />
-          <Switch>
-            <Route
-              exact
-              path={['/', '/login', '/register']}
-              component={Landing}
-            />
-            <Route
-              exact
-              path="/dashboard"
-              component={requiresLogin(Dashboard)}
-            />
-            <Route
-              exact
-              path="/dashboard/:topicId"
-              component={requiresLogin(TopicDashboard)}
-            />
-            <Route
-              exact
-              path="/dashboard/:topicId/:resourceId"
-              component={requiresLogin(Learn)}
-            />
-            <Redirect to="/" />
-          </Switch>
-        </div>
-      </Router>
+      <>
+        <Notifs />
+        <Router>
+          <div className="App">
+            <Nav />
+            <Switch>
+              <Route
+                exact
+                path={['/', '/login', '/register']}
+                component={Landing}
+              />
+              <Route
+                exact
+                path="/dashboard"
+                component={requiresLogin(Dashboard)}
+              />
+              <Route
+                exact
+                path="/dashboard/:topicId"
+                component={requiresLogin(TopicDashboard)}
+              />
+              <Route
+                exact
+                path="/dashboard/:topicId/:resourceId"
+                component={requiresLogin(Learn)}
+              />
+              <Redirect to="/" />
+            </Switch>
+          </div>
+        </Router>
+      </>
     );
   }
 }

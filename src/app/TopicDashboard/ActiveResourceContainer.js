@@ -12,6 +12,15 @@ export class ActiveResourceContainer extends React.Component {
     this.Form = React.createRef();
   }
 
+  //Temporary Copy to make sure it's working
+  displayZeroCase = () => {
+    return (
+      <section className="topicDash-zero">
+        <p>You have no resources. Add resources below!</p>
+        <AddResourceForm resourceFormRef={this.Form} />
+      </section>
+    );
+  };
   handleScrollClick = () => {
     const element = this.Form.current;
     element.scrollIntoView();
@@ -35,14 +44,12 @@ export class ActiveResourceContainer extends React.Component {
 
   render() {
     const { resources, rescOrder } = this.props;
+    if (!rescOrder || !resources) return this.displayZeroCase();
+
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <section className="active-resources-container">
-          <button
-            // className="add-resource-button"
-            type="button"
-            onClick={this.handleScrollClick}
-          >
+          <button type="button" onClick={this.handleScrollClick}>
             Add Resource
           </button>
           <Droppable droppableId="droppable-1">

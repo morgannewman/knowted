@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as notifReducer } from 'redux-notifications';
 import auth from './auth';
 import learn from './learn';
 import dashboardReducer from './dashboard';
@@ -8,7 +9,8 @@ const rootReducer = combineReducers({
   auth,
   learn,
   dashboardReducer,
-  topicDashReducer
+  topicDashReducer,
+  notifs: notifReducer
 });
 
 export default rootReducer;

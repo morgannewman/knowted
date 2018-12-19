@@ -9,6 +9,7 @@ import { Redirect } from 'react-router-dom';
 import { initializeLearn, resetLearn, submitCompleteResource } from '../../controller/actions/learn';
 import Loading from '../common/Loading';
 import Breadcrumbs from '../common/Breadcrumbs';
+import Card from './Card';
 
 export class Learn extends React.Component {
 	static propTypes = {
@@ -73,18 +74,19 @@ export class Learn extends React.Component {
 					resourceTitle={resource.title}
 				/>
 				{!resource.completed && <button onClick={this.completeAndContinue}>Complete & Continue</button>}
+				{resource.type === 'other' && <Card />}
 				<div className="learn">
-					{/* TODO: Conditional logic to render a different card/layout for state.learn.resource.type === other resources */}
-					{/* TODO: Change this to be dynamic for state.learn.resource.type === youtube*/}
-					<iframe
-						id="ytplayer"
-						type="text/html"
-						src={`https://www.youtube.com/embed/${resource.uri}`}
-						frameBorder="0"
-						disablekb="1"
-						title="YouTube"
-						sandbox="allow-scripts allow-popups allow-forms allow-same-origin"
-					/>
+					{resource.type === 'youtube' && (
+						<iframe
+							id="ytplayer"
+							type="text/html"
+							src={`https://www.youtube.com/embed/${resource.uri}`}
+							frameBorder="0"
+							disablekb="1"
+							title="YouTube"
+							sandbox="allow-scripts allow-popups allow-forms allow-same-origin"
+						/>
+					)}
 					<Editor initialText={notebook} />
 				</div>
 			</>
@@ -99,11 +101,10 @@ const mapStateToProps = (state, props) => {
 
 	const topicIsStale = currentTopic && currentTopic.id !== Number(topicId);
 	const resourceIsStale = currentResource && currentResource.id !== Number(resourceId);
-
 	return {
 		stateIsStale: topicIsStale || resourceIsStale,
 		loading: state.learn.loading,
-		resourceNotFound: state.learn.error && state.learn.error.status === 404,
+		resourceNotFound: state.learn.error && state.learn.error.code === 404,
 		notebook: state.learn.topic && (state.learn.topic.notebook || ''),
 		resource: currentResource,
 		topic: currentTopic,

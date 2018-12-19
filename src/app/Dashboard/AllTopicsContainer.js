@@ -8,7 +8,10 @@ import AddTopic from './AddTopic';
 import Folder from './Folder';
 import Topic from './Topic';
 
-import { mergeTopicsNewFolder } from '../../controller/actions/dashboard';
+import {
+  mergeTopicsNewFolder,
+  updateTopic
+} from '../../controller/actions/dashboard';
 
 export class AllTopicsContainer extends React.Component {
   static propTypes = {
@@ -16,25 +19,30 @@ export class AllTopicsContainer extends React.Component {
     folders: PropTypes.array
   };
 
-  combine = (topicId1, topicId2) => {
+  handleTopicCombine = (topicId1, topicId2) => {
     this.props.dispatch(
-      mergeTopicsNewFolder(`Untitled Folder ${Date.now()}`, topicId1, topicId2)
+      mergeTopicsNewFolder(`Untitled Folder-${Date.now()}`, topicId1, topicId2)
     );
   };
 
-  // reorder = (list, startIndex, endIndex) => {
-  //   const result = Array.from(list);
-  //   const [removed] = result.splice(startIndex, 1);
-  //   result.splice(endIndex, 0, removed);
-  //   return result;
-  // };
+  handleTopicFolderChange = result => {
+    const { destination, draggableId } = result;
+    // update folder
+    const parent =
+      destination.droppableId === 'lonelyTopics'
+        ? null
+        : Number(destination.droppableId);
+    this.props.dispatch(updateTopic({ id: Number(draggableId), parent }));
+  };
 
   onDragEnd = result => {
+    console.log(result);
+
     const { destination, source, draggableId, combine } = result;
 
     //CASE: combining lone topics => creates a new folder and places items within that folder
     if (combine) {
-      this.combine(combine.draggableId, draggableId);
+      this.handleTopicCombine(combine.draggableId, draggableId);
     }
 
     // CASE: not reordered
@@ -47,45 +55,37 @@ export class AllTopicsContainer extends React.Component {
     }
 
     // TODO: CASE: Move to other list (different droppable id)
+    if (source.droppableId !== destination.droppableId) {
+      this.handleTopicFolderChange(result);
+    }
     // removing last item from folder => deletes folder
-
-    // //reorder
-    // const topics = this.reorder(
-    //   this.props.topicOrder,
-    //   source.index,
-    //   destination.index
-    // );
-
-    // this.props.dispatch(updateTopicOrder(topics, this.props.userId));
   };
 
   render() {
     const { topics, folders } = this.props;
     return (
-      <section className="all-topics-container">
-        <h3>Folders</h3>
-        <div className="folders-container">
-          {folders &&
-            folders.map((folder, index) => {
-              return (
-                <Folder
-                  title={folder.title}
-                  folderId={folder.id}
-                  key={folder.id}
-                  index={index}
-                  editing={
-                    folder.id === this.props.currentFolderId
-                      ? this.props.currentFolderId
-                      : null
-                  }
-                />
-              );
-            })}
-        </div>
-        <h3>Topics</h3>
-        <div className="lonely-topics-container">
-          <AddTopic />
-          <DragDropContext onDragEnd={this.onDragEnd}>
+      <DragDropContext onDragEnd={this.onDragEnd}>
+        <section className="all-topics-container">
+          <div className="folders-container">
+            {folders &&
+              folders.map((folder, index) => {
+                return (
+                  <Folder
+                    title={folder.title}
+                    folderId={folder.id}
+                    key={folder.id}
+                    index={index}
+                    editing={
+                      folder.id === this.props.currentFolderId
+                        ? this.props.currentFolderId
+                        : null
+                    }
+                  />
+                );
+              })}
+          </div>
+          <div className="lonely-topics-container">
+            <AddTopic />
             <Droppable
               droppableId="lonelyTopics"
               direction="horizontal"
@@ -124,9 +124,9 @@ export class AllTopicsContainer extends React.Component {
                 </div>
               )}
             </Droppable>
-          </DragDropContext>
-        </div>
-      </section>
+          </div>
+        </section>
+      </DragDropContext>
     );
   }
 }

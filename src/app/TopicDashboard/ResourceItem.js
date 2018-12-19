@@ -8,7 +8,6 @@ import {
   deleteResource
 } from '../../controller/actions/topicDashboard';
 import './ResourceItem.scss';
-// import { Link } from 'react-router-dom';
 
 //TODO: use Link so so the resource title links to it's corresponding
 //TODO:remove console.logs
@@ -75,20 +74,20 @@ export class ResourceItem extends React.Component {
    *Toggles between form and view mode
    * passed down through props
    * Takes in the event object from child and handles form submission
-   * * @param {{e: object, title:string, uri:String}}
+   * If the newTitle is blank, set state back to view and keep the old title
+   * * @param {{e: object, title:string, uri:String, oldTitle:string}}
    */
-  handleUpdate = (e, title, uri) => {
+  handleUpdate = (e, newTitle, uri, oldTitle) => {
     e.preventDefault();
-    // console.log(title, uri);
-    // console.log(e.currentTarget);
-    const newTitle = title;
-    // const newURI = uri;
-    const id = Number(e.target.id);
-    if (!newTitle) {
+    if (oldTitle === newTitle) {
+      this.setState({ editing: !this.state.editing });
+    }
+    if (!newTitle || newTitle.trim() === '') {
+      this.setState({ editing: !this.state.editing });
       return;
     }
+    const id = Number(e.target.id);
     this.props.dispatch(updateSingleResource(id, { id, title: newTitle }));
-
     this.setState({ editing: !this.state.editing });
   };
 

@@ -42,8 +42,10 @@ export default produce((state, action) => {
           return obj;
         }, {});
       }
-
-      state.resourceOrder = action.payload.resourceOrder;
+      state.resourceOrder =
+        action.payload.resourceOrder !== null
+          ? action.payload.resourceOrder
+          : [];
 
       state.resources = mapResourcesToObject(action.payload.resources);
       // state.resources = action.payload.resources;
@@ -62,17 +64,21 @@ export default produce((state, action) => {
       state.resources[action.payload.id] = action.payload;
       state.resourceOrder.push(action.payload.id);
       state.loading = false;
+      state.error = null;
       return;
 
     case UPDATE_RESOURCE:
       state.resources[action.payload.id] = action.payload;
+      state.error = null;
       return;
 
     case UPDATE_RESC_ORDER:
       state.resourceOrder = action.payload;
+      state.error = null;
       return;
     case DELETE_RESOURCE:
       delete state.resources[action.id];
+      state.error = null;
       return;
 
     default:

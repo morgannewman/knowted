@@ -40,7 +40,10 @@ export function goFetch(relativePath, config = null, params = null) {
 		if (!res.ok) {
 			if (res.headers.has('content-type') && res.headers.get('content-type').startsWith('application/json')) {
 				// It's a nice JSON error returned by us, so decode it
-				return res.json().then(err => Promise.reject(err));
+				return res.json().then(err => {
+					err.code = res.status;
+					return Promise.reject(err);
+				});
 			}
 			// It's a less informative error returned by express
 			return Promise.reject({
