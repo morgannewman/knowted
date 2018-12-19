@@ -43,7 +43,6 @@ export const addTopic = title => dispatch => {
  * @param {{title: string, id: number}} object
  */
 export const updateTopic = body => (dispatch, getState) => {
-  console.log(body);
   // TODO: Figure out a better way of normalizing parent for optimistic update
   if (body.parent) {
     const folder = getState().dashboardReducer.folders.find(

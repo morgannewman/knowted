@@ -10,7 +10,8 @@ import Topic from './Topic';
 
 import {
   mergeTopicsNewFolder,
-  updateTopic
+  updateTopic,
+  deleteEmptyFolder
 } from '../../controller/actions/dashboard';
 
 export class AllTopicsContainer extends React.Component {
@@ -63,11 +64,17 @@ export class AllTopicsContainer extends React.Component {
   };
 
   renderFolders = () => {
-    const { folderOrder, folders } = this.props;
+    const { folderOrder, folders, dispatch } = this.props;
     const result = [];
     for (const i in folderOrder) {
       const id = folderOrder[i];
       const folder = folders[id];
+      // Delete folder if empty
+      if (!folder.topics.length) {
+        dispatch(deleteEmptyFolder(id));
+        continue;
+      }
+      // Render folder otherwise
       result.push(
         <Folder
           title={folder.title}
