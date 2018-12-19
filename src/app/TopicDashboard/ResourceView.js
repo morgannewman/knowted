@@ -17,8 +17,11 @@ export function ResourceView({
         checked={resource.completed}
       />
 
-      <Link to={`/dashboard/${topicID}/${resource.id}`}>{resource.title}</Link>
-      <br />
+      <span className="name-of-resource">
+        <Link to={`/dashboard/${topicID}/${resource.id}`}>
+          {resource.title}
+        </Link>
+      </span>
       <a
         href={
           resource.type === 'youtube'

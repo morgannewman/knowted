@@ -8,7 +8,8 @@ export const TopicDashContainer = styled.section`
   max-width: 1255px;
   margin: 0px auto;
 
-  .resource-item {
+  .resource-item,
+  .completed-resource-item {
     height: 63px;
     width: 100%;
     max-width: 1090px;
@@ -37,10 +38,14 @@ export const TopicDashContainer = styled.section`
   }
 
   .resource-view {
-    position: relative;
-    width: 800px;
+    width: 100%;
+
+    .name-of-resource {
+      font-size: 1.4rem;
+      margin-right: 20px;
+    }
   }
-  .resource-view:hover {
+  .resource-item:hover {
     box-shadow: 5px 4px 22px rgba(3, 30, 30, 0.808);
   }
 
@@ -124,15 +129,5 @@ export const CompleteResources = styled.section`
     list-style: none;
     width: 100%;
     padding: 50px;
-  }
-
-  .resource-item {
-    height: 63px;
-    width: 100%;
-    max-width: 1090px;
-    // border: 1.5px solid #aeaeae;
-    border-radius: 8px;
-    margin: 10px;
-    padding: 0px;
   }
 `;
