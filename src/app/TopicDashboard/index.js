@@ -4,8 +4,9 @@ import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
 import { initializeTopicDashboard } from '../../controller/actions/topicDashboard';
 import Loading from '../common/Loading';
-import './index.scss';
 import Breadcrumbs from '../common/Breadcrumbs';
+import { Redirect } from 'react-router-dom';
+import './index.scss';
 
 export class TopicDashboard extends React.Component {
   componentDidMount() {
@@ -24,10 +25,16 @@ export class TopicDashboard extends React.Component {
   }
 
   render() {
-    const { loading, topic, stateIsStale } = this.props;
+    const { loading, topic, stateIsStale, topicNotFound } = this.props;
+    console.log(topicNotFound);
+    if (topicNotFound) {
+      console.log('hellooo');
+      return <Redirect to="/dashboard" />;
+    }
     if (loading || stateIsStale) {
       return <Loading />;
     }
+
     return (
       <main className="topic-dashboard">
         <section>
@@ -54,12 +61,19 @@ const mapStateToProps = (state, props) => {
   console.log(props);
   const currentTopicID = props.match.params.topicId;
   const stateTopicID = state.topicDashReducer.topic.id;
+  const NotFound =
+    state.topicDashReducer.error &&
+    state.topicDashReducer.error.message === 'Not found'
+      ? true
+      : false;
+
   return {
     stateIsStale: Number(stateTopicID) !== Number(currentTopicID),
     loading: state.topicDashReducer.loading,
     resources: state.topicDashReducer.resources,
     resourceOrder: state.topicDashReducer.resourceOrder,
-    topic: state.topicDashReducer.topic
+    topic: state.topicDashReducer.topic,
+    topicNotFound: NotFound
   };
 };
 export default connect(mapStateToProps)(TopicDashboard);
