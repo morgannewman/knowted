@@ -8,8 +8,7 @@ export const TopicDashContainer = styled.section`
   max-width: 1255px;
   margin: 0px auto;
 
-  .resource-item,
-  .completed-resource-item {
+  .resource-item {
     height: 63px;
     width: 100%;
     max-width: 1090px;
@@ -129,5 +128,15 @@ export const CompleteResources = styled.section`
     list-style: none;
     width: 100%;
     padding: 50px;
+  }
+
+  .completed-resource-item {
+    height: 63px;
+    width: 100%;
+    max-width: 1090px;
+    border: 1.5px solid #aeaeae;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 0px;
   }
 `;
