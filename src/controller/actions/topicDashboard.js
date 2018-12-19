@@ -2,42 +2,42 @@ import api from '../../controller/api';
 
 export const RESOURCE_SUCCESS = 'RESOURCE_SUCCESS';
 export const resourceSuccess = data => ({
-	type: RESOURCE_SUCCESS,
-	payload: data
+  type: RESOURCE_SUCCESS,
+  payload: data
 });
 
 export const RESOURCE_ERROR = 'RESOURCE_ERROR';
 export const resourceError = error => ({
-	type: RESOURCE_ERROR,
-	payload: error
+  type: RESOURCE_ERROR,
+  payload: error
 });
 
 export const ADD_RESOURCE = 'ADD_RESOURCE';
 export const addResource = resource => ({
-	type: ADD_RESOURCE,
-	payload: resource
+  type: ADD_RESOURCE,
+  payload: resource
 });
 
 export const UPDATE_RESOURCE = 'UPDATE_RESOURCE';
 export const updateResource = resource => ({
-	type: UPDATE_RESOURCE,
-	payload: resource
+  type: UPDATE_RESOURCE,
+  payload: resource
 });
 
 export const UPDATE_RESC_ORDER = 'UPDATE_RESC_ORDER';
 export const updateResourceOrder = rescOrder => ({
-	type: UPDATE_RESC_ORDER,
-	payload: rescOrder
+  type: UPDATE_RESC_ORDER,
+  payload: rescOrder
 });
 export const DELETE_RESOURCE = 'DELETE_RESOURCE';
 export const delResource = id => ({
-	type: DELETE_RESOURCE,
-	id
+  type: DELETE_RESOURCE,
+  id
 });
 
 export const TOPICDASH_RESET = 'TOPICDASH_RESET';
 export const topicDashReset = () => ({
-	type: TOPICDASH_RESET
+  type: TOPICDASH_RESET
 });
 
 /**
@@ -49,22 +49,22 @@ export const topicDashReset = () => ({
  * *@param {{id:integer}}} id
  */
 export const initializeTopicDashboard = id => (dispatch, getState) => {
-	const topicInState = getState().topicDashReducer.topic.id;
-	const currentTopic = id;
+  const topicInState = getState().topicDashReducer.topic.id;
+  const currentTopic = id;
 
-	//topicInState will be undefined at the beginning and triggers the rest of this function
-	if (Number(topicInState) !== Number(currentTopic)) {
-		dispatch(topicDashReset());
-	}
-	api.topics
-		.getOne(id)
-		.then(data => {
-			dispatch(resourceSuccess(data));
-		})
-		.catch(err => {
-			console.log(err);
-			dispatch(resourceError(err));
-		});
+  //topicInState will be undefined at the beginning and triggers the rest of this function
+  if (Number(topicInState) !== Number(currentTopic)) {
+    dispatch(topicDashReset());
+  }
+  api.topics
+    .getOne(id)
+    .then(data => {
+      dispatch(resourceSuccess(data));
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch(resourceError(err));
+    });
 };
 
 /**
@@ -80,22 +80,22 @@ export const initializeTopicDashboard = id => (dispatch, getState) => {
  * * @param {{parent: integer, title:string, uri:string, type:string}}
  */
 export const submitResource = (parent, title, uri) => (dispatch, getState) => {
-	const body = { parent, title, uri };
-	api.resources
-		.post(body)
-		.then(data => {
-			dispatch(addResource(data));
-			const resourceOrder = getState().topicDashReducer.resourceOrder;
-			console.log(resourceOrder);
-			api.topics.put({
-				id: body.parent,
-				resourceOrder: JSON.stringify(resourceOrder)
-			});
-		})
-		.catch(err => {
-			console.log(err);
-			dispatch(resourceError(err));
-		});
+  const body = { parent, title, uri };
+  api.resources
+    .post(body)
+    .then(data => {
+      dispatch(addResource(data));
+      const resourceOrder = getState().topicDashReducer.resourceOrder;
+      console.log(resourceOrder);
+      api.topics.put({
+        id: body.parent,
+        resourceOrder: JSON.stringify(resourceOrder)
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch(resourceError(err));
+    });
 };
 
 /**
@@ -109,12 +109,12 @@ export const submitResource = (parent, title, uri) => (dispatch, getState) => {
 //TODO: remove console.logs
 //FIXME: might not need ID
 export const updateSingleResource = (id, body) => dispatch => {
-	api.resources
-		.put(body)
-		.then(data => {
-			dispatch(updateResource(data));
-		})
-		.catch(error => dispatch(resourceError(error)));
+  api.resources
+    .put(body)
+    .then(data => {
+      dispatch(updateResource(data));
+    })
+    .catch(error => dispatch(resourceError(error)));
 };
 
 /**
@@ -129,26 +129,28 @@ export const updateSingleResource = (id, body) => dispatch => {
  */
 
 export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
-	console.log(typeof resourceId, typeof topicId);
-	api.resources
-		.delete(resourceId)
-		.then(res => {
-			const newOrder = getState().topicDashReducer.resourceOrder.filter(item => {
-				// console.log(item, resourceId);
-				return item !== Number(resourceId);
-			});
-			// console.log(newOrder);
-			return api.topics.put({
-				id: topicId,
-				resourceOrder: JSON.stringify(newOrder)
-			});
-		})
-		.then(res => {
-			console.log(res);
-			dispatch(delResource(Number(resourceId)));
-			dispatch(updateResourceOrder(res.resourceOrder));
-		})
-		.catch(error => dispatch(resourceError(error)));
+  console.log(typeof resourceId, typeof topicId);
+  api.resources
+    .delete(resourceId)
+    .then(res => {
+      const newOrder = getState().topicDashReducer.resourceOrder.filter(
+        item => {
+          // console.log(item, resourceId);
+          return item !== Number(resourceId);
+        }
+      );
+      // console.log(newOrder);
+      return api.topics.put({
+        id: topicId,
+        resourceOrder: JSON.stringify(newOrder)
+      });
+    })
+    .then(res => {
+      console.log(res);
+      dispatch(delResource(Number(resourceId)));
+      dispatch(updateResourceOrder(res.resourceOrder));
+    })
+    .catch(error => dispatch(resourceError(error)));
 };
 
 /**
@@ -161,15 +163,15 @@ export const deleteResource = (resourceId, topicId) => (dispatch, getState) => {
  * @param {{topicId: integer}} topicId
  */
 export const updateRescOrder = (rescOrder, topicId) => (dispatch, getState) => {
-	// console.log(rescOrder, topicId);
-	api.topics
-		.put({
-			id: topicId,
-			resourceOrder: JSON.stringify(rescOrder)
-		})
-		.then(res => {
-			// console.log(res);
-			dispatch(updateResourceOrder(res.resourceOrder));
-		})
-		.catch(error => dispatch(resourceError(error)));
+  // console.log(rescOrder, topicId);
+  api.topics
+    .put({
+      id: topicId,
+      resourceOrder: JSON.stringify(rescOrder)
+    })
+    .then(res => {
+      // console.log(res);
+      dispatch(updateResourceOrder(res.resourceOrder));
+    })
+    .catch(error => dispatch(resourceError(error)));
 };
