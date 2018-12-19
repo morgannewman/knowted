@@ -9,12 +9,14 @@ export function ResourceView({
 }) {
   return (
     <div className="resource-view">
-      <input
+      <button
+        className="checkbox"
         id={resource.id}
-        type="checkbox"
-        onChange={handleChecked}
+        type="button"
+        onClick={handleChecked}
         checked={resource.completed}
       />
+
       <Link to={`/dashboard/${topicID}/${resource.id}`}>{resource.title}</Link>
       <br />
       <a

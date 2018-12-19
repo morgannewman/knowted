@@ -74,8 +74,16 @@ export class ActiveResourceContainer extends React.Component {
                                 ref={provided.innerRef}
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
-                                className="resource-item"
+                                className="resource-item active-resource-item"
                               >
+                                {/* <i className="fas fa-ellipsis-v" /> */}
+                                <div className="elipsis">
+                                  {' '}
+                                  <span className="elipsis-dot" />
+                                  <span className="elipsis-dot" />
+                                  <span className="elipsis-dot" />
+                                </div>
+
                                 <ResourceItem resource={resources[rescID]} />
                               </li>
                               {provided.placeholder}
