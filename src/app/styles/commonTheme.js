@@ -6,15 +6,28 @@ import styled from 'styled-components';
 
 //OVERALL
 export const Main = styled.main`
+  :root {
+    font-size: 16px;
+  }
+
   h1 {
+    font-family: ivyjournal, sans-serif;
+    font-size: 2.875rem;
   }
   h2 {
+    font-family: ivyjournal, sans-serif;
+    font-size: 1.875rem;
   }
 
   h3 {
+    font-family: omnes-pro, sans-serif;
+    font-weight: 500;
+    font-size: 1.625rem;
   }
 
   p {
+    font-family: omnes-pro, sans-serif;
+    font-weight: 500;
   }
 
   a {
