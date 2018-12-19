@@ -6,16 +6,25 @@ import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
 import { initializeTopicDashboard } from '../../controller/actions/topicDashboard';
 import Loading from '../common/Loading';
-import './index.scss';
 import Breadcrumbs from '../common/Breadcrumbs';
+import { Redirect } from 'react-router-dom';
+import './index.scss';
+
 const { notifSend } = notifActions;
 export class TopicDashboard extends React.Component {
   componentDidMount() {
-    const id = this.props.match.params.topicId;
-    this.props.dispatch(initializeTopicDashboard(id));
+    const currentTopicID = this.props.match.params.topicId;
+    this.props.dispatch(initializeTopicDashboard(currentTopicID));
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    const currentTopicID = this.props.match.params.topicId;
+    const prevID = prevProps.match.params.topicId;
+
+    if (prevID !== currentTopicID) {
+      this.props.dispatch(initializeTopicDashboard(currentTopicID));
+    }
+
     if (this.props.error) {
       return this.sendError();
     }
@@ -30,33 +39,52 @@ export class TopicDashboard extends React.Component {
       })
     );
   };
+
   render() {
-    if (this.props.loading) {
+    const { loading, topic, stateIsStale, topicNotFound } = this.props;
+    if (topicNotFound) {
+      return <Redirect to="/dashboard" />;
+    }
+    if (loading || stateIsStale) {
       return <Loading />;
     }
 
-    const { topic } = this.props;
     return (
       <main className="topic-dashboard">
-        <Breadcrumbs
-          topicId={topic && topic.id}
-          topicTitle={topic && topic.title}
-        />
+        <section>
+          <h2>
+            <Breadcrumbs
+              topicId={topic && topic.id}
+              topicTitle={topic && topic.title}
+            />
+          </h2>
+        </section>
         <h2>{topic.title}</h2>
         <ActiveResourceContainer {...this.props} />
-        <h2>Completed Resources </h2>
+        <br />
         <CompletedResourceContainer {...this.props} />
       </main>
     );
   }
 }
-const mapStateToProps = state => {
+
+const mapStateToProps = (state, props) => {
+  const currentTopicID = props.match.params.topicId;
+  const stateTopicID = state.topicDashReducer.topic.id;
+  const NotFound =
+    state.topicDashReducer.error && state.topicDashReducer.error.code === 404
+      ? true
+      : false;
+
   return {
+    stateIsStale: Number(stateTopicID) !== Number(currentTopicID),
     loading: state.topicDashReducer.loading,
     resources: state.topicDashReducer.resources,
     resourceOrder: state.topicDashReducer.resourceOrder,
     topic: state.topicDashReducer.topic,
+    topicNotFound: NotFound,
     error: state.topicDashReducer.error
   };
 };
+
 export default connect(mapStateToProps)(TopicDashboard);
