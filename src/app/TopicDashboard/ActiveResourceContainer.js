@@ -74,7 +74,7 @@ export class ActiveResourceContainer extends React.Component {
                                 ref={provided.innerRef}
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
-                                className="resource-item-container"
+                                className="resource-item"
                               >
                                 <ResourceItem resource={resources[rescID]} />
                               </li>

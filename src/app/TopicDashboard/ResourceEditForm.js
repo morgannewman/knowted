@@ -17,7 +17,7 @@ export class ResourceEditForm extends React.Component {
       <div>
         <form
           id={resource.id}
-          className="resource-item"
+          className="resource-edit-form"
           onSubmit={e =>
             handleUpdate(e, this.state.value, this.state.uri, resource.title)
           }

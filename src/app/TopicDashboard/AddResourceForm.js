@@ -127,8 +127,21 @@ export class AddResourceForm extends React.Component {
           onSubmit={this.handleSubmit}
         >
           <div>
-            <input type="checkbox" checked={false} readOnly={true} />
-            <label htmlFor="add-resource-link" />
+            <label
+              className={this.state.inputHidden ? 'label-hidden' : 'label-show'}
+              hidden={this.state.inputHidden}
+              htmlFor="add-resource-title"
+            >
+              Title
+            </label>
+            <input
+              hidden={this.state.inputHidden}
+              ref={input => (this.inputTitle = input)}
+              type="text"
+              name="add-resource"
+              defaultValue={this.state.newTitle}
+            />
+            <label htmlFor="add-resource-link">URL</label>
             <input
               ref={input => (this.inputUri = input)}
               type="url"
@@ -139,16 +152,7 @@ export class AddResourceForm extends React.Component {
               defaultValue={this.state.newURI}
             />
           </div>
-          <div>
-            <label htmlFor="add-resource-title" />
-            <input
-              hidden={this.state.inputHidden}
-              ref={input => (this.inputTitle = input)}
-              type="text"
-              name="add-resource"
-              defaultValue={this.state.newTitle}
-            />
-          </div>
+
           <button hidden={this.state.inputHidden}>Submit</button>
         </form>
         {this.state.feedback ? <div>{this.state.feedback}</div> : null}
