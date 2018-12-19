@@ -13,7 +13,7 @@ import { mergeTopicsNewFolder, updateTopic } from '../../controller/actions/dash
 export class AllTopicsContainer extends React.Component {
 	static propTypes = {
 		topics: PropTypes.array,
-		folders: PropTypes.array
+		folders: PropTypes.object
 	};
 
 	handleTopicCombine = (topicId1, topicId2) => {
@@ -49,27 +49,31 @@ export class AllTopicsContainer extends React.Component {
 		// removing last item from folder => deletes folder
 	};
 
+	renderFolders = () => {
+		const { folderOrder, folders } = this.props;
+		const result = [];
+		for (const i in folderOrder) {
+			const id = folderOrder[i];
+			const folder = folders[id];
+			result.push(
+				<Folder
+					title={folder.title}
+					folderId={folder.id}
+					key={folder.id}
+					index={i}
+					editing={folder.id === this.props.currentFolderId ? this.props.currentFolderId : null}
+				/>
+			);
+		}
+		return result;
+	};
+
 	render() {
 		const { topics, folders } = this.props;
 		return (
 			<DragDropContext onDragEnd={this.onDragEnd}>
 				<section className="all-topics-container">
-					<div className="folders-container">
-						{folders &&
-							folders.map((folder, index) => {
-								return (
-									<Folder
-										title={folder.title}
-										folderId={folder.id}
-										key={folder.id}
-										index={index}
-										editing={
-											folder.id === this.props.currentFolderId ? this.props.currentFolderId : null
-										}
-									/>
-								);
-							})}
-					</div>
+					<div className="folders-container">{this.renderFolders()}</div>
 					<div className="lonely-topics-container">
 						<AddTopic />
 						<Droppable droppableId="lonelyTopics" direction="horizontal" isCombineEnabled>
@@ -115,6 +119,7 @@ const mapStateToProps = state => {
 		topics: state.dashboardReducer.topics,
 		// topicOrder: state.dashboardReducer.topicOrder,
 		folders: state.dashboardReducer.folders,
+		folderOrder: state.dashboardReducer.folderOrder,
 		currentFolderId: state.dashboardReducer.currentFolderId,
 		userId: state.auth.user.id
 	};

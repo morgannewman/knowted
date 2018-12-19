@@ -25,16 +25,32 @@ const initialState = {
 	error: null
 };
 
+const generateObjectAndOrderArray = a => {
+	const order = [];
+	const object = a.reduce((obj, item) => {
+		order.push(item.id);
+		obj[item.id] = item;
+		return obj;
+	}, {});
+	return { order, object };
+};
+
 export default produce((state, action) => {
 	switch (action.type) {
 		case DASHBOARD_POPULATE_SUCCESS:
+			const { folders, topics, recentResources } = action.payload;
+
 			state.error = null;
-			const { folders, topics, recentResources, topicOrder } = action.payload;
-			state.folders = folders;
-			state.topics = topics;
 			state.recentResources = recentResources;
-			state.topicOrder = topicOrder;
 			state.loading = false;
+
+			// Hydrate folders
+			const hydratedFolders = generateObjectAndOrderArray(folders);
+			state.folders = hydratedFolders.object;
+			state.folderOrder = hydratedFolders.order;
+
+			// TODO: Hydrate topics
+			state.topics = topics;
 			return;
 
 		case ADD_TOPIC_SUCCESS:

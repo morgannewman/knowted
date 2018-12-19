@@ -9,39 +9,39 @@ import RecentlyViewedContainer from './RecentlyViewedContainer';
 //TODO: change out
 import { initializeDashboard } from '../../controller/actions/dashboard';
 export class Dashboard extends React.Component {
-  static propTypes = {
-    loading: PropTypes.bool,
-    topics: PropTypes.array,
-    folders: PropTypes.array
-  };
+	static propTypes = {
+		loading: PropTypes.bool,
+		topics: PropTypes.array,
+		folders: PropTypes.object
+	};
 
-  componentDidMount() {
-    this.props.dispatch(initializeDashboard(3));
-  }
+	componentDidMount() {
+		this.props.dispatch(initializeDashboard(3));
+	}
 
-  render() {
-    if (this.props.loading) return <Loading />;
+	render() {
+		if (this.props.loading) return <Loading />;
 
-    return (
-      <main>
-        <div>
-          <h2>Recently Viewed</h2>
-          <RecentlyViewedContainer />
-        </div>
-        <div>
-          <h2>All Topics</h2>
-          <AllTopicsContainer />
-        </div>
-      </main>
-    );
-  }
+		return (
+			<main>
+				<div>
+					<h2>Recently Viewed</h2>
+					<RecentlyViewedContainer />
+				</div>
+				<div>
+					<h2>All Topics</h2>
+					<AllTopicsContainer />
+				</div>
+			</main>
+		);
+	}
 }
 
 const mapStateToProps = state => ({
-  topics: state.dashboardReducer.topics,
-  folders: state.dashboardReducer.folders,
-  recentResources: state.dashboardReducer.recentResources,
-  loading: state.dashboardReducer.loading
+	topics: state.dashboardReducer.topics,
+	folders: state.dashboardReducer.folders,
+	recentResources: state.dashboardReducer.recentResources,
+	loading: state.dashboardReducer.loading
 });
 
 export default connect(mapStateToProps)(Dashboard);
