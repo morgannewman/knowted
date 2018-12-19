@@ -57,6 +57,9 @@ export class TopicDashboard extends React.Component {
     );
   }
 }
+
+//FIXME: Having the validation be checked by message 'Not found' is probably not the best
+//way to handle this? Do I need an error code instead?
 const mapStateToProps = (state, props) => {
   console.log(props);
   const currentTopicID = props.match.params.topicId;
