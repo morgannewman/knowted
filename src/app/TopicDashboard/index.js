@@ -1,16 +1,20 @@
 import React from 'react';
 import { actions as notifActions } from 'redux-notifications';
-import 'redux-notifications/lib/styles.css';
 import { connect } from 'react-redux';
+import { initializeTopicDashboard } from '../../controller/actions/topicDashboard';
 import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
-import { initializeTopicDashboard } from '../../controller/actions/topicDashboard';
 import Loading from '../common/Loading';
-// import './index.scss';
 import Breadcrumbs from '../common/Breadcrumbs';
+//STYLESHEET
+import { Main } from '../styles/common.styles';
+import {
+  TopicDashContainer,
+  ActiveResources
+} from '../styles/topicDashboard.styles';
+import 'redux-notifications/lib/styles.css';
+
 const { notifSend } = notifActions;
-// import * '../styles/topicDashboard.styles';
-// import * from '../styles/topicDashboard.styles';
 
 export class TopicDashboard extends React.Component {
   componentDidMount() {
@@ -40,17 +44,21 @@ export class TopicDashboard extends React.Component {
 
     const { topic } = this.props;
     return (
-      <main className="topic-dashboard">
-        <button>Hello</button>
-        <Breadcrumbs
-          topicId={topic && topic.id}
-          topicTitle={topic && topic.title}
-        />
-        <h2>{topic.title}</h2>
-        <ActiveResourceContainer {...this.props} />
-        <h2>Completed Resources </h2>
-        <CompletedResourceContainer {...this.props} />
-      </main>
+      <Main>
+        <TopicDashContainer>
+          <Breadcrumbs
+            topicId={topic && topic.id}
+            topicTitle={topic && topic.title}
+          />
+          <h2>{topic.title}</h2>
+          <h3>Active Resources</h3>
+          <ActiveResources>
+            <ActiveResourceContainer {...this.props} />
+          </ActiveResources>
+          <h2>Completed Resources </h2>
+          <CompletedResourceContainer {...this.props} />
+        </TopicDashContainer>
+      </Main>
     );
   }
 }

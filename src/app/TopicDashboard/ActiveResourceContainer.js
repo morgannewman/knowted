@@ -4,7 +4,6 @@ import { updateRescOrder } from '../../controller/actions/topicDashboard';
 import ResourceItem from './ResourceItem';
 import AddResourceForm from './AddResourceForm';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import './ActiveResourceContainer.scss';
 
 export class ActiveResourceContainer extends React.Component {
   constructor(props) {
@@ -90,11 +89,10 @@ export class ActiveResourceContainer extends React.Component {
                   }
                 })}
                 {provided.placeholder}
+                <AddResourceForm resourceFormRef={this.Form} />
               </ul>
             )}
           </Droppable>
-
-          <AddResourceForm resourceFormRef={this.Form} />
         </section>
       </DragDropContext>
     );
