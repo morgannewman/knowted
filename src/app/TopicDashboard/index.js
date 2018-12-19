@@ -1,6 +1,7 @@
 import React from 'react';
 import { actions as notifActions } from 'redux-notifications';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { initializeTopicDashboard } from '../../controller/actions/topicDashboard';
 import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
@@ -19,11 +20,18 @@ const { notifSend } = notifActions;
 
 export class TopicDashboard extends React.Component {
   componentDidMount() {
-    const id = this.props.match.params.topicId;
-    this.props.dispatch(initializeTopicDashboard(id));
+    const currentTopicID = this.props.match.params.topicId;
+    this.props.dispatch(initializeTopicDashboard(currentTopicID));
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    const currentTopicID = this.props.match.params.topicId;
+    const prevID = prevProps.match.params.topicId;
+
+    if (prevID !== currentTopicID) {
+      this.props.dispatch(initializeTopicDashboard(currentTopicID));
+    }
+
     if (this.props.error) {
       return this.sendError();
     }
@@ -38,12 +46,16 @@ export class TopicDashboard extends React.Component {
       })
     );
   };
+
   render() {
-    if (this.props.loading) {
+    const { loading, topic, stateIsStale, topicNotFound } = this.props;
+    if (topicNotFound) {
+      return <Redirect to="/dashboard" />;
+    }
+    if (loading || stateIsStale) {
       return <Loading />;
     }
 
-    const { topic } = this.props;
     return (
       <Main>
         <TopicDashContainer>
@@ -67,13 +79,24 @@ export class TopicDashboard extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
+
+const mapStateToProps = (state, props) => {
+  const currentTopicID = props.match.params.topicId;
+  const stateTopicID = state.topicDashReducer.topic.id;
+  const NotFound =
+    state.topicDashReducer.error && state.topicDashReducer.error.code === 404
+      ? true
+      : false;
+
   return {
+    stateIsStale: Number(stateTopicID) !== Number(currentTopicID),
     loading: state.topicDashReducer.loading,
     resources: state.topicDashReducer.resources,
     resourceOrder: state.topicDashReducer.resourceOrder,
     topic: state.topicDashReducer.topic,
+    topicNotFound: NotFound,
     error: state.topicDashReducer.error
   };
 };
+
 export default connect(mapStateToProps)(TopicDashboard);

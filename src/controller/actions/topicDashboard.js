@@ -1,10 +1,5 @@
 import api from '../../controller/api';
 
-export const RESOURCE_LOADING = 'RESOURCE_LOADING';
-export const resourceLoading = () => ({
-  type: RESOURCE_LOADING
-});
-
 export const RESOURCE_SUCCESS = 'RESOURCE_SUCCESS';
 export const resourceSuccess = data => ({
   type: RESOURCE_SUCCESS,
@@ -40,6 +35,11 @@ export const delResource = id => ({
   id
 });
 
+export const TOPICDASH_RESET = 'TOPICDASH_RESET';
+export const topicDashReset = () => ({
+  type: TOPICDASH_RESET
+});
+
 /**
  *Gets topic information for a specified topicID includeing resources, resource order, topic title, and ID
  *First dispatches a loading function to change state to loading
@@ -48,8 +48,14 @@ export const delResource = id => ({
  * If there is an error, it dispatches an error obj to state
  * *@param {{id:integer}}} id
  */
-export const initializeTopicDashboard = id => dispatch => {
-  dispatch(resourceLoading());
+export const initializeTopicDashboard = id => (dispatch, getState) => {
+  const topicInState = getState().topicDashReducer.topic.id;
+  const currentTopic = id;
+
+  //topicInState will be undefined at the beginning and triggers the rest of this function
+  if (Number(topicInState) !== Number(currentTopic)) {
+    dispatch(topicDashReset());
+  }
   api.topics
     .getOne(id)
     .then(data => {

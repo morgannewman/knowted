@@ -42,7 +42,7 @@ export const initializeLearn = (topicId, resourceId) => (dispatch, getState) => 
  */
 export const submitNotebookUpdate = req => dispatch => {
 	dispatch(notebookUpdateSubmit());
-	api.resources
+	api.topics
 		.put(req)
 		.then(() => dispatch(notebookUpdateSuccess(req)))
 		.catch(err => dispatch(notebookUpdateError(err)));
