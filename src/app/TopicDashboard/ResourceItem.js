@@ -94,7 +94,7 @@ export class ResourceItem extends React.Component {
   render() {
     const { resource, parentId } = this.props;
     return (
-      <div>
+      <>
         {!this.state.editing ? (
           <ResourceView
             handleEdit={this.handleEdit}
@@ -109,7 +109,7 @@ export class ResourceItem extends React.Component {
             resource={resource}
           />
         )}
-      </div>
+      </>
     );
   }
 }

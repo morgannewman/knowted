@@ -18,10 +18,9 @@ export const TopicDashContainer = styled.section`
 
     .elipsis {
       width: 73px;
-      height: 28px;
       display: inline-block;
-      position: absolute;
-      left: 10px;
+      position: relative;
+      left: -80px;
       display: flex;
       align-items: center;
       padding-left: 30px;
@@ -38,15 +37,8 @@ export const TopicDashContainer = styled.section`
   }
 
   .resource-view {
-    far fa-square-full {
-      // position: absolute;
-      // left: 50px;
-
-      height: 100px;
-      width: 800px;
-      border: 1.5px solid #aeaeae;
-      border-radius: 3px;
-    }
+    position: relative;
+    width: 800px;
   }
   .resource-view:hover {
     box-shadow: 5px 4px 22px rgba(3, 30, 30, 0.808);
@@ -68,13 +60,6 @@ export const ActiveResources = styled.section`
     width: 100%;
     align-items: center;
     max-width: 1213px;
-
-    .active-resource-item i {
-      color: #e3e3e3;
-      font-size: 2.1875rem;
-      position: absolute;
-      left: 30px;
-    }
   }
 
   .active-resources-list {
@@ -145,8 +130,9 @@ export const CompleteResources = styled.section`
     height: 63px;
     width: 100%;
     max-width: 1090px;
-    border: 1.5px solid #aeaeae;
+    // border: 1.5px solid #aeaeae;
     border-radius: 8px;
     margin: 10px;
+    padding: 0px;
   }
 `;
