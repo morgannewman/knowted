@@ -4,7 +4,6 @@ import {
 	UPDATE_TOPIC_SUCCESS,
 	UPDATE_TOPIC_PARENT_SUCCESS,
 	DELETE_TOPIC_SUCCESS,
-	UPDATE_TOPIC_ORDER_SUCCESS,
 	DISPLAY_EDIT_FOLDER_FORM,
 	HIDE_EDIT_FOLDER_FORM,
 	ADD_FOLDER_SUCCESS,
@@ -72,7 +71,9 @@ export default produce((state, action) => {
 			state.loading = false;
 			state.error = null;
 			const topic = action.payload;
-			state.lonelyTopics.unshift(topic.id);
+			const parent = topic.parent && topic.parent.id;
+			const targetArray = parent ? state.folders[parent].topics : state.lonelyTopics;
+			targetArray.unshift(topic.id);
 			state.topics[topic.id] = topic;
 			return;
 		}
@@ -80,53 +81,73 @@ export default produce((state, action) => {
 		case UPDATE_TOPIC_SUCCESS: {
 			state.loading = false;
 			state.error = null;
-			// const topicIndex = state.topics.findIndex(item => item.id === action.payload.id);
-			// if (topicIndex > -1) {
-			// 	state.topics[topicIndex].title = action.payload.title;
-			// }
+			const topic = action.payload;
+			state.topics[topic.id] = topic;
 			return;
 		}
 
 		case UPDATE_TOPIC_PARENT_SUCCESS: {
 			state.loading = false;
 			state.error = null;
-			const topicParentIndex = state.topics.findIndex(item => item.id === action.payload.id);
-			if (topicParentIndex > -1) {
-				state.topics[topicParentIndex].parent = action.payload.parent;
-			}
+
+			const topicId = action.payload.id;
+			const topic = action.payload;
+
+			// Locate the ordering locations
+			const prevParent = state.topics[topicId].parent && state.topics[topicId].parent.id;
+			const newParent = topic.parent && topic.parent.id;
+			const prevArr = prevParent ? state.folders[prevParent].topics : state.lonelyTopics;
+			const newArr = newParent ? state.folders[newParent].topics : state.lonelyTopics;
+
+			// Remove from old ordering location
+			const index = prevArr.findIndex(id => String(id) === String(topicId));
+			prevArr.splice(index, 1);
+
+			// Add to new ordering location
+			newArr.unshift(topicId);
+
+			// Update topics object
+			state.topics[topicId] = topic;
 			return;
 		}
 
 		case DELETE_TOPIC_SUCCESS: {
-			const deleteTopicIndex = state.topics.findIndex(item => item.id === action.payload);
-			if (deleteTopicIndex > -1) {
-				state.topics.splice(deleteTopicIndex, 1);
-			}
 			state.loading = false;
-			return;
-		}
 
-		case UPDATE_TOPIC_ORDER_SUCCESS: {
-			state.loading = false;
-			state.error = null;
-			state.topicOrder = action.payload;
+			const topic = action.payload;
+			const parent = topic.parent && topic.parent.id;
+
+			// Find which ordering array references the topic
+			let targetArray = parent ? state.folders[parent].topics : state.lonelyTopics;
+			const index = targetArray.findIndex(id => String(id) === String(topic.id));
+
+			// Remove topic from ordering array
+			if (index > -1) targetArray.splice(index, 1);
+
+			// Remove topic from topic object
+			delete state.topics[topic.id];
+
 			return;
 		}
 
 		case ADD_FOLDER_SUCCESS: {
 			state.loading = false;
 			state.error = null;
-			state.folders.unshift(action.payload);
+			const folder = action.payload;
+			folder.topics = [];
+			console.log(folder);
+			state.folderOrder.unshift(folder.id);
+			state.folders[folder.id] = folder;
 			return;
 		}
 
 		case UPDATE_FOLDER_SUCCESS: {
 			state.loading = false;
 			state.error = null;
-			const folderIndex = state.folders.findIndex(item => item.id === action.payload.id);
-			if (folderIndex > -1) {
-				state.folders[folderIndex].title = action.payload.title;
-			}
+			const folder = action.payload;
+			// Preserve topics array
+			folder.topics = state.folders[folder.id].topics;
+			state.folders[folder.id] = folder;
 			return;
 		}
 
@@ -145,16 +166,15 @@ export default produce((state, action) => {
 		}
 
 		case UPDATE_TOPIC_SUBMIT: {
-			const topic = state.topics.findIndex(topic => topic.id === action.payload.id);
-			if (topic > -1) {
-				// replace existing contents with new body optimistically
-				state.topics[topic] = { ...state.topics[topic], ...action.payload };
-			}
+			const topic = action.payload;
+			// replace existing contents with new body optimistically
+			state.topics[topic.id] = { ...state.topics[topic.id], ...action.payload };
 			return;
 		}
 
 		case API_ERROR: {
-			return { ...initialState, error: action.payload };
+			state.error = action.payload;
+			return;
 		}
 
 		default:

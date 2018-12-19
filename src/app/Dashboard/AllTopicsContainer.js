@@ -15,7 +15,7 @@ export class AllTopicsContainer extends React.Component {
 		topics: PropTypes.object,
 		folders: PropTypes.object,
 		folderOrder: PropTypes.array,
-		currentFolderId: PropTypes.string
+		currentFolderId: PropTypes.any
 	};
 
 	handleTopicCombine = (topicId1, topicId2) => {
