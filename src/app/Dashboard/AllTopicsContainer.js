@@ -44,11 +44,10 @@ export class AllTopicsContainer extends React.Component {
 			return;
 		}
 
-		// TODO: CASE: Move to other list (different droppable id)
+		// CASE: Move to other list (different droppable id)
 		if (source.droppableId !== destination.droppableId) {
 			this.handleTopicFolderChange(result);
 		}
-		// removing last item from folder => deletes folder
 	};
 
 	renderFolders = () => {
@@ -84,7 +83,6 @@ export class AllTopicsContainer extends React.Component {
 	};
 
 	render() {
-		const { topics } = this.props;
 		return (
 			<DragDropContext onDragEnd={this.onDragEnd}>
 				<section className="all-topics-container">
