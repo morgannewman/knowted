@@ -95,7 +95,8 @@ const mapStateToProps = (state, props) => {
     resourceOrder: state.topicDashReducer.resourceOrder,
     topic: state.topicDashReducer.topic,
     topicNotFound: NotFound,
-    error: state.topicDashReducer.error
+    error: state.topicDashReducer.error,
+    showCompleted: state.topicDashReducer.completedShowAll
   };
 };
 
