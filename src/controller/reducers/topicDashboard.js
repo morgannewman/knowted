@@ -5,7 +5,8 @@ import {
   UPDATE_RESOURCE,
   DELETE_RESOURCE,
   RESOURCE_ERROR,
-  UPDATE_RESC_ORDER
+  UPDATE_RESC_ORDER,
+  TOPICDASH_RESET
 } from '../actions/topicDashboard';
 
 import produce from 'immer';
@@ -24,7 +25,6 @@ export default produce((state, action) => {
     case RESOURCE_LOADING:
       state.loading = true;
       state.error = null;
-
       return;
 
     case RESOURCE_SUCCESS:
@@ -42,7 +42,6 @@ export default produce((state, action) => {
           return obj;
         }, {});
       }
-      console.log(action.payload);
       state.resourceOrder =
         action.payload.resourceOrder !== null
           ? action.payload.resourceOrder
@@ -77,6 +76,9 @@ export default produce((state, action) => {
     case DELETE_RESOURCE:
       delete state.resources[action.id];
       return;
+
+    case TOPICDASH_RESET:
+      return { ...initialState };
 
     default:
       return;

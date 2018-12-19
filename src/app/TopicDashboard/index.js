@@ -8,40 +8,58 @@ import './index.scss';
 import Breadcrumbs from '../common/Breadcrumbs';
 
 export class TopicDashboard extends React.Component {
-	componentDidMount() {
-		const id = this.props.match.params.topicId;
-		this.props.dispatch(initializeTopicDashboard(id));
-	}
+  componentDidMount() {
+    console.log(this.props.match.params.topicId);
+    const currentTopicID = this.props.match.params.topicId;
+    this.props.dispatch(initializeTopicDashboard(currentTopicID));
+  }
 
-	render() {
-		if (this.props.loading) {
-			return <Loading />;
-		}
+  componentDidUpdate(prevProps) {
+    const currentTopicID = this.props.match.params.topicId;
+    const prevID = prevProps.match.params.topicId;
 
-		const { topic } = this.props;
+    if (prevID !== currentTopicID) {
+      this.props.dispatch(initializeTopicDashboard(currentTopicID));
+    }
+  }
 
-		return (
-			<main className="topic-dashboard">
-				<section>
-					<h2>
-						<Breadcrumbs topicId={topic && topic.id} topicTitle={topic && topic.title} />
-					</h2>
-				</section>
-				<h2>Active Resources</h2>
-				<ActiveResourceContainer resources={this.props.resources} resourceOrder={this.props.resourceOrder} />
+  render() {
+    const { loading, topic, stateIsStale } = this.props;
+    if (loading || stateIsStale) {
+      return <Loading />;
+    }
+    return (
+      <main className="topic-dashboard">
+        <section>
+          <h2>
+            <Breadcrumbs
+              topicId={topic && topic.id}
+              topicTitle={topic && topic.title}
+            />
+          </h2>
+        </section>
+        <h2>Active Resources</h2>
+        <ActiveResourceContainer
+          resources={this.props.resources}
+          resourceOrder={this.props.resourceOrder}
+        />
 
-				<h2>Completed Resources </h2>
-				<CompletedResourceContainer {...this.props} />
-			</main>
-		);
-	}
+        <h2>Completed Resources </h2>
+        <CompletedResourceContainer {...this.props} />
+      </main>
+    );
+  }
 }
-const mapStateToProps = state => {
-	return {
-		loading: state.topicDashReducer.loading,
-		resources: state.topicDashReducer.resources,
-		resourceOrder: state.topicDashReducer.resourceOrder,
-		topic: state.topicDashReducer.topic
-	};
+const mapStateToProps = (state, props) => {
+  console.log(props);
+  const currentTopicID = props.match.params.topicId;
+  const stateTopicID = state.topicDashReducer.topic.id;
+  return {
+    stateIsStale: Number(stateTopicID) !== Number(currentTopicID),
+    loading: state.topicDashReducer.loading,
+    resources: state.topicDashReducer.resources,
+    resourceOrder: state.topicDashReducer.resourceOrder,
+    topic: state.topicDashReducer.topic
+  };
 };
 export default connect(mapStateToProps)(TopicDashboard);
