@@ -10,7 +10,8 @@ import Breadcrumbs from '../common/Breadcrumbs';
 import { Main, Breadcrumb } from '../styles/common.styles';
 import {
   TopicDashContainer,
-  ActiveResources
+  ActiveResources,
+  CompleteResources
 } from '../styles/topicDashboard.styles';
 import 'redux-notifications/lib/styles.css';
 
@@ -58,7 +59,9 @@ export class TopicDashboard extends React.Component {
             <ActiveResourceContainer {...this.props} />
           </ActiveResources>
           <h2>Completed Resources </h2>
-          <CompletedResourceContainer {...this.props} />
+          <CompleteResources>
+            <CompletedResourceContainer {...this.props} />
+          </CompleteResources>
         </TopicDashContainer>
       </Main>
     );

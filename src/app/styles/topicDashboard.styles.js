@@ -1,5 +1,5 @@
 //-------------------------------------------------
-// DASHBOARD STYLES
+// TOPIC DASHBOARD STYLES
 // ------------------------------------------------
 
 import styled from 'styled-components';
@@ -7,6 +7,27 @@ import styled from 'styled-components';
 export const TopicDashContainer = styled.section`
   max-width: 1255px;
   margin: 0px auto;
+
+  .resource-item {
+    height: 63px;
+    width: 100%;
+    max-width: 1090px;
+    border: 1.5px solid #aeaeae;
+    border-radius: 8px;
+    margin: 10px;
+  }
+
+  .resource-view:hover {
+    box-shadow: 5px 4px 22px rgba(3, 30, 30, 0.808);
+  }
+
+  .resource-view .resource-item-controls {
+    visibility: hidden;
+  }
+
+  .resource-view:hover .resource-item-controls {
+    visibility: visible;
+  }
 `;
 
 export const ActiveResources = styled.section`
@@ -24,15 +45,6 @@ export const ActiveResources = styled.section`
     padding: 50px;
   }
 
-  .resource-item {
-    height: 63px;
-    width: 100%;
-    max-width: 1090px;
-    border: 1.5px solid #aeaeae;
-    border-radius: 8px;
-    margin: 10px;
-  }
-
   .resource-item:first-child {
     background-color: #f2ec27;
   }
@@ -44,24 +56,52 @@ export const ActiveResources = styled.section`
     border: 1.5px solid #aeaeae;
     border-radius: 8px;
     padding: 10px 20px 15px 20px;
-  }
-  .add-resource-section label {
-    display: block;
-    font-color: pink;
-    text-align: left;
-  }
-  .add-resource-section .label-hidden {
-    display: none;
-  }
 
-  .add-resource-section .label-show {
-    display: block;
-  }
+    label {
+      display: block;
+      font-color: pink;
+      text-align: left;
+    }
 
-  .add-resource-section input {
-    height: 50px;
-    outline: none;
-    padding: 10px;
+    input {
+      height: 50px;
+      outline: none;
+      padding: 10px;
+      width: 100%;
+    }
+
+    .label-hidden {
+      display: none;
+    }
+
+    .label-show {
+      display: block;
+    }
+  }
+`;
+
+export const CompleteResources = styled.section`
+  .completed-resources-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    align-items: center;
+    max-width: 1213px;
+    margin-bottom: 50px;
+  }
+
+  .completed-resources-list {
+    list-style: none;
+    width: 100%;
+    padding: 50px;
+  }
+
+  .resource-item {
+    height: 63px;
+    width: 100%;
+    max-width: 1090px;
+    border: 1.5px solid #aeaeae;
+    border-radius: 8px;
+    margin: 10px;
   }
 `;

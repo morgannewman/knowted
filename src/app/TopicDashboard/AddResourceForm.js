@@ -128,7 +128,7 @@ export class AddResourceForm extends React.Component {
         >
           <div>
             <label
-              className={this.state.inputHidden ? 'label-hidden' : 'label-show'}
+              className="label-hidden"
               hidden={this.state.inputHidden}
               htmlFor="add-resource-title"
             >
@@ -141,7 +141,9 @@ export class AddResourceForm extends React.Component {
               name="add-resource"
               defaultValue={this.state.newTitle}
             />
-            <label htmlFor="add-resource-link">URL</label>
+            <label className="label-hidden" htmlFor="add-resource-link">
+              URL
+            </label>
             <input
               ref={input => (this.inputUri = input)}
               type="url"

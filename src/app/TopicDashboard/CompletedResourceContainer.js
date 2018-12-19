@@ -1,6 +1,5 @@
 import React from 'react';
 import ResourceItem from './ResourceItem';
-import './CompletedResourceContainer.scss';
 
 export class CompletedResourceContainer extends React.Component {
   //TODO: Drag and drop functionality
