@@ -147,6 +147,11 @@ export const updateFolder = body => dispatch => {
     .catch(err => dispatch(apiError(err)));
 };
 
+export const deleteEmptyFolder = id => dispatch => {
+  dispatch(deleteFolder(id));
+  api.folders.delete(id).catch(err => dispatch(apiError(err)));
+};
+
 //-----------------------------------------------------------
 
 export const DASHBOARD_POPULATE_SUCCESS = 'DASHBOARD_POPULATE_SUCCESS';
@@ -223,4 +228,10 @@ export const UPDATE_TOPIC_SUBMIT = 'UPDATE_TOPIC_SUBMIT';
 export const submitTopicUpdate = body => ({
   type: UPDATE_TOPIC_SUBMIT,
   payload: body
+});
+
+export const DASHBOARD_DELETE_FOLDER = 'DASHBOARD_DELETE_FOLDER';
+export const deleteFolder = id => ({
+  type: DASHBOARD_DELETE_FOLDER,
+  payload: id
 });
