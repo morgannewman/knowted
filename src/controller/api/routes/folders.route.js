@@ -7,8 +7,8 @@ export default {
 	 * Folders have these props: id, title, createdAt, updatedAt.
 	 * @returns {[{}]} an array of folder objects
 	 */
-	get() {
-		return goFetch(BASE_URL);
+	get(params = null) {
+		return goFetch(BASE_URL, null, params);
 	},
 
 	/**

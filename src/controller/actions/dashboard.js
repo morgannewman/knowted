@@ -2,8 +2,8 @@ import api from '../../controller/api';
 
 export const initializeDashboard = num => dispatch => {
 	return Promise.all([
-		api.folders.get(),
-		api.topics.get(),
+		api.folders.get({ orderBy: 'updatedAt' }),
+		api.topics.get({ orderBy: 'updatedAt' }),
 		api.resources.recent(num)
 		// api.users.get()
 	])
