@@ -57,9 +57,8 @@ export const initializeTopicDashboard = id => (dispatch, getState) => {
   const topicInState = getState().topicDashReducer.topic.id;
   const currentTopic = id;
 
-  //topicInState will be undefined at the beginning and trigger the rest of this function
+  //topicInState will be undefined at the beginning and triggers the rest of this function
   if (Number(topicInState) !== Number(currentTopic)) {
-    console.log(typeof topicInState, typeof currentTopic);
     dispatch(resourceLoading());
     dispatch(topicDashReset());
     api.topics

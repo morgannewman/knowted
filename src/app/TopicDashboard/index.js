@@ -10,7 +10,6 @@ import './index.scss';
 
 export class TopicDashboard extends React.Component {
   componentDidMount() {
-    console.log(this.props.match.params.topicId);
     const currentTopicID = this.props.match.params.topicId;
     this.props.dispatch(initializeTopicDashboard(currentTopicID));
   }
@@ -26,7 +25,6 @@ export class TopicDashboard extends React.Component {
 
   render() {
     const { loading, topic, stateIsStale, topicNotFound } = this.props;
-    console.log(topicNotFound);
     if (topicNotFound) {
       console.log('hellooo');
       return <Redirect to="/dashboard" />;
@@ -61,7 +59,6 @@ export class TopicDashboard extends React.Component {
 //FIXME: Having the validation be checked by message 'Not found' is probably not the best
 //way to handle this? Do I need an error code instead?
 const mapStateToProps = (state, props) => {
-  console.log(props);
   const currentTopicID = props.match.params.topicId;
   const stateTopicID = state.topicDashReducer.topic.id;
   const NotFound =
