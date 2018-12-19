@@ -8,7 +8,8 @@ import { JawBone } from '../../Dashboard/JawBone';
 
 const initialState = {
   topics: [],
-  dispatch: jest.fn()
+  dispatch: jest.fn(),
+  folderId: 1
 };
 
 describe('<JawBone />', () => {
