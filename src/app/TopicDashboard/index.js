@@ -43,7 +43,6 @@ export class TopicDashboard extends React.Component {
   render() {
     const { loading, topic, stateIsStale, topicNotFound } = this.props;
     if (topicNotFound) {
-      console.log('hellooo');
       return <Redirect to="/dashboard" />;
     }
     if (loading || stateIsStale) {
@@ -60,11 +59,10 @@ export class TopicDashboard extends React.Component {
             />
           </h2>
         </section>
-        <h2>Active Resources</h2>
-        <ActiveResourceContainer
-          resources={this.props.resources}
-          resourceOrder={this.props.resourceOrder}
-        />
+        <h2>{topic.title}</h2>
+        <ActiveResourceContainer {...this.props} />
+        <br />
+        <CompletedResourceContainer {...this.props} />
       </main>
     );
   }
@@ -74,8 +72,7 @@ const mapStateToProps = (state, props) => {
   const currentTopicID = props.match.params.topicId;
   const stateTopicID = state.topicDashReducer.topic.id;
   const NotFound =
-    state.topicDashReducer.error &&
-    state.topicDashReducer.error.message === 'Not found'
+    state.topicDashReducer.error && state.topicDashReducer.error.code === 404
       ? true
       : false;
 
