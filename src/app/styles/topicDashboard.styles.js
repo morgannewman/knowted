@@ -17,18 +17,16 @@ export const TopicDashContainer = styled.section`
     margin: 10px;
 
     .elipsis {
-      width: 73px;
+      width: 43px;
       display: inline-block;
       position: relative;
       left: -80px;
-      display: flex;
-      align-items: center;
-      padding-left: 30px;
       transform: rotate(90deg);
+      top: 35px;
     }
     .elipsis-dot {
-      height: 8px;
-      width: 8px;
+      height: 5px;
+      width: 5px;
       background-color: #e3e3e3;
       display: inline-block;
       border-radius: 50%;
@@ -42,6 +40,15 @@ export const TopicDashContainer = styled.section`
     .name-of-resource {
       font-size: 1.4rem;
       margin-right: 20px;
+    }
+
+    .checkbox {
+      height: 40px;
+      width: 39.96px;
+      border: 1.5px solid #aeaeae;
+      transform: scaleX(-1);
+      border-radius: 3px;
+      left: 40px;
     }
   }
   .resource-item:hover {
