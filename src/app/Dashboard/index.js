@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 //STYLESHEET
-import { Main } from '../styles/commonTheme';
+import { Main } from '../styles/common.styles';
+import { DashboardContainer, RecentlyViewed } from '../styles/dashboard.styles';
 
 import Loading from '../common/Loading';
 import AllTopicsContainer from './AllTopicsContainer';
@@ -26,14 +27,16 @@ export class Dashboard extends React.Component {
 
     return (
       <Main>
-        <div>
-          <h2>Recently Viewed</h2>
-          <RecentlyViewedContainer />
-        </div>
-        <div>
-          <h2>All Topics</h2>
-          <AllTopicsContainer />
-        </div>
+        <DashboardContainer>
+          <RecentlyViewed>
+            <h2>Recently Viewed</h2>
+            <RecentlyViewedContainer />
+          </RecentlyViewed>
+          <div>
+            <h2>All Topics</h2>
+            <AllTopicsContainer />
+          </div>
+        </DashboardContainer>
       </Main>
     );
   }
