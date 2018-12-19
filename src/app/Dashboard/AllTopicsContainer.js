@@ -12,7 +12,7 @@ import { mergeTopicsNewFolder, updateTopic } from '../../controller/actions/dash
 
 export class AllTopicsContainer extends React.Component {
 	static propTypes = {
-		topics: PropTypes.array,
+		topics: PropTypes.object,
 		folders: PropTypes.object,
 		folderOrder: PropTypes.array,
 		currentFolderId: PropTypes.string
