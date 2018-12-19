@@ -74,9 +74,9 @@ export class Learn extends React.Component {
 					resourceTitle={resource.title}
 				/>
 				{!resource.completed && <button onClick={this.completeAndContinue}>Complete & Continue</button>}
-				{resource.type === 'other' && <Card/>}
+				{resource.type === 'other' && <Card />}
 				<div className="learn">
-					{resource.type === 'youtube' && 
+					{resource.type === 'youtube' && (
 						<iframe
 							id="ytplayer"
 							type="text/html"
@@ -86,7 +86,7 @@ export class Learn extends React.Component {
 							title="YouTube"
 							sandbox="allow-scripts allow-popups allow-forms allow-same-origin"
 						/>
-					}
+					)}
 					<Editor initialText={notebook} />
 				</div>
 			</>
@@ -101,11 +101,10 @@ const mapStateToProps = (state, props) => {
 
 	const topicIsStale = currentTopic && currentTopic.id !== Number(topicId);
 	const resourceIsStale = currentResource && currentResource.id !== Number(resourceId);
-
 	return {
 		stateIsStale: topicIsStale || resourceIsStale,
 		loading: state.learn.loading,
-		resourceNotFound: state.learn.error && state.learn.error.status === 404,
+		resourceNotFound: state.learn.error && state.learn.error.code === 404,
 		notebook: state.learn.topic && (state.learn.topic.notebook || ''),
 		resource: currentResource,
 		topic: currentTopic,
