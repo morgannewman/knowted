@@ -25,12 +25,15 @@ export const Main = styled.main`
     font-size: 1.625rem;
   }
 
-  p {
+  p,
+  span {
     font-family: omnes-pro, sans-serif;
     font-weight: 500;
+    font-size: 1.25rem;
   }
 
   a {
+    color: #242424;
     text-decoration: none;
   }
 `;

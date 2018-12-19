@@ -8,11 +8,11 @@ export class RecentlyViewed extends Component {
         <ul className="recent-resources">
           {recentResources.map(item => {
             return (
-              <li key={item.id} className="recent-resource-item">
-                <a href={`dashboard/${item.parent.id}/${item.id}`}>
+              <a href={`dashboard/${item.parent.id}/${item.id}`}>
+                <li key={item.id}>
                   <span>{item.parent.title}</span> > <span>{item.title}</span>
-                </a>
-              </li>
+                </li>
+              </a>
             );
           })}
         </ul>
