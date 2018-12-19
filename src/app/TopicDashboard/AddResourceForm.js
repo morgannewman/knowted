@@ -58,7 +58,13 @@ export class AddResourceForm extends React.Component {
           submitting: false
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          inputHidden: false,
+          submitting: false
+        });
+      });
   };
 
   /**
@@ -89,7 +95,7 @@ export class AddResourceForm extends React.Component {
     this.inputTitle.value = '';
     this.setState({
       feedback: null,
-      inputHidden: false,
+      inputHidden: true,
       submitting: false
     });
   };
