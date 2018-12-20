@@ -8,6 +8,41 @@ import cancel from '../images/cancel.svg';
 import del from '../images/delete.svg';
 
 //OVERALL
+export const App = styled.div`
+  :root {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-family: ivyjournal, sans-serif;
+    font-size: 2.875rem;
+  }
+  h2 {
+    font-family: ivyjournal, sans-serif;
+    font-size: 1.875rem;
+    margin: 0 0 40px 0;
+  }
+
+  h3 {
+    font-family: omnes-pro, sans-serif;
+    font-weight: 500;
+    font-size: 1.625rem;
+    margin: 0 0 20px 0;
+  }
+
+  p,
+  span {
+    font-family: omnes-pro, sans-serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+  }
+
+  a {
+    color: #242424;
+    text-decoration: none;
+  }
+`;
+
 export const Main = styled.main`
   :root {
     font-size: 16px;
@@ -53,17 +88,39 @@ export const NavBar = styled.header`
   align-items: center;
 
   .nav-logo {
-    margin-left: 32px;
-    text-decoration: none;
-    font-size: 1.8em;
-
-    &:visited {
-      color: inherit;
+    margin-left: 16px;
+    @media screen and (min-width: 769px) {
+      margin-left: 32px;
     }
   }
 
   .nav-link {
-    margin-right: 32px;
+    margin-right: 16px;
+    font-size: 1.2em;
+    @media screen and (min-width: 769px) {
+      margin-right: 32px;
+    }
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    font-family: ivyjournal, sans-serif;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-decoration: none;
+
+    &:visited {
+      color: inherit;
+    }
+
+    &-img {
+      max-height: 40px;
+      margin-right: 12px;
+    }
+  }
+
+  .nav-link {
     text-decoration: none;
 
     &:visited {
@@ -72,16 +129,24 @@ export const NavBar = styled.header`
   }
 `;
 
-export const LandingNavBar = styled(NavBar)``;
-
 //BREADCRUMB
 export const Breadcrumb = styled.nav`
   display: flex;
-  align-items: center;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  @media (min-width: 769px) {
+    flex-direction: row;
+  }
+
+  .breadcrumbs-links {
+    padding: 8px 16px;
+    @media (min-width: 769px) {
+      padding: 16px 44px;
+    }
+  }
+
   background-color: #b9de9a;
-  margin: 0;
-  padding: 0 88px;
-  height: 64px;
+
   font-family: omnes-pro, sans-serif;
   font-weight: normal;
   font-size: 1.3rem;
@@ -97,6 +162,34 @@ export const Breadcrumb = styled.nav`
   span {
     display: inline-block;
     padding: 0 8px;
+  }
+
+  button {
+    flex-shrink: 0;
+    background-color: black;
+    color: white;
+
+    font-family: omnes-pro, sans-serif;
+    font-size: 1.2rem;
+
+    padding: 12px;
+    border-radius: 2px;
+    border: 1px dot gray;
+    @media (min-width: 769px) {
+      ${'' /* Resets height */}
+      height: 0%;
+      align-self: center;
+
+      margin-right: 44px;
+      padding: 6px 24px;
+
+      &:hover {
+        transform: translate(-1px, -1px);
+      }
+      &:active {
+        transform: translate(0, 0);
+      }
+    }
   }
 `;
 

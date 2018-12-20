@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { RecentlyViewedContainer } from '../styles/dashboard.styles';
 
 export class RecentlyViewed extends Component {
@@ -12,14 +13,14 @@ export class RecentlyViewed extends Component {
           <ul className="recent-resources">
             {recentResources.map(item => {
               return (
-                <a
-                  href={`dashboard/${item.parent.id}/${item.id}`}
+                <Link
+                  to={`dashboard/${item.parent.id}/${item.id}`}
                   key={item.id}
                 >
                   <li>
                     <span>{item.parent.title}</span> > <span>{item.title}</span>
                   </li>
-                </a>
+                </Link>
               );
             })}
           </ul>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Breadcrumb } from '../styles/common.styles';
+import { Breadcrumb, Button } from '../styles/common.styles';
 
 export default class Breadcrumbs extends Component {
   static propTypes = {
@@ -12,24 +12,35 @@ export default class Breadcrumbs extends Component {
   };
 
   render() {
-    const { topicId, topicTitle, resourceId, resourceTitle } = this.props;
+    const {
+      topicId,
+      topicTitle,
+      resourceId,
+      resourceTitle,
+      buttonHandler
+    } = this.props;
 
     return (
       <Breadcrumb>
-        <Link to="/dashboard">Dashboard</Link>
-        {topicId && (
-          <>
-            <span>{'>'}</span>
-            <Link to={`/dashboard/${topicId}`}>{topicTitle}</Link>
-          </>
-        )}
-        {resourceId && (
-          <>
-            <span>{'>'}</span>
-            <Link to={`/dashboard/${topicId}/${resourceId}`}>
-              {resourceTitle}
-            </Link>
-          </>
+        <div className="breadcrumbs-links">
+          <Link to="/dashboard">Dashboard</Link>
+          {topicId && (
+            <>
+              <span>{'>'}</span>
+              <Link to={`/dashboard/${topicId}`}>{topicTitle}</Link>
+            </>
+          )}
+          {resourceId && (
+            <>
+              <span>{'>'}</span>
+              <Link to={`/dashboard/${topicId}/${resourceId}`}>
+                {resourceTitle}
+              </Link>
+            </>
+          )}
+        </div>
+        {buttonHandler && (
+          <Button onClick={buttonHandler}>Complete & Continue</Button>
         )}
       </Breadcrumb>
     );

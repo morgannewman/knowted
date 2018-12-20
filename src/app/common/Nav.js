@@ -15,6 +15,11 @@ export class Nav extends Component {
     return (
       <NavBar className="nav">
         <Link to="/" className="nav-logo">
+          <img
+            className="nav-logo-img"
+            src={require('../images/owl.png')}
+            alt="Knowted Logo"
+          />{' '}
           Knowted
         </Link>
         {this.props.loggedIn ? (
@@ -24,7 +29,7 @@ export class Nav extends Component {
               to="#"
               onClick={() => dispatch(authLogout())}
             >
-              Logout
+              Log out
             </Link>
           </nav>
         ) : (
@@ -33,7 +38,7 @@ export class Nav extends Component {
               Sign up
             </Link>
             <Link className="nav-link" to="/login">
-              Login
+              Log in
             </Link>
           </nav>
         )}
