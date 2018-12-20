@@ -1,20 +1,20 @@
 .learn {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  // height: 100vh;
   width: 100vw;
 }
 
-.learn-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100vw;
-  height: 32px;
-  padding: 0 16px;
-  background-color: lightgray;
-}
+// .learn-nav {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   align-items: center;
+//   width: 100vw;
+//   height: 32px;
+//   padding: 0 16px;
+//   background-color: lightgray;
+// }
 
 .learn-main {
   display: flex;

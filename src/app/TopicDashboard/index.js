@@ -50,20 +50,18 @@ export class TopicDashboard extends React.Component {
     }
 
     return (
-      <main className="topic-dashboard">
-        <section>
-          <h2>
-            <Breadcrumbs
-              topicId={topic && topic.id}
-              topicTitle={topic && topic.title}
-            />
-          </h2>
-        </section>
-        <h2>{topic.title}</h2>
-        <ActiveResourceContainer {...this.props} />
-        <br />
-        <CompletedResourceContainer {...this.props} />
-      </main>
+      <>
+        <Breadcrumbs
+          topicId={topic && topic.id}
+          topicTitle={topic && topic.title}
+        />
+        <main className="topic-dashboard">
+          <h2>{topic.title}</h2>
+          <ActiveResourceContainer {...this.props} />
+          <br />
+          <CompletedResourceContainer {...this.props} />
+        </main>
+      </>
     );
   }
 }

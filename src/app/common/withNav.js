@@ -7,7 +7,7 @@ const withNav = WrappedComponent => {
       return (
         <>
           <Nav />
-          <WrappedComponent {...this.props} />;
+          <WrappedComponent {...this.props} />
         </>
       );
     }
