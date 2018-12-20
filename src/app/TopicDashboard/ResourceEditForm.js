@@ -14,32 +14,34 @@ export class ResourceEditForm extends React.Component {
   render() {
     const { resource, handleUpdate } = this.props;
     return (
-      <div>
-        <form
-          id={resource.id}
-          className="resource-edit-form"
-          onSubmit={e =>
-            handleUpdate(e, this.state.value, this.state.uri, resource.title)
-          }
-        >
-          <label htmlFor="title update" />
-          <input
-            type="text"
-            name={resource.title}
-            defaultValue={this.state.value}
-            onChange={e => this.setState({ value: e.target.value })}
-          />
-          {/* <input
-            type="url"
-            name={resource.uri}
-            defaultValue={this.state.uri}
-            onChange={e => this.setState({ uri: e.target.value })}
-          /> */}
-          <button type="submit" className="resource-item-edit">
-            update
-          </button>
-        </form>
-      </div>
+      <>
+        <div className="elipsis">
+          {' '}
+          <span className="elipsis-dot" />
+          <span className="elipsis-dot" />
+          <span className="elipsis-dot" />
+        </div>
+        <div className="resource-info">
+          <form
+            id={resource.id}
+            className="resource-edit-form"
+            onSubmit={e =>
+              handleUpdate(e, this.state.value, this.state.uri, resource.title)
+            }
+          >
+            <label htmlFor="title update" />
+            <input
+              type="text"
+              name={resource.title}
+              defaultValue={this.state.value}
+              onChange={e => this.setState({ value: e.target.value })}
+            />
+            <button type="submit" className="resource-item-edit">
+              update
+            </button>
+          </form>
+        </div>
+      </>
     );
   }
 }

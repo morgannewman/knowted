@@ -9,46 +9,34 @@ export const TopicDashContainer = styled.section`
   max-width: 1255px;
   margin: 0px auto;
 
-  .resource-item {
-    height: 63px;
-    width: 100%;
-    max-width: 1090px;
-    border: 1.5px solid #aeaeae;
-    border-radius: 8px;
-    margin: 10px;
-    display: flex;
-    align-items: center;
-
-    .elipsis {
-      width: 43px;
-      display: inline-block;
-      transform: rotate(90deg);
-    }
-    .elipsis-dot {
-      height: 5px;
-      width: 5px;
-      background-color: #e3e3e3;
-      display: inline-block;
-      border-radius: 50%;
-      margin: 3px;
-    }
-  }
-
-  .resource-view {
-    width: 100%;
-    text-align: left;
+  .name-of-resource {
+    font-size: 1.4rem;
+    width: 50%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .resource-info:hover {
+    box-shadow: 5px 4px 22px rgba(3, 30, 30, 0.808);
+  }
 
-    .name-of-resource {
-      font-size: 1.4rem;
-      border: 1px solid black;
-      width: 50%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+  .resource-view .resource-item-controls {
+    visibility: hidden;
+  }
+
+  .resource-item:hover .resource-item-controls {
+    visibility: visible;
+  }
+
+  .resource-item-edit {
+  }
+
+  .resource-item-delete {
+  }
+
+  .resource-view {
+    display: flex;
+    margin: 10px;
 
     .checkbox {
       height: 40px;
@@ -57,52 +45,37 @@ export const TopicDashContainer = styled.section`
       transform: scaleX(-1);
       border-radius: 3px;
     }
-  }
-  .resource-item:hover {
-    box-shadow: 5px 4px 22px rgba(3, 30, 30, 0.808);
-  }
 
-  .resource-view .resource-item-controls {
-    visibility: visible;
-  }
-
-  .resource-item:hover .resource-item-controls {
-    visibility: visible;
-  }
-
-  .resource-item-edit {
-    height: 50px;
-  }
-
-  .resource-item-delete {
-    width: 50px;
-    height: 50px;
-    border: 1px solid black;
-  }
-
-  .active-title h3 {
-    text-align: left;
-    border: 1px solid black;
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 0;
-  }
-
-  .add-resc-button {
-    text-align: left;
-    border: 1px solid black;
-    display: inline-block;
-    vertical-align: middle;
+    .elipsis {
+      width: 43px;
+      height: 40px;
+      display: inline-block;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .elipsis-dot {
+      height: 8px;
+      width: 8px;
+      background-color: #e3e3e3;
+      display: inline-block;
+      border-radius: 50%;
+      margin: 0 auto;
+      margin: 2px;
+    }
   }
 
   .resource-info {
     max-width: 1200px;
-    // margin: 15px 0px 0px 30px;
     width: 100%;
     border: 1.5px solid #aeaeae;
     border-radius: 8px;
     padding: 10px 20px 15px 20px;
     margin-left: 10px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
@@ -113,7 +86,6 @@ export const ActiveResources = styled.section`
     width: 100%;
     align-items: center;
     border: 1px solid red;
-    position: relative;
   }
 
   .active-resources-list {

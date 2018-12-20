@@ -9,7 +9,7 @@ export function ResourceView({
   topicID
 }) {
   return (
-    <div className="resource-view">
+    <>
       <EditButton
         resourceid={resource.id}
         onClick={handleEdit}
@@ -17,7 +17,12 @@ export function ResourceView({
       >
         edit
       </EditButton>
-
+      <div className="elipsis">
+        {' '}
+        <span className="elipsis-dot" />
+        <span className="elipsis-dot" />
+        <span className="elipsis-dot" />
+      </div>
       <button
         className="checkbox"
         id={resource.id}
@@ -45,13 +50,15 @@ export function ResourceView({
             : resource.uri}
         </a>
       </div>
-
       <button
+        type="button"
         resourceid={resource.id}
         onClick={handleDelete}
         className="resource-item-delete resource-item-controls"
-      />
-    </div>
+      >
+        Delete
+      </button>
+    </>
   );
 }
 

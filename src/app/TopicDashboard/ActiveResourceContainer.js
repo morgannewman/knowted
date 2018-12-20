@@ -86,12 +86,6 @@ export class ActiveResourceContainer extends React.Component {
                                   className="resource-item active-resource-item"
                                 >
                                   {/* <i className="fas fa-ellipsis-v" /> */}
-                                  <div className="elipsis">
-                                    {' '}
-                                    <span className="elipsis-dot" />
-                                    <span className="elipsis-dot" />
-                                    <span className="elipsis-dot" />
-                                  </div>
 
                                   <ResourceItem resource={resources[rescID]} />
                                 </li>
