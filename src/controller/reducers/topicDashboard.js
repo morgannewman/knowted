@@ -1,18 +1,18 @@
 import {
-  RESOURCE_LOADING,
   RESOURCE_SUCCESS,
   ADD_RESOURCE,
   UPDATE_RESOURCE,
   DELETE_RESOURCE,
   RESOURCE_ERROR,
-  UPDATE_RESC_ORDER
+  UPDATE_RESC_ORDER,
+  TOPICDASH_RESET
 } from '../actions/topicDashboard';
 
 import produce from 'immer';
 
 export const initialState = {
   resources: {},
-  loading: false,
+  loading: true,
   error: null,
   topic: {},
   resourceOrder: [],
@@ -21,12 +21,6 @@ export const initialState = {
 
 export default produce((state, action) => {
   switch (action.type) {
-    case RESOURCE_LOADING:
-      state.loading = true;
-      state.error = null;
-
-      return;
-
     case RESOURCE_SUCCESS:
       state.loading = false;
       state.error = null;
@@ -80,6 +74,9 @@ export default produce((state, action) => {
       delete state.resources[action.id];
       state.error = null;
       return;
+
+    case TOPICDASH_RESET:
+      return { ...initialState };
 
     default:
       return;
