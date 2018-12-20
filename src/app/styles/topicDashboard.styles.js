@@ -48,7 +48,8 @@ export const TopicDashContainer = styled.section`
       border: 1.5px solid #aeaeae;
       transform: scaleX(-1);
       border-radius: 3px;
-      left: 40px;
+      position: relative;
+      right: 50px;
     }
   }
   .resource-item:hover {
