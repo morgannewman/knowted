@@ -79,7 +79,6 @@ export const Main = styled.main`
 `;
 
 //NAVIGATION
-
 export const NavBar = styled.header`
   height: 72px;
   width: 100%;
@@ -87,26 +86,13 @@ export const NavBar = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  .nav-logo {
-    margin-left: 16px;
-    @media screen and (min-width: 769px) {
-      margin-left: 32px;
-    }
-  }
-
-  .nav-link {
-    margin-right: 16px;
-    font-size: 1.2em;
-    @media screen and (min-width: 769px) {
-      margin-right: 32px;
-    }
-  }
-
-  .nav-logo {
+  .nav-branding {
     display: flex;
     align-items: center;
+    margin-left: 16px;
+
     font-family: ivyjournal, sans-serif;
-    font-size: 1.8em;
+    font-size: 1.3em;
     font-weight: bold;
     text-decoration: none;
 
@@ -115,16 +101,41 @@ export const NavBar = styled.header`
     }
 
     &-img {
-      max-height: 40px;
+      max-height: 36px;
       margin-right: 12px;
+    }
+
+    @media screen and (min-width: 500px) {
+      font-size: 1.5em;
+
+      &-img {
+        max-height: 40px;
+      }
+    }
+
+    @media screen and (min-width: 769px) {
+      margin-left: 32px;
+      font-size: 1.8em;
     }
   }
 
   .nav-link {
+    margin-right: 16px;
+    font-size: 1.1em;
+
     text-decoration: none;
 
     &:visited {
       color: inherit;
+    }
+
+    @media screen and (min-width: 500px) {
+      font-size: 1.2em;
+    }
+
+    @media screen and (min-width: 769px) {
+      margin-right: 32px;
+      font-size: 1.3em;
     }
   }
 `;
@@ -138,22 +149,30 @@ export const Breadcrumb = styled.nav`
     flex-direction: row;
   }
 
-  .breadcrumbs-links {
-    padding: 8px 16px;
-    @media (min-width: 769px) {
-      padding: 16px 44px;
-    }
-  }
-
   background-color: #b9de9a;
 
   font-family: omnes-pro, sans-serif;
   font-weight: normal;
   font-size: 1.3rem;
 
+  .breadcrumbs-links {
+    padding: 8px 8px 8px 16px;
+    @media (min-width: 579px) {
+      margin-left: 22px;
+    }
+    @media (min-width: 920px) {
+      margin-left: 88px;
+    }
+  }
+
   a {
     color: black;
     text-decoration: none;
+
+    &:last-child {
+      text-decoration: underline;
+    }
+
     &:hover {
       text-decoration: underline;
     }
@@ -166,29 +185,29 @@ export const Breadcrumb = styled.nav`
 
   button {
     flex-shrink: 0;
-    background-color: black;
     color: white;
+    background-color: black;
+    border: none;
 
     font-family: omnes-pro, sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 
     padding: 12px;
-    border-radius: 2px;
-    border: 1px dot gray;
+
     @media (min-width: 769px) {
       ${'' /* Resets height */}
       height: 0%;
       align-self: center;
 
-      margin-right: 44px;
-      padding: 6px 24px;
+      color: black;
+      background-color: transparent;
 
-      &:hover {
-        transform: translate(-1px, -1px);
-      }
-      &:active {
-        transform: translate(0, 0);
-      }
+      padding: 0 12px;
+      margin-right: 22px;
+    }
+
+    @media (min-width: 920px) {
+      margin-right: 88px;
     }
   }
 `;

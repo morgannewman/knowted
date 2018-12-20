@@ -14,9 +14,9 @@ export class Nav extends Component {
     const { dispatch } = this.props;
     return (
       <NavBar className="nav">
-        <Link to="/" className="nav-logo">
+        <Link to="/" className="nav-branding">
           <img
-            className="nav-logo-img"
+            className="nav-branding-img"
             src={require('../images/owl.png')}
             alt="Knowted Logo"
           />{' '}

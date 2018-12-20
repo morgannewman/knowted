@@ -40,7 +40,7 @@ export default class Breadcrumbs extends Component {
           )}
         </div>
         {buttonHandler && (
-          <Button onClick={buttonHandler}>Complete & Continue</Button>
+          <Button onClick={buttonHandler}>Complete & Continue{'  '}></Button>
         )}
       </Breadcrumb>
     );
