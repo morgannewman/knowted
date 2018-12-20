@@ -152,7 +152,6 @@ export const Breadcrumb = styled.nav`
   background-color: #b9de9a;
 
   font-family: omnes-pro, sans-serif;
-  font-weight: normal;
   font-size: 1.3rem;
 
   .breadcrumbs-links {
@@ -204,6 +203,7 @@ export const Breadcrumb = styled.nav`
 
       padding: 0 12px;
       margin-right: 22px;
+      font-weight: 500;
     }
 
     @media (min-width: 920px) {
