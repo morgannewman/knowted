@@ -25,8 +25,6 @@ const initialState = {
 };
 
 describe('<RecentlyViewed />', () => {
-  let wrapper;
-
   it('renders without crashing', () => {
     shallow(<RecentlyViewed {...initialState} />);
   });

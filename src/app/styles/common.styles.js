@@ -3,6 +3,8 @@
 // ------------------------------------------------
 
 import styled from 'styled-components';
+import edit from '../images/edit.svg';
+import cancel from '../images/cancel.svg';
 
 //OVERALL
 export const Main = styled.main`
@@ -17,12 +19,14 @@ export const Main = styled.main`
   h2 {
     font-family: ivyjournal, sans-serif;
     font-size: 1.875rem;
+    margin: 0 0 40px 0;
   }
 
   h3 {
     font-family: omnes-pro, sans-serif;
     font-weight: 500;
     font-size: 1.625rem;
+    margin: 0 0 20px 0;
   }
 
   p,
@@ -62,7 +66,21 @@ export const Input = styled.input``;
 export const Button = styled.button``;
 export const ButtonComplete = styled(Button)``;
 
-export const updateActionsButton = styled.button``;
+export const updateActionsButton = styled.button`
+  border: none;
+  width: 26px;
+  height: 26px;
+  margin: 0 5px;
+  /* Hide the text. */
+  text-indent: 160%;
+  white-space: nowrap;
+  overflow: hidden;
+`;
 export const DeleteButton = styled(updateActionsButton)``;
-export const EditButton = styled(updateActionsButton)``;
-export const CancelButton = styled(updateActionsButton)``;
+export const EditButton = styled(updateActionsButton)`
+  background: url(${edit}) no-repeat;
+`;
+export const CancelButton = styled(updateActionsButton)`
+  background: url(${cancel}) no-repeat;
+  margin-top: 5px;
+`;

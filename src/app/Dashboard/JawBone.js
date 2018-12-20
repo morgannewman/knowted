@@ -1,6 +1,5 @@
-import './JawBone.css';
-
 import React from 'react';
+import { JawBoneContainer } from '../styles/dashboard.styles';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
@@ -17,39 +16,45 @@ export class JawBone extends React.Component {
     if (this.props.loading) return <Loading />;
     const { topics, folders, folderId } = this.props;
     return (
-      <div className="jaw-bone-container">
+      <JawBoneContainer>
         <Droppable
           droppableId={String(this.props.folderId)}
           direction="row"
           isCombineEnabled={false}
         >
           {provided => (
-            <div
-              className="jawbone-folder-items"
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-            >
-              {folders[folderId].topics.map((topicId, index) => (
-                <Draggable
-                  draggableId={String(topicId)}
-                  index={index}
-                  key={topicId}
-                >
-                  {provided => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <Topic title={topics[topicId].title} topicId={topicId} />
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-            </div>
+            <>
+              <span className="arrow-up" />
+              <div
+                className="jawbone-folder-items"
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {folders[folderId].topics.map((topicId, index) => (
+                  <Draggable
+                    draggableId={String(topicId)}
+                    index={index}
+                    key={topicId}
+                  >
+                    {provided => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        <Topic
+                          title={topics[topicId].title}
+                          topicId={topicId}
+                        />
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+              </div>
+            </>
           )}
         </Droppable>
-      </div>
+      </JawBoneContainer>
     );
   }
 }

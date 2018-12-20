@@ -44,10 +44,12 @@ export const TopicDashContainer = styled.section`
       border: 1.5px solid #aeaeae;
       transform: scaleX(-1);
       border-radius: 3px;
+      margin: 10px 10px 10px 2px;
     }
 
     .elipsis {
       width: 43px;
+      margin-top: 12px;
       height: 40px;
       display: inline-block;
       display: flex;
@@ -131,28 +133,18 @@ export const ActiveResources = styled.section`
 `;
 
 export const CompleteResources = styled.section`
-  .completed-resources-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    max-width: 1213px;
-    margin-bottom: 50px;
-  }
-
   .completed-resources-list {
     list-style: none;
     width: 100%;
     padding: 50px;
   }
-
   .completed-resource-item {
-    height: 63px;
-    width: 100%;
-    max-width: 1090px;
-    border: 1.5px solid #aeaeae;
-    border-radius: 8px;
-    margin: 10px;
-    padding: 0px;
+    // height: 63px;
+    // width: 100%;
+    // max-width: 1090px;
+    // border: 1.5px solid #aeaeae;
+    // border-radius: 8px;
+    // margin: 10px;
+    // padding: 0px;
   }
 `;

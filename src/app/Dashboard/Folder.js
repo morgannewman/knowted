@@ -1,8 +1,8 @@
 import React from 'react';
 import JawBone from './JawBone';
 import PropTypes from 'prop-types';
-import './Folder.css';
 import { connect } from 'react-redux';
+import { EditButton, CancelButton } from '../styles/common.styles';
 
 import {
   updateFolder,
@@ -73,25 +73,38 @@ export class Folder extends React.Component {
       >
         {this.props.editing ? (
           <>
-            <button onClick={this.hideEditFolderForm}>Cancel</button>
+            <div className="folder">
+              <span />
+            </div>
+
             <form className="edit-folder-form" onSubmit={this.submitEdit}>
-              <label>Folder Name</label>
               <input
                 ref={input => (this.titleInput = input)}
                 type="text"
                 name="folderTitle"
                 defaultValue={this.props.title}
+                autoFocus="autofocus"
               />
             </form>
+            <CancelButton onClick={this.hideEditFolderForm}>
+              Cancel
+            </CancelButton>
           </>
         ) : (
           <>
-            {this.state.showEdit && (
-              <button onClick={this.displayEditFolderForm}>Edit</button>
+            {this.state.showJawBone ? (
+              <div className="folder folder-open" onClick={this.toggleJawBone}>
+                <span />
+              </div>
+            ) : (
+              <div className="folder" onClick={this.toggleJawBone}>
+                <span />
+              </div>
             )}
-            <button className="folder-btn" onClick={this.toggleJawBone}>
-              {title}
-            </button>
+            <label onClick={this.displayEditFolderForm}>{title}</label>
+            {this.state.showEdit && (
+              <EditButton onClick={this.displayEditFolderForm}>Edit</EditButton>
+            )}
             {this.state.showJawBone && <JawBone folderId={folderId} />}
           </>
         )}

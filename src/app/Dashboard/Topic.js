@@ -1,5 +1,3 @@
-import './Topic.css';
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -98,6 +96,9 @@ export class Topic extends React.Component {
         ) : (
           <>
             <a className="topic-btn" href={`/dashboard/${topicId}`}>
+              <div className="paper">
+                <span />
+              </div>
               {title}
             </a>
             {this.state.showOptions && (
