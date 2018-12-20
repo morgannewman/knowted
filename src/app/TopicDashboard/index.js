@@ -66,7 +66,7 @@ export class TopicDashboard extends React.Component {
             />
           </Breadcrumb>
           <h2>{topic.title}</h2>
-          <h3>Active Resources</h3>
+
           <ActiveResources>
             <ActiveResourceContainer {...this.props} />
           </ActiveResources>
