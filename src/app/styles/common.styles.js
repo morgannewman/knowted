@@ -51,9 +51,27 @@ export const LandingNavBar = styled(NavBar)``;
 
 //BREADCRUMB
 export const Breadcrumb = styled.nav`
-  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  background-color: #b9de9a;
+  margin: 0;
+  padding: 0 88px;
+  height: 64px;
+  font-family: omnes-pro, sans-serif;
+  font-weight: normal;
+  font-size: 1.3rem;
 
   a {
+    color: black;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  span {
+    display: inline-block;
+    padding: 0 8px;
   }
 `;
 
