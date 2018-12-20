@@ -7,12 +7,14 @@ import del from '../images/delete.svg';
 export const TopicDashContainer = styled.section`
   max-width: 1255px;
   margin: 0px auto;
+
   ul{
     all:unset;
   }
 
   h2{
     margin-top: 50px;
+    padding-left: 50px;
   }
  
   .resource-info:hover {
@@ -28,8 +30,8 @@ export const TopicDashContainer = styled.section`
   }
 
   .resource-item-edit {
-    margin-top: 15px;
     margin-right: 2px;
+    background-position:right;
   }
 
   .resource-item-delete {
@@ -143,13 +145,11 @@ export const TopicDashContainer = styled.section`
 
 export const ActiveResources = styled.section`
   .active-resources-container {
-    border: 1px solid red;
   }
 
   .active-resources-list {
     list-style: none;
     width: 100%;
-    border: 1px solid blue;
     display: flex;
     flex-direction: column;
   }
@@ -240,7 +240,6 @@ export const ActiveResources = styled.section`
   }
 
   .active-header {
-    border: 1px solid pink;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -248,17 +247,15 @@ export const ActiveResources = styled.section`
 
   .active-header h3 {
     margin: 0;
-    border: 1px solid black;
     width: 50%;
+    padding-left: 50px;
   }
 
   .active-header .add-button-cont {
-    border: 1px solid black;
     width: 50%;
     text-align: right;
   }
   .active-header .add-button-cont button {
-    border: 1px solid black;
     margin-right: 80px;
   }
 `;
@@ -267,19 +264,36 @@ export const CompleteResources = styled.section`
   .completed-resources-list {
     list-style: none;
     width: 100%;
-    padding: 50px;
+    display: flex;
+    flex-direction: column;
   }
-  .completed-resource-item {
-    // height: 63px;
-    // width: 100%;
-    // max-width: 1090px;
-    // border: 1.5px solid #aeaeae;
-    // border-radius: 8px;
-    // margin: 10px;
-    // padding: 0px;
+
+  .complete-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .complete-header h3 {
+    margin: 0;
+    width: 50%;
+    padding-left: 50px;
+  }
+
+  .complete-header .show-button-cont {
+    width: 50%;
+    text-align: right;
+  }
+  .complete-header .show-button-cont button {
+    margin-right: 80px;
   }
 
   .elipsis {
     display: none;
+  }
+
+  .resource-item-edit {
+    visibility: visible;
+    margin-left: 30px;
   }
 `;

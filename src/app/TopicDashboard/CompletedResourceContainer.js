@@ -7,7 +7,7 @@ export class CompletedResourceContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showAll: false
+      showAll: true
     };
   }
 
@@ -19,12 +19,15 @@ export class CompletedResourceContainer extends React.Component {
     const { resources, resourceOrder } = this.props;
     return (
       <section className="completed-resources-container">
-        <div className="completed-controls">
-          <h3>Completed Resources</h3>
-          <button type="button" onClick={this.handletoggle}>
-            {this.state.showAll ? 'hide all' : 'show all'}
-          </button>
+        <div className="complete-header">
+          <h3 className="complete-title">Completed Resources</h3>
+          <div className="show-button-cont">
+            <button type="button" onClick={this.handletoggle}>
+              {this.state.showAll ? 'hide all' : 'show all'}
+            </button>
+          </div>
         </div>
+
         {this.state.showAll ? (
           <ul className="completed-resources-list">
             {resourceOrder.map(rescID => {
