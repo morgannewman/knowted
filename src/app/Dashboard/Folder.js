@@ -57,6 +57,12 @@ export class Folder extends React.Component {
     this.hideEditFolderForm();
   };
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.editing !== this.props.editing) {
+      if (this.props.editing) this.titleInput.focus();
+    }
+  }
+
   render() {
     const { title, folderId } = this.props;
     return (

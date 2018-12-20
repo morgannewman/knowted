@@ -100,12 +100,7 @@ export class AllTopics extends React.Component {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <Topic
-              title={topics[id].title}
-              topicId={id}
-              key={id}
-              index={index}
-            />
+            <Topic title={topics[id].title} topicId={id} index={index} />
           </div>
         )}
       </Draggable>
