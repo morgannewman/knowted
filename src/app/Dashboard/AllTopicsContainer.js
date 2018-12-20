@@ -39,8 +39,6 @@ export class AllTopicsContainer extends React.Component {
   };
 
   onDragEnd = result => {
-    console.log(result);
-
     const { destination, source, draggableId, combine } = result;
 
     //CASE: combining lone topics => creates a new folder and places items within that folder
@@ -102,12 +100,7 @@ export class AllTopicsContainer extends React.Component {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <Topic
-              title={topics[id].title}
-              topicId={id}
-              key={id}
-              index={index}
-            />
+            <Topic title={topics[id].title} topicId={id} index={index} />
           </div>
         )}
       </Draggable>

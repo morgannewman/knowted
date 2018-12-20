@@ -42,22 +42,11 @@ export const addTopic = title => dispatch => {
  * On fail: state.topic.error === some error object
  * @param {{title: string, id: number}} object
  */
-export const updateTopic = body => (dispatch, getState) => {
-  // TODO: Figure out a better way of normalizing parent for optimistic update
-  if (body.parent) {
-    const folder = getState().dashboardReducer.folders.find(
-      folder => folder.id === body.parent
-    );
-    dispatch(
-      submitTopicUpdate({
-        ...body,
-        parent: { id: folder.id, title: folder.title }
-      })
-    );
-  } else dispatch(submitTopicUpdate(body));
+export const updateTopic = body => dispatch => {
+  if ('parent' in body) dispatch(updateTopicParentOptimistically(body));
   api.topics
     .put(body)
-    .then(() => dispatch(updateTopicSuccess()))
+    .then(topic => dispatch(updateTopicSuccess(topic)))
     .catch(err => dispatch(apiError(err)));
 };
 
@@ -125,9 +114,10 @@ export const updateTopicsParents = (
 export const mergeTopicsNewFolder = (title, topicId1, topicId2) => dispatch => {
   api.folders
     .post({ title })
-    .then(folder => dispatch(addFolderSuccess(folder)))
     .then(folder => {
-      dispatch(updateTopicsParents(topicId1, topicId2, folder.payload.id));
+      folder.topics = [topicId1, topicId2];
+      dispatch(addFolderSuccess(folder));
+      dispatch(updateTopicsParents(topicId1, topicId2, folder.id));
     })
     .catch(err => dispatch(apiError(err)));
 };
@@ -173,8 +163,9 @@ export const addTopicSuccess = topic => ({
 });
 
 export const UPDATE_TOPIC_SUCCESS = 'UPDATE_TOPIC_SUCCESS';
-export const updateTopicSuccess = () => ({
-  type: UPDATE_TOPIC_SUCCESS
+export const updateTopicSuccess = topic => ({
+  type: UPDATE_TOPIC_SUCCESS,
+  payload: topic
 });
 
 export const UPDATE_TOPIC_PARENT_SUCCESS = 'UPDATE_TOPIC_PARENT_SUCCESS';
@@ -233,4 +224,11 @@ export const DASHBOARD_DELETE_FOLDER = 'DASHBOARD_DELETE_FOLDER';
 export const deleteFolder = id => ({
   type: DASHBOARD_DELETE_FOLDER,
   payload: id
+});
+
+export const DASHBOARD_UPDATE_TOPIC_PARENT_OPT =
+  'DASHBOARD_UPDATE_TOPIC_PARENT_OPT';
+export const updateTopicParentOptimistically = body => ({
+  type: DASHBOARD_UPDATE_TOPIC_PARENT_OPT,
+  payload: { id: body.id, parent: body.parent }
 });
