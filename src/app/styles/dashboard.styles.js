@@ -53,6 +53,20 @@ export const AllTopicsContainer = styled.div`
     font-size: 1.125rem;
   }
 
+  .edit-folder-form,
+  .edit-topic-form {
+    display: inline-flex;
+    flex-direction: row;
+
+    input {
+      border: none;
+      outline: none;
+      max-width: 126px;
+      text-align: center;
+      border-bottom: 1px dashed #d0d0d0;
+    }
+  }
+
   .folders-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -133,19 +147,6 @@ export const AllTopicsContainer = styled.div`
         transform: rotateX(-35deg);
       }
 
-      .edit-folder-form {
-        display: inline-flex;
-        flex-direction: row;
-
-        input {
-          border: none;
-          outline: none;
-          max-width: 126px;
-          text-align: center;
-          border-bottom: 1px dashed #d0d0d0;
-        }
-      }
-
       /* 1 */
       :nth-of-type(7n + 1) .folder::before,
       :nth-of-type(7n + 1) .folder::after {
@@ -224,6 +225,20 @@ export const AllTopicsContainer = styled.div`
       background: #fff;
       border-radius: 6px;
       margin: 0 auto;
+    }
+
+    .paper {
+      border-radius: 6px 22px 6px 6px;
+      span {
+        border: 2px solid #aeaeae;
+        height: 26px;
+        width: 26px;
+        z-index: 6;
+        margin-left: 30px;
+        position: absolute;
+        margin-top: -2px;
+        border-radius: 0 22px 0 6px;
+      }
     }
 
     .add-topic-btn {
