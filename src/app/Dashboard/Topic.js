@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { actions as notifActions } from 'redux-notifications';
 import {
   EditButton,
@@ -110,11 +111,11 @@ export class Topic extends React.Component {
                 Delete
               </DeleteButton>
             )}
-            <a className="topic-btn" href={`/dashboard/${topicId}`}>
+            <Link className="topic-btn" to={`/dashboard/${topicId}`}>
               <div className="paper">
                 <span />
               </div>
-            </a>
+            </Link>
             <label onClick={this.editTopic}>{title}</label>
             {this.state.showOptions && (
               <EditButton onClick={this.editTopic}>Edit</EditButton>
