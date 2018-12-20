@@ -105,7 +105,7 @@ export default produce((state, action) => {
     case DELETE_TOPIC_SUCCESS: {
       state.loading = false;
 
-      const topic = action.payload;
+      const topic = state.topics[action.payload];
       const parent = topic.parent && topic.parent.id;
 
       // Find which ordering array references the topic
