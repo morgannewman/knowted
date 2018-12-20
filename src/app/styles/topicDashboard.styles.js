@@ -147,6 +147,22 @@ export const ActiveResources = styled.section`
   .active-resources-container {
   }
 
+  .add-resc-button {
+    outline: none;
+    font-size: 1.125rem;
+    border: none;
+    span {
+      padding-top: 8px;
+      line-height: 1.5rem;
+      margin: 0px 5px;
+    }
+    text-transform: uppercase;
+    .plus {
+      font-size: 2.5rem;
+      line-height: 1.5rem;
+      padding: 0px;
+    }
+  }
   .active-resources-list {
     list-style: none;
     width: 100%;

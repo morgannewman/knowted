@@ -58,7 +58,7 @@ export class ActiveResourceContainer extends React.Component {
                   type="button"
                   onClick={this.handleScrollClick}
                 >
-                  Add Resource
+                  <span>add resource </span> <span className="plus">+</span>
                 </button>
               </div>
             </div>
