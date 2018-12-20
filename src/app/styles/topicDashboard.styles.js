@@ -9,6 +9,22 @@ export const TopicDashContainer = styled.section`
   max-width: 1255px;
   margin: 0px auto;
 
+  .resource-item-save {
+    height: 40px;
+    width: 95.19px;
+    border-radius: 8px;
+    background-color: #242424;
+  }
+
+  .resource-item-save p {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.65px;
+    line-height: 28px;
+    color: #ffffff;
+    display: inline;
+  }
+
   .name-of-resource {
     font-size: 1.4rem;
     width: 50%;

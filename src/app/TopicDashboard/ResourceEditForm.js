@@ -36,8 +36,8 @@ export class ResourceEditForm extends React.Component {
               defaultValue={this.state.value}
               onChange={e => this.setState({ value: e.target.value })}
             />
-            <button type="submit" className="resource-item-edit">
-              update
+            <button type="submit" className="resource-item-save">
+              <p> save</p>
             </button>
           </form>
         </div>
