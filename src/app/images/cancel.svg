@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>cancel</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="dashboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-811.000000, -857.000000)" fill-rule="nonzero" stroke="#242424" stroke-width="3">
+            <g id="cancel" transform="translate(813.000000, 859.000000)">
+                <circle id="Oval-2" cx="8" cy="8" r="8"></circle>
+                <path d="M12.5217391,2.7826087 L3.17824932,12.8217507" id="Line-2" stroke-linecap="square"></path>
+            </g>
+        </g>
+    </g>
+</svg>

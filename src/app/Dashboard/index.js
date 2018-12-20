@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 
 //STYLESHEET
 import { Main } from '../styles/common.styles';
-import { DashboardContainer, RecentlyViewed } from '../styles/dashboard.styles';
+import { DashboardContainer } from '../styles/dashboard.styles';
 
 import Loading from '../common/Loading';
-import AllTopicsContainer from './AllTopicsContainer';
-import RecentlyViewedContainer from './RecentlyViewedContainer';
+import AllTopics from './AllTopics';
+import RecentlyViewed from './RecentlyViewed';
 
 import { initializeDashboard } from '../../controller/actions/dashboard';
 export class Dashboard extends React.Component {
@@ -28,14 +28,8 @@ export class Dashboard extends React.Component {
     return (
       <Main>
         <DashboardContainer>
-          <RecentlyViewed>
-            <h2>Recently Viewed</h2>
-            <RecentlyViewedContainer />
-          </RecentlyViewed>
-          <div>
-            <h2>All Topics</h2>
-            <AllTopicsContainer />
-          </div>
+          <RecentlyViewed />
+          <AllTopics />
         </DashboardContainer>
       </Main>
     );
