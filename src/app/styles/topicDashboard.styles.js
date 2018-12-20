@@ -64,12 +64,12 @@ export const TopicDashContainer = styled.section`
       border: 1.5px solid #aeaeae;
       transform: scaleX(-1);
       border-radius: 3px;
-      // position: relative;
-      right: 45px;
-      display: inline;
-      top: 10px;
-      float: left;
-      margin-left: -35px;
+      // position: absolute;
+      // right: 45px;
+      // display: inline;
+      // top: 10px;
+      // float: left;
+      // margin-left: -35px;
     }
   }
   .resource-item:hover {
