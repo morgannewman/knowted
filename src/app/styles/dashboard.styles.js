@@ -64,6 +64,7 @@ export const AllTopicsContainer = styled.div`
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      min-height: 155px;
 
       .folder {
         cursor: pointer;

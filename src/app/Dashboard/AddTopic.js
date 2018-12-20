@@ -1,7 +1,11 @@
-import React from 'react';
 import './AddTopic.css';
-import { addTopic } from '../../controller/actions/dashboard';
+
+import React from 'react';
 import { connect } from 'react-redux';
+import { actions as notifActions } from 'redux-notifications';
+
+import { addTopic } from '../../controller/actions/dashboard';
+const { notifSend } = notifActions;
 
 export class AddTopic extends React.Component {
   state = {
@@ -16,7 +20,22 @@ export class AddTopic extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
+    const { topics } = this.props;
     let title = this.titleInput.value;
+
+    for (const topicId in topics) {
+      if (topics[topicId].title === title) {
+        this.props.dispatch(
+          notifSend({
+            message: 'A topic with that title already exists.',
+            kind: 'danger',
+            dismissAfter: 4000
+          })
+        );
+        return;
+      }
+    }
+
     this.props.dispatch(addTopic(title));
     this.toggleHidden();
   }

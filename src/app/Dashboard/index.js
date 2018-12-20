@@ -13,9 +13,7 @@ import RecentlyViewed from './RecentlyViewed';
 import { initializeDashboard } from '../../controller/actions/dashboard';
 export class Dashboard extends React.Component {
   static propTypes = {
-    loading: PropTypes.bool,
-    topics: PropTypes.array,
-    folders: PropTypes.array
+    loading: PropTypes.bool.isRequired
   };
 
   componentDidMount() {
@@ -37,9 +35,6 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  topics: state.dashboardReducer.topics,
-  folders: state.dashboardReducer.folders,
-  recentResources: state.dashboardReducer.recentResources,
   loading: state.dashboardReducer.loading
 });
 

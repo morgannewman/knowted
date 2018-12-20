@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { actions as notifActions } from 'redux-notifications';
 
 import { deleteTopic, updateTopic } from '../../controller/actions/dashboard';
+const { notifSend } = notifActions;
 
 export class Topic extends React.Component {
   static propTypes = {
@@ -26,6 +28,19 @@ export class Topic extends React.Component {
   submitEdit = e => {
     e.preventDefault();
     let title = this.titleInput.value;
+    const { topics } = this.props;
+    for (const topicId in topics) {
+      if (topics[topicId].title === title) {
+        this.props.dispatch(
+          notifSend({
+            message: 'A topic with that title already exists.',
+            kind: 'danger',
+            dismissAfter: 4000
+          })
+        );
+        return;
+      }
+    }
     this.props.dispatch(updateTopic({ title, id: this.props.topicId }));
     this.editTopic();
   };
@@ -95,7 +110,7 @@ export class Topic extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  topics: state.dashboardReducer
+  topics: state.dashboardReducer.topics
 });
 
 export default connect(mapStateToProps)(Topic);
