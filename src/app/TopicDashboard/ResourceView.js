@@ -10,6 +10,19 @@ export function ResourceView({
 }) {
   return (
     <div className="resource-view">
+      <EditButton
+        resourceid={resource.id}
+        onClick={handleEdit}
+        className="resource-item-edit resource-item-controls"
+      >
+        edit
+      </EditButton>
+
+      <button
+        resourceid={resource.id}
+        onClick={handleDelete}
+        className="resource-item-delete resource-item-controls"
+      />
       <button
         className="checkbox"
         id={resource.id}
@@ -36,23 +49,6 @@ export function ResourceView({
           ? `https://www.youtube.com/watch?v=${resource.uri}`
           : resource.uri}
       </a>
-      <div className="resource-item-controls">
-        <EditButton
-          resourceid={resource.id}
-          onClick={handleEdit}
-          className="resource-item-edit"
-        >
-          edit
-        </EditButton>
-
-        <DeleteButton
-          resourceid={resource.id}
-          onClick={handleDelete}
-          className="resource-item-delete"
-        >
-          delete
-        </DeleteButton>
-      </div>
     </div>
   );
 }

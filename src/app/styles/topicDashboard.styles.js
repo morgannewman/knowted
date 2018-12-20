@@ -3,6 +3,7 @@
 // ------------------------------------------------
 
 import styled from 'styled-components';
+import './images/pencil.png';
 
 export const TopicDashContainer = styled.section`
   max-width: 1255px;
@@ -15,6 +16,8 @@ export const TopicDashContainer = styled.section`
     border: 1.5px solid #aeaeae;
     border-radius: 8px;
     margin: 10px;
+    display: flex;
+    align-items: center;
 
     .elipsis {
       width: 43px;
@@ -22,7 +25,7 @@ export const TopicDashContainer = styled.section`
       position: relative;
       left: -80px;
       transform: rotate(90deg);
-      top: 35px;
+      top: 10px;
     }
     .elipsis-dot {
       height: 5px;
@@ -36,10 +39,23 @@ export const TopicDashContainer = styled.section`
 
   .resource-view {
     width: 100%;
+    text-align: left;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    
+    
+    
 
+  
     .name-of-resource {
       font-size: 1.4rem;
-      margin-right: 20px;
+      border: 1px solid black;
+      width: 50%;
+      white-space: nowrap; 
+      overflow: hidden;
+      text-overflow: ellipsis; 
+      
     }
 
     .checkbox {
@@ -48,8 +64,12 @@ export const TopicDashContainer = styled.section`
       border: 1.5px solid #aeaeae;
       transform: scaleX(-1);
       border-radius: 3px;
-      position: relative;
-      right: 50px;
+      // position: relative;
+      right: 45px;
+      display: inline;
+      top: 10px;
+      float: left;
+      margin-left: -35px;
     }
   }
   .resource-item:hover {
@@ -60,19 +80,28 @@ export const TopicDashContainer = styled.section`
     visibility: hidden;
   }
 
-  .resource-view:hover .resource-item-controls {
+  .resource-item:hover .resource-item-controls {
     visibility: visible;
   }
 
-  .resource-item-controls {
-    .resource-item-edit {
-      background-color: red;
-      position: relative;
-      bottom: 70px;
-      right: 50px;
-      margin: 10px;
-    }
+  .resource-item-edit {
+
+    float: left;
+    margin-left: -100px;
+    height: 50px;
   }
+
+  .resource-item-delete {
+    float: right;
+    margin-right: -50px;
+    background: url('./images/pencil.png');
+    border: none
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+  }
+
 `;
 
 export const ActiveResources = styled.section`
@@ -99,7 +128,6 @@ export const ActiveResources = styled.section`
     max-width: 1200px;
     // margin: 15px 0px 0px 30px;
     width: 100%;
-    display: block;
     border: 1.5px solid #aeaeae;
     border-radius: 8px;
     padding: 10px 20px 15px 20px;
