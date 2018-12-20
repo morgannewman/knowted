@@ -10,7 +10,7 @@ const { notifSend } = notifActions;
 
 export class Topic extends React.Component {
   static propTypes = {
-    topicId: PropTypes.any.isRequired,
+    topicId: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired
   };
 
@@ -20,16 +20,11 @@ export class Topic extends React.Component {
   };
 
   editTopic = () => {
-    this.setState(
-      state => {
-        return {
-          editing: !state.editing
-        };
-      },
-      () => {
-        if (this.state.editing) this.titleInput.focus();
-      }
-    );
+    this.setState(state => {
+      return {
+        editing: !state.editing
+      };
+    });
   };
 
   submitEdit = e => {
