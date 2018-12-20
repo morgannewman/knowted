@@ -20,7 +20,7 @@ export class CompletedResourceContainer extends React.Component {
     return (
       <section className="completed-resources-container">
         <div className="completed-controls">
-          <h3>Completed</h3>
+          <h3>Completed Resources</h3>
           <button type="button" onClick={this.handletoggle}>
             {this.state.showAll ? 'hide all' : 'show all'}
           </button>

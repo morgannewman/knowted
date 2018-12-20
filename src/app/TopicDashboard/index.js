@@ -58,19 +58,17 @@ export class TopicDashboard extends React.Component {
 
     return (
       <Main>
+        <Breadcrumb>
+          <Breadcrumbs
+            topicId={topic && topic.id}
+            topicTitle={topic && topic.title}
+          />
+        </Breadcrumb>
         <TopicDashContainer>
-          <Breadcrumb>
-            <Breadcrumbs
-              topicId={topic && topic.id}
-              topicTitle={topic && topic.title}
-            />
-          </Breadcrumb>
           <h2>{topic.title}</h2>
-
           <ActiveResources>
             <ActiveResourceContainer {...this.props} />
           </ActiveResources>
-          <h2>Completed Resources </h2>
           <CompleteResources>
             <CompletedResourceContainer {...this.props} />
           </CompleteResources>

@@ -9,6 +9,9 @@ export const TopicDashContainer = styled.section`
   max-width: 1255px;
   margin: 0px auto;
 
+  h2{
+    margin-top: 50px;
+  }
   .resource-item-save {
     height: 40px;
     width: 95.19px;
@@ -33,11 +36,11 @@ export const TopicDashContainer = styled.section`
     text-overflow: ellipsis;
   }
   .resource-info:hover {
-    box-shadow: 5px 4px 22px rgba(3, 30, 30, 0.808);
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
   }
 
   .resource-view .resource-item-controls {
-    visibility: hidden;
+    visibility: visible;
   }
 
   .resource-item:hover .resource-item-controls {
@@ -45,6 +48,8 @@ export const TopicDashContainer = styled.section`
   }
 
   .resource-item-edit {
+    margin-top: 15px;
+    margin-right: 2px;
   }
 
   .resource-item-delete {
@@ -63,6 +68,7 @@ export const TopicDashContainer = styled.section`
       margin: 10px 10px 10px 2px;
     }
 
+    }
     .elipsis {
       width: 43px;
       margin-top: 12px;
@@ -81,6 +87,12 @@ export const TopicDashContainer = styled.section`
       margin: 0 auto;
       margin: 2px;
     }
+
+    
+  }
+
+  .resource-view:hover .checkbox {
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
   }
 
   .resource-info {
@@ -111,6 +123,8 @@ export const ActiveResources = styled.section`
     width: 100%;
     padding: 10px 90px;
     border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
   }
 
   li:first-child .resource-info {
@@ -119,6 +133,11 @@ export const ActiveResources = styled.section`
   }
 
   .add-resource-section {
+    width: 75%;
+    margin-left: 130px;
+    border: 1.5px solid #d0d0d0;
+    border-radius: 8px;
+
     label {
       display: block;
       font-color: pink;
@@ -128,6 +147,7 @@ export const ActiveResources = styled.section`
     input {
       height: 50px;
       outline: none;
+      border: none;
       padding: 10px;
       width: 100%;
     }
@@ -162,5 +182,9 @@ export const CompleteResources = styled.section`
     // border-radius: 8px;
     // margin: 10px;
     // padding: 0px;
+  }
+
+  .elipsis {
+    display: none;
   }
 `;
