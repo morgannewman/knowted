@@ -13,9 +13,14 @@ export class AddTopic extends React.Component {
   };
 
   toggleHidden = () => {
-    this.setState({
-      isHidden: !this.state.isHidden
-    });
+    this.setState(
+      {
+        isHidden: !this.state.isHidden
+      },
+      () => {
+        if (!this.state.isHidden) this.titleInput.focus();
+      }
+    );
   };
 
   onSubmit(e) {

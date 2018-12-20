@@ -20,11 +20,16 @@ export class Topic extends React.Component {
   };
 
   editTopic = () => {
-    this.setState(state => {
-      return {
-        editing: !state.editing
-      };
-    });
+    this.setState(
+      state => {
+        return {
+          editing: !state.editing
+        };
+      },
+      () => {
+        if (this.state.editing) this.titleInput.focus();
+      }
+    );
   };
 
   submitEdit = e => {
