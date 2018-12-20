@@ -111,10 +111,17 @@ export class AllTopics extends React.Component {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <AllTopicsContainer>
-          <h2>All Topics</h2>
-          <h3>Folders</h3>
-          <div className="folders-container">{this.renderFolders()}</div>
-          <h3>Topics</h3>
+          {this.props.folderOrder.length === 0 ? (
+            <h2>Topics</h2>
+          ) : (
+            <>
+              <h2>All</h2>
+              <h3>Folders</h3>
+              <div className="folders-container">{this.renderFolders()}</div>
+              <h3>Topics</h3>
+            </>
+          )}
+
           <Droppable
             droppableId="lonelyTopics"
             direction="horizontal"

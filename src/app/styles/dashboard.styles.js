@@ -54,7 +54,8 @@ export const AllTopicsContainer = styled.div`
   }
 
   .edit-folder-form,
-  .edit-topic-form {
+  .edit-topic-form,
+  .add-topic-form {
     display: inline-flex;
     flex-direction: row;
 
@@ -70,6 +71,7 @@ export const AllTopicsContainer = styled.div`
   .folders-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 40px;
 
     .folder-wrap {
       text-align: center;
@@ -89,6 +91,7 @@ export const AllTopicsContainer = styled.div`
         width: 144px;
         perspective: 720px;
         border-radius: 7px;
+        margin-bottom: 10px;
 
         ::before,
         ::after,
@@ -216,52 +219,64 @@ export const AllTopicsContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     text-align: center;
+    margin-bottom: 60px;
+  }
 
-    .paper,
-    .add-topic-btn {
-      height: 136px;
-      width: 112px;
+  /* Shared Topic styles */
+  .topic-wrap {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 158px;
+    margin-bottom: 30px;
+  }
+  .paper,
+  .add-topic-btn {
+    height: 136px;
+    width: 112px;
+    border: 2px solid #aeaeae;
+    background: #fff;
+    border-radius: 6px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+
+  .paper {
+    border-radius: 6px 22px 6px 6px;
+    span {
       border: 2px solid #aeaeae;
-      background: #fff;
-      border-radius: 6px;
-      margin: 0 auto;
+      height: 26px;
+      width: 26px;
+      z-index: 6;
+      margin-left: 30px;
+      position: absolute;
+      margin-top: -2px;
+      border-radius: 0 22px 0 6px;
     }
+  }
 
-    .paper {
-      border-radius: 6px 22px 6px 6px;
-      span {
-        border: 2px solid #aeaeae;
-        height: 26px;
-        width: 26px;
-        z-index: 6;
-        margin-left: 30px;
-        position: absolute;
-        margin-top: -2px;
-        border-radius: 0 22px 0 6px;
-      }
+  .add-topic-btn {
+    font-size: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px dashed #d0d0d0;
+    color: #d0d0d0;
+    outline: none;
+
+    span {
+      font-size: 3rem;
+      padding: 0;
+      line-height: 1;
+      margin-top: 25px;
     }
+  }
 
-    .add-topic-btn {
-      font-size: 1em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border: 2px dashed #d0d0d0;
-      color: #d0d0d0;
-      outline: none;
-
-      span {
-        font-size: 3rem;
-        padding: 0;
-        line-height: 1;
-        margin-top: 25px;
-      }
-    }
-
-    .edit-delete-topic-options {
-      display: inline-flex;
-      flex-direction: column;
-    }
+  .delete-btn {
+    position: absolute;
+    margin-left: 60px;
+    margin-top: -26px;
+    height: 32px;
   }
 `;
 

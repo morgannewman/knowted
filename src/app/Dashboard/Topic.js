@@ -83,7 +83,9 @@ export class Topic extends React.Component {
         {this.state.editing ? (
           <>
             {this.state.showOptions && (
-              <DeleteButton onClick={this.deleteTopic}>Delete</DeleteButton>
+              <DeleteButton className="delete-btn" onClick={this.deleteTopic}>
+                Delete
+              </DeleteButton>
             )}
             <a className="topic-btn" href={`/dashboard/${topicId}`}>
               <div className="paper">
@@ -99,14 +101,14 @@ export class Topic extends React.Component {
                 autoFocus="autofocus"
               />
             </form>
-            {this.state.showOptions && (
-              <CancelButton onClick={this.editTopic}>Cancel</CancelButton>
-            )}
+            <CancelButton onClick={this.editTopic}>Cancel</CancelButton>
           </>
         ) : (
           <>
             {this.state.showOptions && (
-              <DeleteButton onClick={this.deleteTopic}>Delete</DeleteButton>
+              <DeleteButton className="delete-btn" onClick={this.deleteTopic}>
+                Delete
+              </DeleteButton>
             )}
             <a className="topic-btn" href={`/dashboard/${topicId}`}>
               <div className="paper">
