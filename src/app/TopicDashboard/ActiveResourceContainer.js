@@ -50,16 +50,18 @@ export class ActiveResourceContainer extends React.Component {
       <>
         <DragDropContext onDragEnd={this.onDragEnd}>
           <section className="active-resources-container">
-            <span className="active-title">
-              <h3>Active Resources</h3>
-            </span>
-            <button
-              className="add-resc-button"
-              type="button"
-              onClick={this.handleScrollClick}
-            >
-              Add Resource
-            </button>
+            <div className="active-header">
+              <h3 className="active-title">Active Resources</h3>
+              <div className="add-button-cont">
+                <button
+                  className="add-resc-button"
+                  type="button"
+                  onClick={this.handleScrollClick}
+                >
+                  Add Resource
+                </button>
+              </div>
+            </div>
             <Droppable droppableId="droppable-1">
               {provided => (
                 <ul ref={provided.innerRef} className="active-resources-list">

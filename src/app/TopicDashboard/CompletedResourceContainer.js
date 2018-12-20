@@ -35,7 +35,10 @@ export class CompletedResourceContainer extends React.Component {
                 resources[rescID]
               ) {
                 return resources[rescID].completed === true ? (
-                  <li key={rescID} className="completed-resource-item">
+                  <li
+                    key={rescID}
+                    className=" resource-item completed-resource-item"
+                  >
                     <ResourceItem resource={resources[rescID]} />
                   </li>
                 ) : null;

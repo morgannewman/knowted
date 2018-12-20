@@ -31,24 +31,26 @@ export function ResourceView({
         checked={resource.completed}
       />
       <div className="resource-info">
-        <span className="name-of-resource">
+        <div className="name-of-resource">
           <Link to={`/dashboard/${topicID}/${resource.id}`}>
             {resource.title}
           </Link>
-        </span>
-        <a
-          href={
-            resource.type === 'youtube'
+        </div>
+        <div className="resc-uri">
+          <a
+            href={
+              resource.type === 'youtube'
+                ? `https://www.youtube.com/watch?v=${resource.uri}`
+                : resource.uri
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {resource.type === 'youtube'
               ? `https://www.youtube.com/watch?v=${resource.uri}`
-              : resource.uri
-          }
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {resource.type === 'youtube'
-            ? `https://www.youtube.com/watch?v=${resource.uri}`
-            : resource.uri}
-        </a>
+              : resource.uri}
+          </a>
+        </div>
       </div>
       <button
         type="button"

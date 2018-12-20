@@ -36,8 +36,15 @@ export class ResourceEditForm extends React.Component {
               defaultValue={this.state.value}
               onChange={e => this.setState({ value: e.target.value })}
             />
+            <span className="resc-uri">
+              <p>
+                {resource.type === 'youtube'
+                  ? `https://www.youtube.com/watch?v=${resource.uri}`
+                  : resource.uri}
+              </p>
+            </span>
             <button type="submit" className="resource-item-save">
-              <p> save</p>
+              save
             </button>
           </form>
         </div>
