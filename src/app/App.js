@@ -60,7 +60,7 @@ export class App extends Component {
               <Route
                 exact
                 path="/dashboard/:topicId/:resourceId"
-                component={withNav(requiresLogin(Learn))}
+                component={requiresLogin(Learn)}
               />
               <Redirect to="/" />
             </Switch>

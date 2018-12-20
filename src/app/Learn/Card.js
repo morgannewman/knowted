@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { Card as CardLink } from '../styles/learn.styles';
 // import { FaExternalLinkAlt as LinkIcon } from 'react-icons/fa';
 
 class Card extends React.Component {
@@ -13,10 +15,10 @@ class Card extends React.Component {
     const { title, uri } = this.props;
 
     return (
-      <a href={uri} className="card">
+      <CardLink href={uri} className="card">
         <h2>{title}</h2>
         <span>{uri}</span>
-      </a>
+      </CardLink>
     );
   }
 }
