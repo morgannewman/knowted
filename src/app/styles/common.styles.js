@@ -45,7 +45,32 @@ export const Main = styled.main`
 
 //NAVIGATION
 
-export const NavBar = styled.nav``;
+export const NavBar = styled.header`
+  height: 72px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .nav-logo {
+    margin-left: 32px;
+    text-decoration: none;
+    font-size: 1.8em;
+
+    &:visited {
+      color: inherit;
+    }
+  }
+
+  .nav-link {
+    margin-right: 32px;
+    text-decoration: none;
+
+    &:visited {
+      color: inherit;
+    }
+  }
+`;
 
 export const LandingNavBar = styled(NavBar)``;
 
