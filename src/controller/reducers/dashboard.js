@@ -3,6 +3,7 @@ import {
   ADD_TOPIC_SUCCESS,
   UPDATE_TOPIC_SUCCESS,
   UPDATE_TOPIC_PARENT_SUCCESS,
+  DASHBOARD_UPDATE_TOPIC_PARENT_OPT,
   DELETE_TOPIC_SUCCESS,
   DISPLAY_EDIT_FOLDER_FORM,
   HIDE_EDIT_FOLDER_FORM,
@@ -96,24 +97,6 @@ export default produce((state, action) => {
       const topicId = action.payload.id;
       const topic = action.payload;
 
-      // Locate the ordering locations
-      const prevParent =
-        state.topics[topicId].parent && state.topics[topicId].parent.id;
-      const newParent = topic.parent && topic.parent.id;
-      const prevArr = prevParent
-        ? state.folders[prevParent].topics
-        : state.lonelyTopics;
-      const newArr = newParent
-        ? state.folders[newParent].topics
-        : state.lonelyTopics;
-
-      // Remove from old ordering location
-      const index = prevArr.findIndex(id => String(id) === String(topicId));
-      prevArr.splice(index, 1);
-
-      // Add to new ordering location
-      newArr.unshift(topicId);
-
       // Update topics object
       state.topics[topicId] = topic;
       return;
@@ -122,7 +105,7 @@ export default produce((state, action) => {
     case DELETE_TOPIC_SUCCESS: {
       state.loading = false;
 
-      const topic = action.payload;
+      const topic = state.topics[action.payload];
       const parent = topic.parent && topic.parent.id;
 
       // Find which ordering array references the topic
@@ -146,8 +129,20 @@ export default produce((state, action) => {
       state.loading = false;
       state.error = null;
       const folder = action.payload;
-      folder.topics = [];
-      console.log(folder);
+      folder.topics = folder.topics || [];
+
+      // Remove any references to topics elsewhere
+      for (const topicId of folder.topics) {
+        const prevParent =
+          state.topics[topicId].parent && state.topics[topicId].parent.id;
+        const prevArr = prevParent
+          ? state.folders[String(prevParent)].topics
+          : state.lonelyTopics;
+        // Remove from old ordering location
+        const index = prevArr.findIndex(id => String(id) === String(topicId));
+        prevArr.splice(index, 1);
+      }
+
       state.folderOrder.unshift(folder.id);
       state.folders[folder.id] = folder;
       return;
@@ -194,6 +189,30 @@ export default produce((state, action) => {
       const topic = action.payload;
       // replace existing contents with new body optimistically
       state.topics[topic.id] = { ...state.topics[topic.id], ...action.payload };
+      return;
+    }
+
+    case DASHBOARD_UPDATE_TOPIC_PARENT_OPT: {
+      const topicId = action.payload.id;
+
+      // Locate the ordering locations
+      const prevParent =
+        state.topics[topicId].parent && state.topics[topicId].parent.id;
+      const newParent = action.payload.parent;
+      const prevArr = prevParent
+        ? state.folders[String(prevParent)].topics
+        : state.lonelyTopics;
+      const newArr = newParent
+        ? state.folders[String(newParent)].topics
+        : state.lonelyTopics;
+
+      // Remove from old ordering location
+      const index = prevArr.findIndex(id => String(id) === String(topicId));
+      prevArr.splice(index, 1);
+
+      // Add to new ordering location
+      newArr.unshift(topicId);
+
       return;
     }
 
