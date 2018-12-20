@@ -1,28 +1,57 @@
 .learn {
   display: flex;
-  height: 90%;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.learn-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 32px;
+  padding: 0 16px;
+  background-color: lightgray;
+}
+
+.learn-main {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+
+  &-single {
+    flex-direction: column;
+    width: 98%;
+    max-width: 768px;
+    margin: 0 auto;
+    .editor,
+    .ql-editor {
+      width: 100%;
+      min-height: 75vh;
+    }
+  }
+
+  &-double {
+    flex-direction: row;
+    .editor,
+    .ql-editor {
+      width: 50%;
+      min-height: 89vh;
+    }
+  }
 }
 
 .editor {
-  height: 100%;
-  width: 50vw;
+  overflow-y: scroll;
 }
 
 #ytplayer {
   height: 100%;
   width: 50%;
-  flex-grow: 0;
 }
-
-.other-editor {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .card {
-  display: block;
-  width: 50vw;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 16px 0;
   background-color: #c4c4c4;
 }
