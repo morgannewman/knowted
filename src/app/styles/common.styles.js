@@ -5,6 +5,7 @@
 import styled from 'styled-components';
 import edit from '../images/edit.svg';
 import cancel from '../images/cancel.svg';
+import del from '../images/delete.svg';
 
 //OVERALL
 export const Main = styled.main`
@@ -76,7 +77,9 @@ export const updateActionsButton = styled.button`
   white-space: nowrap;
   overflow: hidden;
 `;
-export const DeleteButton = styled(updateActionsButton)``;
+export const DeleteButton = styled(updateActionsButton)`
+  background: url(${del}) no-repeat;
+`;
 export const EditButton = styled(updateActionsButton)`
   background: url(${edit}) no-repeat;
 `;
