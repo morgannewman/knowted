@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { RecentlyViewedContainer } from '../styles/dashboard.styles';
 
 export class RecentlyViewed extends Component {
   render() {
     const { recentResources } = this.props;
 
-    console.log(recentResources);
     return (
       <RecentlyViewedContainer>
         {recentResources.length === 0 ? (

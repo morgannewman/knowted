@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { EditButton, DeleteButton } from '../styles/common.styles';
+import { EditButton } from '../styles/common.styles';
 
 import { connect } from 'react-redux';
 import {
@@ -11,7 +11,6 @@ import {
 import './ResourceItem.scss';
 
 //TODO: use Link so so the resource title links to it's corresponding
-//TODO:remove console.logs
 
 export class ResourceItem extends React.Component {
   constructor(props) {
@@ -39,7 +38,6 @@ export class ResourceItem extends React.Component {
   *@param {{e: object}} eventobject
    */
   handleEdit = () => {
-    console.log('hello');
     this.setState(prevState => ({ editing: !prevState.editing }));
   };
   handleChecked = e => {
@@ -150,8 +148,8 @@ export class ResourceItem extends React.Component {
             </div>
           )}
           <div className="resc-uri">
-            <a
-              href={
+            <Link
+              to={
                 resource.type === 'youtube'
                   ? `https://www.youtube.com/watch?v=${resource.uri}`
                   : resource.uri
@@ -162,7 +160,7 @@ export class ResourceItem extends React.Component {
               {resource.type === 'youtube'
                 ? `https://www.youtube.com/watch?v=${resource.uri}`
                 : resource.uri}
-            </a>
+            </Link>
           </div>
           <button
             id={resource.id}

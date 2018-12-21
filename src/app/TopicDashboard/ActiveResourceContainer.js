@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createPortal } from 'react-dom';
 import { updateRescOrder } from '../../controller/actions/topicDashboard';
 import ResourceItem from './ResourceItem';
 import AddResourceForm from './AddResourceForm';
