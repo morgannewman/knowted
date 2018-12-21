@@ -1,4 +1,4 @@
-import './Editor.scss';
+import './Editor.css';
 
 import React from 'react';
 import { connect } from 'react-redux';
@@ -8,6 +8,7 @@ import debounce from 'lodash.debounce';
 
 import { submitNotebookUpdate } from '../../controller/actions/learn';
 import cache from '../../controller/api/cache';
+import { Editor as EditorContainer } from '../styles/learn.styles';
 
 export class Editor extends React.Component {
   static propTypes = {
@@ -62,24 +63,24 @@ export class Editor extends React.Component {
 
   render() {
     const { isDisabled, text } = this.state;
-    const { type } = this.props;
 
     return (
-      <Quill
-        value={text}
-        readOnly={isDisabled}
-        onChange={this.handleChange}
-        className={type === 'youtube' ? 'editor' : 'other-editor editor'}
-        theme="snow"
-      />
+      <EditorContainer>
+        <Quill
+          value={text}
+          readOnly={isDisabled}
+          onChange={this.handleChange}
+          className="editor"
+          theme="snow"
+        />
+      </EditorContainer>
     );
   }
 }
 
 const mapStateToProps = state => ({
   userId: state.auth.user && state.auth.user.id,
-  topicId: state.learn.topic && state.learn.topic.id,
-  type: state.learn.resource && state.learn.resource.type
+  topicId: state.learn.topic && state.learn.topic.id
 });
 
 export default connect(mapStateToProps)(Editor);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { StaticRouter as Router } from 'react-router-dom';
 import { shallow, mount } from 'enzyme';
 import { RecentlyViewed } from '../../Dashboard/RecentlyViewed';
 
@@ -26,12 +27,20 @@ const initialState = {
 
 describe('<RecentlyViewed />', () => {
   it('renders without crashing', () => {
-    shallow(<RecentlyViewed {...initialState} />);
+    shallow(
+      <Router>
+        <RecentlyViewed {...initialState} />
+      </Router>
+    );
   });
 
   it('renders ul section', () => {
     let wrapper;
-    wrapper = mount(<RecentlyViewed {...initialState} />);
+    wrapper = mount(
+      <Router>
+        <RecentlyViewed {...initialState} />
+      </Router>
+    );
     expect(wrapper.find('ul').children()).toHaveLength(
       initialState.recentResources.length
     );

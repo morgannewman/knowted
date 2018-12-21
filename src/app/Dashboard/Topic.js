@@ -88,11 +88,11 @@ export class Topic extends React.Component {
                 Delete
               </DeleteButton>
             )}
-            <a className="topic-btn" href={`/dashboard/${topicId}`}>
+            <Link className="topic-btn" href={`/dashboard/${topicId}`}>
               <div className="paper">
                 <span />
               </div>
-            </a>
+            </Link>
             <form className="edit-topic-form" onSubmit={this.submitEdit}>
               <input
                 ref={input => (this.titleInput = input)}
