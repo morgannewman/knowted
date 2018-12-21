@@ -16,7 +16,7 @@ export class ResourceItem extends React.Component {
     super(props);
     this.value = React.createRef();
     this.state = {
-      editing: false,
+      editing: true,
       value: this.props.resource.title,
       uri: this.props.resource.uri
     };
@@ -156,21 +156,23 @@ export class ResourceItem extends React.Component {
                 : resource.uri}
             </Link>
           </div>
-          <button
-            id={resource.id}
-            onClick={e =>
-              this.handleUpdate(
-                e,
-                this.state.value,
-                this.state.uri,
-                resource.title
-              )
-            }
-            type="submit"
-            className={this.state.editing ? 'save-btn-show' : 'save-btn-hide'}
-          >
-            save
-          </button>
+          <div className="save-btn">
+            <button
+              id={resource.id}
+              onClick={e =>
+                this.handleUpdate(
+                  e,
+                  this.state.value,
+                  this.state.uri,
+                  resource.title
+                )
+              }
+              type="submit"
+              className={this.state.editing ? 'save-btn-show' : 'save-btn-hide'}
+            >
+              save
+            </button>
+          </div>
         </div>
         <button
           type="button"

@@ -152,16 +152,20 @@ padding:0;
 
     .name-of-resource {
    
-      max-width: 60%;
-      min-width: 150px
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-
       font-family: omnes-pro, sans-serif;
       font-size: 	1.4rem;
       color: #242424;
       font-weight: 500;
+      
+      a{
+        text-decoration: none;
+        border: none;
+      }
+
+
       @media (max-width: 450px) {
         color: red;
         font-size: 1rem;
@@ -169,16 +173,10 @@ padding:0;
     }
   
     .resc-uri {
-
-      max-width: 500px;
-      min-width: 200px;
       font-size: 1.375rem;
-      width: 40%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin-right: 30%;
-
       font-family: omnes-pro, sans-serif;
       font-style: italic;
       font-size: 22px;
@@ -190,16 +188,74 @@ padding:0;
   
     }
 
+
+    .name-of-resource{
+      width: 33%;
+      @media (max-width: 900px) {
+        width: 100%;
+      }
+
+    }
+    .resc-uri{
+     min-width: 33%;
+     @media (max-width: 900px) {
+      width: 100%;
+    }
+    @media (min-width: 901px) {
+      width: 30%;
+      border: 1px solid black;
+    }
+    }
+    .save-btn{
+
+      width: 30%;
+      text-align: right;
+      display: inline-block;
+  
+
+      @media (min-width: 300px) {
+        width: 100%;
+
+      }
+      @media (min-width: 900px) {
+        width: 20%;
+
+      }
+      @media (min-width: 1040px) {
+        width: 30%;
+   
+      }
+
+      @media (min-width: 1200px) {
+        width: 35%;
+
+      }
+
+      @media (min-width: 1300px) {
+        width: 38%;
+
+      }
+   
+      
+    }
     form{
+      min-width: 33%;
+    }
+
+    form{
+
+      margin-right:15px;
+      min-width: 200px;
       input{
       background-color: transparent;
       border: none;
       border-bottom: 1px dashed #d0d0d0;
-      width:200px;
       font-family: omnes-pro, sans-serif;
       font-size: 	1.5rem;
       color: #242424;
       font-weight: 500;
+      width: 100%;
+   
 
       }
       input:focus{
@@ -209,13 +265,12 @@ padding:0;
     }
     .save-btn-show {
       text-transform: uppercase;
-      position: relative;
-      align-self: right;
       background-color: #242424;
       max-width: 95.19px;
+      min-width: 55px;
       display: inline;
-
-      width: 95.19px;
+      border: 1px solid black;
+      width: 100%;
       height: 49.52px;
       border-radius: 8px;
       font-family: omnes-pro, sans-serif;
@@ -224,7 +279,7 @@ padding:0;
     }
 
     .save-btn-show: hover {
-      box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.8);
+    background-color: grey;
     }
 
     .save-btn-hide {
@@ -314,13 +369,13 @@ export const ActiveResources = styled.section`
 
     .uri-input {
       border: none;
-      margin-right: 420px;
       font-family: omnes-pro, sans-serif;
       font-style: italic;
       font-size: 22px;
       letter-spacing: 0.55px;
       line-height: 28px;
       color: #242424;
+      background-color: transparent;
     }
 
     .uri-input:focus {
@@ -336,7 +391,7 @@ export const ActiveResources = styled.section`
       font-weight: 500;
       min-width: 20%;
       margin-right: 15px;
-
+      background-color: transparent;
       border-bottom: 1px dashed #d0d0d0;
     }
 
