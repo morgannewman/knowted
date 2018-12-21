@@ -120,7 +120,11 @@ export class Register extends Component {
             type="password"
             name="password"
           />
-          <Button type="submit" disabled={submitting}>
+          <Button
+            className="register-button"
+            type="submit"
+            disabled={submitting}
+          >
             LET'S GO
           </Button>
         </Form>

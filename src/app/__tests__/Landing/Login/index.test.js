@@ -8,22 +8,22 @@ import { Login } from '../../../Landing/Login';
   TODO: Form only dispatches valid form data
 */
 describe('<Login />', () => {
-	it('renders without crashing', () => {
-		shallow(<Login loggedIn={false} submitting={false} />);
-	});
+  it('renders without crashing', () => {
+    shallow(<Login loggedIn={false} submitting={false} />);
+  });
 
-	it('disables submit button when auth is submitting', () => {
-		let wrapper = shallow(<Login loggedIn={false} submitting={true} />);
-		expect(wrapper.find('form > button').prop('disabled')).toEqual(true);
-	});
+  it('disables submit button when auth is submitting', () => {
+    let wrapper = shallow(<Login loggedIn={false} submitting={true} />);
+    expect(wrapper.find('.login-button').prop('disabled')).toEqual(true);
+  });
 
-	it('Has an enabled submit button when auth is not submitting', () => {
-		let wrapper = shallow(<Login loggedIn={false} submitting={false} />);
-		expect(
-			wrapper
-				.find('form > button')
-				.first()
-				.prop('disabled')
-		).toEqual(false);
-	});
+  it('Has an enabled submit button when auth is not submitting', () => {
+    let wrapper = shallow(<Login loggedIn={false} submitting={false} />);
+    expect(
+      wrapper
+        .find('.login-button')
+        .first()
+        .prop('disabled')
+    ).toEqual(false);
+  });
 });
