@@ -141,7 +141,7 @@ padding:0;
     border-radius: 8px;
     padding: 10px 20px 15px 20px;
     position: relative;
-
+    background-color: #fff;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -412,6 +412,8 @@ export const ActiveResources = styled.section`
       line-height: 28px;
       color: #242424;
       background-color: transparent;
+      width: 100%;
+      border: 1px solid black;
     }
 
     .uri-input:focus {
