@@ -290,6 +290,37 @@ export const ActiveResources = styled.section`
       display: none;
       font-size: 1rem;
     }
+
+    .uri-input {
+      border: none;
+
+      font-family: omnes-pro, sans-serif;
+      font-style: italic;
+      font-size: 22px;
+      letter-spacing: 0.55px;
+      line-height: 28px;
+      color: #242424;
+    }
+
+    .uri-input:focus {
+      border: none;
+      outline: none;
+    }
+
+    .title-input {
+      border: none;
+      font-family: omnes-pro, sans-serif;
+      font-size: 1.4rem;
+      color: #242424;
+      font-weight: 500;
+      margin-right: 20px;
+      min-width: 50%;
+    }
+
+    .title-input:focus {
+      border: none;
+      outline: none;
+    }
   }
 `;
 
