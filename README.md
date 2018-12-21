@@ -15,60 +15,7 @@
 </a>
 </p>
 
-> --
-> --
-> --
-> --
-> --
-> --
-> __PLACEHOLDER FOR GIF__
-> --
-> --
-> --
-> --
-> --
-> --
-
-Check out the backend at: [https://github.com/continuouslylearning/learn-note-backend](https://github.com/continuouslylearning/learn-note-backend).
-
 ---
 
-## Table of Contents
-> Stub
+Looking for the backend? [Check it out!](https://github.com/continuouslylearning/learn-note-backend)
 
-
-## Introduction [![Build Status](https://travis-ci.com/morgannewman/knowted.svg?branch=master)](https://travis-ci.com/morgannewman/knowted)
-
-Learning from online resources can sometimes feel chaotic. 
-
-There are so many sites and video tutorials to keep track of and often no real order for what you should focus on next. Not to mention no easy way to keep related notes for what you've learned! 
-
-Simplify your online learning process with Knowted.
-
-**Works well on mobile and desktop.**
-
-> --
-> --
-> --
-> --
-> --
-> --
-> __PLACEHOLDER FOR IMAGE__
-> --
-> --
-> --
-> --
-> --
-> --
-
-## Features
-
-> Stub
-
-## Engineering Highlights
-
-> Stub
-
-## Contributors
-
-> Lists all team members
