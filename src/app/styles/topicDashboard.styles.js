@@ -110,17 +110,19 @@ padding:0;
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-flow: row wrap;
     max-width: 1200px;  
     min-width: 200px;
     width: 100%;
     border: 1.5px solid #aeaeae;
     border-radius: 8px;
     padding: 10px 20px 15px 20px;
+    position: relative;
 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
+ 
     div{
       margin-right: 10px;
     }
@@ -140,6 +142,7 @@ padding:0;
     }
   
     .resc-uri {
+
       max-width: 500px;
       min-width: 200px;
       font-size: 1.375rem;
@@ -177,6 +180,19 @@ export const ActiveResources = styled.section`
       padding: 0px;
     }
   }
+
+  .save-btn {
+    text-transform: uppercase;
+    position: relative;
+    align-self: right;
+    background-color: #242424;
+    max-width: 95.19px;
+
+    height: 49.52px;
+    border-radius: 8px;
+    font-family: omnes-pro, sans-serif;
+    color: #fff;
+  }
   .active-resources-list {
     list-style: none;
     width: 100%;
@@ -193,6 +209,7 @@ export const ActiveResources = styled.section`
     display: flex;
     flex-direction: row;
     align-items: center;
+    position: relative;
   }
   .resource-edit-form div {
     max-width: 400px;
@@ -219,22 +236,6 @@ export const ActiveResources = styled.section`
     font-size: 20px;
   }
 
-  .resource-item-save {
-    height: 25px;
-    width: 50px;
-    border-radius: 8px;
-    background-color: #242424;
-
-    font-size: 22px;
-    font-weight: 500;
-    letter-spacing: 0.65px;
-    line-height: 28px;
-    color: #ffffff;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-bottom: 5px;
-  }
-
   .active-header {
     width: 100%;
     display: flex;
@@ -258,6 +259,7 @@ export const ActiveResources = styled.section`
   .resource-edit-view {
     .resource-info {
       padding: 0px;
+      position: relative;
     }
   }
 

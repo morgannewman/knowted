@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ResourceEditForm from './ResourceEditForm';
-import ResourceView from './ResourceView';
+import { Link } from 'react-router-dom';
+
+// import ResourceEditForm from './ResourceEditForm';
+// import ResourceView from './ResourceView';
+import ResourceViewTest from './ResourceViewTest';
+import { EditButton, DeleteButton } from '../styles/common.styles';
+
 import { connect } from 'react-redux';
 import {
   updateSingleResource,
@@ -15,8 +20,11 @@ import './ResourceItem.scss';
 export class ResourceItem extends React.Component {
   constructor(props) {
     super(props);
+    this.value = React.createRef();
     this.state = {
-      editing: false
+      editing: false,
+      value: this.props.resource.title,
+      uri: this.props.resource.uri
     };
   }
 
@@ -34,7 +42,10 @@ export class ResourceItem extends React.Component {
   *The intention of this function is to make a PUT request to resources endpoint
   *@param {{e: object}} eventobject
    */
-
+  handleEdit = () => {
+    console.log('hello');
+    this.setState(prevState => ({ editing: !prevState.editing }));
+  };
   handleChecked = e => {
     const id = Number(e.target.id);
     this.props.dispatch(
@@ -65,9 +76,6 @@ export class ResourceItem extends React.Component {
    be rendered instead of the normal view mode
    * @param {{e: object}} eventobject
    */
-  handleEdit = () => {
-    this.setState(prevState => ({ editing: !prevState.editing }));
-  };
 
   /**
    * Used by the ResourceEditFrom component
@@ -86,30 +94,105 @@ export class ResourceItem extends React.Component {
       this.setState({ editing: !this.state.editing });
       return;
     }
-    const id = Number(e.target.id);
+    const id = this.props.resource.id;
     this.props.dispatch(updateSingleResource(id, { id, title: newTitle }));
     this.setState({ editing: !this.state.editing });
   };
 
   render() {
     const { resource, parentId } = this.props;
+
     return (
-      <>
-        {!this.state.editing ? (
-          <ResourceView
-            handleEdit={this.handleEdit}
-            handleChecked={this.handleChecked}
-            handleDelete={this.handleDelete}
-            resource={resource}
-            topicID={parentId}
-          />
-        ) : (
-          <ResourceEditForm
-            handleUpdate={this.handleUpdate}
-            resource={resource}
-          />
-        )}
-      </>
+      <div className="resource-view">
+        <EditButton
+          resourceid={resource.id}
+          onClick={() => this.handleEdit()}
+          className="resource-item-edit resource-item-controls"
+        >
+          edit
+        </EditButton>
+        <div className="elipsis">
+          {' '}
+          <span className="elipsis-dot" />
+          <span className="elipsis-dot" />
+          <span className="elipsis-dot" />
+        </div>
+        <button
+          className="checkbox"
+          id={resource.id}
+          type="button"
+          onClick={() => this.handleChecked()}
+          checked={resource.completed}
+        />
+        <div className="resource-info">
+          {this.state.editing ? (
+            <form
+              id={resource.id}
+              onSubmit={e =>
+                this.handleUpdate(
+                  e,
+                  this.state.value,
+                  this.state.uri,
+                  resource.title
+                )
+              }
+            >
+              <label htmlFor="title update" />
+              <input
+                className="aside edit-input"
+                type="text"
+                name={resource.title}
+                defaultValue={this.state.value}
+                onChange={e => this.setState({ value: e.target.value })}
+              />
+            </form>
+          ) : (
+            <div className="name-of-resource">
+              <Link to={`/dashboard/${parentId}/${resource.id}`}>
+                {resource.title}
+              </Link>
+            </div>
+          )}
+          <div className="resc-uri">
+            <a
+              href={
+                resource.type === 'youtube'
+                  ? `https://www.youtube.com/watch?v=${resource.uri}`
+                  : resource.uri
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {resource.type === 'youtube'
+                ? `https://www.youtube.com/watch?v=${resource.uri}`
+                : resource.uri}
+            </a>
+          </div>
+          <button
+            id={resource.id}
+            onClick={e =>
+              this.handleUpdate(
+                e,
+                this.state.value,
+                this.state.uri,
+                resource.title
+              )
+            }
+            type="submit"
+            className="save-btn aside"
+          >
+            save
+          </button>
+        </div>
+        <button
+          type="button"
+          resourceid={resource.id}
+          onClick={() => this.handleDelete()}
+          className="resource-item-delete resource-item-controls"
+        >
+          Delete
+        </button>
+      </div>
     );
   }
 }
