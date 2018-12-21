@@ -8,9 +8,14 @@ export const Container = styled.main`
   font-family: omnes-pro, sans-serif;
   font-size: 0.8rem;
   text-align: center;
+  margin-top: 140px;
 
   @media (min-width: 475px) {
     font-size: 1rem;
+  }
+
+  @media (max-width: 475px) {
+    margin-top: 80px;
   }
 
   @media (min-width: 1024px) {
@@ -64,22 +69,7 @@ export const Label = styled.label`
   font-size: 1.4em;
 `;
 
-export const Button = styled.button`
-  width: 200px;
-  padding: 18px 34px;
-  margin: 16px 0;
 
-  background: black;
-  color: white;
-
-  border: none;
-  border-radius: 8px;
-
-  font-size: 1.2em;
-  letter-spacing: 1px;
-  font-weight: 500;
-  text-decoration: none;
-`;
 
 export const Warning = styled.div`
   p {
