@@ -15,6 +15,7 @@ import { submitNotebookUpdate } from '../controller/actions/learn';
 import TopicDashboard from './TopicDashboard';
 import requiresLogin from './common/requiresLogin';
 import Nav from './common/Nav';
+import Demo from './Landing/Demo';
 import { App as AppStyles } from './styles/common.styles';
 
 const cacheableActions = {
@@ -43,6 +44,7 @@ export class App extends Component {
           <div className="App">
             <Nav />
             <Switch>
+              <Route exact path="/demo" component={Demo} />
               <Route
                 exact
                 path={['/', '/login', '/register']}
