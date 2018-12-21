@@ -115,7 +115,7 @@ export class AllTopics extends React.Component {
             <h2>Topics</h2>
           ) : (
             <>
-              <h2>All</h2>
+              <h2>All Folders &amp; Topics</h2>
               <h3>Folders</h3>
               <div className="folders-container">{this.renderFolders()}</div>
               <h3>Topics</h3>

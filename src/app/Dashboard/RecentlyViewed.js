@@ -15,11 +15,9 @@ export class RecentlyViewed extends Component {
             <h1>Welcome to Knowted, {this.props.userName}!</h1>
             <p>
               Start organizing your learning now by adding a topic below you're
-              interested in and click it to add your first resources.
-            </p>
-            <p>
-              You can also combine topics by dragging and dropping them together
-              to make Folders!
+              interested in and click it to add your first resources. You can
+              also combine topics by dragging and dropping them together to make
+              Folders!
             </p>
           </div>
         ) : (
@@ -34,8 +32,9 @@ export class RecentlyViewed extends Component {
                       key={item.id}
                     >
                       <li>
-                        <span>{item.parent.title}</span> >{' '}
-                        <span>{item.title}</span>
+                        <span>
+                          {item.parent.title} > {item.title}
+                        </span>
                       </li>
                     </a>
                   );

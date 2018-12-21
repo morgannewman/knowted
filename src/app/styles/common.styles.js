@@ -16,11 +16,19 @@ export const App = styled.div`
   h1 {
     font-family: ivyjournal, sans-serif;
     font-size: 2.875rem;
+    margin: 0 0 20px 0;
+
+    @media (max-width: 450px) {
+      text-align: center;
+    }
   }
   h2 {
     font-family: ivyjournal, sans-serif;
     font-size: 1.875rem;
     margin: 0 0 40px 0;
+    @media (max-width: 450px) {
+      text-align: center;
+    }
   }
 
   h3 {
@@ -28,41 +36,9 @@ export const App = styled.div`
     font-weight: 500;
     font-size: 1.625rem;
     margin: 0 0 20px 0;
-  }
-
-  p,
-  span {
-    font-family: omnes-pro, sans-serif;
-    font-weight: 500;
-    font-size: 1.25rem;
-  }
-
-  a {
-    color: #242424;
-    text-decoration: none;
-  }
-`;
-
-export const Main = styled.main`
-  :root {
-    font-size: 16px;
-  }
-
-  h1 {
-    font-family: ivyjournal, sans-serif;
-    font-size: 2.875rem;
-  }
-  h2 {
-    font-family: ivyjournal, sans-serif;
-    font-size: 1.875rem;
-    margin: 0 0 40px 0;
-  }
-
-  h3 {
-    font-family: omnes-pro, sans-serif;
-    font-weight: 500;
-    font-size: 1.625rem;
-    margin: 0 0 20px 0;
+    @media (max-width: 450px) {
+      text-align: center;
+    }
   }
 
   p,
