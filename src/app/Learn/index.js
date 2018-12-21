@@ -1,5 +1,3 @@
-import './Learn.scss';
-
 import React from 'react';
 import { connect } from 'react-redux';
 import Editor from './Editor';
@@ -9,6 +7,8 @@ import { Redirect } from 'react-router-dom';
 import Loading from '../common/Loading';
 import Breadcrumbs from '../common/Breadcrumbs';
 import Card from './Card';
+import { Container, Main, YouTube } from '../styles/learn.styles';
+import Nav from '../common/Nav';
 import {
   initializeLearn,
   resetLearn,
@@ -82,36 +82,31 @@ export class Learn extends React.Component {
     if (stateIsStale || loading) return <Loading />;
 
     return (
-      <>
-        <div className="learn">
-          <Breadcrumbs
-            topicTitle={topic.title}
-            topicId={topic.id}
-            resourceId={resource.id}
-            resourceTitle={resource.title}
-            buttonHandler={this.completeAndContinue}
-          />
-          <main
-            className={`learn-main learn-main-${
-              resource.type === 'other' ? 'single' : 'double'
-            }`}
-          >
-            {resource.type === 'other' && <Card />}
-            {resource.type === 'youtube' && (
-              <iframe
-                id="ytplayer"
-                type="text/html"
-                src={`https://www.youtube.com/embed/${resource.uri}`}
-                frameBorder="0"
-                disablekb="1"
-                title="YouTube"
-                sandbox="allow-scripts allow-popups allow-forms allow-same-origin"
-              />
-            )}
-            <Editor initialText={notebook} />
-          </main>
-        </div>
-      </>
+      <Container>
+        <Nav />
+        <Breadcrumbs
+          topicTitle={topic.title}
+          topicId={topic.id}
+          resourceId={resource.id}
+          resourceTitle={resource.title}
+          buttonHandler={this.completeAndContinue}
+        />
+        <Main className={resource.type === 'other' ? 'single' : 'double'}>
+          {resource.type === 'other' && <Card />}
+          {resource.type === 'youtube' && (
+            <YouTube
+              id="ytplayer"
+              type="text/html"
+              src={`https://www.youtube.com/embed/${resource.uri}`}
+              frameBorder="0"
+              disablekb="1"
+              title="YouTube"
+              sandbox="allow-scripts allow-popups allow-forms allow-same-origin"
+            />
+          )}
+          <Editor initialText={notebook} />
+        </Main>
+      </Container>
     );
   }
 }

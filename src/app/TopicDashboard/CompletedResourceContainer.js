@@ -1,6 +1,6 @@
 import React from 'react';
 import ResourceItem from './ResourceItem';
-
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 export class CompletedResourceContainer extends React.Component {
   //TODO: Drag and drop functionality
 
@@ -29,11 +29,11 @@ export class CompletedResourceContainer extends React.Component {
             >
               {this.state.showAll ? (
                 <span>
-                  Hide All <span className="hide-caret">^</span>
+                  <span className="hide-all">Hide All</span> <FaChevronUp />
                 </span>
               ) : (
                 <span>
-                  Show All <span className="show-caret">V</span>
+                  <span className="show-all">Hide All</span> <FaChevronDown />
                 </span>
               )}
             </button>

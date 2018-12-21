@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 // import { FaExternalLinkAlt as LinkIcon } from 'react-icons/fa';
 
+import { Card as CardLink } from '../styles/learn.styles';
+import { FaExternalLinkAlt as LinkIcon } from 'react-icons/fa';
+
 class Card extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
@@ -13,10 +16,18 @@ class Card extends React.Component {
     const { title, uri } = this.props;
 
     return (
-      <a href={uri} className="card">
-        <h2>{title}</h2>
-        <span>{uri}</span>
-      </a>
+      <CardLink
+        href={uri}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="card"
+      >
+        <div>
+          <h2>{title}</h2>
+          <span>{uri}</span>
+        </div>
+        <LinkIcon />
+      </CardLink>
     );
   }
 }

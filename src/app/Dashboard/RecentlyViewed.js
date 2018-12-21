@@ -7,7 +7,6 @@ export class RecentlyViewed extends Component {
   render() {
     const { recentResources } = this.props;
 
-    console.log(recentResources);
     return (
       <RecentlyViewedContainer>
         {recentResources.length === 0 ? (
@@ -27,8 +26,8 @@ export class RecentlyViewed extends Component {
               <ul className="recent-resources">
                 {recentResources.map(item => {
                   return (
-                    <a
-                      href={`dashboard/${item.parent.id}/${item.id}`}
+                    <Link
+                      to={`dashboard/${item.parent.id}/${item.id}`}
                       key={item.id}
                     >
                       <li>
@@ -36,7 +35,7 @@ export class RecentlyViewed extends Component {
                           {item.parent.title} > {item.title}
                         </span>
                       </li>
-                    </a>
+                    </Link>
                   );
                 })}
               </ul>

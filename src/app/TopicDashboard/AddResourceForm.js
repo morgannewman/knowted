@@ -52,7 +52,6 @@ export class AddResourceForm extends React.Component {
     api.metadata
       .get(uri)
       .then(data => {
-        // console.log(data);
         this.inputUri.value = data.uri;
         this.inputTitle.value = data.title;
         this.setState({

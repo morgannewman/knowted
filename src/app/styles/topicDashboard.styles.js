@@ -370,15 +370,12 @@ export const CompleteResources = styled.section`
     border: none;
     background: none;
   }
-  .show-caret {
-    margin: 0px 10px;
+
+  .hide-all {
+    margin: 10px;
   }
 
-  .hide-caret {
-    margin: 0px 10px;
-    font-size: 2rem;
-    display: inline-block;
-    border: 1px solid black;
-    vertical-align: bottom;
+  .show-all {
+    margin: 10px;
   }
 `;

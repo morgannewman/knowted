@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { EditButton, DeleteButton } from '../styles/common.styles';
+import { EditButton } from '../styles/common.styles';
 
 import { connect } from 'react-redux';
 import {
@@ -10,7 +10,6 @@ import {
 } from '../../controller/actions/topicDashboard';
 
 //TODO: use Link so so the resource title links to it's corresponding
-//TODO:remove console.logs
 
 export class ResourceItem extends React.Component {
   constructor(props) {
@@ -38,7 +37,6 @@ export class ResourceItem extends React.Component {
   *@param {{e: object}} eventobject
    */
   handleEdit = () => {
-    console.log('hello');
     this.setState(prevState => ({ editing: !prevState.editing }));
   };
   handleChecked = e => {
