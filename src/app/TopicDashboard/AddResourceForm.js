@@ -138,7 +138,7 @@ export class AddResourceForm extends React.Component {
           className="add-resource-form resource-info"
           onSubmit={this.handleSubmit}
         >
-          <div>
+          <div className="add-inputs">
             <label
               className="label-hidden"
               hidden={this.state.inputHidden}
@@ -168,16 +168,17 @@ export class AddResourceForm extends React.Component {
               onKeyUp={this.handleEnter}
               defaultValue={this.state.newURI}
             />
+            <div className="add-button">
+              <button
+                hidden={this.state.inputHidden}
+                className={
+                  this.state.inputHidden ? 'save-btn-hide' : 'save-btn-show'
+                }
+              >
+                save
+              </button>
+            </div>
           </div>
-
-          <button
-            hidden={this.state.inputHidden}
-            className={
-              this.state.inputHidden ? 'save-btn-hide' : 'save-btn-show'
-            }
-          >
-            save
-          </button>
         </form>
         {this.state.feedback ? <div>{this.state.feedback}</div> : null}
         <button

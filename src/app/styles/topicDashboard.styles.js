@@ -141,7 +141,7 @@ padding:0;
     border-radius: 8px;
     padding: 10px 20px 15px 20px;
     position: relative;
-
+    background-color: #fff;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -403,37 +403,61 @@ export const ActiveResources = styled.section`
       font-size: 1rem;
     }
 
-    .uri-input {
-      border: none;
-      font-family: omnes-pro, sans-serif;
-      font-style: italic;
-      font-size: 22px;
-      letter-spacing: 0.55px;
-      line-height: 28px;
-      color: #242424;
-      background-color: transparent;
-    }
+    .add-inputs {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
 
-    .uri-input:focus {
-      border: none;
-      outline: none;
-    }
+      .add-button {
+        width: 20%;
 
-    .title-input {
-      border: none;
-      font-family: omnes-pro, sans-serif;
-      font-size: 1.4rem;
-      color: #242424;
-      font-weight: 500;
-      min-width: 20%;
-      margin-right: 15px;
-      background-color: transparent;
-      border-bottom: 1px dashed #d0d0d0;
-    }
+        text-align: right;
+      }
 
-    .title-input:focus {
-      border: none;
-      outline: none;
+      .uri-input {
+        border: none;
+        font-family: omnes-pro, sans-serif;
+        font-style: italic;
+        font-size: 22px;
+        letter-spacing: 0.55px;
+        line-height: 28px;
+        color: #242424;
+        background-color: transparent;
+        width: 50%;
+
+        @media (max-width: 800px) {
+          width: 100%;
+        }
+      }
+
+      .uri-input:focus {
+        border: none;
+        outline: none;
+      }
+
+      .title-input {
+        border: none;
+        font-family: omnes-pro, sans-serif;
+        font-size: 1.4rem;
+        color: #242424;
+        font-weight: 500;
+        width: 30%;
+        margin-right: 15px;
+        background-color: transparent;
+        border-bottom: 1px dashed #d0d0d0;
+
+        @media (max-width: 800px) {
+          width: 100%;
+        }
+      }
+
+      .title-input:focus {
+        border: none;
+        outline: none;
+      }
+      @media (max-width: 800px) {
+        flex-direction: column;
+      }
     }
   }
 `;
