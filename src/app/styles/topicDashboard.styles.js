@@ -190,6 +190,7 @@ padding:0;
       input{
       background-color: transparent;
       border: none;
+      border-bottom: 1px dashed #d0d0d0;
       width:200px;
       font-family: omnes-pro, sans-serif;
       font-size: 	1.5rem;
@@ -327,6 +328,8 @@ export const ActiveResources = styled.section`
       font-weight: 500;
       min-width: 20%;
       margin-right: 15px;
+
+      border-bottom: 1px dashed #d0d0d0;
     }
 
     .title-input:focus {
@@ -337,6 +340,7 @@ export const ActiveResources = styled.section`
 `;
 
 export const CompleteResources = styled.section`
+  margin: 35px 0px;
   .completed-resources-list {
     list-style: none;
     padding: 0px;
@@ -382,6 +386,12 @@ export const CompleteResources = styled.section`
   .toggle-compl-btn {
     border: none;
     background: none;
+  }
+
+  .toggle-compl-btn:hover {
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.8);
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
   }
 
   .hide-all {
