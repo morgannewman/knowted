@@ -29,10 +29,13 @@ export const submitAuthLogin = credentials => dispatch => {
  * On fail: state.auth.error === some error object
  * @param {{email: string, password: string}} credentials
  */
-export const submitAuthRegistration = credentials => dispatch => {
+export const submitAuthRegistration = (
+  credentials,
+  params = null
+) => dispatch => {
   dispatch(authSubmit());
   api.auth
-    .register(credentials)
+    .register(credentials, params)
     .then(() => api.auth.login(credentials))
     .then(user => dispatch(authSuccess(user)))
     .catch(err => dispatch(authError(err)));
