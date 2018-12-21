@@ -94,24 +94,26 @@ export class Register extends Component {
     if (loggedIn) return <Redirect to="/dashboard" />;
 
     return (
-      <Container className="register-container">
-        <h1>Sign Up</h1>
+      <Container>
+        <h1 className="form-title">Sign up for a free account</h1>
         <Form onSubmit={this.handleRegisterSubmit} className="register">
-          <Label htmlFor="first-name">First Name</Label>
+          <Label htmlFor="first-name">What's your first name?</Label>
           <Input
             value={firstName.input}
             onChange={this.manageNameInput}
             type="text"
             name="first-name"
           />
-          <Label htmlFor="email">Email</Label>
+          <Label htmlFor="email">How about your email?</Label>
           <Input
             value={email.input}
             onChange={this.manageEmailInput}
             type="text"
             name="email"
           />
-          <Label htmlFor="password">Password</Label>
+          <Label htmlFor="password">
+            Make up a password at least 8 characters long
+          </Label>
           <Input
             value={password.input}
             onChange={this.managePasswordInput}
@@ -119,7 +121,7 @@ export class Register extends Component {
             name="password"
           />
           <Button type="submit" disabled={submitting}>
-            Register
+            LET'S GO
           </Button>
         </Form>
       </Container>

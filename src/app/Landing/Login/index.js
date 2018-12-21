@@ -70,8 +70,8 @@ export class Login extends Component {
     if (loggedIn) return <Redirect to="/dashboard" />;
 
     return (
-      <Container className="login-container">
-        <h1 className="login-title">Login</h1>
+      <Container>
+        <h1 className="form-title">login & learn</h1>
         <Form onSubmit={this.handleLoginSubmit} className="login">
           <Label htmlFor="email">Email</Label>
           <Input
@@ -88,7 +88,7 @@ export class Login extends Component {
             name="password"
           />
           <Button className="login-button" type="submit" disabled={submitting}>
-            Submit
+            LET'S GO
           </Button>
         </Form>
       </Container>
