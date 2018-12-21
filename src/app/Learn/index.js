@@ -8,7 +8,6 @@ import Loading from '../common/Loading';
 import Breadcrumbs from '../common/Breadcrumbs';
 import Card from './Card';
 import { Container, Main, YouTube } from '../styles/learn.styles';
-import Nav from '../common/Nav';
 import {
   initializeLearn,
   resetLearn,
@@ -83,7 +82,6 @@ export class Learn extends React.Component {
 
     return (
       <Container>
-        <Nav />
         <Breadcrumbs
           topicTitle={topic.title}
           topicId={topic.id}
