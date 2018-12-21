@@ -3,102 +3,128 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { submitAuthRegistration } from '../../../controller/actions/auth';
+import {
+  Container,
+  Form,
+  Input,
+  Label,
+  Button
+} from '../../styles/form.styles';
 
 export class Register extends Component {
-	state = {
-		firstName: {
-			dirty: false,
-			input: '',
-			valid: false
-		},
-		email: {
-			dirty: false,
-			input: '',
-			valid: false
-		},
-		password: {
-			dirty: false,
-			input: '',
-			valid: false
-		}
-	};
+  state = {
+    firstName: {
+      dirty: false,
+      input: '',
+      valid: false
+    },
+    email: {
+      dirty: false,
+      input: '',
+      valid: false
+    },
+    password: {
+      dirty: false,
+      input: '',
+      valid: false
+    }
+  };
 
-	static propTypes = {
-		submitting: PropTypes.bool.isRequired,
-		loggedIn: PropTypes.bool.isRequired
-	};
+  static propTypes = {
+    submitting: PropTypes.bool.isRequired,
+    loggedIn: PropTypes.bool.isRequired
+  };
 
-	handleRegisterSubmit = e => {
-		e.preventDefault();
-		const { password, email, firstName } = this.state;
-		if (password.valid && email.valid && firstName.valid) {
-			this.props.dispatch(
-				submitAuthRegistration({ name: firstName.input, email: email.input, password: password.input })
-			);
-		}
-	};
+  handleRegisterSubmit = e => {
+    e.preventDefault();
+    const { password, email, firstName } = this.state;
+    if (password.valid && email.valid && firstName.valid) {
+      this.props.dispatch(
+        submitAuthRegistration({
+          name: firstName.input,
+          email: email.input,
+          password: password.input
+        })
+      );
+    }
+  };
 
-	manageNameInput = e => {
-		// TODO: Add form validation
-		// 2-16 characters
-		// letters, numbers, -, and _ are valid
-		const input = e.currentTarget.value;
-		this.setState({
-			firstName: {
-				dirty: true,
-				input: input,
-				valid: true
-			}
-		});
-	};
+  manageNameInput = e => {
+    // TODO: Add form validation
+    // 2-16 characters
+    // letters, numbers, -, and _ are valid
+    const input = e.currentTarget.value;
+    this.setState({
+      firstName: {
+        dirty: true,
+        input: input,
+        valid: true
+      }
+    });
+  };
 
-	manageEmailInput = e => {
-		// TODO: Add form validation
-		const input = e.currentTarget.value;
-		this.setState({
-			email: {
-				dirty: true,
-				input: input,
-				valid: true
-			}
-		});
-	};
+  manageEmailInput = e => {
+    // TODO: Add form validation
+    const input = e.currentTarget.value;
+    this.setState({
+      email: {
+        dirty: true,
+        input: input,
+        valid: true
+      }
+    });
+  };
 
-	managePasswordInput = e => {
-		// TODO: Add form validation
-		const input = e.currentTarget.value;
-		this.setState({
-			password: {
-				dirty: true,
-				input: input,
-				valid: true
-			}
-		});
-	};
+  managePasswordInput = e => {
+    // TODO: Add form validation
+    const input = e.currentTarget.value;
+    this.setState({
+      password: {
+        dirty: true,
+        input: input,
+        valid: true
+      }
+    });
+  };
 
-	render() {
-		const { submitting, loggedIn } = this.props;
-		const { firstName, email, password } = this.state;
+  render() {
+    const { submitting, loggedIn } = this.props;
+    const { firstName, email, password } = this.state;
 
-		if (loggedIn) return <Redirect to="/dashboard" />;
+    if (loggedIn) return <Redirect to="/dashboard" />;
 
-		return (
-			<main className="register-container">
-				<h1>Sign Up</h1>
-				<form onSubmit={this.handleRegisterSubmit} className="register">
-					<label htmlFor="first-name">First Name</label>
-					<input value={firstName.input} onChange={this.manageNameInput} type="text" name="first-name" />
-					<label htmlFor="email">Email</label>
-					<input value={email.input} onChange={this.manageEmailInput} type="text" name="email" />
-					<label htmlFor="password">Password</label>
-					<input value={password.input} onChange={this.managePasswordInput} type="password" name="password" />
-					<button type="submit" disabled={submitting}>
-						Register
-					</button>
-				</form>
-			</main>
-		);
-	}
+    return (
+      <Container className="register-container">
+        <h1>Sign Up</h1>
+        <Form onSubmit={this.handleRegisterSubmit} className="register">
+          <Label htmlFor="first-name">First Name</Label>
+          <Input
+            value={firstName.input}
+            onChange={this.manageNameInput}
+            type="text"
+            name="first-name"
+          />
+          <Label htmlFor="email">Email</Label>
+          <Input
+            value={email.input}
+            onChange={this.manageEmailInput}
+            type="text"
+            name="email"
+          />
+          <Label htmlFor="password">Password</Label>
+          <Input
+            value={password.input}
+            onChange={this.managePasswordInput}
+            type="password"
+            name="password"
+          />
+          <Button type="submit" disabled={submitting}>
+            Register
+          </Button>
+        </Form>
+      </Container>
+    );
+  }
 }
 
 export default connect()(Register);
