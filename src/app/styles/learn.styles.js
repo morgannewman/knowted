@@ -50,9 +50,41 @@ export const Main = styled.main`
   }
 `;
 
+export const Editor = styled.div`
+  overflow-x: hidden;
+  overflow-y: scroll;
+`;
+
 export const Card = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 84px;
+  padding: 16px;
   margin: 16px 0;
-  background-color: #c4c4c4;
+
+  background-color: #8ca3f4;
+
+  border-radius: 8px;
+  font-size: 1.2em;
+
+  h2 {
+    margin: 0;
+  }
+
+  svg {
+    font-size: 1.4em;
+  }
+
+  ${'' /* Truncate card text with ellipsis */}
+  span, h2 {
+    display: block;
+    max-width: calc(100vw - 120px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 export const YouTube = styled.iframe`
@@ -60,9 +92,4 @@ export const YouTube = styled.iframe`
   @media (max-width: ${youtubeBreakpoint + 'px'}) {
     height: 40vh;
   }
-`;
-
-export const Editor = styled.div`
-  overflow-x: hidden;
-  overflow-y: scroll;
 `;
