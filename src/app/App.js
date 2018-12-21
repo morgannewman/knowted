@@ -15,6 +15,7 @@ import { submitNotebookUpdate } from '../controller/actions/learn';
 import TopicDashboard from './TopicDashboard';
 import requiresLogin from './common/requiresLogin';
 import withNav from './common/withNav';
+import { App as AppStyles } from './styles/common.styles';
 
 const cacheableActions = {
   submitNotebookUpdate
@@ -36,7 +37,7 @@ export class App extends Component {
   }
   render() {
     return (
-      <>
+      <AppStyles>
         <Notifs />
         <Router>
           <div className="App">
@@ -59,13 +60,13 @@ export class App extends Component {
               <Route
                 exact
                 path="/dashboard/:topicId/:resourceId"
-                component={requiresLogin(Learn)}
+                component={withNav(requiresLogin(Learn))}
               />
               <Redirect to="/" />
             </Switch>
           </div>
         </Router>
-      </>
+      </AppStyles>
     );
   }
 }

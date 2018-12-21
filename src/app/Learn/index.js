@@ -6,14 +6,14 @@ import Editor from './Editor';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
+import Loading from '../common/Loading';
+import Breadcrumbs from '../common/Breadcrumbs';
+import Card from './Card';
 import {
   initializeLearn,
   resetLearn,
   submitCompleteResource
 } from '../../controller/actions/learn';
-import Loading from '../common/Loading';
-import Breadcrumbs from '../common/Breadcrumbs';
-import Card from './Card';
 
 export class Learn extends React.Component {
   static propTypes = {
@@ -84,19 +84,13 @@ export class Learn extends React.Component {
     return (
       <>
         <div className="learn">
-          <nav className="learn-nav">
-            <Breadcrumbs
-              topicTitle={topic.title}
-              topicId={topic.id}
-              resourceId={resource.id}
-              resourceTitle={resource.title}
-            />
-            {!resource.completed && (
-              <button onClick={this.completeAndContinue}>
-                Complete & Continue
-              </button>
-            )}
-          </nav>
+          <Breadcrumbs
+            topicTitle={topic.title}
+            topicId={topic.id}
+            resourceId={resource.id}
+            resourceTitle={resource.title}
+            buttonHandler={this.completeAndContinue}
+          />
           <main
             className={`learn-main learn-main-${
               resource.type === 'other' ? 'single' : 'double'

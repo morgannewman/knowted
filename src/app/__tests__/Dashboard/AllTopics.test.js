@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { AllTopicsContainer } from '../../Dashboard/AllTopicsContainer';
+import { AllTopics } from '../../Dashboard/AllTopics';
 
 //Component Contract - expect:
 //To render
@@ -9,25 +9,26 @@ import { AllTopicsContainer } from '../../Dashboard/AllTopicsContainer';
 
 const initialState = {
   dispatch: jest.fn(),
-  loading: false
+  loading: false,
+  folderOrder: []
 };
 
-describe('<AllTopicsContainer />', () => {
+describe('<AllTopics />', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<AllTopicsContainer {...initialState} />);
+    wrapper = shallow(<AllTopics {...initialState} />);
   });
 
   it('renders without crashing', () => {});
 
   //FIXME: should expect to render only if you have topics and folders
   it('to render any folders', () => {
-    wrapper = shallow(<AllTopicsContainer {...initialState} />);
+    wrapper = shallow(<AllTopics {...initialState} />);
     expect(wrapper.find('.folder-btn'));
   });
 
   it('to render any topics', () => {
-    wrapper = shallow(<AllTopicsContainer {...initialState} />);
+    wrapper = shallow(<AllTopics {...initialState} />);
     expect(wrapper.find('.topic-btn'));
   });
 });

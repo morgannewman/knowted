@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { RecentlyViewed } from '../../Dashboard/RecentlyViewedContainer';
+import { RecentlyViewed } from '../../Dashboard/RecentlyViewed';
 
 const initialState = {
   recentResources: [
@@ -25,8 +25,6 @@ const initialState = {
 };
 
 describe('<RecentlyViewed />', () => {
-  let wrapper;
-
   it('renders without crashing', () => {
     shallow(<RecentlyViewed {...initialState} />);
   });

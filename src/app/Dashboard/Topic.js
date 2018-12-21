@@ -1,9 +1,13 @@
-import './Topic.css';
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { actions as notifActions } from 'redux-notifications';
+import {
+  EditButton,
+  CancelButton,
+  DeleteButton
+} from '../styles/common.styles';
 
 import { deleteTopic, updateTopic } from '../../controller/actions/dashboard';
 const { notifSend } = notifActions;
@@ -79,32 +83,42 @@ export class Topic extends React.Component {
       >
         {this.state.editing ? (
           <>
+            {this.state.showOptions && (
+              <DeleteButton className="delete-btn" onClick={this.deleteTopic}>
+                Delete
+              </DeleteButton>
+            )}
+            <a className="topic-btn" href={`/dashboard/${topicId}`}>
+              <div className="paper">
+                <span />
+              </div>
+            </a>
             <form className="edit-topic-form" onSubmit={this.submitEdit}>
-              <label>Topic Name</label>
               <input
                 ref={input => (this.titleInput = input)}
                 type="text"
                 name="topicTitle"
                 defaultValue={this.props.title}
+                autoFocus="autofocus"
               />
             </form>
-            {this.state.showOptions && (
-              <div className="edit-delete-topic-options">
-                <button onClick={this.editTopic}>Cancel</button>
-                <button onClick={this.deleteTopic}>Delete</button>
-              </div>
-            )}
+            <CancelButton onClick={this.editTopic}>Cancel</CancelButton>
           </>
         ) : (
           <>
-            <a className="topic-btn" href={`/dashboard/${topicId}`}>
-              {title}
-            </a>
             {this.state.showOptions && (
-              <div className="edit-delete-topic-options">
-                <button onClick={this.editTopic}>Edit</button>
-                <button onClick={this.deleteTopic}>Delete</button>
+              <DeleteButton className="delete-btn" onClick={this.deleteTopic}>
+                Delete
+              </DeleteButton>
+            )}
+            <Link className="topic-btn" to={`/dashboard/${topicId}`}>
+              <div className="paper">
+                <span />
               </div>
+            </Link>
+            <label onClick={this.editTopic}>{title}</label>
+            {this.state.showOptions && (
+              <EditButton onClick={this.editTopic}>Edit</EditButton>
             )}
           </>
         )}

@@ -1,8 +1,8 @@
 import React from 'react';
-import './AllTopicsContainer.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { AllTopicsContainer } from '../styles/dashboard.styles';
 
 import AddTopic from './AddTopic';
 import Folder from './Folder';
@@ -14,7 +14,7 @@ import {
   deleteEmptyFolder
 } from '../../controller/actions/dashboard';
 
-export class AllTopicsContainer extends React.Component {
+export class AllTopics extends React.Component {
   static propTypes = {
     topics: PropTypes.object,
     folders: PropTypes.object,
@@ -110,24 +110,34 @@ export class AllTopicsContainer extends React.Component {
   render() {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
-        <section className="all-topics-container">
-          <div className="folders-container">{this.renderFolders()}</div>
-          <div className="lonely-topics-container">
-            <AddTopic />
-            <Droppable
-              droppableId="lonelyTopics"
-              direction="horizontal"
-              isCombineEnabled
-            >
-              {provided => (
-                <div ref={provided.innerRef} {...provided.droppableProps}>
+        <AllTopicsContainer>
+          {this.props.folderOrder.length === 0 ? (
+            <h2>Topics</h2>
+          ) : (
+            <>
+              <h2>All Folders &amp; Topics</h2>
+              <h3>Folders</h3>
+              <div className="folders-container">{this.renderFolders()}</div>
+              <h3>Topics</h3>
+            </>
+          )}
+
+          <Droppable
+            droppableId="lonelyTopics"
+            direction="horizontal"
+            isCombineEnabled
+          >
+            {provided => (
+              <div ref={provided.innerRef} {...provided.droppableProps}>
+                <div className="lonely-topics-container">
+                  <AddTopic />
                   {this.renderLonelyTopics()}
                   {provided.placeholder}
                 </div>
-              )}
-            </Droppable>
-          </div>
-        </section>
+              </div>
+            )}
+          </Droppable>
+        </AllTopicsContainer>
       </DragDropContext>
     );
   }
@@ -141,4 +151,4 @@ const mapStateToProps = state => ({
   currentFolderId: state.dashboardReducer.currentFolderId
 });
 
-export default connect(mapStateToProps)(AllTopicsContainer);
+export default connect(mapStateToProps)(AllTopics);

@@ -1,5 +1,3 @@
-import './AddTopic.css';
-
 import React from 'react';
 import { connect } from 'react-redux';
 import { actions as notifActions } from 'redux-notifications';
@@ -48,16 +46,32 @@ export class AddTopic extends React.Component {
   render() {
     return (
       <>
-        <button onClick={this.toggleHidden}>+ add topic</button>
+        {this.state.isHidden ? (
+          <button className="add-topic-btn" onClick={this.toggleHidden}>
+            <span>+</span> add a topic
+          </button>
+        ) : (
+          <button className="add-topic-btn" onClick={this.toggleHidden}>
+            <span> x </span> close
+          </button>
+        )}
+
         {!this.state.isHidden && (
-          <form className="add-topic-form" onSubmit={e => this.onSubmit(e)}>
-            <label>Topic Name</label>
-            <input
-              ref={input => (this.titleInput = input)}
-              type="text"
-              name="folderTitle"
-            />
-          </form>
+          <div>
+            <div className="topic-btn">
+              <div className="paper">
+                <span />
+              </div>
+            </div>
+            <form className="add-topic-form" onSubmit={e => this.onSubmit(e)}>
+              <input
+                ref={input => (this.titleInput = input)}
+                type="text"
+                name="folderTitle"
+                autoFocus="autofocus"
+              />
+            </form>
+          </div>
         )}
       </>
     );
