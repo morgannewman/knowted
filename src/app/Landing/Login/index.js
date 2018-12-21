@@ -14,7 +14,7 @@ import {
   Label,
   Warning
 } from '../../styles/form.styles';
-import {Button} from '../../styles/common.styles';
+import { Button } from '../../styles/common.styles';
 
 export class Login extends Component {
   state = {
@@ -108,7 +108,7 @@ export class Login extends Component {
           <Input
             value={this.state.email.input}
             onChange={this.manageEmailInput}
-            type="text"
+            type="email"
             name="email"
           />
           <Label htmlFor="password">Password</Label>

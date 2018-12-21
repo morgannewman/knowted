@@ -18,7 +18,7 @@ import {
   Label,
   Warning
 } from '../../styles/form.styles';
-import {Button} from '../../styles/common.styles';
+import { Button } from '../../styles/common.styles';
 
 export class Register extends Component {
   state = {
@@ -130,7 +130,7 @@ export class Register extends Component {
           <Input
             value={email.input}
             onChange={this.manageEmailInput}
-            type="text"
+            type="email"
             name="email"
           />
           <Label htmlFor="password">
