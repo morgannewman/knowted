@@ -136,6 +136,7 @@ export class ResourceItem extends React.Component {
             >
               <label htmlFor="title update" />
               <input
+                autoFocus
                 className="aside edit-input"
                 type="text"
                 name={resource.title}
@@ -151,19 +152,11 @@ export class ResourceItem extends React.Component {
             </div>
           )}
           <div className="resc-uri">
-            <a
-              href={
-                resource.type === 'youtube'
-                  ? `https://www.youtube.com/watch?v=${resource.uri}`
-                  : resource.uri
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link to={`/dashboard/${parentId}/${resource.id}`}>
               {resource.type === 'youtube'
                 ? `https://www.youtube.com/watch?v=${resource.uri}`
                 : resource.uri}
-            </a>
+            </Link>
           </div>
           <button
             id={resource.id}

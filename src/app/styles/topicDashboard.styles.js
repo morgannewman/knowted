@@ -47,7 +47,7 @@ padding:0;
   .resource-item-edit {
     margin-right: 2px;
     background-position:right;
-    text-indent: 200%;
+    text-indent: 300%;
   }
 
   .resource-item-delete {
@@ -57,7 +57,7 @@ padding:0;
     height: 35px;
     margin: 10px 20px;
     /* Hide the text. */
-    text-indent: 160%;
+    text-indent: 300%;
     white-space: nowrap;
     overflow: hidden;
 
@@ -148,8 +148,9 @@ padding:0;
     }
 
     .name-of-resource {
-      max-width: 300px;
-      min-width: 150px;
+      max-width: 350px;
+      min-width: 150px
+      width: 20%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -166,7 +167,7 @@ padding:0;
       max-width: 500px;
       min-width: 200px;
       font-size: 1.375rem;
-      width: 50%;
+      width: 80%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -177,6 +178,8 @@ padding:0;
       letter-spacing: 0.55px;
       line-height: 28px;
       color: #242424;
+
+    
   
     }
 
@@ -189,6 +192,7 @@ padding:0;
       font-size: 	1.5rem;
       color: #242424;
       font-weight: 500;
+
       }
     }
 

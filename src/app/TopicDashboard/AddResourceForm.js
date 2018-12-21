@@ -148,6 +148,7 @@ export class AddResourceForm extends React.Component {
               Title
             </label>
             <input
+              autoFocus="autoFocus"
               hidden={this.state.inputHidden}
               ref={input => (this.inputTitle = input)}
               type="text"
