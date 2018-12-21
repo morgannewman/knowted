@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { submitAuthLogin } from '../../../controller/actions/auth';
+import {
+  submitAuthLogin,
+  authCapturedError
+} from '../../../controller/actions/auth';
 import { validateEmail, validatePassword } from '../../common/validate';
 import {
   Container,
@@ -77,7 +80,7 @@ export class Login extends Component {
   };
 
   render() {
-    let { submitting, loggedIn, authError } = this.props;
+    let { submitting, loggedIn, authError, dispatch } = this.props;
 
     if (loggedIn) return <Redirect to="/dashboard" />;
 
@@ -87,6 +90,8 @@ export class Login extends Component {
       if (authError.code && authError.code === 401)
         authError = 'Incorrect email or password';
       else authError = 'Call the paramedics! Our servers are down';
+      dispatch(authCapturedError());
+      this.setState({ warning: authError });
     }
 
     return (

@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { submitAuthRegistration } from '../../../controller/actions/auth';
+import {
+  submitAuthRegistration,
+  authCapturedError
+} from '../../../controller/actions/auth';
 import {
   validateFirstName,
   validateEmail,
@@ -98,8 +101,13 @@ export class Register extends Component {
   };
 
   render() {
-    const { submitting, loggedIn, authError } = this.props;
+    const { submitting, loggedIn, authError, dispatch } = this.props;
     const { firstName, email, password, warning } = this.state;
+
+    if (authError) {
+      dispatch(authCapturedError());
+      this.setState({ warning: 'Call the paramedics! Our servers are down' });
+    }
 
     if (loggedIn) return <Redirect to="/dashboard" />;
     return (
