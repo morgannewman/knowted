@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+// import { FaExternalLinkAlt as LinkIcon } from 'react-icons/fa';
 
 import { Card as CardLink } from '../styles/learn.styles';
 import { FaExternalLinkAlt as LinkIcon } from 'react-icons/fa';
