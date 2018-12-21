@@ -437,21 +437,43 @@ export const CompleteResources = styled.section`
     width: 100%;
     display: flex;
     flex-direction: row;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      margin: 0 auto;
+      }
+    }
+  }
+  .show-button-cont,
+  .complete-title-cont {
+    width: 50%;
+    margin: 0 auto;
   }
 
-  .complete-header h3 {
-    margin: 0;
-    width: 50%;
-    padding-left: 50px;
-  }
-
-  .complete-header .show-button-cont {
-    width: 50%;
+  .show-button-cont{
     text-align: right;
+    @media (max-width: 600px) {
+      text-align: center;
+      }
   }
-  .complete-header .show-button-cont button {
-    margin-right: 80px;
+  .complete-title-cont {
+text-align: center;
   }
+   
+  
+  // .complete-header h3 {
+  //   margin: 0;
+  //   width: 50%;
+  //   padding-left: 50px;
+  // }
+
+  // .complete-header .show-button-cont {
+  //   width: 50%;
+  //   text-align: right;
+  // }
+  // .complete-header .show-button-cont button {
+  //   margin-right: 80px;
+  // }
 
   .elipsis {
     display: none;

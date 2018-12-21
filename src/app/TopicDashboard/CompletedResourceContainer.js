@@ -20,7 +20,9 @@ export class CompletedResourceContainer extends React.Component {
     return (
       <section className="completed-resources-container">
         <div className="complete-header">
-          <h3 className="complete-title">Completed Resources</h3>
+          <div className="complete-title-cont">
+            <h3 className="complete-title">Completed Resources</h3>
+          </div>
           <div className="show-button-cont">
             <button
               className="toggle-compl-btn"
