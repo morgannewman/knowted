@@ -8,27 +8,27 @@ import { Register } from '../../../Landing/Register';
   TODO: Form only dispatches valid form data
 */
 describe('<Register />', () => {
-	it('renders without crashing', () => {
-		shallow(<Register loggedIn={false} submitting={false} />);
-	});
+  it('renders without crashing', () => {
+    shallow(<Register loggedIn={false} submitting={false} />);
+  });
 
-	it('disables submit button when auth is submitting', () => {
-		let wrapper = shallow(<Register loggedIn={false} submitting={true} />);
-		expect(
-			wrapper
-				.find('form > button')
-				.first()
-				.prop('disabled')
-		).toEqual(true);
-	});
+  it('disables submit button when auth is submitting', () => {
+    let wrapper = shallow(<Register loggedIn={false} submitting={true} />);
+    expect(
+      wrapper
+        .find('.register-button')
+        .first()
+        .prop('disabled')
+    ).toEqual(true);
+  });
 
-	it('Has an enabled submit button when auth is not submitting', () => {
-		let wrapper = shallow(<Register loggedIn={false} submitting={false} />);
-		expect(
-			wrapper
-				.find('form > button')
-				.first()
-				.prop('disabled')
-		).toEqual(false);
-	});
+  it('Has an enabled submit button when auth is not submitting', () => {
+    let wrapper = shallow(<Register loggedIn={false} submitting={false} />);
+    expect(
+      wrapper
+        .find('.register-button')
+        .first()
+        .prop('disabled')
+    ).toEqual(false);
+  });
 });
