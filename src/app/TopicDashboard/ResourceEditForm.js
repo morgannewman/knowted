@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { EditButton } from '../styles/common.styles';
 
 export class ResourceEditForm extends React.Component {
   constructor(props) {
@@ -15,16 +16,21 @@ export class ResourceEditForm extends React.Component {
     const { resource, handleUpdate } = this.props;
     return (
       <>
-        <div className="elipsis">
-          {' '}
-          <span className="elipsis-dot" />
-          <span className="elipsis-dot" />
-          <span className="elipsis-dot" />
-        </div>
-        <div className="resource-info">
+        <div className="resource-edit-view">
+          <EditButton className="resource-item-edit resource-item-controls">
+            edit
+          </EditButton>
+          <div className="elipsis">
+            {' '}
+            <span className="elipsis-dot" />
+            <span className="elipsis-dot" />
+            <span className="elipsis-dot" />
+          </div>
+          <button className="checkbox" id={resource.id} type="button" />
+
           <form
             id={resource.id}
-            className="resource-edit-form"
+            className="resource-info"
             onSubmit={e =>
               handleUpdate(e, this.state.value, this.state.uri, resource.title)
             }
@@ -47,6 +53,13 @@ export class ResourceEditForm extends React.Component {
               save
             </button>
           </form>
+          <button
+            type="button"
+            resourceid={resource.id}
+            className="resource-item-delete resource-item-controls"
+          >
+            Delete
+          </button>
         </div>
       </>
     );

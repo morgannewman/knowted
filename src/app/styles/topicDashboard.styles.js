@@ -25,8 +25,12 @@ export const TopicDashContainer = styled.section`
     visibility: hidden;
   }
 
-  .resource-item:hover .resource-item-controls {
+  .resource-view:hover .resource-item-controls {
     visibility: visible;
+  }
+
+  .resource-edit-view  .resource-item-controls{
+    visibility: hidden;
   }
 
   .resource-item-edit {
@@ -46,7 +50,7 @@ export const TopicDashContainer = styled.section`
     overflow: hidden;
 
   }
-
+  .resource-edit-view,
   .resource-view {
     display: flex;
     flex-direction: row;
@@ -61,7 +65,7 @@ export const TopicDashContainer = styled.section`
       margin: 10px 10px 10px 2px;
     }
 
-    }
+    
     .elipsis {
       width: 43px;
       margin-top: 12px;
@@ -79,15 +83,18 @@ export const TopicDashContainer = styled.section`
       border-radius: 50%;
       margin: 0 auto;
       margin: 2px;
-    }
-
+    }   
+  
+ 
     
-  }
-
+ 
   .resource-view:hover .checkbox {
     box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
   }
 
+
+
+  
   .resource-info {
     display: flex;
     flex-direction: row;
@@ -98,7 +105,6 @@ export const TopicDashContainer = styled.section`
     border: 1.5px solid #aeaeae;
     border-radius: 8px;
     padding: 10px 20px 15px 20px;
-    margin-left: 10px;
 
     white-space: nowrap;
     overflow: hidden;
