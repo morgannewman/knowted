@@ -8,13 +8,13 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   max-height: 100vh;
-  width: 100vw;
+  height: 100vh;
 `;
 
 export const Main = styled.main`
   display: flex;
-  height: 100%;
-  overflow: hidden;
+  flex: 1;
+  flex-basis: 100%;
 
   &.single {
     flex-direction: column;
@@ -23,8 +23,7 @@ export const Main = styled.main`
     margin: 0 auto;
     .editor,
     .ql-editor {
-      width: 100%;
-      min-height: 75vh;
+      min-height: 63vh;
     }
   }
 
@@ -32,8 +31,8 @@ export const Main = styled.main`
     flex-direction: row;
     .editor,
     .ql-editor {
-      width: 50vw;
-      min-height: 89vh;
+      min-width: 50vw;
+      min-height: 83vh;
     }
   }
 `;
@@ -44,10 +43,11 @@ export const Card = styled.a`
 `;
 
 export const YouTube = styled.iframe`
-  width: 50vw;
+  min-width: 50vw;
 `;
 
 export const Editor = styled.div`
-  overflow-y: scroll;
+  height: 100%;
   overflow-x: hidden;
+  overflow-y: scroll;
 `;

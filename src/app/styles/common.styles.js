@@ -80,6 +80,7 @@ export const Main = styled.main`
 
 //NAVIGATION
 export const NavBar = styled.header`
+  flex: none;
   height: 72px;
   width: 100%;
   display: flex;
@@ -142,6 +143,7 @@ export const NavBar = styled.header`
 
 //BREADCRUMB
 export const Breadcrumb = styled.nav`
+  flex: none;
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-between;
