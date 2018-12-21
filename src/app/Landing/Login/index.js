@@ -12,9 +12,9 @@ import {
   Form,
   Input,
   Label,
-  Button,
   Warning
 } from '../../styles/form.styles';
+import {Button} from '../../styles/common.styles';
 
 export class Login extends Component {
   state = {

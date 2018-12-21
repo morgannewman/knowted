@@ -20,6 +20,7 @@ export class Landing extends Component {
     return (
       <>
         <Route exact path="/" render={() => <Hero {...authState} />} />
+
         <Route exact path="/login" render={() => <Login {...authState} />} />
         <Route
           exact

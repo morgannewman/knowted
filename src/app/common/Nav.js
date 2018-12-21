@@ -13,36 +13,48 @@ export class Nav extends Component {
   render() {
     const { dispatch } = this.props;
     return (
-      <NavBar className="nav">
-        <Link to="/" className="nav-branding">
-          <img
-            className="nav-branding-img"
-            src={require('../images/owl.png')}
-            alt="Knowted Logo"
-          />{' '}
-          Knowted
-        </Link>
+      <>
         {this.props.loggedIn ? (
-          <nav className="nav-loggedIn">
-            <Link
-              className="nav-link"
-              to="#"
-              onClick={() => dispatch(authLogout())}
-            >
-              Log out
+          <NavBar className="nav">
+            <Link to="/" className="nav-branding">
+              <img
+                className="nav-branding-img"
+                src={require('../images/owl.png')}
+                alt="Knowted Logo"
+              />{' '}
+              Knowted
             </Link>
-          </nav>
+            <nav className="nav-loggedIn">
+              <Link
+                className="nav-link"
+                to="#"
+                onClick={() => dispatch(authLogout())}
+              >
+                Log out
+              </Link>
+            </nav>
+          </NavBar>
         ) : (
-          <nav className="nav-anon">
-            <Link className="nav-link" to="/register">
-              Sign up
+          <NavBar className="landing-nav">
+            <Link to="/" className="nav-branding">
+              <img
+                className="nav-branding-img"
+                src={require('../images/owl.png')}
+                alt="Knowted Logo"
+              />{' '}
+              Knowted
             </Link>
-            <Link className="nav-link" to="/login">
-              Log in
-            </Link>
-          </nav>
+            <nav className="nav-anon">
+              <Link className="nav-link" to="/register">
+                Sign up
+              </Link>
+              <Link className="nav-link" to="/login">
+                Log in
+              </Link>
+            </nav>
+          </NavBar>
         )}
-      </NavBar>
+      </>
     );
   }
 }

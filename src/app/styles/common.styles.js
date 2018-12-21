@@ -14,17 +14,22 @@ export const App = styled.div`
   }
 
   h1 {
-    font-family: ivyjournal, sans-serif;
-    font-size: 2.875rem;
+    font-family: kopius, serif;
+    font-weight: 700;
+    font-size: 4rem;
+
     margin: 0 0 20px 0;
 
-    @media (max-width: 450px) {
+    @media (max-width: 650px) {
       text-align: center;
+      font-size: 2.5rem;
+      padding: 0 10px;
     }
   }
   h2 {
-    font-family: ivyjournal, sans-serif;
-    font-size: 1.875rem;
+    font-family: kopius, serif;
+    font-weight: 700;
+    font-size: 2.25rem;
     margin: 0 0 40px 0;
     @media (max-width: 450px) {
       text-align: center;
@@ -49,10 +54,23 @@ export const App = styled.div`
   }
 
   a {
+    font-family: omnes-pro, sans-serif;
+    font-weight: 500;
     color: #242424;
     text-decoration: none;
   }
+
+  .landing-nav {
+    background: #aee192;
+  }
+
+  footer {
+    text-align: center;
+    padding: 40px 0;
+  }
 `;
+
+
 
 //NAVIGATION
 export const NavBar = styled.header`
@@ -67,11 +85,13 @@ export const NavBar = styled.header`
     display: flex;
     align-items: center;
     margin-left: 16px;
-
-    font-family: ivyjournal, sans-serif;
-    font-size: 1.3em;
-    font-weight: bold;
+    
+  
+    font-family: kopius,serif;
+    font-weight: 700;
+    font-size: 1.2em;
     text-decoration: none;
+    letter-spacing: 1px;
 
     &:visited {
       color: inherit;
@@ -83,7 +103,7 @@ export const NavBar = styled.header`
     }
 
     @media screen and (min-width: 500px) {
-      font-size: 1.5em;
+      font-size: 1.45em;
 
       &-img {
         max-height: 40px;
@@ -98,7 +118,7 @@ export const NavBar = styled.header`
 
   .nav-link {
     margin-right: 16px;
-    font-size: 1.1em;
+    font-size: 1em;
 
     text-decoration: none;
 
@@ -127,7 +147,7 @@ export const Breadcrumb = styled.nav`
     flex-direction: row;
   }
 
-  background-color: #b9de9a;
+  background-color: #AEE192;
 
   font-family: omnes-pro, sans-serif;
   font-size: 1.3rem;
@@ -204,15 +224,35 @@ export const Label = styled.label``;
 export const Input = styled.input``;
 
 //BUTTONS
-export const Button = styled.button``;
-export const ButtonComplete = styled(Button)``;
+export const Button = styled.button`
+  min-width: 200px;
+  padding: 18px 34px;
+  margin: 16px 0;
+
+  background: black;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  font-weight: 500;
+  text-decoration: none;
+  font-family: omnes-pro, sans-serif;
+
+  a {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.25em;
+  }
+`;
 
 export const updateActionsButton = styled.button`
   border: none;
   width: 26px;
   height: 26px;
   margin: 0 5px;
-  /* Hide the text. */
   text-indent: 160%;
   white-space: nowrap;
   overflow: hidden;
