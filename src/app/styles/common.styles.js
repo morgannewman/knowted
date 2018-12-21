@@ -52,7 +52,18 @@ export const App = styled.div`
     color: #242424;
     text-decoration: none;
   }
+
+  .landing-nav {
+    background: #aee192;
+  }
+
+  footer {
+    text-align: center;
+    padding: 40px 0;
+  }
 `;
+
+
 
 //NAVIGATION
 export const NavBar = styled.header`
@@ -204,15 +215,35 @@ export const Label = styled.label``;
 export const Input = styled.input``;
 
 //BUTTONS
-export const Button = styled.button``;
-export const ButtonComplete = styled(Button)``;
+export const Button = styled.button`
+  min-width: 200px;
+  padding: 18px 34px;
+  margin: 16px 0;
+
+  background: black;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  font-weight: 500;
+  text-decoration: none;
+  font-family: omnes-pro, sans-serif;
+
+  a {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.25em;
+  }
+`;
 
 export const updateActionsButton = styled.button`
   border: none;
   width: 26px;
   height: 26px;
   margin: 0 5px;
-  /* Hide the text. */
   text-indent: 160%;
   white-space: nowrap;
   overflow: hidden;

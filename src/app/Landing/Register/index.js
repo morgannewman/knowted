@@ -7,9 +7,9 @@ import {
   Container,
   Form,
   Input,
-  Label,
-  Button
+  Label
 } from '../../styles/form.styles';
+import {Button} from '../../styles/common.styles';
 
 export class Register extends Component {
   state = {

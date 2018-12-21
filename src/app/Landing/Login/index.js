@@ -7,9 +7,9 @@ import {
   Container,
   Form,
   Input,
-  Label,
-  Button
+  Label
 } from '../../styles/form.styles';
+import {Button} from '../../styles/common.styles';
 
 export class Login extends Component {
   state = {

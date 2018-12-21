@@ -62,19 +62,4 @@ export const Label = styled.label`
   font-size: 1.4em;
 `;
 
-export const Button = styled.button`
-  width: 200px;
-  padding: 18px 34px;
-  margin: 16px 0;
 
-  background: black;
-  color: white;
-
-  border: none;
-  border-radius: 8px;
-
-  font-size: 1.2em;
-  letter-spacing: 1px;
-  font-weight: 500;
-  text-decoration: none;
-`;
