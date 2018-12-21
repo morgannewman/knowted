@@ -79,7 +79,11 @@ export const Card = styled.a`
   ${'' /* Truncate card text with ellipsis */}
   span, h2 {
     display: block;
-    width: 95vw;
+    text-align: left;
+    width: 75vw;
+    @media (min-width: 460px) {
+      width: 83vw;
+    }
     max-width: 700px;
     white-space: nowrap;
     overflow: hidden;
