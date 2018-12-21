@@ -8,11 +8,13 @@ import {
   Form,
   Input,
   Label,
-  Button
+  Button,
+  Warning
 } from '../../styles/form.styles';
 
 export class Register extends Component {
   state = {
+    warning: '',
     firstName: {
       dirty: false,
       input: '',
@@ -89,14 +91,16 @@ export class Register extends Component {
 
   render() {
     const { submitting, loggedIn } = this.props;
-    const { firstName, email, password } = this.state;
+    const { firstName, email, password, warning } = this.state;
 
     if (loggedIn) return <Redirect to="/dashboard" />;
-
     return (
       <Container>
         <h1 className="form-title">Sign up for a free account</h1>
         <Form onSubmit={this.handleRegisterSubmit} className="register">
+          <Warning style={warning ? null : { visibility: 'hidden' }}>
+            <p>{warning}</p>
+          </Warning>
           <Label htmlFor="first-name">What's your first name?</Label>
           <Input
             value={firstName.input}
