@@ -8,7 +8,7 @@ import CompletedResourceContainer from './CompletedResourceContainer';
 import Loading from '../common/Loading';
 import Breadcrumbs from '../common/Breadcrumbs';
 //STYLESHEET
-import { Main, Breadcrumb } from '../styles/common.styles';
+import { Breadcrumb } from '../styles/common.styles';
 import {
   TopicDashContainer,
   ActiveResources,
@@ -57,7 +57,7 @@ export class TopicDashboard extends React.Component {
     }
 
     return (
-      <Main>
+      <>
         <Breadcrumb>
           <Breadcrumbs
             topicId={topic && topic.id}
@@ -73,7 +73,7 @@ export class TopicDashboard extends React.Component {
             <CompletedResourceContainer {...this.props} />
           </CompleteResources>
         </TopicDashContainer>
-      </Main>
+      </>
     );
   }
 }

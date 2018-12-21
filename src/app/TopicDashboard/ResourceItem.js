@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
-// import ResourceEditForm from './ResourceEditForm';
-// import ResourceView from './ResourceView';
-import ResourceViewTest from './ResourceViewTest';
 import { EditButton, DeleteButton } from '../styles/common.styles';
 
 import { connect } from 'react-redux';

@@ -9,7 +9,8 @@ import { AllTopics } from '../../Dashboard/AllTopics';
 
 const initialState = {
   dispatch: jest.fn(),
-  loading: false
+  loading: false,
+  folderOrder: []
 };
 
 describe('<AllTopics />', () => {
