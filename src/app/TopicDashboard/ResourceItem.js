@@ -43,7 +43,7 @@ export class ResourceItem extends React.Component {
     this.setState(prevState => ({ editing: !prevState.editing }));
   };
   handleChecked = e => {
-    const id = Number(e.target.id);
+    const id = this.props.resource.id;
     this.props.dispatch(
       updateSingleResource(id, {
         id,
@@ -61,7 +61,7 @@ export class ResourceItem extends React.Component {
    */
   //FIXME: connect function to dispatch async action to backend
   handleDelete = e => {
-    const id = e.target.getAttribute('resourceid');
+    const id = this.props.resource.id;
     this.props.dispatch(deleteResource(Number(id), this.props.parentId));
   };
 
@@ -175,7 +175,7 @@ export class ResourceItem extends React.Component {
               )
             }
             type="submit"
-            className="save-btn aside"
+            className={this.state.editing ? 'save-btn-show' : 'save-btn-hide'}
           >
             save
           </button>
