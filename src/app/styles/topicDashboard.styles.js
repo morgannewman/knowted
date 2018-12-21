@@ -181,7 +181,7 @@ export const ActiveResources = styled.section`
     }
   }
 
-  .save-btn {
+  .save-btn-show {
     text-transform: uppercase;
     position: relative;
     align-self: right;
@@ -192,6 +192,10 @@ export const ActiveResources = styled.section`
     border-radius: 8px;
     font-family: omnes-pro, sans-serif;
     color: #fff;
+  }
+
+  .save-btn-hide {
+    display: none;
   }
   .active-resources-list {
     list-style: none;
