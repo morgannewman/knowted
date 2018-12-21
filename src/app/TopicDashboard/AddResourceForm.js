@@ -147,6 +147,8 @@ export class AddResourceForm extends React.Component {
               Title
             </label>
             <input
+              className="title-input"
+              autoFocus
               hidden={this.state.inputHidden}
               ref={input => (this.inputTitle = input)}
               type="text"
@@ -157,6 +159,7 @@ export class AddResourceForm extends React.Component {
               URL
             </label>
             <input
+              className="uri-input"
               ref={input => (this.inputUri = input)}
               type="url"
               name="add-resource"
@@ -167,7 +170,12 @@ export class AddResourceForm extends React.Component {
             />
           </div>
 
-          <button hidden={this.state.inputHidden} className="save-btn">
+          <button
+            hidden={this.state.inputHidden}
+            className={
+              this.state.inputHidden ? 'save-btn-hide' : 'save-btn-show'
+            }
+          >
             save
           </button>
         </form>

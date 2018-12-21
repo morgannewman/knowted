@@ -14,7 +14,8 @@ import cache from '../controller/api/cache';
 import { submitNotebookUpdate } from '../controller/actions/learn';
 import TopicDashboard from './TopicDashboard';
 import requiresLogin from './common/requiresLogin';
-import withNav from './common/withNav';
+import Nav from './common/Nav';
+import Demo from './Landing/Demo';
 import { App as AppStyles } from './styles/common.styles';
 
 const cacheableActions = {
@@ -41,26 +42,28 @@ export class App extends Component {
         <Notifs />
         <Router>
           <div className="App">
+            <Nav />
             <Switch>
+              <Route exact path="/demo" component={Demo} />
               <Route
                 exact
                 path={['/', '/login', '/register']}
-                component={withNav(Landing)}
+                component={Landing}
               />
               <Route
                 exact
                 path="/dashboard"
-                component={withNav(requiresLogin(Dashboard))}
+                component={requiresLogin(Dashboard)}
               />
               <Route
                 exact
                 path="/dashboard/:topicId"
-                component={withNav(requiresLogin(TopicDashboard))}
+                component={requiresLogin(TopicDashboard)}
               />
               <Route
                 exact
                 path="/dashboard/:topicId/:resourceId"
-                component={withNav(requiresLogin(Learn))}
+                component={requiresLogin(Learn)}
               />
               <Redirect to="/" />
             </Switch>

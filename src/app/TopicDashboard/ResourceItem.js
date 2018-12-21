@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { EditButton } from '../styles/common.styles';
+import { EditButton, CancelButton } from '../styles/common.styles';
 
 import { connect } from 'react-redux';
 import {
   updateSingleResource,
   deleteResource
 } from '../../controller/actions/topicDashboard';
-import './ResourceItem.scss';
 
 //TODO: use Link so so the resource title links to it's corresponding
 
@@ -98,13 +97,24 @@ export class ResourceItem extends React.Component {
 
     return (
       <div className="resource-view">
-        <EditButton
-          resourceid={resource.id}
-          onClick={() => this.handleEdit()}
-          className="resource-item-edit resource-item-controls"
-        >
-          edit
-        </EditButton>
+        {this.state.editing ? (
+          <CancelButton
+            resourceid={resource.id}
+            onClick={() => this.handleEdit()}
+            className="resource-item-edit resource-item-controls"
+          >
+            edit
+          </CancelButton>
+        ) : (
+          <EditButton
+            resourceid={resource.id}
+            onClick={() => this.handleEdit()}
+            className="resource-item-edit resource-item-controls"
+          >
+            edit
+          </EditButton>
+        )}
+
         <div className="elipsis">
           {' '}
           <span className="elipsis-dot" />
@@ -112,12 +122,14 @@ export class ResourceItem extends React.Component {
           <span className="elipsis-dot" />
         </div>
         <button
-          className="checkbox"
+          className={resource.completed ? 'checked-box' : 'checkbox'}
           id={resource.id}
           type="button"
           onClick={() => this.handleChecked()}
           checked={resource.completed}
-        />
+        >
+          &#10003;
+        </button>
         <div className="resource-info">
           {this.state.editing ? (
             <form
@@ -133,6 +145,7 @@ export class ResourceItem extends React.Component {
             >
               <label htmlFor="title update" />
               <input
+                autoFocus
                 className="aside edit-input"
                 type="text"
                 name={resource.title}
@@ -148,35 +161,29 @@ export class ResourceItem extends React.Component {
             </div>
           )}
           <div className="resc-uri">
-            <Link
-              to={
-                resource.type === 'youtube'
-                  ? `https://www.youtube.com/watch?v=${resource.uri}`
-                  : resource.uri
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link to={`/dashboard/${parentId}/${resource.id}`}>
               {resource.type === 'youtube'
                 ? `https://www.youtube.com/watch?v=${resource.uri}`
                 : resource.uri}
             </Link>
           </div>
-          <button
-            id={resource.id}
-            onClick={e =>
-              this.handleUpdate(
-                e,
-                this.state.value,
-                this.state.uri,
-                resource.title
-              )
-            }
-            type="submit"
-            className={this.state.editing ? 'save-btn-show' : 'save-btn-hide'}
-          >
-            save
-          </button>
+          <div className="save-btn">
+            <button
+              id={resource.id}
+              onClick={e =>
+                this.handleUpdate(
+                  e,
+                  this.state.value,
+                  this.state.uri,
+                  resource.title
+                )
+              }
+              type="submit"
+              className={this.state.editing ? 'save-btn-show' : 'save-btn-hide'}
+            >
+              save
+            </button>
+          </div>
         </div>
         <button
           type="button"
