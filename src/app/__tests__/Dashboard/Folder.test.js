@@ -21,7 +21,7 @@ describe('<Folder />', () => {
 
   it('the folder has a title', () => {
     wrapper = shallow(<Folder {...initialState} />);
-    expect(wrapper.find('button').text()).toEqual('hello');
+    expect(wrapper.find('label').text()).toEqual('hello');
   });
 
   it('to display JawBone on state isHidden false', () => {

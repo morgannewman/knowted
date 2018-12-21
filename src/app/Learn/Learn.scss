@@ -1,0 +1,57 @@
+.learn {
+  display: flex;
+  flex-direction: column;
+  // height: 100vh;
+  width: 100vw;
+}
+
+// .learn-nav {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   align-items: center;
+//   width: 100vw;
+//   height: 32px;
+//   padding: 0 16px;
+//   background-color: lightgray;
+// }
+
+.learn-main {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+
+  &-single {
+    flex-direction: column;
+    width: 98%;
+    max-width: 768px;
+    margin: 0 auto;
+    .editor,
+    .ql-editor {
+      width: 100%;
+      min-height: 75vh;
+    }
+  }
+
+  &-double {
+    flex-direction: row;
+    .editor,
+    .ql-editor {
+      width: 50%;
+      min-height: 89vh;
+    }
+  }
+}
+
+.editor {
+  overflow-y: scroll;
+}
+
+#ytplayer {
+  height: 100%;
+  width: 50%;
+}
+.card {
+  margin: 16px 0;
+  background-color: #c4c4c4;
+}

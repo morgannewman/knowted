@@ -30,26 +30,28 @@ export class JawBone extends React.Component {
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
-                {folders[folderId].topics.map((topicId, index) => (
-                  <Draggable
-                    draggableId={String(topicId)}
-                    index={index}
-                    key={topicId}
-                  >
-                    {provided => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        <Topic
-                          title={topics[topicId].title}
-                          topicId={topicId}
-                        />
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
+                <div className="jawbone-items-wrapper">
+                  {folders[folderId].topics.map((topicId, index) => (
+                    <Draggable
+                      draggableId={String(topicId)}
+                      index={index}
+                      key={topicId}
+                    >
+                      {provided => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <Topic
+                            title={topics[topicId].title}
+                            topicId={topicId}
+                          />
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                </div>
               </div>
             </>
           )}

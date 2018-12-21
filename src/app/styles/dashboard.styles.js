@@ -4,9 +4,35 @@
 
 import styled from 'styled-components';
 
+export const DashMain = styled.main`
+  margin: 0 30px;
+  @media (max-width: 450px) {
+    margin: 0 10px;
+  }
+`;
+
 export const DashboardContainer = styled.section`
   max-width: 1255px;
   margin: 80px auto;
+
+  @media (max-width: 450px) {
+    margin: 40px auto;
+  }
+
+  .welcome-zero-case {
+    background: #f1f1f1;
+    padding: 40px;
+    text-align: center;
+    border-radius: 20px;
+    margin-bottom: 60px;
+
+    p {
+      margin: 0 25px 15px 25px;
+      font-size: 1.5em;
+      line-height: 1.5em;
+      letter-spacing: 0.5px;
+    }
+  }
 `;
 
 export const RecentlyViewedContainer = styled.div`
@@ -18,6 +44,10 @@ export const RecentlyViewedContainer = styled.div`
     padding: 0;
     margin-bottom: 60px;
 
+    @media (max-width: 1235px) {
+      grid-template-columns: 1fr;
+    }
+
     a {
       margin-right: 20px;
       :last-child {
@@ -26,6 +56,10 @@ export const RecentlyViewedContainer = styled.div`
 
       :hover {
         color: #fff;
+      }
+
+      @media (max-width: 1235px) {
+        margin: 10px 0;
       }
     }
 
@@ -42,6 +76,13 @@ export const RecentlyViewedContainer = styled.div`
         background-color: #aee192;
       }
     }
+
+    span {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 355px;
+    }
   }
 `;
 
@@ -54,9 +95,11 @@ export const AllTopicsContainer = styled.div`
   }
 
   .edit-folder-form,
-  .edit-topic-form {
+  .edit-topic-form,
+  .add-topic-form {
     display: inline-flex;
     flex-direction: row;
+    max-width: 113px;
 
     input {
       border: none;
@@ -70,6 +113,14 @@ export const AllTopicsContainer = styled.div`
   .folders-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 40px;
+
+    @media (max-width: 1255px) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    @media (max-width: 960px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     .folder-wrap {
       text-align: center;
@@ -89,6 +140,7 @@ export const AllTopicsContainer = styled.div`
         width: 144px;
         perspective: 720px;
         border-radius: 7px;
+        margin-bottom: 10px;
 
         ::before,
         ::after,
@@ -145,8 +197,10 @@ export const AllTopicsContainer = styled.div`
 
       .folder-open span::before {
         transform: rotateX(-35deg);
+        bottom: -1px;
       }
 
+      /*Folder colors*/
       /* 1 */
       :nth-of-type(7n + 1) .folder::before,
       :nth-of-type(7n + 1) .folder::after {
@@ -214,59 +268,88 @@ export const AllTopicsContainer = styled.div`
 
   .lonely-topics-container {
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     text-align: center;
+    margin-bottom: 0 30px 60px 30px;
 
-    .paper,
-    .add-topic-btn {
-      height: 136px;
-      width: 112px;
+    @media (max-width: 1255px) {
+      grid-template-columns: repeat(6, 1fr);
+    }
+    @media (max-width: 960px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 460px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Shared Topic styles */
+  .topic-wrap {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 158px;
+    margin-bottom: 30px;
+    padding: 20px;
+  }
+
+  .paper,
+  .add-topic-btn {
+    height: 136px;
+    width: 112px;
+    border: 2px solid #aeaeae;
+    background: #fff;
+    border-radius: 6px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+
+  .paper {
+    border-radius: 6px 22px 6px 6px;
+    span {
       border: 2px solid #aeaeae;
-      background: #fff;
-      border-radius: 6px;
-      margin: 0 auto;
+      height: 26px;
+      width: 26px;
+      margin-left: 30px;
+      position: absolute;
+      margin-top: -2px;
+      border-radius: 0 22px 0 6px;
     }
+  }
 
-    .paper {
-      border-radius: 6px 22px 6px 6px;
-      span {
-        border: 2px solid #aeaeae;
-        height: 26px;
-        width: 26px;
-        z-index: 6;
-        margin-left: 30px;
-        position: absolute;
-        margin-top: -2px;
-        border-radius: 0 22px 0 6px;
-      }
+  .add-topic-btn {
+    font-size: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px dashed #d0d0d0;
+    color: #d0d0d0;
+    outline: none;
+    margin-top: 20px;
+
+    span {
+      font-size: 3rem;
+      padding: 0;
+      line-height: 1;
+      margin-top: 25px;
     }
+  }
 
-    .add-topic-btn {
-      font-size: 1em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border: 2px dashed #d0d0d0;
-      color: #d0d0d0;
-      outline: none;
+  .topic-btn {
+    margin-top: 20px;
+  }
 
-      span {
-        font-size: 3rem;
-        padding: 0;
-        line-height: 1;
-        margin-top: 25px;
-      }
-    }
-
-    .edit-delete-topic-options {
-      display: inline-flex;
-      flex-direction: column;
-    }
+  .delete-btn {
+    position: absolute;
+    margin-left: 60px;
+    margin-top: -26px;
+    height: 32px;
   }
 `;
 
 export const JawBoneContainer = styled.div`
-  min-height: 210px;
+  min-height: 260px;
 
   span.arrow-up {
     position: relative;
@@ -286,9 +369,26 @@ export const JawBoneContainer = styled.div`
     padding: 15px;
     background: #f1f1f1;
     border-radius: 6px;
+    width: 100%;
+    flex-wrap: wrap;
+    min-height: auto;
+    z-index: 10;
+    left: 5%;
+    width: 90%;
+
+    .jawbone-items-wrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0 auto;
+    }
 
     .topic-wrap {
-      min-width: 100%;
+      padding-right: 40px;
+      padding-top: 20px;
+      padding-bottom: 0;
+      min-width: auto;
+      margin: 0;
     }
   }
 `;
