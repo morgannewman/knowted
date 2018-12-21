@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { EditButton } from '../styles/common.styles';
+import { EditButton, CancelButton } from '../styles/common.styles';
 
 import { connect } from 'react-redux';
 import {
@@ -97,13 +97,24 @@ export class ResourceItem extends React.Component {
 
     return (
       <div className="resource-view">
-        <EditButton
-          resourceid={resource.id}
-          onClick={() => this.handleEdit()}
-          className="resource-item-edit resource-item-controls"
-        >
-          edit
-        </EditButton>
+        {this.state.editing ? (
+          <CancelButton
+            resourceid={resource.id}
+            onClick={() => this.handleEdit()}
+            className="resource-item-edit resource-item-controls"
+          >
+            edit
+          </CancelButton>
+        ) : (
+          <EditButton
+            resourceid={resource.id}
+            onClick={() => this.handleEdit()}
+            className="resource-item-edit resource-item-controls"
+          >
+            edit
+          </EditButton>
+        )}
+
         <div className="elipsis">
           {' '}
           <span className="elipsis-dot" />
