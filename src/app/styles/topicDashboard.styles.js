@@ -167,7 +167,6 @@ padding:0;
 
 
       @media (max-width: 450px) {
-        color: red;
         font-size: 1rem;
       }
     }
