@@ -4,6 +4,8 @@
 
 import styled from 'styled-components';
 
+const youtubeBreakpoint = 850;
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -21,6 +23,7 @@ export const Main = styled.main`
     width: 98%;
     max-width: 768px;
     margin: 0 auto;
+
     .editor,
     .ql-editor {
       min-height: 63vh;
@@ -30,12 +33,14 @@ export const Main = styled.main`
   &.double {
     .editor,
     .ql-editor {
-      min-width: 50vw;
+      min-width: 49vw;
       min-height: 40vh;
     }
-    @media (min-width: 1025px) {
+
+    @media (min-width: ${youtubeBreakpoint + 1 + 'px'}) {
       &.double {
         flex-direction: row;
+
         .editor,
         .ql-editor {
           min-height: 83vh;
@@ -52,7 +57,7 @@ export const Card = styled.a`
 
 export const YouTube = styled.iframe`
   min-width: 50vw;
-  @media (max-width: 1024px) {
+  @media (max-width: ${youtubeBreakpoint + 'px'}) {
     height: 40vh;
   }
 `;
