@@ -138,7 +138,7 @@ export const Breadcrumb = styled.nav`
     flex-direction: row;
   }
 
-  background-color: #b9de9a;
+  background-color: #AEE192;
 
   font-family: omnes-pro, sans-serif;
   font-size: 1.3rem;
