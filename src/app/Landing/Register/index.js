@@ -2,17 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { submitAuthRegistration } from '../../../controller/actions/auth';
+import {
+  submitAuthRegistration,
+  authCapturedError
+} from '../../../controller/actions/auth';
+import {
+  validateFirstName,
+  validateEmail,
+  validatePassword
+} from '../../common/validate';
 import {
   Container,
   Form,
   Input,
   Label,
-  Button
+  Button,
+  Warning
 } from '../../styles/form.styles';
 
 export class Register extends Component {
   state = {
+    warning: '',
     firstName: {
       dirty: false,
       input: '',
@@ -38,21 +48,26 @@ export class Register extends Component {
   handleRegisterSubmit = e => {
     e.preventDefault();
     const { password, email, firstName } = this.state;
-    if (password.valid && email.valid && firstName.valid) {
-      this.props.dispatch(
-        submitAuthRegistration({
-          name: firstName.input,
-          email: email.input,
-          password: password.input
-        })
-      );
-    }
+    this.setState({ warning: '' }, () => {
+      try {
+        validateFirstName(firstName.input);
+        validateEmail(email.input);
+        validatePassword(password.input);
+
+        this.props.dispatch(
+          submitAuthRegistration({
+            name: firstName.input,
+            email: email.input,
+            password: password.input
+          })
+        );
+      } catch (err) {
+        this.setState({ warning: err.message });
+      }
+    });
   };
 
   manageNameInput = e => {
-    // TODO: Add form validation
-    // 2-16 characters
-    // letters, numbers, -, and _ are valid
     const input = e.currentTarget.value;
     this.setState({
       firstName: {
@@ -64,7 +79,6 @@ export class Register extends Component {
   };
 
   manageEmailInput = e => {
-    // TODO: Add form validation
     const input = e.currentTarget.value;
     this.setState({
       email: {
@@ -76,7 +90,6 @@ export class Register extends Component {
   };
 
   managePasswordInput = e => {
-    // TODO: Add form validation
     const input = e.currentTarget.value;
     this.setState({
       password: {
@@ -88,15 +101,24 @@ export class Register extends Component {
   };
 
   render() {
-    const { submitting, loggedIn } = this.props;
-    const { firstName, email, password } = this.state;
+    const { submitting, loggedIn, authError, dispatch } = this.props;
+    const { firstName, email, password, warning } = this.state;
+
+    if (authError) {
+      dispatch(authCapturedError());
+      this.setState({ warning: 'Call the paramedics! Our servers are down' });
+    }
 
     if (loggedIn) return <Redirect to="/dashboard" />;
-
     return (
       <Container>
         <h1 className="form-title">Sign up for a free account</h1>
         <Form onSubmit={this.handleRegisterSubmit} className="register">
+          <Warning
+            style={authError || warning ? null : { visibility: 'hidden' }}
+          >
+            <p>{authError || warning}</p>
+          </Warning>
           <Label htmlFor="first-name">What's your first name?</Label>
           <Input
             value={firstName.input}
@@ -133,4 +155,8 @@ export class Register extends Component {
   }
 }
 
-export default connect()(Register);
+const mapStateToProps = state => ({
+  authError: state.auth.error && state.auth.error.message
+});
+
+export default connect(mapStateToProps)(Register);
