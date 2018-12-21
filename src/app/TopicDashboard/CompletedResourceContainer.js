@@ -1,13 +1,13 @@
 import React from 'react';
 import ResourceItem from './ResourceItem';
-
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 export class CompletedResourceContainer extends React.Component {
   //TODO: Drag and drop functionality
 
   constructor(props) {
     super(props);
     this.state = {
-      showAll: true
+      showAll: false
     };
   }
 
@@ -20,10 +20,24 @@ export class CompletedResourceContainer extends React.Component {
     return (
       <section className="completed-resources-container">
         <div className="complete-header">
-          <h3 className="complete-title">Completed Resources</h3>
+          <div className="complete-title-cont">
+            <h3 className="complete-title">Completed Resources</h3>
+          </div>
           <div className="show-button-cont">
-            <button type="button" onClick={this.handletoggle}>
-              {this.state.showAll ? 'hide all' : 'show all'}
+            <button
+              className="toggle-compl-btn"
+              type="button"
+              onClick={this.handletoggle}
+            >
+              {this.state.showAll ? (
+                <span>
+                  <span className="hide-all">Hide All</span> <FaChevronUp />
+                </span>
+              ) : (
+                <span>
+                  <span className="show-all">Show All</span> <FaChevronDown />
+                </span>
+              )}
             </button>
           </div>
         </div>
