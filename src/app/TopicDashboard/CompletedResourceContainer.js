@@ -33,7 +33,7 @@ export class CompletedResourceContainer extends React.Component {
                 </span>
               ) : (
                 <span>
-                  <span className="show-all">Hide All</span> <FaChevronDown />
+                  <span className="show-all">Show All</span> <FaChevronDown />
                 </span>
               )}
             </button>

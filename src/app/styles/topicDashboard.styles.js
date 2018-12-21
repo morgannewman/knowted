@@ -215,6 +215,7 @@ padding:0;
       height: 49.52px;
       border-radius: 8px;
       font-family: omnes-pro, sans-serif;
+      font-size: 1.3rem;
       color: #fff;
     }
 
