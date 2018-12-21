@@ -8,9 +8,14 @@ export const Container = styled.main`
   font-family: omnes-pro, sans-serif;
   font-size: 0.8rem;
   text-align: center;
+  margin-top: 140px;
 
   @media (min-width: 475px) {
     font-size: 1rem;
+  }
+
+  @media (max-width: 475px) {
+    margin-top: 80px;
   }
 
   @media (min-width: 1024px) {

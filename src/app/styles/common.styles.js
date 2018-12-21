@@ -14,17 +14,22 @@ export const App = styled.div`
   }
 
   h1 {
-    font-family: ivyjournal, sans-serif;
-    font-size: 2.875rem;
+    font-family: kopius, serif;
+    font-weight: 700;
+    font-size: 4rem;
+
     margin: 0 0 20px 0;
 
-    @media (max-width: 450px) {
+    @media (max-width: 650px) {
       text-align: center;
+      font-size: 2.5rem;
+      padding: 0 10px;
     }
   }
   h2 {
-    font-family: ivyjournal, sans-serif;
-    font-size: 1.875rem;
+    font-family: kopius, serif;
+    font-weight: 700;
+    font-size: 2.25rem;
     margin: 0 0 40px 0;
     @media (max-width: 450px) {
       text-align: center;
@@ -49,6 +54,8 @@ export const App = styled.div`
   }
 
   a {
+    font-family: omnes-pro, sans-serif;
+    font-weight: 500;
     color: #242424;
     text-decoration: none;
   }
@@ -78,11 +85,13 @@ export const NavBar = styled.header`
     display: flex;
     align-items: center;
     margin-left: 16px;
-
-    font-family: ivyjournal, sans-serif;
-    font-size: 1.3em;
-    font-weight: bold;
+    
+  
+    font-family: kopius,serif;
+    font-weight: 700;
+    font-size: 1.2em;
     text-decoration: none;
+    letter-spacing: 1px;
 
     &:visited {
       color: inherit;
@@ -94,7 +103,7 @@ export const NavBar = styled.header`
     }
 
     @media screen and (min-width: 500px) {
-      font-size: 1.5em;
+      font-size: 1.45em;
 
       &-img {
         max-height: 40px;
@@ -109,7 +118,7 @@ export const NavBar = styled.header`
 
   .nav-link {
     margin-right: 16px;
-    font-size: 1.1em;
+    font-size: 1em;
 
     text-decoration: none;
 
