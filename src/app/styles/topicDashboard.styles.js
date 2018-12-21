@@ -151,6 +151,7 @@ padding:0;
     }
 
     .name-of-resource {
+   
       max-width: 60%;
       min-width: 150px
       white-space: nowrap;
@@ -161,7 +162,10 @@ padding:0;
       font-size: 	1.4rem;
       color: #242424;
       font-weight: 500;
-  
+      @media (max-width: 450px) {
+        color: red;
+        font-size: 1rem;
+      }
     }
   
     .resc-uri {
@@ -228,6 +232,9 @@ padding:0;
     }
 
   }
+
+
+
 `;
 
 export const ActiveResources = styled.section`

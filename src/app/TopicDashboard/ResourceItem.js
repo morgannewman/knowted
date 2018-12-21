@@ -16,7 +16,7 @@ export class ResourceItem extends React.Component {
     super(props);
     this.value = React.createRef();
     this.state = {
-      editing: true,
+      editing: false,
       value: this.props.resource.title,
       uri: this.props.resource.uri
     };

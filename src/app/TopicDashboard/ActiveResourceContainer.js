@@ -51,15 +51,17 @@ export class ActiveResourceContainer extends React.Component {
           <section className="active-resources-container">
             <div className="active-header">
               <h3 className="active-title">Active Resources</h3>
-              <div className="add-button-cont">
-                <button
-                  className="add-resc-button"
-                  type="button"
-                  onClick={this.handleScrollClick}
-                >
-                  <span>add resource </span> <span className="plus">+</span>
-                </button>
-              </div>
+              {this.props.rescOrder.length >= 4 ? (
+                <div className="add-button-cont">
+                  <button
+                    className="add-resc-button"
+                    type="button"
+                    onClick={this.handleScrollClick}
+                  >
+                    <span>add resource </span> <span className="plus">+</span>
+                  </button>
+                </div>
+              ) : null}
             </div>
             <Droppable droppableId="droppable-1">
               {provided => (
