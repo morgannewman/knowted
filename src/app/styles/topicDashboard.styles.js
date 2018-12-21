@@ -342,13 +342,14 @@ export const ActiveResources = styled.section`
     width: 100%;
     display: flex;
     flex-direction: row;
-    .active-title-cont {
-      width: 50%;
 
-      text-align: left;
+    .active-title-cont {
+      width: 100%;
+
+      text-align: center;
       margin: 0 auto;
       @media (max-width: 600px) {
-        text-align: center;
+        text-align: left;
         padding-left: 15px;
       }
     }
@@ -359,7 +360,7 @@ export const ActiveResources = styled.section`
       text-align: right;
       margin: 0 auto;
       @media (max-width: 600px) {
-        text-align: center;
+        text-align: left;
         padding-left: 15px;
       }
     }
@@ -370,6 +371,17 @@ export const ActiveResources = styled.section`
     }
   }
 
+  .active-header h3 {
+    margin: 0;
+    width: 50%;
+    text-align: left;
+
+    @media (max-width: 600px) {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  }
   .resource-edit-view {
     .resource-info {
       padding: 0px;
@@ -457,15 +469,22 @@ export const CompleteResources = styled.section`
       }
   }
   .complete-title-cont {
-text-align: center;
+text-align: left;
+@media (max-width: 600px) {
+  text-align: center;
+  }
   }
    
   
-  // .complete-header h3 {
-  //   margin: 0;
-  //   width: 50%;
-  //   padding-left: 50px;
-  // }
+  .complete-header h3 {
+    margin: 0;
+    width: 50%;
+
+    @media (max-width: 600px) {
+      padding-left: 50px;
+      margin-bottom: 20px;
+      }
+  }
 
   // .complete-header .show-button-cont {
   //   width: 50%;
