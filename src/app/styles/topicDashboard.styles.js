@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import del from '../images/delete.svg';
 
 export const TopicDashContainer = styled.section`
-  max-width: 1255px;
+  max-width: 1265px;
   margin: 0px auto;
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@ padding:0;
   }
 
   li{
-    margin: 8px;
+    margin: 5px 0px;
   }
 
   h2{
@@ -73,10 +73,9 @@ padding:0;
 
     .checkbox {
       height: 40px;
-      width: 40px;
-      min-width: 20px;
+      width: 38px;
+      min-width: 38px
       border: 1.5px solid #aeaeae;
-      transform: scaleX(-1);
       border-radius: 3px;
       margin: 10px 10px 10px 2px;
       /* Hide the text. */
@@ -87,7 +86,7 @@ padding:0;
 
     .checked-box {
       height: 40px;
-      width: 39.96px;
+      width: 38px;
       border: 1.5px solid #aeaeae;
     
       border-radius: 3px;
@@ -327,9 +326,7 @@ export const ActiveResources = styled.section`
 export const CompleteResources = styled.section`
   .completed-resources-list {
     list-style: none;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+    padding: 0px;
   }
 
   .complete-header {
@@ -367,5 +364,21 @@ export const CompleteResources = styled.section`
 
   .completed-resource-item .resource-view .ellipses {
     visibility: hidden;
+  }
+
+  .toggle-compl-btn {
+    border: none;
+    background: none;
+  }
+  .show-caret {
+    margin: 0px 10px;
+  }
+
+  .hide-caret {
+    margin: 0px 10px;
+    font-size: 2rem;
+    display: inline-block;
+    border: 1px solid black;
+    vertical-align: bottom;
   }
 `;

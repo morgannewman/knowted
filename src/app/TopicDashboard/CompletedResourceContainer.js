@@ -22,8 +22,20 @@ export class CompletedResourceContainer extends React.Component {
         <div className="complete-header">
           <h3 className="complete-title">Completed Resources</h3>
           <div className="show-button-cont">
-            <button type="button" onClick={this.handletoggle}>
-              {this.state.showAll ? 'hide all' : 'show all'}
+            <button
+              className="toggle-compl-btn"
+              type="button"
+              onClick={this.handletoggle}
+            >
+              {this.state.showAll ? (
+                <span>
+                  Hide All <span className="hide-caret">^</span>
+                </span>
+              ) : (
+                <span>
+                  Show All <span className="show-caret">V</span>
+                </span>
+              )}
             </button>
           </div>
         </div>
