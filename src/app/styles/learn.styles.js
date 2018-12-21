@@ -26,7 +26,7 @@ export const Main = styled.main`
 
     .editor,
     .ql-editor {
-      min-height: 63vh;
+      min-height: 68vh;
     }
   }
 
@@ -80,7 +80,7 @@ export const Card = styled.a`
   ${'' /* Truncate card text with ellipsis */}
   span, h2 {
     display: block;
-    max-width: calc(100vw - 120px);
+    max-width: calc(100vw - 100px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

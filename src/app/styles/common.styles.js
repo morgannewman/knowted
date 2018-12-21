@@ -158,6 +158,13 @@ export const Breadcrumb = styled.nav`
 
   .breadcrumbs-links {
     padding: 8px 8px 8px 16px;
+
+    ${'' /* Truncate text instead of wrapping */}
+    max-width: 100vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     @media (min-width: 579px) {
       margin-left: 22px;
     }
