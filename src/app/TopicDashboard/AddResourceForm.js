@@ -3,6 +3,8 @@ import api from '../../controller/api';
 import React from 'react';
 import { connect } from 'react-redux';
 import { submitResource } from '../../controller/actions/topicDashboard';
+import { EditButton } from '../styles/common.styles';
+
 export class AddResourceForm extends React.Component {
   constructor(props) {
     super(props);
@@ -119,47 +121,62 @@ export class AddResourceForm extends React.Component {
     return (
       <section
         ref={this.props.resourceFormRef}
-        className="add-resource-section resource-view"
+        className="add-resource-section "
       >
-        <div>
-          <form
-            id="add-resource"
-            className="add-resource-form"
-            onSubmit={this.handleSubmit}
-          >
-            <div>
-              <label
-                className="label-hidden"
-                hidden={this.state.inputHidden}
-                htmlFor="add-resource-title"
-              >
-                Title
-              </label>
-              <input
-                hidden={this.state.inputHidden}
-                ref={input => (this.inputTitle = input)}
-                type="text"
-                name="add-resource"
-                defaultValue={this.state.newTitle}
-              />
-              <label className="label-hidden" htmlFor="add-resource-link">
-                URL
-              </label>
-              <input
-                ref={input => (this.inputUri = input)}
-                type="url"
-                name="add-resource"
-                disabled={this.state.submitting}
-                placeholder="http://"
-                onKeyUp={this.handleEnter}
-                defaultValue={this.state.newURI}
-              />
-            </div>
-
-            <button hidden={this.state.inputHidden}>Submit</button>
-          </form>
-          {this.state.feedback ? <div>{this.state.feedback}</div> : null}
+        <EditButton className="resource-item-edit resource-item-controls">
+          edit
+        </EditButton>
+        <div className="elipsis">
+          {' '}
+          <span className="elipsis-dot" />
+          <span className="elipsis-dot" />
+          <span className="elipsis-dot" />
         </div>
+
+        <button className="checkbox" type="button" />
+        <form
+          id="add-resource"
+          className="add-resource-form resource-info"
+          onSubmit={this.handleSubmit}
+        >
+          <div>
+            <label
+              className="label-hidden"
+              hidden={this.state.inputHidden}
+              htmlFor="add-resource-title"
+            >
+              Title
+            </label>
+            <input
+              hidden={this.state.inputHidden}
+              ref={input => (this.inputTitle = input)}
+              type="text"
+              name="add-resource"
+              defaultValue={this.state.newTitle}
+            />
+            <label className="label-hidden" htmlFor="add-resource-link">
+              URL
+            </label>
+            <input
+              ref={input => (this.inputUri = input)}
+              type="url"
+              name="add-resource"
+              disabled={this.state.submitting}
+              placeholder="http://"
+              onKeyUp={this.handleEnter}
+              defaultValue={this.state.newURI}
+            />
+          </div>
+
+          <button hidden={this.state.inputHidden}>Submit</button>
+        </form>
+        {this.state.feedback ? <div>{this.state.feedback}</div> : null}
+        <button
+          type="button"
+          className="resource-item-delete resource-item-controls"
+        >
+          Delete
+        </button>
       </section>
     );
   }

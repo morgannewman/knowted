@@ -7,9 +7,17 @@ import del from '../images/delete.svg';
 export const TopicDashContainer = styled.section`
   max-width: 1255px;
   margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items-center
 
   ul{
-    all:unset;
+padding:0;
+  }
+
+  li{
+    margin: 8px;
   }
 
   h2{
@@ -20,6 +28,7 @@ export const TopicDashContainer = styled.section`
   .resource-info:hover {
     box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
   }
+
 
   .resource-view .resource-item-controls {
     visibility: hidden;
@@ -32,6 +41,7 @@ export const TopicDashContainer = styled.section`
   .resource-edit-view  .resource-item-controls{
     visibility: hidden;
   }
+
 
   .resource-item-edit {
     margin-right: 2px;
@@ -50,11 +60,14 @@ export const TopicDashContainer = styled.section`
     overflow: hidden;
 
   }
+
+  .add-resource-section,
   .resource-edit-view,
   .resource-view {
     display: flex;
     flex-direction: row;
     align-items: center;
+
 
     .checkbox {
       height: 40px;
@@ -64,8 +77,6 @@ export const TopicDashContainer = styled.section`
       border-radius: 3px;
       margin: 10px 10px 10px 2px;
     }
-
-    
     .elipsis {
       width: 43px;
       margin-top: 12px;
@@ -150,9 +161,6 @@ export const TopicDashContainer = styled.section`
 `;
 
 export const ActiveResources = styled.section`
-  .active-resources-container {
-  }
-
   .add-resc-button {
     outline: none;
     font-size: 1.125rem;
@@ -179,40 +187,6 @@ export const ActiveResources = styled.section`
   li:first-child .resource-info {
     background-color: #f2ec27;
     border: none;
-  }
-
-  .add-resource-section {
-    // margin-left: 135px;
-    border: 1.5px solid #d0d0d0;
-    border-radius: 8px;
-
-    label {
-      display: block;
-      font-color: pink;
-      text-align: left;
-    }
-
-    input {
-      height: 50px;
-      outline: none;
-      border: none;
-      padding: 10px;
-      width: 100%;
-    }
-
-    .label-hidden {
-      display: none;
-    }
-
-    .label-show {
-      display: block;
-    }
-
-     {
-      color: #e3e3e3;
-      font-size: 2.1875rem;
-      left: 30px;
-    }
   }
 
   .resource-edit-form {
@@ -285,6 +259,29 @@ export const ActiveResources = styled.section`
     .resource-info {
       padding: 0px;
     }
+  }
+
+  .add-resource-section {
+    .elipsis {
+      visibility: hidden;
+    }
+
+    .resource-item-controls {
+      visibility: hidden;
+    }
+
+    .label-hidden {
+      display: none;
+      font-size: 1rem;
+    }
+
+    //     input {
+    //       height: 50px;
+    //       outline: none;
+    //       border: none;
+    //       padding: 10px;
+    //       width: 50%;
+    //     }
   }
 `;
 
