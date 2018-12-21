@@ -280,6 +280,12 @@ export const ActiveResources = styled.section`
   .active-header .add-button-cont button {
     margin-right: 80px;
   }
+
+  .resource-edit-view {
+    .resource-info {
+      padding: 0px;
+    }
+  }
 `;
 
 export const CompleteResources = styled.section`
