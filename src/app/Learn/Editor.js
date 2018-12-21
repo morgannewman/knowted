@@ -52,6 +52,7 @@ export class Editor extends React.Component {
   };
 
   componentWillUnmount() {
+    this.save.flush();
     window.removeEventListener('unload', this.handleWindowClose);
   }
 
