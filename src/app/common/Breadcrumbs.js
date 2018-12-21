@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Breadcrumb, Button } from '../styles/common.styles';
+import { Breadcrumb } from '../styles/common.styles';
 
 export default class Breadcrumbs extends Component {
   static propTypes = {
@@ -40,7 +40,7 @@ export default class Breadcrumbs extends Component {
           )}
         </div>
         {buttonHandler && (
-          <Button onClick={buttonHandler}>Complete & Continue{'  '}></Button>
+          <button onClick={buttonHandler}>Complete & Continue{'  '}></button>
         )}
       </Breadcrumb>
     );
