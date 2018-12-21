@@ -186,6 +186,9 @@ padding:0;
 
     
   
+      @media (max-width: 450px) {
+      font-size: 1rem;
+      }
     }
 
 
@@ -318,8 +321,9 @@ export const ActiveResources = styled.section`
   }
 
   .add-resc-button:hover {
-    border-radius: 6px;
-    border: 1px solid rgba(0, 0, 0, 0.8);
+    // border-radius: 6px;
+    // border: 1px solid rgba(0, 0, 0, 0.8);
+    text-decoration: underline;
   }
 
   .active-resources-list {
@@ -338,40 +342,31 @@ export const ActiveResources = styled.section`
     width: 100%;
     display: flex;
     flex-direction: row;
+    .active-title-cont {
+      width: 50%;
+
+      text-align: left;
+      margin: 0 auto;
+      @media (max-width: 600px) {
+        text-align: center;
+        padding-left: 15px;
+      }
+    }
+
+    .add-button-cont {
+      width: 50%;
+
+      text-align: right;
+      margin: 0 auto;
+      @media (max-width: 600px) {
+        text-align: center;
+        padding-left: 15px;
+      }
+    }
 
     @media (max-width: 600px) {
       flex-direction: column;
-    }
-  }
-
-  .active-header h3 {
-    margin: 0;
-    width: 50%;
-    padding-left: 50px;
-
-    @media (max-width: 900px) {
-      width: unset;
-      text-align: center;
-    }
-  }
-
-  .active-header .add-button-cont {
-    width: 50%;
-    text-align: right;
-
-    @media (max-width: 900px) {
-      width: 100%;
-      text-align: center;
-    }
-  }
-  .active-header .add-button-cont button {
-    margin-right: 80px;
-
-    @media (max-width: 900px) {
-      margin-left: 30px;
-      margin-right: unset;
-      margin-top: 20px;
-      width: 50%;
+      margin: 0 auto;
     }
   }
 
@@ -481,8 +476,9 @@ export const CompleteResources = styled.section`
   }
 
   .toggle-compl-btn:hover {
-    border-radius: 6px;
-    border: 1px solid rgba(0, 0, 0, 0.8);
+    // border-radius: 6px;
+    // border: 1px solid rgba(0, 0, 0, 0.8);
+    text-decoration: underline;
   }
 
   .hide-all {
