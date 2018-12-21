@@ -1,16 +1,23 @@
 import React from 'react';
 import { actions as notifActions } from 'redux-notifications';
-import 'redux-notifications/lib/styles.css';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { initializeTopicDashboard } from '../../controller/actions/topicDashboard';
 import ActiveResourceContainer from './ActiveResourceContainer';
 import CompletedResourceContainer from './CompletedResourceContainer';
-import { initializeTopicDashboard } from '../../controller/actions/topicDashboard';
 import Loading from '../common/Loading';
 import Breadcrumbs from '../common/Breadcrumbs';
-import { Redirect } from 'react-router-dom';
-import './index.scss';
+//STYLESHEET
+import { Breadcrumb } from '../styles/common.styles';
+import {
+  TopicDashContainer,
+  ActiveResources,
+  CompleteResources
+} from '../styles/topicDashboard.styles';
+import 'redux-notifications/lib/styles.css';
 
 const { notifSend } = notifActions;
+
 export class TopicDashboard extends React.Component {
   componentDidMount() {
     const currentTopicID = this.props.match.params.topicId;
@@ -51,16 +58,21 @@ export class TopicDashboard extends React.Component {
 
     return (
       <>
-        <Breadcrumbs
-          topicId={topic && topic.id}
-          topicTitle={topic && topic.title}
-        />
-        <main className="topic-dashboard">
+        <Breadcrumb>
+          <Breadcrumbs
+            topicId={topic && topic.id}
+            topicTitle={topic && topic.title}
+          />
+        </Breadcrumb>
+        <TopicDashContainer>
           <h2>{topic.title}</h2>
-          <ActiveResourceContainer {...this.props} />
-          <br />
-          <CompletedResourceContainer {...this.props} />
-        </main>
+          <ActiveResources>
+            <ActiveResourceContainer {...this.props} />
+          </ActiveResources>
+          <CompleteResources>
+            <CompletedResourceContainer {...this.props} />
+          </CompleteResources>
+        </TopicDashContainer>
       </>
     );
   }
@@ -81,7 +93,8 @@ const mapStateToProps = (state, props) => {
     resourceOrder: state.topicDashReducer.resourceOrder,
     topic: state.topicDashReducer.topic,
     topicNotFound: NotFound,
-    error: state.topicDashReducer.error
+    error: state.topicDashReducer.error,
+    showCompleted: state.topicDashReducer.completedShowAll
   };
 };
 
