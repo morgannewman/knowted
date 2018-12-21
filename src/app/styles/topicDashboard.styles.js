@@ -203,7 +203,6 @@ padding:0;
     }
     @media (min-width: 901px) {
       width: 30%;
-      border: 1px solid black;
     }
     }
     .save-btn{
@@ -276,10 +275,18 @@ padding:0;
       font-family: omnes-pro, sans-serif;
       font-size: 1.3rem;
       color: #fff;
+
+      @media (max-width: 900px) {
+     width: 80px;
+     height: 30px
+     margin-top: 20px;
+      font-size: 1rem
+      }
     }
 
     .save-btn-show: hover {
     background-color: grey;
+    border:none;
     }
 
     .save-btn-hide {
@@ -311,7 +318,8 @@ export const ActiveResources = styled.section`
   }
 
   .add-resc-button:hover {
-    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
   }
 
   .active-resources-list {
@@ -330,20 +338,41 @@ export const ActiveResources = styled.section`
     width: 100%;
     display: flex;
     flex-direction: row;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
   }
 
   .active-header h3 {
     margin: 0;
     width: 50%;
     padding-left: 50px;
+
+    @media (max-width: 900px) {
+      width: unset;
+      text-align: center;
+    }
   }
 
   .active-header .add-button-cont {
     width: 50%;
     text-align: right;
+
+    @media (max-width: 900px) {
+      width: 100%;
+      text-align: center;
+    }
   }
   .active-header .add-button-cont button {
     margin-right: 80px;
+
+    @media (max-width: 900px) {
+      margin-left: 30px;
+      margin-right: unset;
+      margin-top: 20px;
+      width: 50%;
+    }
   }
 
   .resource-edit-view {
@@ -452,7 +481,6 @@ export const CompleteResources = styled.section`
   }
 
   .toggle-compl-btn:hover {
-    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.8);
     border-radius: 6px;
     border: 1px solid rgba(0, 0, 0, 0.8);
   }
