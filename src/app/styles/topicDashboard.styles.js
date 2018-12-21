@@ -148,9 +148,8 @@ padding:0;
     }
 
     .name-of-resource {
-      max-width: 350px;
+      max-width: 60%;
       min-width: 150px
-      width: 20%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -167,7 +166,7 @@ padding:0;
       max-width: 500px;
       min-width: 200px;
       font-size: 1.375rem;
-      width: 80%;
+      width: 30%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -194,6 +193,10 @@ padding:0;
       font-weight: 500;
 
       }
+      input:focus{
+        border:none;
+        outline:none;
+        }
     }
 
   }
