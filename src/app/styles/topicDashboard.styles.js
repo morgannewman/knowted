@@ -73,7 +73,8 @@ padding:0;
 
     .checkbox {
       height: 40px;
-      width: 39.96px;
+      width: 40px;
+      min-width: 20px;
       border: 1.5px solid #aeaeae;
       transform: scaleX(-1);
       border-radius: 3px;
@@ -105,6 +106,7 @@ padding:0;
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-left:-10px
     }
     .elipsis-dot {
       height: 8px;
@@ -155,7 +157,7 @@ padding:0;
       text-overflow: ellipsis;
 
       font-family: omnes-pro, sans-serif;
-      font-size: 	1.5rem;
+      font-size: 	1.4rem;
       color: #242424;
       font-weight: 500;
   
@@ -325,7 +327,7 @@ export const CompleteResources = styled.section`
 
   .resource-item-edit {
     visibility: visible;
-    margin-left: 30px;
+    margin-left: 40px;
   }
 
   .save-btn-hide {
