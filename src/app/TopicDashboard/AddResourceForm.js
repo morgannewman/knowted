@@ -170,7 +170,12 @@ export class AddResourceForm extends React.Component {
             />
           </div>
 
-          <button hidden={this.state.inputHidden} className="save-btn">
+          <button
+            hidden={this.state.inputHidden}
+            className={
+              this.state.inputHidden ? 'save-btn-hide' : 'save-btn-show'
+            }
+          >
             save
           </button>
         </form>

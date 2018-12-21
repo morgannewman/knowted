@@ -13,6 +13,8 @@ export const TopicDashContainer = styled.section`
   justify-content:center;
   align-items-center
 
+
+
   ul{
 padding:0;
   }
@@ -167,10 +169,11 @@ padding:0;
       max-width: 500px;
       min-width: 200px;
       font-size: 1.375rem;
-      width: 30%;
+      width: 40%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      margin-right: 30%;
 
       font-family: omnes-pro, sans-serif;
       font-style: italic;
@@ -199,6 +202,28 @@ padding:0;
         outline:none;
         }
     }
+    .save-btn-show {
+      text-transform: uppercase;
+      position: relative;
+      align-self: right;
+      background-color: #242424;
+      max-width: 95.19px;
+      display: inline;
+
+      width: 95.19px;
+      height: 49.52px;
+      border-radius: 8px;
+      font-family: omnes-pro, sans-serif;
+      color: #fff;
+    }
+
+    .save-btn-show: hover {
+      box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.8);
+    }
+
+    .save-btn-hide {
+      display: none;
+    }
 
   }
 `;
@@ -221,22 +246,10 @@ export const ActiveResources = styled.section`
     }
   }
 
-  .save-btn-show {
-    text-transform: uppercase;
-    position: relative;
-    align-self: right;
-    background-color: #242424;
-    max-width: 95.19px;
-
-    height: 49.52px;
-    border-radius: 8px;
-    font-family: omnes-pro, sans-serif;
-    color: #fff;
+  .add-resc-button:hover {
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
   }
 
-  .save-btn-hide {
-    display: none;
-  }
   .active-resources-list {
     list-style: none;
     width: 100%;
@@ -292,7 +305,7 @@ export const ActiveResources = styled.section`
 
     .uri-input {
       border: none;
-
+      margin-right: 420px;
       font-family: omnes-pro, sans-serif;
       font-style: italic;
       font-size: 22px;
@@ -312,8 +325,8 @@ export const ActiveResources = styled.section`
       font-size: 1.4rem;
       color: #242424;
       font-weight: 500;
-      margin-right: 20px;
-      min-width: 50%;
+      min-width: 20%;
+      margin-right: 15px;
     }
 
     .title-input:focus {
