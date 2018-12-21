@@ -8,7 +8,6 @@ import {
   updateSingleResource,
   deleteResource
 } from '../../controller/actions/topicDashboard';
-import './ResourceItem.scss';
 
 //TODO: use Link so so the resource title links to it's corresponding
 //TODO:remove console.logs
@@ -114,12 +113,14 @@ export class ResourceItem extends React.Component {
           <span className="elipsis-dot" />
         </div>
         <button
-          className="checkbox"
+          className={resource.completed ? 'checked-box' : 'checkbox'}
           id={resource.id}
           type="button"
           onClick={() => this.handleChecked()}
           checked={resource.completed}
-        />
+        >
+          &#10003;
+        </button>
         <div className="resource-info">
           {this.state.editing ? (
             <form

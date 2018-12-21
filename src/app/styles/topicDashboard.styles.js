@@ -4,6 +4,7 @@
 
 import styled from 'styled-components';
 import del from '../images/delete.svg';
+
 export const TopicDashContainer = styled.section`
   max-width: 1255px;
   margin: 0px auto;
@@ -46,6 +47,7 @@ padding:0;
   .resource-item-edit {
     margin-right: 2px;
     background-position:right;
+    text-indent: 200%;
   }
 
   .resource-item-delete {
@@ -76,6 +78,24 @@ padding:0;
       transform: scaleX(-1);
       border-radius: 3px;
       margin: 10px 10px 10px 2px;
+      /* Hide the text. */
+      text-indent: 180%;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .checked-box {
+      height: 40px;
+      width: 39.96px;
+      border: 1.5px solid #aeaeae;
+    
+      border-radius: 3px;
+      margin: 10px 10px 10px 2px;
+      font-family: 'Knewave', cursive;
+      font-size: 36px;
+      color: #242424;
+      letter-spacing: 0.6px;
+      line-height: 35px;
     }
     .elipsis {
       width: 43px;
@@ -160,6 +180,18 @@ padding:0;
   
     }
 
+    form{
+      input{
+      background-color: transparent;
+      border: none;
+      width:200px;
+      font-family: omnes-pro, sans-serif;
+      font-size: 	1.5rem;
+      color: #242424;
+      font-weight: 500;
+      }
+    }
+
   }
 `;
 
@@ -209,37 +241,6 @@ export const ActiveResources = styled.section`
     border: none;
   }
 
-  .resource-edit-form {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: relative;
-  }
-  .resource-edit-form div {
-    max-width: 400px;
-  }
-
-  .resource-edit-form div p {
-    max-width: 400px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
-
-    vertical-align: center;
-  }
-
-  .resource-edit-form input {
-    margin-right: 20px;
-    outline: none;
-    border: none;
-    border-bottom: 1px dashed black;
-    height: 40px;
-    width: 30%;
-    min-width: 200px;
-    font-size: 20px;
-  }
-
   .active-header {
     width: 100%;
     display: flex;
@@ -280,14 +281,6 @@ export const ActiveResources = styled.section`
       display: none;
       font-size: 1rem;
     }
-
-    //     input {
-    //       height: 50px;
-    //       outline: none;
-    //       border: none;
-    //       padding: 10px;
-    //       width: 50%;
-    //     }
   }
 `;
 
@@ -326,5 +319,13 @@ export const CompleteResources = styled.section`
   .resource-item-edit {
     visibility: visible;
     margin-left: 30px;
+  }
+
+  .save-btn-hide {
+    display: none;
+  }
+
+  .completed-resource-item .resource-view .ellipses {
+    visibility: hidden;
   }
 `;

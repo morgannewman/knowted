@@ -7,7 +7,7 @@ export class CompletedResourceContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showAll: true
+      showAll: false
     };
   }
 
