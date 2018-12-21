@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { submitAuthLogin } from '../../../controller/actions/auth';
+import { validateEmail, validatePassword } from '../../common/validate';
 import {
   Container,
   Form,
   Input,
   Label,
-  Button
+  Button,
+  Warning
 } from '../../styles/form.styles';
 
 export class Login extends Component {
@@ -33,11 +35,21 @@ export class Login extends Component {
   handleLoginSubmit = e => {
     e.preventDefault();
     const { password, email } = this.state;
-    if (password.valid && email.valid) {
-      this.props.dispatch(
-        submitAuthLogin({ email: email.input, password: password.input })
-      );
-    }
+    this.setState({ warning: '' }, () => {
+      try {
+        validateEmail(email.input);
+        validatePassword(password.input);
+
+        this.props.dispatch(
+          submitAuthLogin({
+            email: email.input,
+            password: password.input
+          })
+        );
+      } catch (err) {
+        this.setState({ warning: err.message });
+      }
+    });
   };
 
   manageEmailInput = e => {
@@ -65,14 +77,28 @@ export class Login extends Component {
   };
 
   render() {
-    const { submitting, loggedIn } = this.props;
+    let { submitting, loggedIn, authError } = this.props;
 
     if (loggedIn) return <Redirect to="/dashboard" />;
+
+    const { warning } = this.state;
+
+    if (authError) {
+      if (authError.code && authError.code === 401)
+        authError = 'Incorrect email or password';
+      else authError = 'Call the paramedics! Our servers are down';
+    }
 
     return (
       <Container>
         <h1 className="form-title">login & learn</h1>
         <Form onSubmit={this.handleLoginSubmit} className="login">
+          <Warning
+            style={authError || warning ? null : { visibility: 'hidden' }}
+          >
+            <p>{authError || warning}</p>
+          </Warning>
+
           <Label htmlFor="email">Email</Label>
           <Input
             value={this.state.email.input}
@@ -96,4 +122,8 @@ export class Login extends Component {
   }
 }
 
-export default connect()(Login);
+const mapStateToProps = state => ({
+  authError: state.auth.error
+});
+
+export default connect(mapStateToProps)(Login);
