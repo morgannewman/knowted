@@ -15,7 +15,12 @@ class Card extends React.Component {
     const { title, uri } = this.props;
 
     return (
-      <CardLink href={uri} className="card">
+      <CardLink
+        href={uri}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="card"
+      >
         <div>
           <h2>{title}</h2>
           <span>{uri}</span>
