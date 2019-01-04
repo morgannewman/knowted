@@ -39,7 +39,7 @@ export default class Hero extends Component {
             </p>
             <Button>
               <Link to="/register">Start Learning</Link>
-            </Button>{' '}
+            </Button>
             <Button>
               <Link to="/demo">Try a Demo</Link>
             </Button>
