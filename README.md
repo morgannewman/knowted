@@ -79,6 +79,7 @@ Start by adding the topics you'd like to learn. To create a folder, simply drag 
 <br>
 <br>
 <br>
+<br>
 <img src="src/app/images/knowted_mainDash_lowRes.gif" alt="Main Dashboard" width=100%>
 <br>
 
@@ -89,6 +90,7 @@ Every resource you find for a is stored in it's very own drag and droppable Todo
 <br>
 <br>
 <br>
+<br>
 <img src="src/app/images/knowted_topicDash.gif" alt="Topic Dashboard" width=100%>
 <br>
 
@@ -96,5 +98,8 @@ Every resource you find for a is stored in it's very own drag and droppable Todo
 
 Click on a topic to add the resources you want.
 Every resource you find for a is stored in it's very own drag and droppable Todo list. Sort your list and then tackle it from the top down.
+<br>
+<br>
+<br>
 <br>
 <img src="src/app/images/knowted_learnPage.gif" alt="Learn Page Gif" width=100%>
