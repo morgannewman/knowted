@@ -98,3 +98,4 @@ Click on a topic to add the resources you want.
 Every resource you find for a is stored in it's very own drag and droppable Todo list. Sort your list and then tackle it from the top down.
 <br>
 <img src="https://imgur.com/2CVRS8G.gif" alt="Learn Page" width=100%>
+![Imgur](https://imgur.com/2CVRS8G.gif)
