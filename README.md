@@ -77,6 +77,8 @@ This application works best on a desktop browser.
 
 Start by adding the topics you'd like to learn. To create a folder, simply drag and drop two topics together to combine them and name your folder.
 <br>
+<br>
+<br>
 <img src="src/app/images/knowted_mainDash_lowRes.gif" alt="Main Dashboard" width=100%>
 <br>
 
@@ -84,6 +86,8 @@ Start by adding the topics you'd like to learn. To create a folder, simply drag 
 
 Click on a topic to add the resources you want.
 Every resource you find for a is stored in it's very own drag and droppable Todo list. Sort your list and then tackle it from the top down.
+<br>
+<br>
 <br>
 <img src="src/app/images/knowted_topicDash.gif" alt="Topic Dashboard" width=100%>
 <br>
