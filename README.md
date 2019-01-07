@@ -77,19 +77,21 @@ This application works best on a desktop browser.
 
 Start by adding the topics you'd like to learn. To create a folder, simply drag and drop two topics together to combine them and name your folder.
 <br>
-<img src="https://imgur.com/Czmn9VL.gif" alt="Main Dashboard" width=100%>
-
+<br>
+<br>
+<br>
+<img src="src/app/images/knowted_mainDash_lowRes.gif" alt="Main Dashboard" width=100%>
 <br>
 
 #### Add your own learning resources
 
 Click on a topic to add the resources you want.
 Every resource you find for a is stored in it's very own drag and droppable Todo list. Sort your list and then tackle it from the top down.
-
 <br>
-<img src="https://imgur.com/mSG23Yq.gif" alt="Topic Dashboard" width=100%>
 <br>
-
+<br>
+<br>
+<img src="src/app/images/knowted_topicDash.gif" alt="Topic Dashboard" width=100%>
 <br>
 
 #### Easily Take Notes
@@ -97,4 +99,7 @@ Every resource you find for a is stored in it's very own drag and droppable Todo
 Click on a topic to add the resources you want.
 Every resource you find for a is stored in it's very own drag and droppable Todo list. Sort your list and then tackle it from the top down.
 <br>
-<img src="https://imgur.com/2CVRS8G.gif" alt="Learn Page" width=100%>
+<br>
+<br>
+<br>
+<img src="src/app/images/knowted_learnPage.gif" alt="Learn Page Gif" width=100%>
