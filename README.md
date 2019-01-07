@@ -90,6 +90,7 @@ Every resource you find for a is stored in it's very own drag and droppable Todo
 
 <img src="https://imgur.com/mSG23Yq.gif" alt="Topic Dashboard" width=100%>
 <img src="https://imgur.com/Czmn9VL.gif" alt="Main Dashboard" width=100%>
+<img src="https://imgur.com/mSG23Yq.gif" alt="Topic Dashboard" width=100%>
 
 2
 ![Imgur](https://imgur.com/mSG23Yq.gif)
