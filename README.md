@@ -89,6 +89,7 @@ Every resource you find for a is stored in it's very own drag and droppable Todo
 1
 
 <img src="https://imgur.com/mSG23Yq.gif" alt="Topic Dashboard" width=100%>
+<img src="https://imgur.com/Czmn9VL.gif" alt="Main Dashboard" width=100%>
 
 2
 ![Imgur](https://imgur.com/mSG23Yq.gif)
@@ -102,8 +103,11 @@ Every resource you find for a is stored in it's very own drag and droppable Todo
 <img src="https://imgur.com/a/pRy5sCY.gif" alt="Topic Dashboard" width=100%>
 
 5
-[Imgur](https://i.imgur.com/mSG23Yq.gifv)
-<br>
+![Imgur](https://i.imgur.com/mSG23Yq.gif)
+
+6
+
+<blockquote class="imgur-embed-pub" lang="en" data-id="mSG23Yq"><a href="//imgur.com/mSG23Yq">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 <br>
 
@@ -113,4 +117,5 @@ Click on a topic to add the resources you want.
 Every resource you find for a is stored in it's very own drag and droppable Todo list. Sort your list and then tackle it from the top down.
 <br>
 <img src="https://imgur.com/2CVRS8G.gif" alt="Learn Page" width=100%>
+
 ![Imgur](https://imgur.com/2CVRS8G.gif)
