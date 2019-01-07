@@ -47,18 +47,28 @@ Learning from online resources can sometimes feel chaotic. There are so many sit
 
 ## Tech Stack
 
-####Front-end technologies
+#### Front-end technologies
+
 React, Redux, Immer, React-Quill, React-Beautiful-DnD, Styled Components, Redux Notifs
-####Server technologies
+
+#### Server technologies
+
 ​Node, Express, Knex, Passport, Cheerio
-####Testing technologies
+
+#### Testing technologies
+
 ​Jest, Enzyme, Mocha, Chai
-####Data Persistence
+
+#### Data Persistence
+
 ​SQL Database
-####Hosting/SaaS
+
+#### Hosting/SaaS
+
 ​​Hosted on Netlify and ElephantSQL
 
-####Development Environment
+#### Development Environment
+
 Github, TravisCI
 
 ## How to Use
