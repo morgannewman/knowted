@@ -86,8 +86,21 @@ Start by adding the topics you'd like to learn. To create a folder, simply drag 
 Click on a topic to add the resources you want.
 Every resource you find for a is stored in it's very own drag and droppable Todo list. Sort your list and then tackle it from the top down.
 
-<br>
+1
+
 <img src="https://imgur.com/mSG23Yq.gif" alt="Topic Dashboard" width=100%>
+
+2
+![Imgur](https://imgur.com/mSG23Yq.gif)
+
+3
+
+![Imgur](https://imgur.com/a/pRy5sCY.gif)
+
+4
+
+<img src="https://imgur.com/a/pRy5sCY.gif" alt="Topic Dashboard" width=100%>
+
 <br>
 
 <br>
