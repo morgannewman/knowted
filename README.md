@@ -80,7 +80,9 @@ Start by adding the topics you'd like to learn. To create a folder, simply drag 
 <img src="https://imgur.com/Czmn9VL.gif" alt="Main Dashboard" width=100%>
 
 <br>
+
 #### Add your own learning resources
+
 Click on a topic to add the resources you want.
 Every resource you find for a is stored in it's very own drag and droppable Todo list. Sort your list and then tackle it from the top down.
 
@@ -89,7 +91,9 @@ Every resource you find for a is stored in it's very own drag and droppable Todo
 <br>
 
 <br>
+
 #### Easily Take Notes
+
 Click on a topic to add the resources you want.
 Every resource you find for a is stored in it's very own drag and droppable Todo list. Sort your list and then tackle it from the top down.
 <br>
