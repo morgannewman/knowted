@@ -20,3 +20,26 @@
 <p align="center">
 Looking for the backend? <a href="https://github.com/continuouslylearning/learn-note-backend">Check it out!</a>
 </p>
+
+## About
+
+Learning from online resources can sometimes feel chaotic. There are so many sites and video tutorials to keep track of and often no real order for what you should focus on next. Not to mention no easy way to keep related notes for what you've learned! Simplify your online learning process with Knowted.
+
+## Contributors
+
+<a href="https://github.com/clkent">
+- Chelsea Kent
+</a>
+<br>
+<a href="https://github.com/jileon">
+- Janet Leon
+</a>
+<br>
+<a href="https://github.com/morgannewman">
+- Morgan Newman
+</a>
+<br>
+<a href="https://github.com/continuouslylearning">
+- Timothy Chang
+</a>
+<br>
